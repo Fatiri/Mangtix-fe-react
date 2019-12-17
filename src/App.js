@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import Interfaces from './layout/Interfaces';
+import Header from './layout/Header';
+// import Footer from "./layout/Footer";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 // import {createStore} from "redux";
 // import {Provider} from "react-redux";
@@ -23,7 +24,7 @@ class App extends Component {
     return(
         <Router>
         <div>
-        <Interfaces/>
+        <Header/>
         <Switch>
         <Route exact path="/"><BookingContainer/></Route>
         <Route path="/"><CategoryContainer/></Route>
