@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
-import Header from './layout/Header';
-// import Footer from "./layout/Footer";
+import Header from './layout/customer/Header';
+import Footer from "./layout/customer/Footer";
+import Ticket from "./layout/customer/Ticket";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 // import {createStore} from "redux";
 // import {Provider} from "react-redux";
 import BookingContainer from "./modules/booking/BookingContainer";
 import CategoryContainer from "./modules/categories/CategoryContainer";
+import TicketList from "./modules/tickets/components/TicketList";
+import ListEvent from "./modules/events/components/ListEvent";
+import ListSchedule from "./modules/schedules/components/ListSchedule";
 // import EventContainer from "./modules/events/EventContainer";
 // import LoginContainer from "./modules/login/LoginContainer";
 // import PaymentContainer from "./modules/payment/PaymentContainer";
@@ -26,9 +30,11 @@ class App extends Component {
         <div>
         <Header/>
         <Switch>
-        <Route exact path="/"><BookingContainer/></Route>
-        <Route path="/"><CategoryContainer/></Route>
+        <Route exact path="/ticket"><TicketList/></Route>
+        <Route path="/event"><ListEvent/></Route>
+        <Route path="/event-schedule"><ListSchedule/></Route>
         </Switch>
+        <Footer/>
         </div >
         </Router>
     );

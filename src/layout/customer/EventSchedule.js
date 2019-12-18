@@ -1,129 +1,18 @@
 import React, {Component} from 'react';
+import {Link} from "react-router-dom";
 
-class ListEvent extends Component {
+class EventSchedule extends Component {
     render() {
         return (
             < div >
-            <section className="speaker-bg section-padding">
-            <div className="container">
-            <div className="section-intro section-intro-white text-center pb-98px">
-            <p className="section-intro__title">Join the event</p>
-        <h2 className="primary-text">Meet The Speakers</h2>
-        <img src="img/home/section-style.png" alt=""></img>
-            </div>
-
-            <div className="row">
-            <div className="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-            <div className="card-speaker">
-            <img className="card-img rounded-0" src="img/home/speaker-1.png" alt=""></img>
-            <div className="speaker-footer">
-            <h4>Jhon Leonar</h4>
-        <p>UX/UI Designer Microsoft</p>
-        </div>
-        <div className="speaker-overlay">
-            <ul className="speaker-social">
-            <li><a href="#"><i className="ti-facebook"></i></a></li>
-        <li><a href="#"><i className="ti-twitter-alt"></i></a></li>
-        <li><a href="#"><i className="ti-instagram"></i></a></li>
-        <li><a href="#"><i className="ti-skype"></i></a></li>
-        </ul>
-        </div>
-        </div>
-        </div>
-        <div className="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-            <div className="card-speaker">
-            <img className="card-img rounded-0" src="img/home/speaker-2.png" alt=""></img>
-            <div className="speaker-footer">
-            <h4>Donald Markin</h4>
-        <p>UX/UI Designer Microsoft</p>
-        </div>
-        <div className="speaker-overlay">
-            <ul className="speaker-social">
-            <li><a href="#"><i className="ti-facebook"></i></a></li>
-        <li><a href="#"><i className="ti-twitter-alt"></i></a></li>
-        <li><a href="#"><i className="ti-instagram"></i></a></li>
-        <li><a href="#"><i className="ti-skype"></i></a></li>
-        </ul>
-        </div>
-        </div>
-        </div>
-        <div className="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-            <div className="card-speaker">
-            <img className="card-img rounded-0" src="img/home/speaker-3.png" alt=""></img>
-            <div className="speaker-footer">
-            <h4>Donald Markin</h4>
-        <p>UX/UI Designer Microsoft</p>
-        </div>
-        <div className="speaker-overlay">
-            <ul className="speaker-social">
-            <li><a href="#"><i className="ti-facebook"></i></a></li>
-        <li><a href="#"><i className="ti-twitter-alt"></i></a></li>
-        <li><a href="#"><i className="ti-instagram"></i></a></li>
-        <li><a href="#"><i className="ti-skype"></i></a></li>
-        </ul>
-        </div>
-        </div>
-        </div>
-
-        <div className="w-100 mb-50px d-none d-lg-block"></div>
-
-            <div className="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-            <div className="card-speaker">
-            <img className="card-img rounded-0" src="img/home/speaker-1.png" alt=""></img>
-            <div className="speaker-footer">
-            <h4>Donald Markin</h4>
-        <p>UX/UI Designer Microsoft</p>
-        </div>
-        <div className="speaker-overlay">
-            <ul className="speaker-social">
-            <li><a href="#"><i className="ti-facebook"></i></a></li>
-        <li><a href="#"><i className="ti-twitter-alt"></i></a></li>
-        <li><a href="#"><i className="ti-instagram"></i></a></li>
-        <li><a href="#"><i className="ti-skype"></i></a></li>
-        </ul>
-        </div>
-        </div>
-        </div>
-        <div className="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-            <div className="card-speaker">
-            <img className="card-img rounded-0" src="img/home/speaker-2.png" alt=""></img>
-            <div className="speaker-footer">
-            <h4>Donald Markin</h4>
-        <p>UX/UI Designer Microsoft</p>
-        </div>
-        <div className="speaker-overlay">
-            <ul className="speaker-social">
-            <li><a href="#"><i className="ti-facebook"></i></a></li>
-        <li><a href="#"><i className="ti-twitter-alt"></i></a></li>
-        <li><a href="#"><i className="ti-instagram"></i></a></li>
-        <li><a href="#"><i className="ti-skype"></i></a></li>
-        </ul>
-        </div>
-        </div>
-        </div>
-        <div className="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-            <div className="card-speaker">
-            <img className="card-img rounded-0" src="img/home/speaker-3.png" alt=""></img>
-            <div className="speaker-footer">
-            <h4>Jhon Leonar</h4>
-        <p>UX/UI Designer Microsoft</p>
-        </div>
-        <div className="speaker-overlay">
-            <ul className="speaker-social">
-            <li><a href="#"><i className="ti-facebook"></i></a></li>
-        <li><a href="#"><i className="ti-twitter-alt"></i></a></li>
-        <li><a href="#"><i className="ti-instagram"></i></a></li>
-        <li><a href="#"><i className="ti-skype"></i></a></li>
-        </ul>
-        </div>
-        </div>
-        </div>
-        </div>
+            <section className="hero-banner hero-banner-sm">
+            <div className="container text-center">
+            <h2>Event Schedule</h2>
+        <Link className="button button-header" to="/ticket">Get Ticket</Link>
         </div>
         </section>
 
-
-        <section className="section-margin mb-5 pb-5">
+        <section className="section-margin--large mb-5 pb-5">
             <div className="container">
             <div className="section-intro text-center pb-98px">
             <p className="section-intro__title">Join the event</p>
@@ -160,7 +49,6 @@ class ListEvent extends Component {
         </a>
         </li>
         </ul>
-
 
         <div className="tab-content">
             <div id="day1" className="tab-pane">
@@ -324,7 +212,6 @@ class ListEvent extends Component {
             <img src="img/testimonial/testimonial2.png" alt=""></img>
             <h3>Adam Jamsmith</h3>
         <p>UX/UI Designer</p>
-
         </div>
         </div>
         <div className="col-md-9 align-self-center">
@@ -347,7 +234,6 @@ class ListEvent extends Component {
             <img src="img/testimonial/testimonial3.png" alt=""></img>
             <h3>Adam Jamsmith</h3>
         <p>UX/UI Designer</p>
-
         </div>
         </div>
         <div className="col-md-9 align-self-center">
@@ -369,7 +255,6 @@ class ListEvent extends Component {
             <img src="img/testimonial/testimonial1.png" alt=""></img>
             <h3>Adam Jamsmith</h3>
         <p>UX/UI Designer</p>
-
         </div>
         </div>
         <div className="col-md-9 align-self-center">
@@ -391,7 +276,6 @@ class ListEvent extends Component {
             <img src="img/testimonial/testimonial2.png" alt=""></img>
             <h3>Adam Jamsmith</h3>
         <p>UX/UI Designer</p>
-
         </div>
         </div>
         <div className="col-md-9 align-self-center">
@@ -413,7 +297,6 @@ class ListEvent extends Component {
             <img src="img/testimonial/testimonial3.png" alt=""></img>
             <h3>Adam Jamsmith</h3>
         <p>UX/UI Designer</p>
-
         </div>
         </div>
         <div className="col-md-9 align-self-center">
@@ -434,10 +317,10 @@ class ListEvent extends Component {
         </div>
         </div>
         </section>
-            < /div>
+        < /div>
     )
         ;
     }
 }
 
-export default ListEvent;
+export default EventSchedule;

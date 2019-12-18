@@ -4,12 +4,11 @@ class About extends Component {
     render() {
         return (
             < div >
-            <section className="hero-banner">
-            <div className="container text-center">
-            <h1>MangTix</h1>
-            </div>
-            </section>
-
+            <section class="hero-banner">
+            <div class="container text-center">
+             <h1>MangTix</h1>
+             </div>
+        </section>
 
             <section className="section-padding--small bg-gray">
             <div className="container">
@@ -89,8 +88,8 @@ class About extends Component {
         </div>
         </section>
             < /div>
-    )
-        ;
+
+        );
     }
 }
 
