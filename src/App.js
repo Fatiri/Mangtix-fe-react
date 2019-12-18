@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Header from './layout/Header';
+// import Footer from "./layout/Footer";
 import $ from 'jquery';
 import Interfaces from './layout/customer/Interfaces';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
@@ -20,6 +22,20 @@ import Admin from "./layout/admin/admin";
 // import TicketReducer from "./modules/tickets/reducer/TicketReducer";
 // import UserReducer from "./modules/users/reducer/UserReducer";
 
+class App extends Component {
+  render() {
+    return(
+        <Router>
+        <div>
+        <Header/>
+        <Switch>
+        <Route exact path="/"><BookingContainer/></Route>
+        <Route path="/"><CategoryContainer/></Route>
+        </Switch>
+        </div >
+        </Router>
+    );
+  }
 export default class App extends Component {
 
     render() {
