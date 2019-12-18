@@ -1,40 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
+<head>
+    <meta charset="utf-8"/>
     <link rel="icon" href="img/Fevicon.png" type="image/png">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#000000"/>
+    <meta name="description" content="Web site created using create-react-app"/>
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png"/>
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" >
     <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+<!--    <link rel="stylesheet" href="vendors/fontawesome-free/css/all.min.css" type="text/css">-->
+<!--    <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">-->
+    <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="vendors/bootstrap/css/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="vendors/linericon/style.css">
     <link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">
     <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="vendors/flat-icon/font/flaticon.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/ruang-admin.css">
+    <script>
+        $(document).ready(function(){
+            $('li').click(
+                function(element)
+                {
+                    $('li').removeClass('active');
+                    $(element.currentTarget).addClass('active');
+                }
+            );
+        });
+    </script>
     <title>MangTix</title>
-  </head>
-  <body>
-  <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
-  <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-  <script src="vendors/Magnific-Popup/jquery.magnific-popup.min.js"></script>
-  <script src="js/jquery.ajaxchimp.min.js"></script>
-  <script src="js/mail-script.js"></script>
-  <script src="js/countdown.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/main.js"></script>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
+</head>
+<body>
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="root">
+
+</div>
+</body>
+<!--<script src="vendors/jquery/jquery-3.2.1.min.js"></script>-->
+<!--<script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>-->
+<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="vendors/Magnific-Popup/jquery.magnific-popup.min.js"></script>
+<!--<script src="js/jquery.ajaxchimp.min.js"></script>-->
+<script src="js/mail-script.js"></script>
+<script src="js/countdown.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/main.js"></script>
+<script src="vendors/jquery/jquery.js"></script>
+<script src="vendors/bootstrap/js/bootstrap.js"></script>
+<script src="vendors/jquery-easing/jquery.easing.min.js"></script>
+<script src="js/ruang-admin.js"></script>
+</body>
 </html>
