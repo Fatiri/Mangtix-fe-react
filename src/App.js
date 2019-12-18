@@ -21,13 +21,7 @@ import Admin from "./layout/admin/admin";
 // import UserReducer from "./modules/users/reducer/UserReducer";
 
 export default class App extends Component {
-    function(e) {
-        $('body').toggleClass('sidebar-toggled');
-        $('.sidebar').toggleClass('toggled');
-        // if ($('.sidebar').hasClass('toggled')) {
-        //     $('.sidebar .collapse').collapse('hide');
-        // };
-    };
+
     render() {
         return (
             <Router>
