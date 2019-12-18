@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-import Interfaces from './layout/Interfaces';
+import $ from 'jquery';
+import Interfaces from './layout/customer/Interfaces';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 // import {createStore} from "redux";
 // import {Provider} from "react-redux";
 import BookingContainer from "./modules/booking/BookingContainer";
 import CategoryContainer from "./modules/categories/CategoryContainer";
+import Admin from "./layout/admin/admin";
 // import EventContainer from "./modules/events/EventContainer";
 // import LoginContainer from "./modules/login/LoginContainer";
 // import PaymentContainer from "./modules/payment/PaymentContainer";
@@ -18,20 +20,26 @@ import CategoryContainer from "./modules/categories/CategoryContainer";
 // import TicketReducer from "./modules/tickets/reducer/TicketReducer";
 // import UserReducer from "./modules/users/reducer/UserReducer";
 
-class App extends Component {
-  render() {
-    return(
-        <Router>
-        <div>
-        <Interfaces/>
-        <Switch>
-        <Route exact path="/"><BookingContainer/></Route>
-        <Route path="/"><CategoryContainer/></Route>
-        </Switch>
-        </div >
-        </Router>
-    );
-  }
+export default class App extends Component {
+    function(e) {
+        $('body').toggleClass('sidebar-toggled');
+        $('.sidebar').toggleClass('toggled');
+        // if ($('.sidebar').hasClass('toggled')) {
+        //     $('.sidebar .collapse').collapse('hide');
+        // };
+    };
+    render() {
+        return (
+            <Router>
+                <div>
+                    <Admin/>
+                    {/*<Interfaces/>*/}
+                    <Switch>
+                        <Route exact path="/"><BookingContainer/></Route>
+                        <Route path="/"><CategoryContainer/></Route>
+                    </Switch>
+                </div>
+            </Router>
+        );
+    }
 }
-
-export default App;
