@@ -1,9 +1,15 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
-class PriceList extends Component {
+class Ticket extends Component {
     render() {
         return (
-            < div >
+            <div>
+            <section class="hero-banner hero-banner-sm">
+            <div class="container text-center">
+            <h2>Pricing Plan</h2>
+            </div>
+            </section>
+
             <section className="section-padding bg-gray">
             <div className="container">
             <div className="section-intro text-center pb-98px">
@@ -11,12 +17,11 @@ class PriceList extends Component {
         <h2 className="primary-text">Choose Your Ticket</h2>
         <img src="img/home/section-style.png" alt=""></img>
             </div>
-
             <div className="row">
             <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
             <div className="text-center card-priceTable">
             <div className="priceTable-header">
-            <h3>Normal</h3>
+            <h3>Presale-1</h3>
             <p>Attend only first day</p>
         <h1 className="priceTable-price"><span>$</span> 45.00</h1>
         </div>
@@ -46,7 +51,7 @@ class PriceList extends Component {
         <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
             <div className="text-center card-priceTable">
             <div className="priceTable-header">
-            <h3>Advance</h3>
+            <h3>Presale-2</h3>
             <p>Attend only first day</p>
         <h1 className="priceTable-price"><span>$</span> 50.00</h1>
         </div>
@@ -76,7 +81,7 @@ class PriceList extends Component {
         <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
             <div className="text-center card-priceTable">
             <div className="priceTable-header">
-            <h3>Ultimate</h3>
+            <h3>VVIP</h3>
             <p>Attend only first day</p>
         <h1 className="priceTable-price"><span>$</span> 60.00</h1>
         </div>
@@ -105,10 +110,10 @@ class PriceList extends Component {
         </div>
         </div>
         </section>
-            < /div>
+        < /div>
     )
         ;
     }
 }
 
-export default PriceList;
+export default Ticket;
