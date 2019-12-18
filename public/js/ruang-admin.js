@@ -78,7 +78,7 @@ $('.popover-dismiss').popover({
 });
 
 
-// Version in Sidebar
+// Version in Adminsidebar
 
 var version = document.getElementById('version-ruangadmin');
 

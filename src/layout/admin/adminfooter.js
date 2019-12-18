@@ -3,10 +3,17 @@ import React, {Component} from 'react';
 class Adminfooter extends Component {
     render() {
         return (
-            <div>
-                <footer className="bdT ta-c p-30 lh-0 fsz-sm c-grey-600"><span>Copyright © 2019 Designed by <code>Mangtix</code> All rights reserved.</span>
+            <>
+                <footer className="sticky-footer bg-white">
+                    <div className="container my-auto">
+                        <div className="copyright text-center my-auto">
+                            <span>copyright &copy; 2019 - developed by
+                                <b><a href="#" target="_blank"> MangTix</a></b>
+                            </span>
+                        </div>
+                    </div>
                 </footer>
-            </div>
+            </>
         );
     }
 }
