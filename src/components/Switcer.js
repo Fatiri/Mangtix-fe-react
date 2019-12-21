@@ -2,16 +2,16 @@ import React, {Component} from 'react';
 import {Route, Switch} from "react-router-dom";
 import LocationContainer from "../modules/location/LocationContainer";
 import CategoryContainer from "../modules/categories/CategoryContainer";
+
+import $ from "jquery";
 import {
     AdminRoute,
-    BookingRoute, EventScheduleRoute,
-    EventsRoute,
+    BookingRoute, EventScheduleRoute, EventsRoute,
     LoginRoute,
     PublicRoute,
     RegistrationRoute,
     TicketListRoute
-} from "./constants";
-import $ from "jquery";
+} from "./constants/customRoute";
 
 class Switcer extends Component {
     constructor(props) {
@@ -45,7 +45,6 @@ class Switcer extends Component {
                 <TicketListRoute exact path="/ticket"></TicketListRoute>
                 <EventsRoute exact path="/events"></EventsRoute>
                 <EventScheduleRoute exact path="/event-schedule"></EventScheduleRoute>
-
 
                 <Route exact path="/event"></Route>
                 <Route exact path="/category"><CategoryContainer/></Route>
