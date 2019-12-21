@@ -10,6 +10,8 @@ import CategoryContainer from "./modules/categories/CategoryContainer";
 import TicketList from "./modules/tickets/components/TicketList";
 import ListEvent from "./modules/events/components/ListEvent";
 import ListSchedule from "./modules/schedules/components/ListSchedule";
+import BookingForm from "./modules/booking/components/BookingForm";
+import Cart from "./layout/customer/Cart";
 // import EventContainer from "./modules/events/EventContainer";
 // import LoginContainer from "./modules/login/LoginContainer";
 // import PaymentContainer from "./modules/payment/PaymentContainer";
@@ -28,11 +30,11 @@ class App extends Component {
     return(
         <Router>
         <div>
-        <Header/>
         <Switch>
-        <Route exact path="/ticket"><TicketList/></Route>
         <Route path="/event"><ListEvent/></Route>
+        <Route path="/ticket"><TicketList/></Route>
         <Route path="/event-schedule"><ListSchedule/></Route>
+        <Route path="/cart"><Cart/></Route>
         </Switch>
         <Footer/>
         </div >

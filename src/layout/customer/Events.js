@@ -5,21 +5,57 @@ class Events extends Component {
     render() {
         return (
             <div>
-            <section className="hero-banner hero-banner-sm">
-            <div className="container text-center">
-            <h2>Events Schedule</h2>
-            </div>
-            </section>
+            <header className="header_area">
+            <div className="main_menu">
+            <nav className="navbar navbar-expand-lg navbar-light">
+            <div className="container box_1620">
+            <a className="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></img></a>
+        <button className="navbar-toggler" type="button" // noinspection JSAnnotator
+        data-toggle="collapse" // noinspection JSAnnotator
+        data-target="#navbarSupportedContent" // noinspection JSAnnotator
+        aria-controls="navbarSupportedContent" // noinspection JSAnnotator
+        aria-expanded="false" aria-label="Toggle navigation">
+            <span className="icon-bar"></span>
+            <span className="icon-bar"></span>
+            <span className="icon-bar"></span>
+            </button>
 
-            <section className="section-margin">
+            <div className="collapse navbar-collapse offset" id="navbarSupportedContent">
+            <ul className="nav navbar-nav menu_nav justify-content-end">
+            <li className="nav-item"><a className="nav-link" href="index.html">Home</a></li>
+        <li className="nav-item"><a className="nav-link" href="about.html">About</a></li>
+        <li className="nav-item active"><Link className="nav-link" to="/event">Events</Link></li>
+        </ul>
+
+        </div>
+        </div>
+        </nav>
+        </div>
+        </header>
+
+        <div className="carousel slide" data-ride="carousel">
+            <div className="carousel-inner">
+            <div className="carousel-item active">
+            <img className="d-block w-100" src="img/banner/hero-banner.png" height="500px" alt="First slide"></img>
+            </div>
+            <div className="carousel-item">
+            <img className="d-block w-100" src="img/banner/hero-banner1.png" height="500px" alt="Second slide"></img>
+            </div>
+            <div className="carousel-item">
+            <img className="d-block w-100" src="img/banner/hero-banner.png" height="500px" alt="Third slide"></img>
+            </div>
+            </div>
+            </div>
+
+        <section className="section-padding--small sponsor-bg">
             <div className="container">
             <div className="section-intro text-center pb-98px">
         <h2 className="primary-text">Join The Event</h2>
         <img src="img/home/section-style.png" alt=""></img>
             </div>
 
-            <div class="owl-theme owl-carousel blogCarousel pb-xl-1">
-            <div class="card-blog">
+            <div className="owl-theme owl-carousel blogCarousel pb-xl-1">
+            <div className="card-blog">
             <img className="card-img" src="img/blog/blog1.png" alt=""></img>
             <div className="blog-body">
             <Link className="nav-link" to="/event-schedule">
