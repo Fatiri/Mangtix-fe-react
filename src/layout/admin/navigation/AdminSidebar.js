@@ -23,7 +23,7 @@ export default class AdminSidebar extends Component {
                         Features
                     </div>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/home" data-toggle="collapse"
+                        <Link className="nav-link" data-toggle="collapse"
                               data-target="#collapseBootstrap"
                               aria-expanded="true" aria-controls="collapseBootstrap">
                             <i className="far fa-fw fa-window-maximize"/>
@@ -66,9 +66,9 @@ export default class AdminSidebar extends Component {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="location">
+                        <Link className="nav-link" to="events">
                             <i className="fas fa-fw fa-location-arrow"/>
-                            <span>Location</span>
+                            <span>Events</span>
                         </Link>
                     </li>
                     <li className="nav-item">
@@ -78,9 +78,9 @@ export default class AdminSidebar extends Component {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="location">
-                            <i className="fas fa-fw fa-location-arrow"/>
-                            <span>Location</span>
+                        <Link className="nav-link" to="category">
+                            <i className="fas fa-fw fa-home"/>
+                            <span>Category</span>
                         </Link>
                     </li>
                     <hr className="sidebar-divider"/>

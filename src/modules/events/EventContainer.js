@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
+import EventList from "./components/adminComponent/EventList";
 
 class EventContainer extends Component {
     render() {
         console.log("ini Event")
         return (
             <div>
-                <h1>Event</h1>
+            <EventList/>
             </div>
          );
     }
