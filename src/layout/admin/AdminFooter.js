@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class Adminfooter extends Component {
+class AdminFooter extends Component {
     render() {
         return (
             <>
@@ -18,4 +18,4 @@ class Adminfooter extends Component {
     }
 }
 
-export default Adminfooter;
+export default AdminFooter;

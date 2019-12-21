@@ -1,10 +1,8 @@
-import React, {Component} from 'react';
-
-class EventReducer extends Component {
-    render() {
-        return (
-        );
-    }
+const initialState= {
+    event:[],
+    eventForm:{}
 }
+export default function eventReducer(state=initialState, action){
+    console.log('event-reducer', state, action)
 
-export default EventReducer;
+}

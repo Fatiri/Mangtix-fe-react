@@ -14,10 +14,10 @@ export async function saveDataCategory(event) {
                     timer: 3000
                 })
                 return response.json();
-            } else {
+            } else if (response.status===500){
                 Swal.fire({
                     icon: 'error',
-                    title: 'Sorry...',
+                    title: 'Sorry, the category name already exists',
                     timer:3000
                 })
             }

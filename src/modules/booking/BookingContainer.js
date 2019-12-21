@@ -7,7 +7,7 @@ import {createStore} from "redux";
 class BookingContainer extends Component {
     render() {
         return (
-            <div>
+            <div className="row">
             <Provider store={createStore(bookingReducer)}><BookingList/>
             </Provider>
             </div>
