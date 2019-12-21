@@ -78,8 +78,8 @@ $('.popover-dismiss').popover({
 });
 
 
-// Version in Adminsidebar
+// Version in AdminSidebar
 
-var version = document.getElementById('version-ruangadmin');
+var version = document.getElementById('version-mangtix');
 
-version.innerHTML = "Version 1.0.1";
+version.innerHTML = "Version 0.0.1";

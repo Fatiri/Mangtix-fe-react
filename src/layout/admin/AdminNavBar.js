@@ -1,22 +1,23 @@
 import React, {Component} from 'react';
-import $ from 'jquery';
 
-export default class Adminnavbar extends Component {
+export default class AdminNavBar extends Component {
 
     render() {
         return (
             <>
-                <nav className="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
-                    <button id="sidebarToggleTop" onClick={this.handleButtonToggled} className="btn btn-link rounded-circle mr-3">
+                <nav className="navbar navbar-expand navbar-fixed-top navbar-light bg-navbar topbar mb-4 static-top">
+                    <button id="sidebarToggleTop" onClick={this.handleButtonToggled}
+                            className="btn btn-link rounded-circle mr-3">
                         <i className="fa fa-bars"/>
                     </button>
+
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item dropdown no-arrow mx-1">
                             <a className="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
                                 <i className="fas fa-bell fa-fw"/>
-                                <span className="badge badge-danger badge-counter">3+</span>
+                                <span className="badge badge-danger badge-counter">100+</span>
                             </a>
                             <div
                                 className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -62,7 +63,6 @@ export default class Adminnavbar extends Component {
                                     Alerts</a>
                             </div>
                         </li>
-
 
                         <div className="topbar-divider d-none d-sm-block"></div>
                         <li className="nav-item dropdown no-arrow">
