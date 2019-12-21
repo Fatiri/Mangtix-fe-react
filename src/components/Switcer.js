@@ -12,6 +12,7 @@ import BookingContainer from "../modules/booking/BookingContainer";
 import EventContainer from "../modules/events/EventContainer";
 import App from "../App";
 import LocationContainer from "../modules/location/LocationContainer";
+import CategoryContainer from "../modules/categories/CategoryContainer";
 
 class Switcer extends Component {
     render() {
@@ -34,6 +35,7 @@ class Switcer extends Component {
                                 <Route exact path="/ticket">Ticket</Route>
                                 <Route exact path="/payment">Payment</Route>
                                 <Route exact path="/cart">Cart</Route>
+                                <Route exact path="/category"><CategoryContainer/></Route>
                                 <Route exact path="/chatting">Chatting</Route>
                                 {/*<Route exact path="/login"><LoginContainer/></Route>*/}
                                 <Route exact path="/ticket"><TicketList/></Route>
