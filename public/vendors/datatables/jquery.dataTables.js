@@ -3491,7 +3491,7 @@
 				} ).html( sZero ) )[0];
 		}
 
-		/* Adminnavbar and footer callbacks */
+		/* AdminNavBar and footer callbacks */
 		_fnCallbackFire( oSettings, 'aoHeaderCallback', 'header', [ $(oSettings.nTHead).children('tr')[0],
 			_fnGetDataMaster( oSettings ), iDisplayStart, iDisplayEnd, aiDisplay ] );
 

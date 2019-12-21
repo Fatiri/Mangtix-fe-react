@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import Adminsidebar from "./adminsidebar";
-import AdminContent from "./adminContent";
+import AdminSidebar from "./navigation/AdminSidebar";
 import $ from "jquery";
 
 class Admin extends Component {
@@ -12,10 +11,9 @@ class Admin extends Component {
 
     render() {
         return (
-            <div id="wrapper">
-                <Adminsidebar/>
-                <AdminContent/>
-            </div>
+            <>
+                <AdminSidebar/>
+            </>
         );
     }
 }

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Provider} from "react-redux";
-import FormRegister from "../register/components/FormRegister";
+import FormRegister from "./components/FormRegister";
 
-class LoginContainer extends Component {
+export default class RegisterContainer extends Component {
     render() {
         return (
             <>
@@ -11,5 +11,3 @@ class LoginContainer extends Component {
         );
     }
 }
-
-export default LoginContainer;

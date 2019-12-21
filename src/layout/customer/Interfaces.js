@@ -1055,10 +1055,9 @@ class Interfaces extends Component {
                         </div>
                     </div>
                 </footer>
-                < /div>
-                    )
-                    ;
-                    }
-                    }
+            </div>
+        );
+    }
+}
 
-                    export default Interfaces;
+export default Interfaces;
