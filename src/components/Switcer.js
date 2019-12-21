@@ -1,52 +1,62 @@
 import React, {Component} from 'react';
-import Admin from "../layout/admin/Admin";
-import AdminNavBar from "../layout/admin/AdminNavBar";
 import {Route, Switch} from "react-router-dom";
-import RegisterContainer from "../modules/register/RegisterContainer";
-import LoginContainer from "../modules/login/LoginContainer";
-import TicketList from "../modules/tickets/components/TicketList";
-import ListEvent from "../modules/events/components/ListEvent";
-import ListSchedule from "../modules/schedules/components/ListSchedule";
-import AdminFooter from "../layout/admin/AdminFooter";
-import BookingContainer from "../modules/booking/BookingContainer";
-import EventContainer from "../modules/events/EventContainer";
-import App from "../App";
 import LocationContainer from "../modules/location/LocationContainer";
 import CategoryContainer from "../modules/categories/CategoryContainer";
+import {
+    AdminRoute,
+    BookingRoute, EventScheduleRoute,
+    EventsRoute,
+    LoginRoute,
+    PublicRoute,
+    RegistrationRoute,
+    TicketListRoute
+} from "./constants";
+import $ from "jquery";
 
 class Switcer extends Component {
+    constructor(props) {
+        super(props);
+        this.state={
+            hide:false
+        }
+    }
+
+    handleButtonToggled(e) {
+        $('body').toggleClass('sidebar-toggled');
+        $('.sidebar').toggleClass('toggled');
+    };
+    hideHeader = ()=>{
+        const { hide } = this.state
+        this.setState({ hide: !hide  })
+    }
     render() {
         return (
             <>
-                <Admin/>
-                <div id="content-wrapper" className="d-flex flex-column">
-                    <div id="content">
-                        <AdminNavBar/>
-                        <div className="container-fluid" id="container-wrapper">
+            <Switch>
+                {/*admin component*/}
+                <AdminRoute exact path="/admin" ></AdminRoute>
+                <Route exact path="/location"><LocationContainer/></Route>
 
-                            <Switch>
-                                <Route exact path="/registration"><RegisterContainer/></Route>
-                                <Route exact path="/login"><LoginContainer/></Route>
-                                <Route exact path="/users">Users</Route>
-                                <Route exact path="/location"><LocationContainer/></Route>
-                                {/*<Route exact path="/dashboard"></Route>*/}
-                                <Route exact path="/booking"><BookingContainer/></Route>
-                                <Route exact path="/events"><EventContainer/></Route>
-                                <Route exact path="/ticket">Ticket</Route>
-                                <Route exact path="/payment">Payment</Route>
-                                <Route exact path="/cart">Cart</Route>
-                                <Route exact path="/category"><CategoryContainer/></Route>
-                                <Route exact path="/chatting">Chatting</Route>
-                                {/*<Route exact path="/login"><LoginContainer/></Route>*/}
-                                <Route exact path="/ticket"><TicketList/></Route>
-                                <Route exact path="/event"><ListEvent/></Route>
-                                <Route exact path="/event-schedule"><ListSchedule/></Route>
-                            </Switch>
-                        </div>
-                    </div>
-                    {/*<Footer/>*/}
-                    <AdminFooter/>
-                </div>
+                {/*public component*/}
+                <PublicRoute exact path="/" ></PublicRoute>
+                <RegistrationRoute exact path="/registration"></RegistrationRoute>
+                <LoginRoute exact path="/login"></LoginRoute>
+                <BookingRoute exact path="/booking"></BookingRoute>
+                <TicketListRoute exact path="/ticket"></TicketListRoute>
+                <EventsRoute exact path="/events"></EventsRoute>
+                <EventScheduleRoute exact path="/event-schedule"></EventScheduleRoute>
+
+
+                <Route exact path="/event"></Route>
+                <Route exact path="/category"><CategoryContainer/></Route>
+                <Route exact path="/users">Users</Route>
+                {/*<Route exact path="/dashboard"></Route>*/}
+                <Route exact path="/ticket">Ticket</Route>
+                <Route exact path="/payment">Payment</Route>
+                <Route exact path="/cart">Cart</Route>
+                <Route exact path="/chatting">Chatting</Route>
+
+            </Switch>
             </>
         );
     }
