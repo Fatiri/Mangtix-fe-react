@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 
-export async function saveDataCategory(event) {
-    const data = await fetch("http://localhost:9090/category", {method:"POST",
+export async function saveDataCompany(event) {
+    const data = await fetch("http://localhost:9090/company", {method:"POST",
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(event)})
         .then((response) => {
@@ -17,7 +17,7 @@ export async function saveDataCategory(event) {
             } else if (response.status===500){
                 Swal.fire({
                     icon: 'error',
-                    title: 'Sorry, the category name already exists',
+                    title: 'Sorry,..!!',
                     timer:3000
                 })
             }
@@ -26,8 +26,8 @@ export async function saveDataCategory(event) {
     return data;
 }
 
-export async function fetchDataCategory() {
-    const data=await fetch(`http://localhost:9090/categories`,
+export async function fetchDataCompany() {
+    const data=await fetch(`http://localhost:9090/companies`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });

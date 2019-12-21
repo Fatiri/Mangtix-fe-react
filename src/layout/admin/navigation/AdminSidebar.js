@@ -60,9 +60,9 @@ export default class AdminSidebar extends Component {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="location">
+                        <Link className="nav-link" to="/category">
                             <i className="fas fa-fw fa-location-arrow"/>
-                            <span>Location</span>
+                            <span>Category</span>
                         </Link>
                     </li>
                     <li className="nav-item">

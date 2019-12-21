@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
-import CategoryList from "./components/CategoryList";
+import {createStore} from "redux";
+import categoryReducer from "./reducer/CategoryReducer";
+import {Provider} from "react-redux";
+import CategoryForm from "./components/CategoryForm";
 
 class CategoryContainer extends Component {
     render() {
         return (
-            <div className="row">
-                <CategoryList/>
+            <div>
+                <Provider store={createStore(categoryReducer)}><CategoryForm/></Provider>
             </div>
          );
     }
