@@ -26,8 +26,17 @@ export async function saveDataEvent(event) {
     return data;
 }
 
-export async function fetchDataCategory() {
+export async function fetchDataEvent() {
     const data=await fetch(`http://localhost:9090/event`,
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
+    console.log(data);
+    return data;
+}
+
+export async function fetchDataEventByCompany(event) {
+    const data=await fetch(`http://localhost:9090/event-company`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });

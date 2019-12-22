@@ -41,6 +41,7 @@ class Switcer extends Component {
                                 <Route exact path="/ticket"><TicketList/></Route>
                                 <Route exact path="/event"><ListEvent/></Route>
                                 <Route exact path="/event-schedule"><ListSchedule/></Route>
+                                <Route exact path="/event-form"><EventContainer/></Route>
                             </Switch>
                         </div>
                     </div>

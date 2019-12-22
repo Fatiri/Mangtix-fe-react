@@ -4,13 +4,7 @@ const initialState= {
         eventName:"",
         descriptionEvent:"",
         companyIdTransient:"",
-        eventDetailList:[{
-            venue:"",
-            eventDay:"",
-            eventDate:"",
-            description:"",
-            locationIdTransient:""
-        }]
+        eventDetailList:[]
     },
     eventDetail:[],
 
@@ -20,6 +14,10 @@ export default function eventReducer(state=initialState, action){
     switch (action.type) {
         case "FETCH_EVENT_SUCCESS":
             return {...state, events: action.payload}
+        case "ADD_EVENT_DETAIL":
+            return {...state, eventForm: {...state.eventForm, eventDetailList:state.eventForm.eventDetailList.concat(
+                [{venue:"", eventDay:"", eventDate:"", description:"", locationIdTransient:""}]
+                    )}}
         case "HANDLE_EVENT_NAME":
             return {...state, eventForm: {...state.eventForm, eventName: action.eventName}}
         case "HANDLE_DESCRIPTION_EVENT":
@@ -27,15 +25,45 @@ export default function eventReducer(state=initialState, action){
         case "HANDLE_COMPANY_ID":
             return {...state, eventForm: {...state.eventForm, companyIdTransient: action.companyIdTransient}}
         case "HANDLE_VENUE":
-            return {...state, eventForm: {...state.eventForm, eventDetailList: {...state.eventForm.eventDetailList, venue:action.venue}}}
+            return {...state, eventForm: {...state.eventForm, eventDetailList:state.eventForm.eventDetailList.map((element, index)=>{
+                if (index===action.index){
+                    return {...element, venue:action.venue}
+                }else{
+                    return {...element}
+                }})
+            }}
         case "HANDLE_EVENT_DAY":
-            return {...state, eventForm: {...state.eventForm, eventDetailList: {...state.eventForm.eventDetailList, eventDay:action.eventDay}}}
+            return {...state, eventForm: {...state.eventForm, eventDetailList:state.eventForm.eventDetailList.map((element, index)=>{
+                            if (index===action.index){
+                                return {...element, eventDay:action.eventDay}
+                            }else{
+                                return {...element}
+                            }})
+                    }}
         case "HANDLE_EVENT_DATE":
-            return {...state, eventForm: {...state.eventForm, eventDetailList: {...state.eventForm.eventDetailList, eventDate:action.eventDate}}}
+            return {...state, eventForm: {...state.eventForm, eventDetailList: state.eventForm.eventDetailList.map((element, index)=>{
+                            if (index===action.index){
+                                return {...element, eventDate:action.eventDate}
+                            }else{
+                                return {...element}
+                            }})
+                    }}
         case "HANDLE_DESCRIPTION":
-            return {...state, eventForm: {...state.eventForm, eventDetailList: {...state.eventForm.eventDetailList, description:action.description}}}
+            return {...state, eventForm: {...state.eventForm, eventDetailList: state.eventForm.eventDetailList.map((element, index)=>{
+                            if (index===action.index){
+                                return {...element, description:action.description}
+                            }else{
+                                return {...element}
+                            }})
+                    }}
         case "HANDLE_LOCATION_ID":
-            return {...state, eventForm: {...state.eventForm, eventDetailList: {...state.eventForm.eventDetailList, locationIdTransient:action.locationIdTransient}}}
+            return {...state, eventForm: {...state.eventForm, eventDetailList: state.eventForm.eventDetailList.map((element, index)=>{
+                            if (index===action.index){
+                                return {...element, locationIdTransient:action.locationIdTransient}
+                            }else{
+                                return {...element}
+                            }})
+                    }}
         case "FETCH_EVENT_DETAIL_SUCCESS":
             return {...state, eventDetail: action.payload}
         case "CLEAR_STATE":

@@ -54,9 +54,9 @@ export default class AdminSidebar extends Component {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="payment">
+                        <Link className="nav-link" to="/event-form">
                             <i className="fas fa-fw fa-credit-card"/>
-                            <span>Payment</span>
+                            <span>Event</span>
                         </Link>
                     </li>
                     <li className="nav-item">
