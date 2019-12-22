@@ -26,7 +26,7 @@ class CategoryForm extends React.Component {
                           return  <tbody>
                               <td>{index+1}</td>
                                 <td>{element.categoryName}</td>
-                              <td><button>Edit</button><button>Hapus</button></td>
+                              <td><button>Edit</button><button>Delete</button></td>
                             </tbody>
                         })}
 
