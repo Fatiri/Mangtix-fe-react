@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {fetchDataEventByCompany} from "../service/EventService";
-import {fetcheventsuccess} from "../EventAction";
+import {fetchDataEventByCompany} from "../../service/EventService";
+import {fetcheventsuccess} from "../../EventAction";
 
 class EventByCompany extends React.Component{
     render() {

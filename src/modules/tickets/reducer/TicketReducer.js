@@ -4,15 +4,15 @@ const initialState = {
     ticket:[],
     ticketForm:{
         categoryIdTransient:"",
-        eventIdTransient:"",
+        eventIdTransient:"7a2d557e-6e88-40f6-ab50-585ad4260522",
         price:"",
         quantity:""
     }
 
 }
 
-export default function categoryReducer(state = initialState, action) {
-    console.log("categoryReducer", state, action);
+export default function ticketReducer(state = initialState, action) {
+    console.log("ticketReducer", state, action);
     switch (action.type) {
         case "FETCH_CATEGORY_SUCCESS":
             return {...state, category: action.payload};
