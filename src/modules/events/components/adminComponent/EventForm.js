@@ -7,9 +7,9 @@ import {
     handleeventday,
     handleeventname, handlelocationid,
     handlevenue
-} from "../EventAction";
+} from "../../EventAction";
 import {connect} from "react-redux";
-import {saveDataEvent} from "../service/EventService";
+import {saveDataEvent} from "../../service/EventService";
 
 class EventForm extends React.Component {
     render() {
