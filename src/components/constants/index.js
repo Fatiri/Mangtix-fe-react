@@ -1,2 +1,2 @@
 export * from './statusExceptions'
-export * from './CustomeRoute'
+export * from './customRoute'

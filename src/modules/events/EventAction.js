@@ -8,3 +8,4 @@ export const handleeventdate={type:"HANDLE_EVENT_DATE"}
 export const handledescriptioneventdetail={type:"HANDLE_DESCRIPTION"}
 export const handlelocationid={type:"HANDLE_LOCATION_ID"}
 export const fetcheventdetailsuccess={type:"FETCH_EVENT_DETAIL_SUCCESS"}
+export const addeventdetail={type:"ADD_EVENT_DETAIL"}

@@ -166,7 +166,7 @@ export const EventsRoute = ({component: Component, ...rest}) => {
             {...rest}
             component={(props) => (
                 <>
-                    <Admin {...props} />
+                    <Admin {...props}/>
                     <div id="content-wrapper" className="d-flex flex-column">
                         <div id="content">
                             <AdminNavBar/>
