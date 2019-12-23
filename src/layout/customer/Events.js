@@ -39,7 +39,7 @@ class Events extends Component {
             <img className="d-block w-100" src="img/banner/hero-banner.png" height="500px" alt="First slide"></img>
             </div>
             <div className="carousel-item">
-            <img className="d-block w-100" src="img/banner/hero-banner1.png" height="500px" alt="Second slide"></img>
+            <img className="d-block w-100" src="img/banner/hero-banner.png" height="500px" alt="Second slide"></img>
             </div>
             <div className="carousel-item">
             <img className="d-block w-100" src="img/banner/hero-banner.png" height="500px" alt="Third slide"></img>
@@ -47,73 +47,62 @@ class Events extends Component {
             </div>
             </div>
 
-        <section className="section-padding--small sponsor-bg">
-            <div className="container">
-            <div className="section-intro text-center pb-98px">
-        <h2 className="primary-text">Join The Event</h2>
-        <img src="img/home/section-style.png" alt=""></img>
+                <section className="section-padding--small sponsor-bg">
+                    <div className="container">
+                        <div className="section-intro text-center pb-98px">
+                            <p className="section-intro__title">Join the event</p>
+                            <h2 className="primary-text">Events</h2>
+                            <img src="img/home/section-style.png" alt=""></img>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                                <div class="card-speaker">
+                                    <img class="card-img rounded-0" src="img/home/speaker-2.png" alt=""></img>
+                                    <div class="speaker-footer">
+                                        <h4>Festival Imagination</h4>
+                                        <p></p>
+                                    </div>
+                                    <div class="speaker-overlay">
+                                        <ul class="speaker-social">
+                                            <li><Link class="button button-header" to="/event-schedule">View Detail</Link></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                                <div class="card-speaker">
+                                    <img class="card-img rounded-0" src="img/home/speaker-3.png" alt=""></img>
+                                    <div class="speaker-footer">
+                                        <h4>Jogjanan</h4>
+                                        <p></p>
+                                    </div>
+                                    <div class="speaker-overlay">
+                                        <ul class="speaker-social">
+                                            <li><Link class="button button-header" to="/event-schedule">View Detail</Link></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                                <div class="card-speaker">
+                                    <img class="card-img rounded-0" src="img/home/speaker-1.png" alt=""></img>
+                                    <div class="speaker-footer">
+                                        <h4>Techno Fest</h4>
+                                        <p></p>
+                                    </div>
+                                    <div class="speaker-overlay">
+                                        <ul class="speaker-social">
+                                            <li><Link class="button button-header" to="/event-schedule">View Detail</Link></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-
-            <div className="owl-theme owl-carousel blogCarousel pb-xl-1">
-            <div className="card-blog">
-            <img className="card-img" src="img/blog/blog1.png" alt=""></img>
-            <div className="blog-body">
-            <Link className="nav-link" to="/event-schedule">
-            <h3>Owls should be used to help abused children open <br className="d-none d-xl-block"/>
-            up in therapy sessions, says charity boss</h3></Link>
-        <ul className="blog-info">
-            <li><a href="#"><i className="ti-comments-smiley"></i> 03 Feb, 2019</a></li>
-        <li><a href="#"><i className="ti-time"></i> No Comment</a></li>
-        </ul>
-        </div>
-        </div>
-
-        <div className="card-blog">
-            <img className="card-img" src="img/blog/blog2.png" alt=""></img>
-            <div className="blog-body">
-            <a href="#">
-            <h3>Owls should be used to help abused children open <br className="d-none d-xl-block"/>
-            up in therapy sessions, says charity boss</h3>
-        </a>
-        <ul className="blog-info">
-            <li><a href="#"><i className="ti-comments-smiley"></i> 03 Feb, 2019</a></li>
-        <li><a href="#"><i className="ti-time"></i> No Comment</a></li>
-        </ul>
-        </div>
-        </div>
-
-        <div className="card-blog">
-            <img className="card-img" src="img/blog/blog1.png" alt=""></img>
-            <div className="blog-body">
-            <a href="#">
-            <h3>Owls should be used to help abused children open <br className="d-none d-xl-block"/>
-            up in therapy sessions, says charity boss</h3>
-        </a>
-        <ul className="blog-info">
-            <li><a href="#"><i className="ti-comments-smiley"></i> 03 Feb, 2019</a></li>
-        <li><a href="#"><i className="ti-time"></i> No Comment</a></li>
-        </ul>
-        </div>
-        </div>
-
-        <div className="card-blog">
-            <img className="card-img" src="img/blog/blog2.png" alt=""></img>
-            <div className="blog-body">
-            <a href="#">
-            <h3>Owls should be used to help abused children open <br className="d-none d-xl-block"/>
-            up in therapy sessions, says charity boss</h3>
-        </a>
-        <ul className="blog-info">
-            <li><a href="#"><i className="ti-comments-smiley"></i> 03 Feb, 2019</a></li>
-        <li><a href="#"><i className="ti-time"></i> No Comment</a></li>
-        </ul>
-        </div>
-        </div>
-        </div>
-        </div>
-        </section>
-        < /div>
-    );
+        );
     }
 }
 
