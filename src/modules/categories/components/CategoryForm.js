@@ -11,7 +11,7 @@ class CategoryForm extends React.Component {
                     <input type="text" value={this.props.categoryForm.categoryName}
                            onChange={(event) => {
                                this.props.dispatch(
-                                   {...handlecategoryname, categoryName: event.target.value})}}/>
+                                   {...handlecategoryname, categoryName: event.target.value})}} required/>
                     <button type="submit">Save</button>
                 </form>
 

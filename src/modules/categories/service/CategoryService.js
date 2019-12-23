@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import {internalServerError500} from "../../../components/constants";
 
 export async function saveDataCategory(event) {
     const data = await fetch("http://localhost:9090/category", {method:"POST",
@@ -15,6 +16,7 @@ export async function saveDataCategory(event) {
                 })
                 return response.json();
             } else if (response.status===500){
+                // internalServerError500()
                 Swal.fire({
                     icon: 'error',
                     title: 'Sorry, the category name already exists',

@@ -4,9 +4,9 @@ import Ticket from "../../../layout/customer/Ticket";
 class TicketList extends Component {
     render() {
         return (
-            < div >
+            <div>
             <Ticket/>
-            < /div>
+            </div>
         );
     }
 }

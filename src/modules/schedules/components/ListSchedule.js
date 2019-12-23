@@ -4,11 +4,10 @@ import EventSchedule from "../../../layout/customer/EventSchedule";
 class ListSchedule extends Component {
     render() {
         return (
-            < div >
+            <div>
             <EventSchedule/>
-            < /div>
+            </div>
     );
     }
 }
-
-export default ListSchedule;
+export default ListSchedule
