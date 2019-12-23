@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 class Cart extends Component {
     render() {
         return (
-            < div >
+            <div>
             <header className="header_area">
             <div className="main_menu">
             <nav className="navbar navbar-expand-lg navbar-light">
@@ -26,7 +26,7 @@ class Cart extends Component {
             <li className="nav-item"><a className="nav-link" href="">Home</a></li>
         <li className="nav-item"><a className="nav-link" href="">About</a></li>
         <li className="nav-item"><Link className="nav-link" to="/event">Events</Link></li>
-        <li className="nav-item active"><a className="nav-link" href="">Schedule</a></li>
+        <li className="nav-item active"><Link className="nav-link" to="/event-schedule">Schedule</Link></li>
         </ul>
         <ul className="nav-right text-center text-lg-right py-4 py-lg-0">
             <li><Link className="nav-link" to="/cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</Link></li>
@@ -168,8 +168,8 @@ class Cart extends Component {
         </div>
         </div>
         </section>
-        < /div>
-    );
+        </div>
+     );
     }
 }
 

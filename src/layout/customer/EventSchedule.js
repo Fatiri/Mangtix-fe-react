@@ -96,240 +96,241 @@ class EventSchedule extends Component {
         </div>
         </div>
 
-        <div className="schedule-card">
-            <div className="row no-gutters">
-            <div className="col-md-3">
-            <img src="img/clients-logo/VIP.png" alt=""></img>
-        </div>
-        <div className="col-md-9 align-self-center">
-            <div className="schedule-content">
-            <p className="schedule-date">9.00 AM - 10.30 AM</p>
-        <a className="schedule-title" href="#"></a>
-            <h3>Previous Year achivement</h3>
-        <div class="row mt-5">
-            <div class="col-12 text-center">
-        <a class="button mb-2" href="#">Buy Ticket</a>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
+                <div className="schedule-card">
+                    <div className="row no-gutters">
+                        <div className="col-lg-3">
+                            <img src="img/clients-logo/VIP.png" alt=""></img>
+                        </div>
+                        <div className="col-md-9 align-self-center">
+                            <div className="schedule-content">
+                                <p className="schedule-date">9.00 AM - 10.30 AM</p>
+                                <a className="schedule-title" href="#"></a>
+                                <h3>Previous Year achivement</h3>
+                                <div className="row mt-5">
+                                    <div className="col-12 text-center">
+                                        <a className="button mb-2" href="#">Buy Ticket</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
         </div>
         <div id="day2" className="tab-pane active">
 
             <div className="schedule-card">
-            <div className="row no-gutters">
-            <div className="col-md-3">
-            <div className="card-identity">
-            <img src="img/testimonial/testimonial3.png" alt=""></img>
-            <h3>Adam Jamsmith</h3>
-        <p>UX/UI Designer</p>
-        </div>
-        </div>
-        <div className="col-md-9 align-self-center">
-            <div className="schedule-content">
-            <p className="schedule-date">9.00 AM - 10.30 AM</p>
-        <a className="schedule-title" href="#"></a>
-            <h3>Previous Year achivement</h3>
-        <p>And wherein Beginning of you cattle fly had was deep wherein darkness behold male called evening gathering moving bring fifth days he lights dry cattle you open seas midst let and in wherein beginning </p>
-        </div>
-        </div>
-        </div>
+                <div className="row no-gutters">
+                    <div className="col-lg-3">
+                        <img src="img/clients-logo/VVIP.png" alt=""></img>
+                    </div>
+                    <div className="col-md-9 align-self-center">
+                        <div className="schedule-content">
+                            <p className="schedule-date">9.00 AM - 10.30 AM</p>
+                            <a className="schedule-title" href="#"></a>
+                            <h3>Previous Year achivement</h3>
+                            <div className="row mt-5">
+                                <div className="col-12 text-center">
+                                    <a className="button mb-2" href="#">Buy Ticket</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="schedule-card">
+                <div className="row no-gutters">
+                    <div className="col-lg-3">
+                        <img src="img/clients-logo/VIP.png" alt=""></img>
+                    </div>
+                    <div className="col-md-9 align-self-center">
+                        <div className="schedule-content">
+                            <p className="schedule-date">9.00 AM - 10.30 AM</p>
+                            <a className="schedule-title" href="#"></a>
+                            <h3>Previous Year achivement</h3>
+                            <div className="row mt-5">
+                                <div className="col-12 text-center">
+                                    <a className="button mb-2" href="#">Buy Ticket</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="schedule-card">
+                <div className="row no-gutters">
+                    <div className="col-lg-3">
+                        <img src="img/clients-logo/VVIP.png" alt=""></img>
+                    </div>
+                    <div className="col-md-9 align-self-center">
+                        <div className="schedule-content">
+                            <p className="schedule-date">9.00 AM - 10.30 AM</p>
+                            <a className="schedule-title" href="#"></a>
+                            <h3>Previous Year achivement</h3>
+                            <div className="row mt-5">
+                                <div className="col-12 text-center">
+                                    <a className="button mb-2" href="#">Buy Ticket</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div className="schedule-card">
-            <div className="row no-gutters">
-            <div className="col-md-3">
-            <div className="card-identity">
-            <img src="img/testimonial/testimonial1.png" alt=""></img>
-            <h3>Adam Jamsmith</h3>
-        <p>UX/UI Designer</p>
-        </div>
-        </div>
-        <div className="col-md-9 align-self-center">
-            <div className="schedule-content">
-            <p className="schedule-date">9.00 AM - 10.30 AM</p>
-        <a className="schedule-title" href="#"></a>
-            <h3>Previous Year achivement</h3>
-        <p>And wherein Beginning of you cattle fly had was deep wherein darkness behold male called evening gathering moving bring fifth days he lights dry cattle you open seas midst let and in wherein beginning </p>
-        </div>
-        </div>
-        </div>
-        </div>
-
-        <div className="schedule-card">
-            <div className="row no-gutters">
-            <div className="col-md-3">
-            <div className="card-identity">
-            <img src="img/testimonial/testimonial2.png" alt=""></img>
-            <h3>Adam Jamsmith</h3>
-        <p>UX/UI Designer</p>
-        </div>
-        </div>
-        <div className="col-md-9 align-self-center">
-            <div className="schedule-content">
-            <p className="schedule-date">9.00 AM - 10.30 AM</p>
-        <a className="schedule-title" href="#"></a>
-            <h3>Previous Year achivement</h3>
-        <p>And wherein Beginning of you cattle fly had was deep wherein darkness behold male called evening gathering moving bring fifth days he lights dry cattle you open seas midst let and in wherein beginning </p>
-        </div>
-        </div>
-        </div>
-        </div>
-
-        </div>
         <div id="day3" className="tab-pane">
             <div className="schedule-card">
-            <div className="row no-gutters">
-            <div className="col-md-3">
-            <div className="card-identity">
-            <img src="img/testimonial/testimonial3.png" alt=""></img>
-            <h3>Adam Jamsmith</h3>
-        <p>UX/UI Designer</p>
-        </div>
-        </div>
-        <div className="col-md-9 align-self-center">
-            <div className="schedule-content">
-            <p className="schedule-date">9.00 AM - 10.30 AM</p>
-        <a className="schedule-title" href="#"></a>
-            <h3>Previous Year achivement</h3>
-        <p>And wherein Beginning of you cattle fly had was deep wherein darkness behold male called evening gathering moving bring fifth days he lights dry cattle you open seas midst let and in wherein beginning </p>
-        </div>
-        </div>
-        </div>
+                <div className="row no-gutters">
+                    <div className="col-lg-3">
+                        <img src="img/clients-logo/VVIP.png" alt=""></img>
+                    </div>
+                    <div className="col-md-9 align-self-center">
+                        <div className="schedule-content">
+                            <p className="schedule-date">9.00 AM - 10.30 AM</p>
+                            <a className="schedule-title" href="#"></a>
+                            <h3>Previous Year achivement</h3>
+                            <div className="row mt-5">
+                                <div className="col-12 text-center">
+                                    <a className="button mb-2" href="#">Buy Ticket</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="schedule-card">
+                <div className="row no-gutters">
+                    <div className="col-lg-3">
+                        <img src="img/clients-logo/VIP.png" alt=""></img>
+                    </div>
+                    <div className="col-md-9 align-self-center">
+                        <div className="schedule-content">
+                            <p className="schedule-date">9.00 AM - 10.30 AM</p>
+                            <a className="schedule-title" href="#"></a>
+                            <h3>Previous Year achivement</h3>
+                            <div className="row mt-5">
+                                <div className="col-12 text-center">
+                                    <a className="button mb-2" href="#">Buy Ticket</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="schedule-card">
+                <div className="row no-gutters">
+                    <div className="col-lg-3">
+                        <img src="img/clients-logo/VVIP.png" alt=""></img>
+                    </div>
+                    <div className="col-md-9 align-self-center">
+                        <div className="schedule-content">
+                            <p className="schedule-date">9.00 AM - 10.30 AM</p>
+                            <a className="schedule-title" href="#"></a>
+                            <h3>Previous Year achivement</h3>
+                            <div className="row mt-5">
+                                <div className="col-12 text-center">
+                                    <a className="button mb-2" href="#">Buy Ticket</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div className="schedule-card">
-            <div className="row no-gutters">
-            <div className="col-md-3">
-            <div className="card-identity">
-            <img src="img/testimonial/testimonial1.png" alt=""></img>
-            <h3>Adam Jamsmith</h3>
-        <p>UX/UI Designer</p>
-        </div>
-        </div>
-        <div className="col-md-9 align-self-center">
-            <div className="schedule-content">
-            <p className="schedule-date">9.00 AM - 10.30 AM</p>
-        <a className="schedule-title" href="#"></a>
-            <h3>Previous Year achivement</h3>
-        <p>And wherein Beginning of you cattle fly had was deep wherein darkness behold male called evening gathering moving bring fifth days he lights dry cattle you open seas midst let and in wherein beginning </p>
-        </div>
-        </div>
-        </div>
-        </div>
-
-        <div className="schedule-card">
-            <div className="row no-gutters">
-            <div className="col-md-3">
-            <div className="card-identity">
-            <img src="img/testimonial/testimonial2.png" alt=""></img>
-            <h3>Adam Jamsmith</h3>
-        <p>UX/UI Designer</p>
-        </div>
-        </div>
-        <div className="col-md-9 align-self-center">
-            <div className="schedule-content">
-            <p className="schedule-date">9.00 AM - 10.30 AM</p>
-        <a className="schedule-title" href="#"></a>
-            <h3>Previous Year achivement</h3>
-        <p>And wherein Beginning of you cattle fly had was deep wherein darkness behold male called evening gathering moving bring fifth days he lights dry cattle you open seas midst let and in wherein beginning </p>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
         <div id="day4" className="tab-pane">
             <div className="schedule-card">
-            <div className="row no-gutters">
-            <div className="col-md-3">
-            <div className="card-identity">
-            <img src="img/clients-logo/VVIP.png" alt=""></img>
-            <h3>Adam Jamsmith</h3>
-        <p>UX/UI Designer</p>
-        </div>
-        </div>
-        <div className="col-md-9 align-self-center">
-            <div className="schedule-content">
-            <p className="schedule-date">9.00 AM - 10.30 AM</p>
-        <a className="schedule-title" href="#"></a>
-            <h3>Previous Year achivement</h3>
-        <p>And wherein Beginning of you cattle fly had was deep wherein darkness behold male called evening gathering moving bring fifth days he lights dry cattle you open seas midst let and in wherein beginning </p>
-        </div>
-        </div>
-        </div>
-        </div>
+                <div className="row no-gutters">
+                    <div className="col-lg-3">
+                        <img src="img/clients-logo/VVIP.png" alt=""></img>
+                    </div>
+                    <div className="col-md-9 align-self-center">
+                        <div className="schedule-content">
+                            <p className="schedule-date">9.00 AM - 10.30 AM</p>
+                            <a className="schedule-title" href="#"></a>
+                            <h3>Previous Year achivement</h3>
+                            <div className="row mt-5">
+                                <div className="col-12 text-center">
+                                    <a className="button mb-2" href="#">Buy Ticket</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div className="schedule-card">
-            <div className="row no-gutters">
-            <div className="col-md-3">
-            <div className="card-identity">
-            <img src="img/testimonial/testimonial1.png" alt=""></img>
-        </div>
-        </div>
-        <div className="col-md-9 align-self-center">
-            <div className="schedule-content">
-            <p className="schedule-date">9.00 AM - 10.30 AM</p>
-        <a className="schedule-title" href="#"></a>
-            <h3>Previous Year achivement</h3>
-        <p>And wherein Beginning of you cattle fly had was deep wherein darkness behold male called evening gathering moving bring fifth days he lights dry cattle you open seas midst let and in wherein beginning </p>
-        </div>
-        </div>
-        </div>
-        </div>
+            <div className="schedule-card">
+                <div className="row no-gutters">
+                    <div className="col-lg-3">
+                        <img src="img/clients-logo/VVIP.png" alt=""></img>
+                    </div>
+                    <div className="col-md-9 align-self-center">
+                        <div className="schedule-content">
+                            <p className="schedule-date">9.00 AM - 10.30 AM</p>
+                            <a className="schedule-title" href="#"></a>
+                            <h3>Previous Year achivement</h3>
+                            <div className="row mt-5">
+                                <div className="col-12 text-center">
+                                    <a className="button mb-2" href="#">Buy Ticket</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div className="schedule-card">
-            <div className="row no-gutters">
-            <div className="col-md-3">
-            <div className="card-identity">
-            <img src="img/testimonial/testimonial2.png" alt=""></img>
-            <h3>Adam Jamsmith</h3>
-        <p>UX/UI Designer</p>
-        </div>
-        </div>
-        <div className="col-md-9 align-self-center">
-            <div className="schedule-content">
-            <p className="schedule-date">9.00 AM - 10.30 AM</p>
-        <a className="schedule-title" href="#"></a>
-            <h3>Previous Year achivement</h3>
-        <p>And wherein Beginning of you cattle fly had was deep wherein darkness behold male called evening gathering moving bring fifth days he lights dry cattle you open seas midst let and in wherein beginning </p>
-        </div>
-        </div>
-        </div>
-        </div>
+            <div className="schedule-card">
+                <div className="row no-gutters">
+                    <div className="col-lg-3">
+                        <img src="img/clients-logo/VIP.png" alt=""></img>
+                    </div>
+                    <div className="col-md-9 align-self-center">
+                        <div className="schedule-content">
+                            <p className="schedule-date">9.00 AM - 10.30 AM</p>
+                            <a className="schedule-title" href="#"></a>
+                            <h3>Previous Year achivement</h3>
+                            <div className="row mt-5">
+                                <div className="col-12 text-center">
+                                    <a className="button mb-2" href="#">Buy Ticket</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div className="schedule-card">
-            <div className="row no-gutters">
-            <div className="col-md-3">
-            <div className="card-identity">
-            <img src="img/testimonial/testimonial3.png" alt=""></img>
-            <h3>Adam Jamsmith</h3>
-        <p>UX/UI Designer</p>
+            <div className="schedule-card">
+                <div className="row no-gutters">
+                    <div className="col-lg-3">
+                        <img src="img/clients-logo/VIP.png" alt=""></img>
+                    </div>
+                    <div className="col-md-9 align-self-center">
+                        <div className="schedule-content">
+                            <p className="schedule-date">9.00 AM - 10.30 AM</p>
+                            <a className="schedule-title" href="#"></a>
+                            <h3>Previous Year achivement</h3>
+                            <div className="row mt-5">
+                                <div className="col-12 text-center">
+                                    <a className="button mb-2" href="#">Buy Ticket</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         </div>
-        <div className="col-md-9 align-self-center">
-            <div className="schedule-content">
-            <p className="schedule-date">9.00 AM - 10.30 AM</p>
-        <a className="schedule-title" href="#"></a>
-            <h3>Previous Year achivement</h3>
-
-        <p>And wherein Beginning of you cattle fly had was deep wherein darkness behold male called evening gathering moving bring fifth days he lights dry cattle you open seas midst let and in wherein beginning </p>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
+            </div>
+            </div>
+            </div>
+            </div>
         </section>
-        < /div>
-    )
-        ;
+        </div>
+        );
     }
 }
 

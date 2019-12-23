@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 class About extends Component {
     render() {
         return (
-            < div >
+            <div>
             <header className="header_area">
             <div className="main_menu">
             <nav className="navbar navbar-expand-lg navbar-light">
@@ -116,8 +116,7 @@ class About extends Component {
         </div>
         </div>
         </section>
-            < /div>
-
+            </div>
         );
     }
 }
