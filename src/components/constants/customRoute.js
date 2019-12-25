@@ -11,10 +11,10 @@ import LoginContainer from "../../modules/login/LoginContainer";
 import BookingContainer from "../../modules/booking/BookingContainer";
 import TicketList from "../../modules/tickets/components/TicketList";
 import ListSchedule from "../../modules/schedules/components/ListSchedule";
+import $ from "jquery";
 
 
 // public route
-
 export const PublicRoute = ({component: Component, ...rest}) => {
     return (
         <Route {...rest} component={(props) => (

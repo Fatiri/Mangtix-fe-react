@@ -35,6 +35,7 @@ class Switcer extends Component {
             <Switch>
                 {/*admin component*/}
                 <AdminRoute exact path="/admin" ></AdminRoute>
+                <EventsRoute exact path="/events"></EventsRoute>
                 <Route exact path="/location"><LocationContainer/></Route>
 
                 {/*public component*/}
@@ -43,7 +44,6 @@ class Switcer extends Component {
                 <LoginRoute exact path="/login"></LoginRoute>
                 <BookingRoute exact path="/booking"></BookingRoute>
                 <TicketListRoute exact path="/ticket"></TicketListRoute>
-                <EventsRoute exact path="/events"></EventsRoute>
                 <EventScheduleRoute exact path="/event-schedule"></EventScheduleRoute>
 
                 <Route exact path="/event"></Route>
