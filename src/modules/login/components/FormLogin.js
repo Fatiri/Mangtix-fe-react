@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
+import {loginPassword, loginUsername} from "../reducer/LoginAction";
+import {AuthenticationLogin} from "../service/AuthenticationLoginService";
 
-export default class FormLogin extends Component {
+class FormLogin extends Component {
     render() {
         return (
             <>
@@ -17,13 +20,13 @@ export default class FormLogin extends Component {
                                                 </div>
                                                 <form className="user">
                                                     <div className="form-group">
-                                                        <input type="email" className="form-control"
+                                                        <input type="username" className="form-control"
                                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                               placeholder="Enter Email Address..."/>
+                                                               placeholder="Username..." onChange={this.handleInputUsername}/>
                                                     </div>
                                                     <div className="form-group">
                                                         <input type="password" className="form-control"
-                                                               id="exampleInputPassword" placeholder="Password"/>
+                                                               id="exampleInputPassword" placeholder="Password" onChange={this.handleInputPassword}/>
                                                     </div>
                                                     <div className="form-group">
                                                         <div className="custom-control custom-checkbox small"
@@ -39,13 +42,6 @@ export default class FormLogin extends Component {
                                                            className="btn btn-primary btn-block">Login</a>
                                                     </div>
                                                     <hr/>
-                                                    <a href="index.html" className="btn btn-google btn-block">
-                                                        <i className="fab fa-google fa-fw"></i> Login with Google
-                                                    </a>
-                                                    <a href="index.html" className="btn btn-facebook btn-block">
-                                                        <i className="fab fa-facebook-f fa-fw"></i> Login with
-                                                        Facebook
-                                                    </a>
                                                 </form>
                                                 <hr/>
                                                 <div className="text-center">
@@ -65,4 +61,28 @@ export default class FormLogin extends Component {
             </>
         );
     }
+
+    handleInputUsername=(username)=>{
+        username.preventDefault();
+        this.props.dispatch = ({...loginUsername, username:username.target.value})
+    }
+
+    handleInputPassword=(password)=>{
+        password.preventDefault();
+        this.props.dispatch = ({...loginPassword, password: password.target.value})
+    }
+
+    handleSubmitLoginAction= async ()=>{
+        const dataUser = {...this.props.userAccess}
+        if(!(dataUser===null)){
+            const token = await AuthenticationLogin(dataUser);
+            localStorage.setItem("token", token.jwt);
+        }
+    }
+
 }
+const mapsStateToProps=(state)=>{
+    return {...state}
+}
+
+export default connect (mapsStateToProps) (FormLogin);

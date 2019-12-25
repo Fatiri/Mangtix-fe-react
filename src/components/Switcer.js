@@ -12,6 +12,7 @@ import {
     RegistrationRoute,
     TicketListRoute
 } from "./constants/customRoute";
+import FormLogin from "../modules/login/components/FormLogin";
 
 class Switcer extends Component {
     constructor(props) {
