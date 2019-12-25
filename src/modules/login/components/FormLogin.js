@@ -1,10 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {loginPassword, loginUsername} from "../reducer/LoginAction";
-import {AuthenticationLogin} from "../service/AuthenticationLoginService";
+import AuthenticationLogin from "../../../authentication/AuthenticationLogin";
+import {Redirect} from "react-router-dom";
+import {GenerateTokenAccess} from "../service/AuthenticationLoginService";
 
 class FormLogin extends Component {
     render() {
+        const Auth = new AuthenticationLogin();
+        if (Auth.isLogin()){
+            return <Redirect t="/"/>
+        }
         return (
             <>
                 <div className="container-login">
@@ -18,7 +24,6 @@ class FormLogin extends Component {
                                                 <div className="text-center">
                                                     <h1 className="h4 text-gray-900 mb-4">Login</h1>
                                                 </div>
-                                                <form className="user">
                                                     <div className="form-group">
                                                         <input type="username" className="form-control"
                                                                id="exampleInputEmail" aria-describedby="emailHelp"
@@ -38,11 +43,10 @@ class FormLogin extends Component {
                                                         </div>
                                                     </div>
                                                     <div className="form-group">
-                                                        <a href="index.html"
-                                                           className="btn btn-primary btn-block">Login</a>
+                                                        <button
+                                                           className="btn btn-primary btn-block" onClick={this.handleSubmitLoginAction}>Login</button>
                                                     </div>
                                                     <hr/>
-                                                </form>
                                                 <hr/>
                                                 <div className="text-center">
                                                     <a className="font-weight-bold small" href="register.html">Create
@@ -64,18 +68,20 @@ class FormLogin extends Component {
 
     handleInputUsername=(username)=>{
         username.preventDefault();
-        this.props.dispatch = ({...loginUsername, username:username.target.value})
+        this.props.dispatch ({...loginUsername, userName:username.target.value})
     }
 
     handleInputPassword=(password)=>{
         password.preventDefault();
-        this.props.dispatch = ({...loginPassword, password: password.target.value})
+        this.props.dispatch({...loginPassword, password: password.target.value})
     }
 
     handleSubmitLoginAction= async ()=>{
         const dataUser = {...this.props.userAccess}
+        console.log(dataUser)
         if(!(dataUser===null)){
-            const token = await AuthenticationLogin(dataUser);
+            const token = await GenerateTokenAccess(dataUser);
+            localStorage.clear();
             localStorage.setItem("token", token.jwt);
         }
     }

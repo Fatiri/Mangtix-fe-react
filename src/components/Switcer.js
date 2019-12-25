@@ -13,26 +13,14 @@ import {
     TicketListRoute
 } from "./constants/customRoute";
 import FormLogin from "../modules/login/components/FormLogin";
-
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+import loginReducer from "../modules/login/reducer/LoginReducer";
 class Switcer extends Component {
-    constructor(props) {
-        super(props);
-        this.state={
-            hide:false
-        }
-    }
-
-    handleButtonToggled(e) {
-        $('body').toggleClass('sidebar-toggled');
-        $('.sidebar').toggleClass('toggled');
-    };
-    hideHeader = ()=>{
-        const { hide } = this.state
-        this.setState({ hide: !hide  })
-    }
     render() {
         return (
             <>
+
             <Switch>
                 {/*admin component*/}
                 <AdminRoute exact path="/admin" ></AdminRoute>
@@ -42,7 +30,9 @@ class Switcer extends Component {
                 {/*public component*/}
                 <PublicRoute exact path="/" ></PublicRoute>
                 <RegistrationRoute exact path="/registration"></RegistrationRoute>
+                <Provider store={createStore(loginReducer)}>
                 <LoginRoute exact path="/login"></LoginRoute>
+                </Provider>
                 <BookingRoute exact path="/booking"></BookingRoute>
                 <TicketListRoute exact path="/ticket"></TicketListRoute>
                 <EventScheduleRoute exact path="/event-schedule"></EventScheduleRoute>
@@ -57,6 +47,7 @@ class Switcer extends Component {
                 <Route exact path="/chatting">Chatting</Route>
 
             </Switch>
+
             </>
         );
     }

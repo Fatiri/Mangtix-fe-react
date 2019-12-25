@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
-import EventList from "./components/adminComponent/EventList";
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+import EventForm from "./components/adminComponent/EventForm";
+import eventReducer from "./reducer/EventReducer";
+
 
 class EventContainer extends Component {
     render() {
         console.log("ini Event")
         return (
             <div>
-            <EventList/>
+                <Provider store={createStore(eventReducer)}><EventForm/></Provider>
+
             </div>
          );
     }
