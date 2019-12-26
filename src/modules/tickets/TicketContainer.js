@@ -3,13 +3,13 @@ import {Provider} from "react-redux";
 import {createStore} from "redux";
 
 import ticketReducer from "./reducer/TicketReducer";
-import TicketForm from "./components/component-admin/TicketForm";
+import TicketList from "./components/TicketList";
 
 class TicketContainer extends Component {
     render() {
         return (
             <div>
-                <Provider store={createStore(ticketReducer)}><TicketForm/></Provider>
+                <Provider store={createStore(ticketReducer)}><TicketList/></Provider>
             </div>
         );
     }

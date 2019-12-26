@@ -14,6 +14,10 @@ import App from "../App";
 import LocationContainer from "../modules/location/LocationContainer";
 import CategoryContainer from "../modules/categories/CategoryContainer";
 import TicketContainer from "../modules/tickets/TicketContainer";
+import TicketForm from "../modules/tickets/components/component-admin/TicketForm";
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+import ticketReducer from "../modules/tickets/reducer/TicketReducer";
 
 class Switcer extends Component {
     render() {
@@ -35,6 +39,8 @@ class Switcer extends Component {
                                 <Route exact path="/booking"><BookingContainer/></Route>
                                 <Route exact path="/events"><EventContainer/></Route>
                                 <Route exact path="/ticket"><TicketContainer/></Route>
+                                <Route exact path="/ticket-form"><Provider store={createStore(ticketReducer)}><TicketForm/></Provider>
+                                </Route>
                                 <Route exact path="/payment">Payment</Route>
                                 <Route exact path="/cart">Cart</Route>
                                 <Route exact path="/chatting">Chatting</Route>
