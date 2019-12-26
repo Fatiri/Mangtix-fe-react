@@ -5,6 +5,7 @@ import Authentication from "../../../authentication/Authentication";
 import {Link, Redirect} from "react-router-dom";
 import {GenerateTokenAccess} from "../service/AuthenticationLoginService";
 import decodeJwtToken from "../../../authentication/AutheticationDecodeJwt";
+import * as jwt from "jsonwebtoken";
 
 class FormLogin extends Component {
     render() {

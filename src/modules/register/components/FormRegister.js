@@ -7,6 +7,7 @@ import {
     registrationFUllName, registrationPassword,
     registrationUsername
 } from "../RegistartionAction";
+import {registrationPost} from "../service/RegistrationService";
 
 class FormRegister extends Component {
     render() {
@@ -58,7 +59,7 @@ class FormRegister extends Component {
                                                     </div>
                                                     <div className="form-group">
                                                         <button type="submit"
-                                                                className="btn btn-primary btn-block">Register
+                                                                className="btn btn-primary btn-block" onClick={this.handleSubmitRegistration}>Register
                                                         </button>
                                                     </div>
                                                     <hr/>
@@ -67,6 +68,17 @@ class FormRegister extends Component {
                                                 <div className="text-center">
                                                     <Link to="/login" className="font-weight-bold small">Already have
                                                         an account?</Link>
+                                                </div>
+                                                <div>
+
+                                                    <h2>Step {this.props.currentStep}</h2>
+                                                    <p>Total Steps: {this.props.totalSteps}</p>
+                                                    <p>Is Active: {this.props.isActive}</p>
+                                                    <p><button onClick={this.props.previousStep}>Previous Step</button></p>
+                                                    <p><button onClick={this.props.nextStep}>Next Step</button></p>
+                                                    <p><button onClick={()=>this.props.goToStep(2)}>Step 2</button></p>
+                                                    <p><button onClick={this.props.firstStep}>First Step</button></p>
+                                                    <p><button onClick={this.props.lastStep}>Last Step</button></p>
                                                 </div>
                                                 <div className="text-center">
                                                 </div>
@@ -114,6 +126,13 @@ class FormRegister extends Component {
         password.preventDefault();
         this.props.dispatch({...registrationPassword, password:password.target.value})
         console.log(this.props.userInfo)
+    }
+
+    handleSubmitRegistration=async ()=>{
+        const dataUser = {...this.props.userInfo}
+        if(!(dataUser)){
+            await registrationPost(dataUser);
+        }
     }
 }
 

@@ -29,9 +29,7 @@ class Switcer extends Component {
 
                 {/*public component*/}
                 <PublicRoute exact path="/" ></PublicRoute>
-                <Provider store={createStore(registerReducer)}>
                 <RegistrationRoute exact path="/registration"></RegistrationRoute>
-                </Provider>
                 <Provider store={createStore(loginReducer)}>
                 <LoginRoute exact path="/login"></LoginRoute>
                 </Provider>
