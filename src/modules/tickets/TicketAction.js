@@ -6,3 +6,6 @@ export const handleeventid={type:"HANDLE_EVENT_ID"}
 export const handleprice={type:"HANDLE_PRICE"}
 export const handlequantity={type:"HANDLE_QUANTITY"}
 export const clearstate={type:"CLEAR_STATE"}
+export const fetchticketsavesuccess={type:"FETCH_TICKET_SAVE_SUCCESS"}
+export const handleonsaleupdate={type:"HANDLE_ON_SALE_UPDATE"}
+export const handlefreeupdate={type:"HANDLE_FREE_UPDATE"}
