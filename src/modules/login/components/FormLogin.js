@@ -51,8 +51,8 @@ class FormLogin extends Component {
                                                     <hr/>
                                                 <hr/>
                                                 <div className="text-center">
-                                                    <a className="font-weight-bold small" href="register.html">Create
-                                                        an Account!</a>
+                                                    <Link to="/registration" className="font-weight-bold small" >Create
+                                                        an Account!</Link>
                                                 </div>
                                                 <div className="text-center">
                                                 </div>
@@ -90,6 +90,7 @@ class FormLogin extends Component {
             this.props.dispatch({...role, role:dataToken.sub})
             this.props.dispatch({...userId, userId:dataToken.jti})
             this.props.dispatch({...companyId, companyId:dataToken.aud})
+            console.log(this.props.tokenDecode)
         }
     }
 

@@ -21,7 +21,7 @@ export default function loginReducer(state = initialState, action) {
         case 'AUTHENTICATION_USER_ID':
             return  {...state, tokenDecode :{...state.tokenDecode, userId: action.userId}}
         case 'AUTHENTICATION_COMPANY_ID':
-            return  {...state, tokenDecode :{...state.tokenDecode, userId: action.userId}}
+            return  {...state, tokenDecode :{...state.tokenDecode, companyId: action.companyId}}
         default: return state
     }
 }
