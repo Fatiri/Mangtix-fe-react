@@ -73,8 +73,8 @@ class EventSchedule extends Component {
         </li>
         </ul>
 
-        <div className="tab-content">
-            <div id="day1" className="tab-pane">
+                                    <div className="tab-content">
+                                        <div id="day1" className="tab-pane">
 
             <div className="schedule-card">
             <div className="row no-gutters">

@@ -1,24 +1,26 @@
 import React, {Component} from 'react';
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
+import Events from "./Events";
 
 class Header extends Component {
     render() {
         return (
             <div>
-            <header className="header_area">
-            <div className="main_menu">
-            <nav className="navbar navbar-expand-lg navbar-light">
-            <div className="container box_1620">
-            <a className="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></img></a>
-        <button className="navbar-toggler" type="button" // noinspection JSAnnotator
-        data-toggle="collapse" // noinspection JSAnnotator
-        data-target="#navbarSupportedContent" // noinspection JSAnnotator
-        aria-controls="navbarSupportedContent" // noinspection JSAnnotator
-        aria-expanded="false" aria-label="Toggle navigation">
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-            </button>
+                <header className="header_area">
+                    <div className="main_menu">
+                        <nav className="navbar navbar-expand-lg navbar-light">
+                            <div className="container box_1620">
+                                <a className="navbar-brand logo_h" href="index.html"><img src="img/logo.png"
+                                                                                          alt=""/></a>
+                                <button className="navbar-toggler" type="button" // noinspection JSAnnotator
+                                        data-toggle="collapse" // noinspection JSAnnotator
+                                        data-target="#navbarSupportedContent" // noinspection JSAnnotator
+                                        aria-controls="navbarSupportedContent" // noinspection JSAnnotator
+                                        aria-expanded="false" aria-label="Toggle navigation">
+                                    <span className="icon-bar"></span>
+                                    <span className="icon-bar"></span>
+                                    <span className="icon-bar"></span>
+                                </button>
 
             <div className="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul className="nav navbar-nav menu_nav justify-content-end">

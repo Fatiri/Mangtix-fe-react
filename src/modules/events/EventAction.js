@@ -1,0 +1,11 @@
+export const fetcheventsuccess={type:"FETCH_EVENT_SUCCESS"}
+export const handleeventname={type: "HANDLE_EVENT_NAME"}
+export const handledescriptionevent={type:"HANDLE_DESCRIPTION_EVENT"}
+export const handlecompanyid={type:"HANDLE_COMPANY_ID"}
+export const handlevenue={type:"HANDLE_VENUE"}
+export const handleeventday={type:"HANDLE_EVENT_DAY"}
+export const handleeventdate={type:"HANDLE_EVENT_DATE"}
+export const handledescriptioneventdetail={type:"HANDLE_DESCRIPTION"}
+export const handlelocationid={type:"HANDLE_LOCATION_ID"}
+export const fetcheventdetailsuccess={type:"FETCH_EVENT_DETAIL_SUCCESS"}
+export const addeventdetail={type:"ADD_EVENT_DETAIL"}
