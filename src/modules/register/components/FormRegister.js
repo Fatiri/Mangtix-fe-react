@@ -1,6 +1,14 @@
 import React, {Component} from 'react';
+import {Link} from "react-router-dom";
+import {connect} from "react-redux";
+import {
+    registrationBirthDate,
+    registrationBornPlace,
+    registrationFUllName, registrationPassword,
+    registrationUsername
+} from "../RegistartionAction";
 
-export default class FormRegister extends Component {
+class FormRegister extends Component {
     render() {
         return (
             <>
@@ -15,35 +23,38 @@ export default class FormRegister extends Component {
                                                 <div className="text-center">
                                                     <h1 className="h4 text-gray-900 mb-4">Register</h1>
                                                 </div>
-                                                <form>
+
                                                     <div className="form-group">
-                                                        <label>First Name</label>
+                                                        <label>Full Name</label>
                                                         <input type="text" className="form-control"
                                                                id="exampleInputFirstName"
-                                                               placeholder="Enter First Name"/>
+                                                               placeholder="Enter Full Name" onChange={this.handleInputFullName}/>
                                                     </div>
                                                     <div className="form-group">
-                                                        <label>Last Name</label>
+                                                        <label>Born Place</label>
                                                         <input type="text" className="form-control"
-                                                               id="exampleInputLastName" placeholder="Enter Last Name"/>
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <label>Email</label>
-                                                        <input type="email" className="form-control"
                                                                id="exampleInputEmail"
                                                                aria-describedby="emailHelp"
-                                                               placeholder="Enter Email Address..."/>
+                                                               placeholder="Enter Born Place" onChange={this.handleInputBornPlace}/>
+                                                    </div>
+                                                    <div className="form-group">
+                                                        <label>Birth Date</label>
+                                                        <input type="date" className="form-control"
+                                                               id="exampleInputEmail"
+                                                               aria-describedby="emailHelp"
+                                                               placeholder="Enter Birth Date" onChange={this.handleInputBirthDate}/>
+                                                    </div>
+                                                    <div className="form-group">
+                                                        <label>Username</label>
+                                                        <input type="text" className="form-control"
+                                                               id="exampleInputEmail"
+                                                               aria-describedby="emailHelp"
+                                                               placeholder="Enter Username" onChange={this.handleInputUsername}/>
                                                     </div>
                                                     <div className="form-group">
                                                         <label>Password</label>
                                                         <input type="password" className="form-control"
-                                                               id="exampleInputPassword" placeholder="Password"/>
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <label>Repeat Password</label>
-                                                        <input type="password" className="form-control"
-                                                               id="exampleInputPasswordRepeat"
-                                                               placeholder="Repeat Password"/>
+                                                               id="exampleInputPassword" placeholder="Password" onChange={this.handleInputPassword}/>
                                                     </div>
                                                     <div className="form-group">
                                                         <button type="submit"
@@ -51,18 +62,11 @@ export default class FormRegister extends Component {
                                                         </button>
                                                     </div>
                                                     <hr/>
-                                                    <a href="index.html" className="btn btn-google btn-block">
-                                                        <i className="fab fa-google fa-fw"></i> Register with Google
-                                                    </a>
-                                                    <a href="index.html" className="btn btn-facebook btn-block">
-                                                        <i className="fab fa-facebook-f fa-fw"></i> Register with
-                                                        Facebook
-                                                    </a>
-                                                </form>
+
                                                 <hr/>
                                                 <div className="text-center">
-                                                    <a className="font-weight-bold small" href="login.html">Already have
-                                                        an account?</a>
+                                                    <Link to="/login" className="font-weight-bold small">Already have
+                                                        an account?</Link>
                                                 </div>
                                                 <div className="text-center">
                                                 </div>
@@ -77,4 +81,44 @@ export default class FormRegister extends Component {
             </>
         );
     }
+
+    handleInputFullName=(fullName)=>{
+        fullName.preventDefault();
+        this.props.dispatch({...registrationFUllName, fullName: fullName.target.value})
+        console.log(this.props.userInfo)
+
+    }
+
+    handleInputBornPlace=(bornPlace)=>{
+        bornPlace.preventDefault();
+        this.props.dispatch({...registrationBornPlace, bornPlace:bornPlace.target.value})
+        console.log(this.props.userInfo)
+
+    }
+
+    handleInputBirthDate=(birthDate)=>{
+        birthDate.preventDefault();
+        this.props.dispatch({...registrationBirthDate, birthDate:birthDate.target.value})
+        console.log(this.props.userInfo)
+
+    }
+
+    handleInputUsername=(username)=>{
+        username.preventDefault();
+        this.props.dispatch({...registrationUsername, userName:username.target.value})
+        console.log(this.props.userInfo)
+
+    }
+
+    handleInputPassword=(password)=>{
+        password.preventDefault();
+        this.props.dispatch({...registrationPassword, password:password.target.value})
+        console.log(this.props.userInfo)
+    }
 }
+
+const mapsStateToProps=(state)=>{
+    return {...state}
+}
+
+export default connect (mapsStateToProps)(FormRegister);

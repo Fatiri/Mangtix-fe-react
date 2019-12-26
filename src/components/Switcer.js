@@ -15,6 +15,7 @@ import {
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import loginReducer from "../modules/login/reducer/LoginReducer";
+import registerReducer from "../modules/register/reducer/RegisterReducer";
 class Switcer extends Component {
     render() {
         return (
@@ -28,7 +29,9 @@ class Switcer extends Component {
 
                 {/*public component*/}
                 <PublicRoute exact path="/" ></PublicRoute>
+                <Provider store={createStore(registerReducer)}>
                 <RegistrationRoute exact path="/registration"></RegistrationRoute>
+                </Provider>
                 <Provider store={createStore(loginReducer)}>
                 <LoginRoute exact path="/login"></LoginRoute>
                 </Provider>
