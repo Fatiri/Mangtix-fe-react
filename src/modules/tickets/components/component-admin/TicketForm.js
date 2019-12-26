@@ -1,13 +1,16 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {
-    fetchcategorysucces,
-    fetchticketsuccess,
-    handlecategoryid,
+    clearstate,
+    fetchcategorysucces, fetchticketsavesuccess,
+    handlecategoryid, handlefreeupdate, handleonsaleupdate,
     handleprice,
     handlequantity
 } from "../../TicketAction";
-import {fetchDataTicketById, saveDataTicket} from "../../service/TicketService";
+import {
+    saveDataTicket,
+    updateDataTicket
+} from "../../service/TicketService";
 import {fetchDataCategory} from "../../../categories/service/CategoryService";
 
 class TicketForm extends React.Component {
@@ -15,13 +18,13 @@ class TicketForm extends React.Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <label>Kategory</label>
+                    <label>Category</label>
                     <select value={this.props.ticketForm.categoryIdTransient} onChange={(event) => {
                         this.props.dispatch(
                             {...handlecategoryid, categoryIdTransient: event.target.value})
                     }}>
                         <option>Choose Category</option>
-                        {this.props.category.map((element, index) => {
+                        {this.props.categories.map((element, index) => {
                             return <option value={element.id}>
                                 {element.categoryName}
                             </option>
@@ -40,45 +43,56 @@ class TicketForm extends React.Component {
                     <button type="submit">Save</button>
                 </form>
 
-                <table>
-                    <thead>
-                    <td>No</td>
-                    <td>Code Ticket</td>
-                    </thead>
-                    {this.props.ticket.map((element,index)=>{
-                        {element.ticketCodes.map((element, index)=>{
+                <form onSubmit={this.handleUpdate}>
+                    <label>Quantity Status OnSale</label>
+                    <input value={this.props.ticket.onSaleTransient} onChange={(event)=>{this.props.dispatch(
+                        {...handleonsaleupdate, onSaleTransient:event.target.value})}}/>
+                    <label>Quantity Status Free</label>
+                    <input value={this.props.ticket.freeTransient} onChange={(event)=>{this.props.dispatch(
+                        {...handlefreeupdate, freeTransient:event.target.value})}}/>
+                    <button type="submit">Update</button>
+                    <table>
+                        <tbody>
+                        <td>{this.props.ticket.id}</td>
+                        <td>{this.props.category.categoryName}</td>
+                        <td>{this.props.event.id}</td>
+                        </tbody>
+                        {this.props.ticketCode.map((element, index)=>{
                             return <tbody>
-                            <td>{index + 1}</td>
                             <td>{element.ticketCode}</td>
+                            <td>{element.statusTicketOut}</td>
+                            <td>{element.available}</td>
+                            <td>{element.arrived}</td>
                             </tbody>
                         })}
-
-                    })}
-                </table>
+                    </table>
+                </form>
 
             </div>
         )
     }
 
+    handleUpdate=async (event)=>{
+        event.preventDefault()
+        this.props.ticket.categoryIdTransient=this.props.category.id;
+        this.props.ticket.eventIdTransient=this.props.event.id;
+        const ticket=await updateDataTicket(this.props.ticket);
+        console.log(this.props.ticketUpdate+"ini lohhhhhhhhhhhhhhhhhhhh");
+        let action = {...fetchticketsavesuccess, ticket:ticket, category:ticket.category, event:ticket.event, ticketCode: ticket.ticketCodes}
+        this.props.dispatch(action)
+    }
     handleSubmit=async (event)=>{
         event.preventDefault()
-        saveDataTicket(this.props.ticketForm)
-
+        const ticket = await saveDataTicket(this.props.ticketForm)
+        console.log(ticket);
+        let action = {...fetchticketsavesuccess, ticket:ticket, category:ticket.category, event:ticket.event, ticketCode: ticket.ticketCodes}
+        this.props.dispatch(action)
+        this.props.dispatch({...clearstate})
     }
     componentDidMount() {
         this.dataCategory()
-        this.dataTicket(this.props.ticketForm.id)
-
     }
 
-    dataTicket=async (id)=>{
-        const data = await fetchDataTicketById(id);
-        if (!(data===undefined)){
-            let action = {...fetchticketsuccess, payload:data}
-            console.log(action)
-            this.props.dispatch(action)
-        }
-    }
     dataCategory=async ()=>{
         const data = await fetchDataCategory();
         if (!(data===undefined)){

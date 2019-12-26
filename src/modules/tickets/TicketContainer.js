@@ -3,13 +3,15 @@ import {Provider} from "react-redux";
 import {createStore} from "redux";
 
 import ticketReducer from "./reducer/TicketReducer";
+import TicketList from "./components/TicketList";
 import TicketForm from "./components/component-admin/TicketForm";
+import {Switch} from "react-router-dom";
 
 class TicketContainer extends Component {
     render() {
         return (
             <div>
-                <Provider store={createStore(ticketReducer)}><TicketForm/></Provider>
+                <TicketForm/>
             </div>
         );
     }

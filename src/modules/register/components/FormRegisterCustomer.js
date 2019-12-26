@@ -9,7 +9,7 @@ import {
 } from "../RegistartionAction";
 import {registrationPost} from "../service/RegistrationService";
 
-class FormRegister extends Component {
+class FormRegisterCustomer extends Component {
     render() {
         return (
             <>
@@ -22,7 +22,7 @@ class FormRegister extends Component {
                                         <div className="col-lg-12">
                                             <div className="login-form">
                                                 <div className="text-center">
-                                                    <h1 className="h4 text-gray-900 mb-4">Register</h1>
+                                                    <h1 className="h4 text-gray-900 mb-4">Register As EO</h1>
                                                 </div>
 
                                                     <div className="form-group">
@@ -57,28 +57,15 @@ class FormRegister extends Component {
                                                         <input type="password" className="form-control"
                                                                id="exampleInputPassword" placeholder="Password" onChange={this.handleInputPassword}/>
                                                     </div>
-                                                    <div className="form-group">
-                                                        <button type="submit"
-                                                                className="btn btn-primary btn-block" onClick={this.handleSubmitRegistration}>Register
-                                                        </button>
-                                                    </div>
-                                                    <hr/>
 
+                                                <div>
+                                                    <p><button className="btn btn-primary btn-block" onClick={this.props.nextStep}>Next Step</button></p>
+                                                </div>
                                                 <hr/>
+
                                                 <div className="text-center">
                                                     <Link to="/login" className="font-weight-bold small">Already have
                                                         an account?</Link>
-                                                </div>
-                                                <div>
-
-                                                    <h2>Step {this.props.currentStep}</h2>
-                                                    <p>Total Steps: {this.props.totalSteps}</p>
-                                                    <p>Is Active: {this.props.isActive}</p>
-                                                    <p><button onClick={this.props.previousStep}>Previous Step</button></p>
-                                                    <p><button onClick={this.props.nextStep}>Next Step</button></p>
-                                                    <p><button onClick={()=>this.props.goToStep(2)}>Step 2</button></p>
-                                                    <p><button onClick={this.props.firstStep}>First Step</button></p>
-                                                    <p><button onClick={this.props.lastStep}>Last Step</button></p>
                                                 </div>
                                                 <div className="text-center">
                                                 </div>
@@ -140,4 +127,4 @@ const mapsStateToProps=(state)=>{
     return {...state}
 }
 
-export default connect (mapsStateToProps)(FormRegister);
+export default connect (mapsStateToProps)(FormRegisterCustomer);
