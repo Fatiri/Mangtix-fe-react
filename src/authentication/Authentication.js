@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken"
 
-export default class AuthenticationLogin {
+export default class Authentication {
 
     isLogin(){
         const token = localStorage.getItem("token")

@@ -12,7 +12,6 @@ import {
     RegistrationRoute,
     TicketListRoute
 } from "./constants/customRoute";
-import FormLogin from "../modules/login/components/FormLogin";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import loginReducer from "../modules/login/reducer/LoginReducer";

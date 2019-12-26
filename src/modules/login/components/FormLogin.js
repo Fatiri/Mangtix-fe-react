@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {loginPassword, loginUsername} from "../reducer/LoginAction";
-import AuthenticationLogin from "../../../authentication/AuthenticationLogin";
-import {Redirect} from "react-router-dom";
+import {companyId, loginPassword, loginUsername, role, userId} from "../reducer/LoginAction";
+import Authentication from "../../../authentication/Authentication";
+import {Link, Redirect} from "react-router-dom";
 import {GenerateTokenAccess} from "../service/AuthenticationLoginService";
+import decodeJwtToken from "../../../authentication/AutheticationDecodeJwt";
 
 class FormLogin extends Component {
     render() {
-        const Auth = new AuthenticationLogin();
+        const Auth = new Authentication();
         if (Auth.isLogin()){
+            alert("has been login")
             return <Redirect t="/"/>
         }
         return (
@@ -66,6 +68,7 @@ class FormLogin extends Component {
         );
     }
 
+
     handleInputUsername=(username)=>{
         username.preventDefault();
         this.props.dispatch ({...loginUsername, userName:username.target.value})
@@ -83,6 +86,10 @@ class FormLogin extends Component {
             const token = await GenerateTokenAccess(dataUser);
             localStorage.clear();
             localStorage.setItem("token", token.jwt);
+            const dataToken = decodeJwtToken();
+            this.props.dispatch({...role, role:dataToken.sub})
+            this.props.dispatch({...userId, userId:dataToken.jti})
+            this.props.dispatch({...companyId, companyId:dataToken.aud})
         }
     }
 
