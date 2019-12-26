@@ -34,7 +34,7 @@ export default class AdminSidebar extends Component {
                             <div className="bg-white py-2 collapse-inner rounded">
                                 <h6 className="collapse-header">User Detail</h6>
                                 <Link className="collapse-item" to="/users">
-                                <i className="fas fa-fw fa-shopping-cart"/> User
+                                    <i className="fas fa-fw fa-shopping-cart"/> User
                                 </Link>
                                 <Link className="collapse-item" to="/booking">Booking</Link>
                                 <Link className="collapse-item" to="/events">Buttons</Link>
@@ -72,7 +72,7 @@ export default class AdminSidebar extends Component {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/ticket">
+                        <Link className="nav-link" to="/ticket-form">
                             <i className="fas fa-fw fa-sad-tear"/>
                             <span>Ticket</span>
                         </Link>
