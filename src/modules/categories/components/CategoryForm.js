@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {clearstate, fetchcategorysuccess, handlecategoryname} from "../CategoryAction";
-import {fetchDataCategory, saveDataCategory} from "../service/CategoryService";
+import {fetchDataCategory, fetchDataCategoryById, saveDataCategory} from "../service/CategoryService";
 
 class CategoryForm extends React.Component {
     render() {
@@ -26,12 +26,20 @@ class CategoryForm extends React.Component {
                           return  <tbody>
                               <td>{index+1}</td>
                                 <td>{element.categoryName}</td>
-                              <td><button>Edit</button><button>Delete</button></td>
+                              <td><button value={element.id} onClick={this.handleDataEdit}>Edit</button>
+                                  <button value={element.id} onClick={this.handleDataDelete}>Delete</button></td>
                             </tbody>
                         })}
 
                     </table>
                 </div>
+                <form onSubmit={this.handleSubmit}>
+                    <input type="text" value={this.props.category.categoryName}
+                           onChange={(event) => {
+                               this.props.dispatch(
+                                   {...handlecategoryname, categoryName: event.target.value})}} required/>
+                    <button type="submit">Update</button>
+                </form>
             </div>
         )
     }
@@ -47,6 +55,13 @@ class CategoryForm extends React.Component {
             console.log(action)
             this.props.dispatch(action)
         }
+    }
+    handleDataEdit = async (id) => {
+        const data = await fetchDataCategoryById(id)
+        this.props.dispatch({...fetchcategorysuccess, payload: data})
+    }
+    handleDataDelete = async (id) => {
+        await fetchDataCategoryById(id).then(this.dataCategory)
     }
     componentDidMount() {
         this.dataCategory()
