@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {
-    clearstate,
+    clearstate, clearstatefree, clearstateonstate,
     fetchcategorysucces, fetchticketsavesuccess,
     handlecategoryid, handlefreeupdate, handleonsaleupdate,
     handleprice,
@@ -80,6 +80,9 @@ class TicketForm extends React.Component {
         console.log(ticket);
         let action = {...fetchticketsavesuccess, ticket:ticket, category:ticket.category, event:ticket.event, ticketCode: ticket.ticketCodes}
         this.props.dispatch(action)
+        this.props.dispatch({...clearstateonstate})
+        this.props.dispatch({...clearstatefree})
+
     }
     handleSubmit=async (event)=>{
         event.preventDefault()

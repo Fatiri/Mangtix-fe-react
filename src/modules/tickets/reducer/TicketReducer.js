@@ -16,8 +16,8 @@ const initialState = {
         eventIdTransient:"7a2d557e-6e88-40f6-ab50-585ad4260522",
         price:"",
         quantity:"",
-        onSaleTransient:"",
-        freeTransient:"",
+        onSaleTransient:0,
+        freeTransient:0,
         ticketCodes:[]
     }
 
@@ -42,22 +42,12 @@ export default function ticketReducer(state = initialState, action) {
             return {...state, ticketForm: {...state.ticketForm, price: action.price}};
         case "HANDLE_QUANTITY":
             return {...state, ticketForm: {...state.ticketForm, quantity: action.quantity}};
-        case "HANDLE_ID_UPDATE":
-            return {...state, ticketUpdate: {...state.ticketUpdate, id: action.id}};
-        case "HANDLE_CATEGORY_ID_UPDATE":
-            return {...state, ticketUpdate: {...state.ticketUpdate, categoryIdTransient:action.categoryIdTransient}};
-        case "HANDLE_EVENT_ID_UPDATE":
-            return {...state, ticketUpdate: {...state.ticketUpdate, eventIdTransient: action.eventIdTransient}};
-        case "HANDLE_PRICE_UPDATE":
-            return {...state, ticketUpdate: {...state.ticketUpdate, price: action.price}};
-        case "HANDLE_QUANTITY_UPDATE":
-            return {...state, ticketUpdate: {...state.ticketUpdate, quantity: action.quantity}};
-        case "HANDLE_ON_SALE_UPDATE":
-            return {...state, ticket: {...state.ticket, onSaleTransient: action.onSaleTransient}};
-        case "HANDLE_FREE_UPDATE":
-            return {...state, ticket: {...state.ticket, freeTransient: action.freeTransient}};
         case "CLEAR_STATE":
             return {...state, ticketForm: {...initialState.ticketForm}};
+        case "CLEAR_STATE_ON_SALE":
+            return {...state, ticket: {...initialState.ticket.onSaleTransient}};
+        case "CLEAR_STATE_FREE":
+            return {...state, ticket: {...initialState.ticket.freeTransient}};
         default:
             return {...state}
     }
