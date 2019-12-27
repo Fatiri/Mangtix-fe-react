@@ -42,6 +42,10 @@ export default function ticketReducer(state = initialState, action) {
             return {...state, ticketForm: {...state.ticketForm, price: action.price}};
         case "HANDLE_QUANTITY":
             return {...state, ticketForm: {...state.ticketForm, quantity: action.quantity}};
+        case "HANDLE_ON_SALE_UPDATE":
+            return {...state, ticket: {...state.ticket, onSaleTransient: action.onSaleTransient}}
+        case "HANDLE_FREE_UPDATE":
+            return {...state, ticket: {...state.ticket, freeTransient: action.freeTransient}}
         case "CLEAR_STATE":
             return {...state, ticketForm: {...initialState.ticketForm}};
         case "CLEAR_STATE_ON_SALE":

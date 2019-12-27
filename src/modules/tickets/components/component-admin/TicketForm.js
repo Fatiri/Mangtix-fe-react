@@ -17,56 +17,59 @@ class TicketForm extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Category</label>
-                    <select value={this.props.ticketForm.categoryIdTransient} onChange={(event) => {
-                        this.props.dispatch(
-                            {...handlecategoryid, categoryIdTransient: event.target.value})
-                    }}>
-                        <option>Choose Category</option>
-                        {this.props.categories.map((element, index) => {
-                            return <option value={element.id}>
-                                {element.categoryName}
-                            </option>
-                        })}
-                    </select>
-                    <label>Price</label>
-                    <input value={this.props.ticketForm.price} onChange={(event) => {
-                        this.props.dispatch(
-                            {...handleprice, price: event.target.value})
-                    }}/>
-                    <label>Quantity</label>
-                    <input value={this.props.ticketForm.quantity} onChange={(event)=>{
-                        this.props.dispatch(
-                            {...handlequantity, quantity:event.target.value})
-                    }}/>
-                    <button type="submit">Save</button>
-                </form>
+                {(this.props.ticket.length===0?
+                        <form onSubmit={this.handleSubmit}>
+                        <label>Category</label>
+                        <select value={this.props.ticketForm.categoryIdTransient} onChange={(event) => {
+                            this.props.dispatch(
+                                {...handlecategoryid, categoryIdTransient: event.target.value})
+                        }}>
+                            <option>Choose Category</option>
+                            {this.props.categories.map((element, index) => {
+                                return <option value={element.id}>
+                                    {element.categoryName}
+                                </option>
+                            })}
+                        </select>
+                        <label>Price</label>
+                        <input value={this.props.ticketForm.price} onChange={(event) => {
+                            this.props.dispatch(
+                                {...handleprice, price: event.target.value})
+                        }}/>
+                        <label>Quantity</label>
+                        <input value={this.props.ticketForm.quantity} onChange={(event)=>{
+                            this.props.dispatch(
+                                {...handlequantity, quantity:event.target.value})
+                        }}/>
+                        <button type="submit">Save</button>
+                    </form> : <form onSubmit={this.handleUpdate}>
+                        <label>Quantity Status OnSale</label>
+                        <input value={this.props.ticket.onSaleTransient} onChange={(event)=>{this.props.dispatch(
+                            {...handleonsaleupdate, onSaleTransient:event.target.value})}}/>
+                        <label>Quantity Status Free</label>
+                        <input value={this.props.ticket.freeTransient} onChange={(event)=>{this.props.dispatch(
+                            {...handlefreeupdate, freeTransient:event.target.value})}}/>
+                        <button type="submit">Update</button>
+                    </form>
+                )}
 
-                <form onSubmit={this.handleUpdate}>
-                    <label>Quantity Status OnSale</label>
-                    <input value={this.props.ticket.onSaleTransient} onChange={(event)=>{this.props.dispatch(
-                        {...handleonsaleupdate, onSaleTransient:event.target.value})}}/>
-                    <label>Quantity Status Free</label>
-                    <input value={this.props.ticket.freeTransient} onChange={(event)=>{this.props.dispatch(
-                        {...handlefreeupdate, freeTransient:event.target.value})}}/>
-                    <button type="submit">Update</button>
-                    <table>
-                        <tbody>
-                        <td>{this.props.ticket.id}</td>
-                        <td>{this.props.category.categoryName}</td>
-                        <td>{this.props.event.id}</td>
+
+                <table>
+
+                    <label>{this.props.ticket.id}</label>
+                    <label>{this.props.category.categoryName}</label>
+                    <label>{this.props.event.eventName}</label>
+                    <thead>
+                    <th>Ticket Code</th>
+                    <th>Status Ticket Out</th>
+                    </thead>
+                    {this.props.ticketCode.map((element, index)=>{
+                        return <tbody>
+                        <td>{element.ticketCode}</td>
+                        <td>{element.statusTicketOut}</td>
                         </tbody>
-                        {this.props.ticketCode.map((element, index)=>{
-                            return <tbody>
-                            <td>{element.ticketCode}</td>
-                            <td>{element.statusTicketOut}</td>
-                            <td>{element.available}</td>
-                            <td>{element.arrived}</td>
-                            </tbody>
-                        })}
-                    </table>
-                </form>
+                    })}
+                </table>
 
             </div>
         )
