@@ -1,13 +1,15 @@
 const initialState= {
     events:[],
     eventForm:{
+        id:"",
         eventName:"",
         descriptionEvent:"",
         companyIdTransient:"",
         eventDetailList:[]
     },
+    eventById:[],
     eventDetail:[],
-
+    company:{id:"293b4491-50aa-4a96-91d2-db691eeb3f78"}
 }
 export default function eventReducer(state=initialState, action){
     console.log('event-reducer', state, action)
@@ -66,6 +68,8 @@ export default function eventReducer(state=initialState, action){
                     }}
         case "FETCH_EVENT_DETAIL_SUCCESS":
             return {...state, eventDetail: action.payload}
+        case "HANDLE_CHANGE_DATA":
+            return {...state, eventById:action.eventById}
         case "CLEAR_STATE":
             return {...state, eventForm: {...initialState.eventForm}}
         default:

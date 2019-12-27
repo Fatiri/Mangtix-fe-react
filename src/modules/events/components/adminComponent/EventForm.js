@@ -41,11 +41,11 @@ class EventForm extends React.Component {
                                 this.props.dispatch({...handleeventdate, eventDate: event.target.value, index:index})
                             }} required/>
                             <label>Event Detail Description</label>
-                            <textarea value={element.description} onChange={(event)=>{
+                            <textarea className="form-control" value={element.description} onChange={(event)=>{
                                 this.props.dispatch({...handledescriptioneventdetail, description:event.target.value, index:index})
                             }} required/>
                             <label>Location Event</label>
-                            <input value={element.locationIdTransient} onChange={(event)=>{
+                            <input className="form-control" value={element.locationIdTransient} onChange={(event)=>{
                                 this.props.dispatch({...handlelocationid, locationIdTransient: event.target.value, index:index})
                             }} required/>
 

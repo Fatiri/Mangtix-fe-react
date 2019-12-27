@@ -6,26 +6,25 @@ class EventDetail extends React.Component{
     render() {
         return(
             <div>
-                {this.props.eventDetail.map((element, index)=>{
-                    return<div> <label>Venue Event</label>
-                        <input className="form-control" value={element.venue}/>
+                <div> <label>Venue Event</label>
+                        <input className="form-control" value={this.props.eventById.id}/>
                         <label>Event Day</label>
-                        <input className="form-control" value={element.eventDay}/>
+                        <input className="form-control" />
                         <label>Event Date</label>
-                        <input className="form-control" value={element.eventDate}/>
+                        <input className="form-control" />
                         <label>Event Detail Description</label>
-                        <textarea value={element.description}/>
+                        <textarea />
                         <label>Location Event</label>
-                        <input value={element.locationIdTransient}/>
+                        <input />
                     </div>
-                })}
+
             </div>
         )
     }
 
 }
 const mapStateToProps = (state) => {
-    console.log(state, "ini mapStateToProps");
+    console.log(state, "ini mapStateToPropsEventDetail");
     return {...state};
 }
 export default connect(mapStateToProps)(EventDetail)

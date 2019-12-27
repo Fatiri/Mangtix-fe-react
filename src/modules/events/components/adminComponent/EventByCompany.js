@@ -1,7 +1,9 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {fetchDataEventByCompany} from "../../service/EventService";
-import {fetcheventsuccess} from "../../EventAction";
+import {fetchDataEventByCompany, fetchDataEventId} from "../../service/EventService";
+import {fetcheventsuccess, handleChangeData, handlechangedata} from "../../EventAction";
+import EventDetail from "./EventDetail";
+import {Link} from "react-router-dom";
 
 class EventByCompany extends React.Component{
     render() {
@@ -17,7 +19,8 @@ class EventByCompany extends React.Component{
                         return <tbody>
                         <td>{element.eventName}</td>
                         <td>{element.descriptionEvent}</td>
-                        <td><button>Detail</button></td>
+                        <td><Link to={"/event-detail"} onClick={() => {
+                            this.handleDetail(element.id)}}>Detail</Link></td>
                         </tbody>
                     })}
 
@@ -25,6 +28,13 @@ class EventByCompany extends React.Component{
             </div>
         )
     }
+    handleDetail=async (id)=>{
+        console.log(id+"ini id")
+        const data = await fetchDataEventId(id)
+        console.log(data.eventName+"ini data event form")
+        this.props.dispatch({...handleChangeData, eventById: data})
+        console.log(this.props.eventById)
+}
     componentDidMount() {
         let data=this.props.company.id;
         this.dataEvent(data)
