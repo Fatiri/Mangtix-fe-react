@@ -12,6 +12,7 @@ import {
     updateDataTicket
 } from "../../service/TicketService";
 import {fetchDataCategory} from "../../../categories/service/CategoryService";
+import TicketListAdmin from "./TicketListAdmin";
 
 class TicketForm extends React.Component {
     render() {
