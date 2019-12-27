@@ -8,11 +8,14 @@ import {
     registrationUsername
 } from "../RegistartionAction";
 import {registrationPost} from "../service/RegistrationService";
+import FormLocation from "../../location/components/FormLocation";
+import Map from "../../location/components/Map";
 
 class FormRegisterManagement extends Component {
     render() {
         return (
             <>
+
                 <div className="container-login">
                     <div className="row justify-content-center">
                         <div className="col-xl-10 col-lg-12 col-md-9">
@@ -58,6 +61,37 @@ class FormRegisterManagement extends Component {
                                                                id="exampleInputPassword" placeholder="Password" onChange={this.handleInputPassword}/>
                                                     </div>
 
+                                                <div className="form-group">
+                                                    <button className="btn btn-primary" type="button"
+                                                            data-toggle="collapse"
+                                                            data-target="#collapseExample" aria-expanded="false"
+                                                            aria-controls="collapseExample">
+                                                        Choose Location
+                                                    </button>
+                                                </div>
+
+                                                <div className="form-group">
+                                                    <div className="collapse" id="collapseExample">
+                                                        <div className="card card-body">
+                                                            <Map
+                                                                google={this.props.google}
+                                                                center={{lat: -6.267699, lng: 106.78272}}
+                                                                height='300px'
+                                                                zoom={15}
+                                                            />
+                                                            <div className="form-group">
+                                                                <button className="btn btn-primary" type="button"
+                                                                        data-toggle="collapse"
+                                                                        data-target="#collapseExample" aria-expanded="false"
+                                                                        aria-controls="collapseExample">
+                                                                    Save Location
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
                                                 <div>
                                                     <button className="btn btn-primary btn-block" onClick={this.handleTwoFunction}>Next Step</button>
                                                 </div>
@@ -77,7 +111,10 @@ class FormRegisterManagement extends Component {
                         </div>
                     </div>
                 </div>
+
+                <FormLocation/>
             </>
+
         );
     }
 

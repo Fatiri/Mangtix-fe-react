@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import ListLocation from "./components/ListLocation";
+import FormLocation from "./components/FormLocation";
 
 class LocationContainer extends Component {
     render() {
         return (
             <div className="row">
-                <ListLocation/>
+                <FormLocation/>
             </div>
          );
     }

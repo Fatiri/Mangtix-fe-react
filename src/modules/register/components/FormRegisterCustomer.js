@@ -8,6 +8,8 @@ import {
     registrationUsername
 } from "../RegistartionAction";
 import {registrationPost} from "../service/RegistrationService";
+import FormLocation from "../../location/components/FormLocation";
+import Map from "../../location/components/Map";
 
 class FormRegisterCustomer extends Component {
     render() {
@@ -25,41 +27,78 @@ class FormRegisterCustomer extends Component {
                                                     <h1 className="h4 text-gray-900 mb-4">Register</h1>
                                                 </div>
 
-                                                    <div className="form-group">
-                                                        <label>Full Name</label>
-                                                        <input type="text" className="form-control"
-                                                               id="exampleInputFirstName"
-                                                               placeholder="Enter Full Name" onChange={this.handleInputFullName}/>
+                                                <div className="form-group">
+                                                    <label>Full Name</label>
+                                                    <input type="text" className="form-control"
+                                                           id="exampleInputFirstName"
+                                                           placeholder="Enter Full Name"
+                                                           onChange={this.handleInputFullName}/>
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Born Place</label>
+                                                    <input type="text" className="form-control"
+                                                           id="exampleInputEmail"
+                                                           aria-describedby="emailHelp"
+                                                           placeholder="Enter Born Place"
+                                                           onChange={this.handleInputBornPlace}/>
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Birth Date</label>
+                                                    <input type="date" className="form-control"
+                                                           id="exampleInputEmail"
+                                                           aria-describedby="emailHelp"
+                                                           placeholder="Enter Birth Date"
+                                                           onChange={this.handleInputBirthDate}/>
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Username</label>
+                                                    <input type="text" className="form-control"
+                                                           id="exampleInputEmail"
+                                                           aria-describedby="emailHelp"
+                                                           placeholder="Enter Username"
+                                                           onChange={this.handleInputUsername}/>
+                                                </div>
+                                                <div className="form-group">
+                                                    <label>Password</label>
+                                                    <input type="password" className="form-control"
+                                                           id="exampleInputPassword" placeholder="Password"
+                                                           onChange={this.handleInputPassword}/>
+                                                </div>
+
+                                                <div className="form-group">
+                                                <button className="btn btn-primary" type="button"
+                                                        data-toggle="collapse"
+                                                        data-target="#collapseExample" aria-expanded="false"
+                                                        aria-controls="collapseExample">
+                                                    Choose Location
+                                                </button>
+                                                </div>
+
+                                                <div className="form-group">
+                                                <div className="collapse" id="collapseExample">
+                                                    <div className="card card-body">
+                                                        <Map
+                                                            google={this.props.google}
+                                                            center={{lat: -6.267699, lng: 106.78272}}
+                                                            height='300px'
+                                                            zoom={15}
+                                                        />
+                                                        <div className="form-group">
+                                                            <button className="btn btn-primary" type="button"
+                                                                    data-toggle="collapse"
+                                                                    data-target="#collapseExample" aria-expanded="false"
+                                                                    aria-controls="collapseExample">
+                                                                Save Location
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                    <div className="form-group">
-                                                        <label>Born Place</label>
-                                                        <input type="text" className="form-control"
-                                                               id="exampleInputEmail"
-                                                               aria-describedby="emailHelp"
-                                                               placeholder="Enter Born Place" onChange={this.handleInputBornPlace}/>
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <label>Birth Date</label>
-                                                        <input type="date" className="form-control"
-                                                               id="exampleInputEmail"
-                                                               aria-describedby="emailHelp"
-                                                               placeholder="Enter Birth Date" onChange={this.handleInputBirthDate}/>
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <label>Username</label>
-                                                        <input type="text" className="form-control"
-                                                               id="exampleInputEmail"
-                                                               aria-describedby="emailHelp"
-                                                               placeholder="Enter Username" onChange={this.handleInputUsername}/>
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <label>Password</label>
-                                                        <input type="password" className="form-control"
-                                                               id="exampleInputPassword" placeholder="Password" onChange={this.handleInputPassword}/>
-                                                    </div>
+                                                </div>
+                                                </div>
 
                                                 <div>
-                                                    <p><button className="btn btn-primary btn-block" onClick={this.handleSubmitRegistration}>Create Account</button></p>
+                                                    <button className="btn btn-primary btn-block"
+                                                            onClick={this.handleSubmitRegistration}>Create Account
+                                                    </button>
                                                 </div>
                                                 <hr/>
 
@@ -77,54 +116,53 @@ class FormRegisterCustomer extends Component {
                         </div>
                     </div>
                 </div>
+                <FormLocation/>
             </>
         );
     }
 
-    handleInputFullName=(fullName)=>{
+    handleInputFullName = (fullName) => {
         fullName.preventDefault();
         this.props.dispatch({...registrationFUllName, fullName: fullName.target.value})
         console.log(this.props.userInfo)
 
     }
 
-    handleInputBornPlace=(bornPlace)=>{
+    handleInputBornPlace = (bornPlace) => {
         bornPlace.preventDefault();
-        this.props.dispatch({...registrationBornPlace, bornPlace:bornPlace.target.value})
+        this.props.dispatch({...registrationBornPlace, bornPlace: bornPlace.target.value})
         console.log(this.props.userInfo)
 
     }
 
-    handleInputBirthDate=(birthDate)=>{
+    handleInputBirthDate = (birthDate) => {
         birthDate.preventDefault();
-        this.props.dispatch({...registrationBirthDate, birthDate:birthDate.target.value})
+        this.props.dispatch({...registrationBirthDate, birthDate: birthDate.target.value})
         console.log(this.props.userInfo)
 
     }
 
-    handleInputUsername=(username)=>{
+    handleInputUsername = (username) => {
         username.preventDefault();
-        this.props.dispatch({...registrationUsername, userName:username.target.value})
+        this.props.dispatch({...registrationUsername, userName: username.target.value})
         console.log(this.props.userInfo)
 
     }
 
-    handleInputPassword=(password)=>{
+    handleInputPassword = (password) => {
         password.preventDefault();
-        this.props.dispatch({...registrationPassword, password:password.target.value})
+        this.props.dispatch({...registrationPassword, password: password.target.value})
         console.log(this.props.userInfo)
     }
 
-    handleSubmitRegistration=async ()=>{
+    handleSubmitRegistration = async () => {
         const dataUser = {...this.props.userInfo}
-        if(!(dataUser)){
-            await registrationPost(dataUser);
-        }
+        await registrationPost(dataUser);
     }
 }
 
-const mapsStateToProps=(state)=>{
+const mapsStateToProps = (state) => {
     return {...state}
 }
 
-export default connect (mapsStateToProps)(FormRegisterCustomer);
+export default connect(mapsStateToProps)(FormRegisterCustomer);

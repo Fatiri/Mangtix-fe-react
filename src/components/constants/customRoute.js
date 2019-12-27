@@ -190,8 +190,6 @@ export const EventScheduleRoute = ({component: Component, ...rest}) => {
 
 // private route
 
-
-
 export const AdminRoute = ({component: Component, ...rest}) => {
     return (
         <Route

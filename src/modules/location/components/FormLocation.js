@@ -1,49 +1,37 @@
 import React, {Component} from 'react';
-class ListLocation extends Component {
+import Map from "./Map";
+class FormLocation extends Component {
 
     render() {
         return (
             <>
-                <div class="col-lg-12">
-                    <div class="card mb-4">
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Location</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-area">
+                <div className="modal fade bd-example-modal-lg" id="exampleModalCenter" tabIndex="-1" role="dialog"
+                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div className="modal-dialog modal-lg" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLongTitle">Form Location</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <div style={{ margin: '100px' }}>
+                                    <Map
+                                        google={this.props.google}
+                                        center={{lat: 18.5204, lng: 73.8567}}
+                                        height='300px'
+                                        zoom={15}
+                                    />
+                                </div>
+                                <br/>
+                                <br/>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" className="btn btn-primary">Save Location</button>
+                                </div>
+                            </div>
 
-                            </div>
-                            <hr/>
-                            HAahahahahha
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Detail Location Event</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-bar">
-                                <canvas id="myBarChart"></canvas>
-                            </div>
-                            <hr/>
-                            Styling for the bar chart can be found in the <code>/js/demo/chart-bar-demo.js</code> file.
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Event active</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-pie pt-4">
-                                <canvas id="myPieChart"></canvas>
-                            </div>
-                            <hr/>
-                            Styling for the donut chart can be found in
-                            the <code>/js/demo/chart-pie-demo.js</code> file.
                         </div>
                     </div>
                 </div>
@@ -52,4 +40,4 @@ class ListLocation extends Component {
     }
 }
 
-export default ListLocation;
+export default FormLocation;
