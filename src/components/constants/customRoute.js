@@ -92,9 +92,9 @@ export const RegistrationCustomerRoute = ({component: Component, ...rest}) => {
 
                         <Header/> {/* HEADER ALWAYS VISIBLE */}
                         <div className="container-fluid" id="container-wrapper">
-                            {/*<Provider store={createStore(registrationReducer)}>*/}
+                            <Provider store={createStore(registrationReducer)}>
                             <FormRegisterCustomer/>
-                            {/*</Provider>*/}
+                            </Provider>
                         </div>
                     </div>
                     <Footer/>
@@ -146,6 +146,7 @@ export const BookingRoute = ({component: Component, ...rest}) => {
         />
     )
 }
+
 
 export const TicketListRoute = ({component: Component, ...rest}) => {
     return (

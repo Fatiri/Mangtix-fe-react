@@ -22,7 +22,7 @@ class FormRegisterManagement extends Component {
                                         <div className="col-lg-12">
                                             <div className="login-form">
                                                 <div className="text-center">
-                                                    <h1 className="h4 text-gray-900 mb-4">Register As EO</h1>
+                                                    <h1 className="h4 text-gray-900 mb-4">Register As Management</h1>
                                                 </div>
 
                                                     <div className="form-group">
@@ -59,7 +59,7 @@ class FormRegisterManagement extends Component {
                                                     </div>
 
                                                 <div>
-                                                    <button className="btn btn-primary btn-block" onClick={this.handleSubmitRegistration}>Next Step</button>
+                                                    <button className="btn btn-primary btn-block" onClick={this.handleTwoFunction}>Next Step</button>
                                                 </div>
                                                 <hr/>
 
@@ -84,42 +84,36 @@ class FormRegisterManagement extends Component {
     handleInputFullName=(fullName)=>{
         fullName.preventDefault();
         this.props.dispatch({...registrationFUllName, fullName: fullName.target.value})
-        console.log(this.props.userInfo)
 
     }
 
     handleInputBornPlace=(bornPlace)=>{
         bornPlace.preventDefault();
         this.props.dispatch({...registrationBornPlace, bornPlace:bornPlace.target.value})
-        console.log(this.props.userInfo)
 
     }
 
     handleInputBirthDate=(birthDate)=>{
         birthDate.preventDefault();
         this.props.dispatch({...registrationBirthDate, birthDate:birthDate.target.value})
-        console.log(this.props.userInfo)
 
     }
 
     handleInputUsername=(username)=>{
         username.preventDefault();
         this.props.dispatch({...registrationUsername, userName:username.target.value})
-        console.log(this.props.userInfo)
 
     }
 
     handleInputPassword=(password)=>{
         password.preventDefault();
         this.props.dispatch({...registrationPassword, password:password.target.value})
-        console.log(this.props.userInfo)
     }
 
-    handleSubmitRegistration=async ()=>{
-        const dataUser = {...this.props.userInfo}
-        console.log(dataUser)
 
-            await registrationPost(dataUser);
+
+    handleTwoFunction=()=>{
+        this.props.nextStep();
 
     }
 }

@@ -18,8 +18,8 @@ class FormRegistration extends Component {
                                                     <h1 className="h4 text-gray-900 mb-4">Register</h1>
                                                 </div>
                                                 <div>
-                                                    <p><Link to="/management/customer" className="btn btn-primary btn-block">Customer</Link></p>
-                                                    <p><Link to="/management/registration" className="btn btn-primary btn-block">Management</Link></p>
+                                                    <p><Link to="/customerRegistration" className="btn btn-primary btn-block">Customer</Link></p>
+                                                    <p><Link to="/managementRegistration" className="btn btn-primary btn-block">Management</Link></p>
                                                 </div>
                                             </div>
                                         </div>

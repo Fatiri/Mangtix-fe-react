@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import Authentication from "../../../authentication/Authentication";
 import {Link, Redirect} from "react-router-dom";
+import {registrationNameCompany, userIdCompany} from "../RegistartionAction";
+import {registrationPost} from "../service/RegistrationService";
+import {saveDataCompany} from "../../company/service/CompanyService";
 
 class FormCompany extends Component {
     render() {
@@ -26,13 +29,13 @@ class FormCompany extends Component {
                                                     <div className="form-group">
                                                         <input type="username" className="form-control"
                                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                               placeholder="Company Name..." onChange={this.handleInputUsername}/>
+                                                               placeholder="Company Name..." onChange={this.handleInputCompanyName}/>
                                                     </div>
 
 
                                                 <div>
                                                     <p><button className="btn btn-primary btn-block"  onClick={this.props.previousStep}>Previous Step</button></p>
-                                                    <p><button className="btn btn-primary btn-block"  >Create Account</button></p>
+                                                    <p><button className="btn btn-primary btn-block"  onClick={this.handleCreateRegistration}>Create Account</button></p>
                                                 </div>
                                                 <div className="text-center">
                                                 </div>
@@ -48,11 +51,30 @@ class FormCompany extends Component {
         );
     }
 
+    handleInputCompanyName = (companyName)=>{
+        companyName.preventDefault();
+        this.props.dispatch({...registrationNameCompany, companyName:companyName.target.value})
+        console.log(this.props.companyInfo)
+    }
 
+    handleSubmitRegistration=async ()=>{
+        const dataUser = {...this.props.userInfo}
+        const registrationData = await registrationPost(dataUser);
+        console.log(registrationData)
+        this.props.dispatch({...userIdCompany, userIdTransient:registrationData.id})
+    }
 
-}
-const mapsStateToProps=(state)=>{
-    return {...state}
-}
+    handleCreateRegistration=async ()=>{
+        await this.handleSubmitRegistration();
+        const dataCompany = await {...this.props.companyInfo}
+        console.log(this.props.companyInfo)
+        const dataCompanyAfterPost = await saveDataCompany(dataCompany);
+        console.log(dataCompanyAfterPost)
+    }
 
-export default connect (mapsStateToProps) (FormCompany);
+    }
+    const mapsStateToProps=(state)=>{
+        return {...state}
+    }
+
+    export default connect (mapsStateToProps) (FormCompany);

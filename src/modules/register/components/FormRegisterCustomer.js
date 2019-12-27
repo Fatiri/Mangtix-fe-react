@@ -22,7 +22,7 @@ class FormRegisterCustomer extends Component {
                                         <div className="col-lg-12">
                                             <div className="login-form">
                                                 <div className="text-center">
-                                                    <h1 className="h4 text-gray-900 mb-4">Register As EO</h1>
+                                                    <h1 className="h4 text-gray-900 mb-4">Register</h1>
                                                 </div>
 
                                                     <div className="form-group">
@@ -59,7 +59,7 @@ class FormRegisterCustomer extends Component {
                                                     </div>
 
                                                 <div>
-                                                    <p><button className="btn btn-primary btn-block" onClick={this.props.nextStep}>Next Step</button></p>
+                                                    <p><button className="btn btn-primary btn-block" onClick={this.handleSubmitRegistration}>Create Account</button></p>
                                                 </div>
                                                 <hr/>
 

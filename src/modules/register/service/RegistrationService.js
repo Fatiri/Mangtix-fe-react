@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 export async function registrationPost(userInfo) {
     const data = await  fetch(`http://localhost:9090/user`,
         {
@@ -5,13 +7,15 @@ export async function registrationPost(userInfo) {
             body: JSON.stringify(userInfo)
         }
     )
-        .then((response)=>{
-            console.log(response)
-            return response.json()
-        })
-        .catch(reason => {
-            console.log(reason)
-        })
+    return await data.json();
 
-    return data;
+     if (data.status === 500) {
+        await Swal.fire({
+            icon: 'error',
+            title: 'Sorry user not created!!!',
+            timer: 3000
+        });
+        return null;
+
+    }
 }
