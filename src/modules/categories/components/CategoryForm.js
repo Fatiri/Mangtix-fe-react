@@ -1,13 +1,13 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {clearstate, fetchcategorysuccess, handlecategoryname} from "../CategoryAction";
+import {clearstate, fetchcategorybyidsuccess, fetchcategorysuccess, handlecategoryname} from "../CategoryAction";
 import {fetchDataCategory, fetchDataCategoryById, saveDataCategory} from "../service/CategoryService";
 
 class CategoryForm extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}{...clearstate}>
+                <form onSubmit={this.handleSubmit}>
                     <input type="text" value={this.props.categoryForm.categoryName}
                            onChange={(event) => {
                                this.props.dispatch(
@@ -26,7 +26,7 @@ class CategoryForm extends React.Component {
                           return  <tbody>
                               <td>{index+1}</td>
                                 <td>{element.categoryName}</td>
-                              <td><button value={element.id} onClick={this.handleDataEdit}>Edit</button>
+                              <td><button  onClick={() =>{this.handleDataEdit(element.id)}}>Edit</button>
                                   <button value={element.id} onClick={this.handleDataDelete}>Delete</button></td>
                             </tbody>
                         })}
@@ -34,7 +34,7 @@ class CategoryForm extends React.Component {
                     </table>
                 </div>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" value={this.props.category.categoryName}
+                    <input type="text" value={this.props.categoryById.categoryName}
                            onChange={(event) => {
                                this.props.dispatch(
                                    {...handlecategoryname, categoryName: event.target.value})}} required/>
@@ -47,6 +47,7 @@ class CategoryForm extends React.Component {
     handleSubmit = async (event) => {
         event.preventDefault();
         await saveDataCategory(this.props.categoryForm).then(this.dataCategory)
+        this.props.dispatch({...clearstate})
     }
     dataCategory=async ()=>{
         const data = await fetchDataCategory();
@@ -58,7 +59,7 @@ class CategoryForm extends React.Component {
     }
     handleDataEdit = async (id) => {
         const data = await fetchDataCategoryById(id)
-        this.props.dispatch({...fetchcategorysuccess, payload: data})
+        this.props.dispatch({...fetchcategorybyidsuccess, payload: data})
     }
     handleDataDelete = async (id) => {
         await fetchDataCategoryById(id).then(this.dataCategory)

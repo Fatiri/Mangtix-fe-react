@@ -18,6 +18,10 @@ import TicketForm from "../modules/tickets/components/component-admin/TicketForm
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import ticketReducer from "../modules/tickets/reducer/TicketReducer";
+import TicketListAdmin from "../modules/tickets/components/component-admin/TicketListAdmin";
+import EventDetail from "../modules/events/components/adminComponent/EventDetail";
+import eventReducer from "../modules/events/reducer/EventReducer";
+import EventByCompany from "../modules/events/components/adminComponent/EventByCompany";
 
 class Switcer extends Component {
     render() {
@@ -39,8 +43,12 @@ class Switcer extends Component {
                                 <Route exact path="/booking"><BookingContainer/></Route>
                                 <Route exact path="/events"><EventContainer/></Route>
                                 <Route exact path="/ticket"><TicketContainer/></Route>
-                                <Route exact path="/ticket-form"><Provider store={createStore(ticketReducer)}><TicketForm/></Provider>
+                                <Route exact path="/ticket-form"><Provider store={createStore(ticketReducer)}><TicketForm/></Provider></Route>
+                                <Route exact path="/ticket-list-admin"><Provider store={createStore(ticketReducer)}><TicketListAdmin/></Provider>
                                 </Route>
+                                <Provider store={createStore(eventReducer)}>
+                                <Route exact path="/event-detail"><EventDetail/></Route>
+                                <Route exact path="/event-form"><EventByCompany/></Route></Provider>
                                 <Route exact path="/payment">Payment</Route>
                                 <Route exact path="/cart">Cart</Route>
                                 <Route exact path="/chatting">Chatting</Route>
@@ -48,7 +56,7 @@ class Switcer extends Component {
                                 <Route exact path="/ticket"><TicketList/></Route>
                                 <Route exact path="/event"><ListEvent/></Route>
                                 <Route exact path="/event-schedule"><ListSchedule/></Route>
-                                <Route exact path="/event-form"><EventContainer/></Route>
+
                             </Switch>
                         </div>
                     </div>
