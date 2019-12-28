@@ -9,7 +9,7 @@ const initialState= {
     },
     eventById:[],
     eventDetail:[],
-    company:{id:"df830ca1-1ac0-4fdb-a271-6cfe8aa1d9d0"}
+    company:{id:"293b4491-50aa-4a96-91d2-db691eeb3f78"}
 }
 export default function eventReducer(state=initialState, action){
     console.log('event-reducer', state, action)

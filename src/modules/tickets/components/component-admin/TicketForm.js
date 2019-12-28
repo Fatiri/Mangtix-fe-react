@@ -33,7 +33,7 @@ class TicketForm extends React.Component {
                                             <button className="btn btn-primary" onClick={goBack}><i
                                                 className="fa fa-arrow-alt-circle-left"></i></button>
                                         </h5>
-                                        <p className="card-category">Add Ticket</p>
+                                        <h3 className="card-category">Add Ticket</h3>
                                     </div>
                                     <div className="card-body">
                                         <form onSubmit={this.handleSubmit}>

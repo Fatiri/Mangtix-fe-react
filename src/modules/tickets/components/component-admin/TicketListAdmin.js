@@ -14,7 +14,7 @@ class TicketListAdmin extends React.Component{
                         <Link to={"/ticket-form"} class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">Add Ticket
                             </Link>
                     </span>
-                        <p className="card-category">Ticket List</p>
+                        <h3 className="card-category">Ticket List</h3>
                     </div>
                     <div className="card-body">
                 <table className="table table-hover">

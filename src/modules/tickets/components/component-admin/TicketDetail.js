@@ -16,7 +16,7 @@ class TicketDetail extends React.Component {
                                 <button className="btn btn-primary" onClick={goBack}><i
                                     className="fa fa-arrow-alt-circle-left"></i></button>
                             </h5>
-                            <p className="card-category">Detail Ticket</p>
+                            <h3 className="card-category">Detail Ticket</h3>
                         </div>
                         <div className="card-body">
                             <label className="col-sm-4 col-form-label">{this.props.ticketById.id}</label>
