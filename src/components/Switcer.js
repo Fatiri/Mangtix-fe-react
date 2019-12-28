@@ -25,8 +25,8 @@ class Switcer extends Component {
                 {/*public component*/}
                 <PublicRoute exact path="/" ></PublicRoute>
                 <RegistrationRoute exact path="/registration"></RegistrationRoute>
-                <RegistrationManagementRoute exact path="/managementRegistration"></RegistrationManagementRoute>
-                <RegistrationCustomerRoute exact path="/customerRegistration"></RegistrationCustomerRoute>
+                <RegistrationManagementRoute exact path="/management/registration"></RegistrationManagementRoute>
+                <RegistrationCustomerRoute exact path="/customer/registration"></RegistrationCustomerRoute>
                 <LoginRoute exact path="/login"></LoginRoute>
                 <BookingRoute exact path="/booking"></BookingRoute>
                 <TicketListRoute exact path="/ticket"></TicketListRoute>
