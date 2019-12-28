@@ -49,7 +49,7 @@ export default class AdminSidebar extends Component {
                     <li className="nav-item">
                         <Link className="nav-link" to="cart">
                             <i className="fas fa-fw fa-shopping-basket"/>
-                            <span>Charts</span>
+                            <span>Cart</span>
                         </Link>
                     </li>
                     <li className="nav-item">
@@ -59,7 +59,7 @@ export default class AdminSidebar extends Component {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/event-form">
+                        <Link className="nav-link" to="/event-list">
                             <i className="fas fa-fw fa-credit-card"/>
                             <span>Event</span>
                         </Link>
@@ -70,22 +70,22 @@ export default class AdminSidebar extends Component {
                             <span>Category</span>
                         </Link>
                     </li>
+                    {/*<li className="nav-item">*/}
+                    {/*    <Link className="nav-link" to="events">*/}
+                    {/*        <i className="fas fa-fw fa-location-arrow"/>*/}
+                    {/*        <span>Events</span>*/}
+                    {/*    </Link>*/}
+                    {/*</li>*/}
+                    {/*<li className="nav-item">*/}
+                    {/*    <Link className="nav-link" to="#">*/}
+                    {/*        <i className="fas fa-fw fa-sad-tear"/>*/}
+                    {/*        <span>Ticket</span>*/}
+                    {/*    </Link>*/}
+                    {/*</li>*/}
                     <li className="nav-item">
-                        <Link className="nav-link" to="events">
-                            <i className="fas fa-fw fa-location-arrow"/>
-                            <span>Events</span>
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/tickets">
-                            <i className="fas fa-fw fa-sad-tear"/>
-                            <span>Ticket</span>
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="category">
+                        <Link className="nav-link" to="/ticket-list-admin">
                             <i className="fas fa-fw fa-home"/>
-                            <span>Category</span>
+                            <span>Ticket</span>
                         </Link>
                     </li>
                     <hr className="sidebar-divider"/>

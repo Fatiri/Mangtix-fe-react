@@ -1,12 +1,10 @@
 import Swal from "sweetalert2";
-import {internalServerError500} from "../../../components/constants";
 
 export async function saveDataCategory(event) {
     const data = await fetch("http://localhost:9090/category", {method:"POST",
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(event)})
-        .then((response) => {
-            if (response.status===200){
+            if (data.status===200){
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
@@ -14,8 +12,8 @@ export async function saveDataCategory(event) {
                     showConfirmButton: false,
                     timer: 3000
                 })
-                return response.json();
-            } else if (response.status===500){
+                return data.json();
+            } else if (data.status===500){
                 // internalServerError500()
                 Swal.fire({
                     icon: 'error',
@@ -23,14 +21,30 @@ export async function saveDataCategory(event) {
                     timer:3000
                 })
             }
-        }).catch(reason => {
-        })
-    return data;
+        return data;
 }
 
 export async function fetchDataCategory() {
     const data=await fetch(`http://localhost:9090/categories`,
         {method:"GET"}).then((response)=>{
+        return response.json()
+    });
+    console.log(data);
+    return data;
+}
+
+export async function fetchDataCategoryById(id) {
+    const data=await fetch(`http://localhost:9090/category/${id}`,
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
+    console.log(data);
+    return data;
+}
+
+export async function deleteDataCategoryById(id) {
+    const data=await fetch(`http://localhost:9090/category/${id}`,
+        {method:"DELETE"}).then((response)=>{
         return response.json()
     });
     console.log(data);
