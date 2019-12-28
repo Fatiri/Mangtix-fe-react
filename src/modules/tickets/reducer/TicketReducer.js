@@ -4,19 +4,22 @@ const initialState = {
     event:[],
     eventDetail:[],
     ticket:[],
+    ticketById:[],
     ticketCode:[],
     ticketForm:{
         categoryIdTransient:"",
-        eventDetailIdTransient:"d1fc835a-913e-4c33-bf24-d9fd03718402",
-        price:"",
-        quantity:"",
+        // eventDetailIdTransient:"d1fc835a-913e-4c33-bf24-d9fd03718402",
+        eventDetailIdTransient:"",
+        price:0,
+        quantity:0,
     },
-
+    company:{id:"293b4491-50aa-4a96-91d2-db691eeb3f78"},
+    eventTransient:""
 
 }
 
 export default function ticketReducer(state = initialState, action) {
-    console.log("ticketReducer", state, action);
+    console.log("ticketReducer", state.eventTransient);
     switch (action.type) {
         case "FETCH_CATEGORY_SUCCESS":
             return {...state, categories: action.payload};
@@ -33,7 +36,9 @@ export default function ticketReducer(state = initialState, action) {
         case "HANDLE_CATEGORY_ID":
             return {...state, ticketForm: {...state.ticketForm, categoryIdTransient:action.categoryIdTransient}};
         case "HANDLE_EVENT_ID":
-            return {...state, ticketForm: {...state.ticketForm, eventIdTransient: action.eventIdTransient}};
+            return {...state, eventTransient:action.eventTransient};
+        case "HANDLE_EVENT_DETAIL_ID":
+            return {...state, ticketForm: {...state.ticketForm, eventDetailIdTransient: action.eventDetailIdTransient}};
         case "HANDLE_PRICE":
             return {...state, ticketForm: {...state.ticketForm, price: action.price}};
         case "HANDLE_QUANTITY":
@@ -48,6 +53,8 @@ export default function ticketReducer(state = initialState, action) {
             return {...state, ticket: {...initialState.ticket.onSaleTransient}};
         case "CLEAR_STATE_FREE":
             return {...state, ticket: {...initialState.ticket.freeTransient}};
+        case "HANDLE_CHANGE_DATA":
+            return {...state, ticketById:action.ticketById, category: action.category, event: action.event, ticketCode: action.ticketCode}
         default:
             return {...state}
     }

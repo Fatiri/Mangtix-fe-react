@@ -1,14 +1,25 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {fetchDataTicket} from "../../service/TicketService";
-import {fetchcategorysucces, fetchticketcodesuccess, fetchticketsuccess} from "../../TicketAction";
-import {fetcheventdetailsuccess} from "../../../events/EventAction";
+import {fetchDataTicket, fetchDataTicketById} from "../../service/TicketService";
+import { fetchticketsuccess} from "../../TicketAction";
+import {Link} from "react-router-dom";
+import {fetchDataEventId} from "../../../events/service/EventService";
+import {handleChangeData} from "../../../events/EventAction";
 
 class TicketListAdmin extends React.Component{
     render() {
         return(
-            <div>
-                <table>
+            <div className="col-xl-auto flex-column">
+                <div className="card">
+                    <div className="card-header card-header-success">
+                    <span className="card-title ">
+                        <Link to={"/ticket-form"} class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">Add Ticket
+                            </Link>
+                    </span>
+                        <p className="card-category">Ticket List</p>
+                    </div>
+                    <div className="card-body">
+                <table className="table table-hover">
                     <thead>
                     <th>Id</th>
                     <th>Category</th>
@@ -20,24 +31,30 @@ class TicketListAdmin extends React.Component{
                         <td>{element.id}</td>
                         <td>{element.category.categoryName}</td>
                         <td>{element.quantity}</td>
-                        <td><button>Detail</button></td>
+                        <td><Link to={"/ticket-detail"} onClick={() => {
+                            this.handleDetail(element.id)
+                        }}>Detail</Link></td>
                         </tbody>
                     })}
                 </table>
+                    </div>
+                </div>
             </div>
         )
     }
+    handleDetail = async (id) => {
+        console.log(id + "ini id")
+        const data = await fetchDataTicketById(id)
+        this.props.dispatch({...handleChangeData, ticketById: data, category: data.category,
+            eventDetail: data.eventDetail,ticketCode: data.ticketCodes})
+        console.log(this.props.eventDetail)
+    }
+
     dataTicket=async ()=>{
         const data = await fetchDataTicket();
         if (!(data===undefined)){
             let action = {...fetchticketsuccess, payload:data}
-            // let category={...fetchcategorysucces, payload:data.category}
-            // let eventDetail = {...fetcheventdetailsuccess, payload:data.eventDetail}
-            // let ticketCode = {...fetchticketcodesuccess, payload:data.ticketCode}
             this.props.dispatch(action)
-            // this.props.dispatch(category)
-            // this.props.dispatch(eventDetail)
-            // this.props.dispatch(ticketCode)
         }
     }
     componentDidMount() {
