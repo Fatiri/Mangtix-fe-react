@@ -69,7 +69,7 @@ export default function eventReducer(state=initialState, action){
         case "FETCH_EVENT_DETAIL_SUCCESS":
             return {...state, eventDetail: action.payload}
         case "HANDLE_CHANGE_DATA":
-            return {...state, eventById:action.eventById}
+            return {...state, eventById:action.eventById, eventDetail: action.eventDetail}
         case "CLEAR_STATE":
             return {...state, eventForm: {...initialState.eventForm}}
         default:
