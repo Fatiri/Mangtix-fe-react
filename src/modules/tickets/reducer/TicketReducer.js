@@ -19,7 +19,7 @@ const initialState = {
 }
 
 export default function ticketReducer(state = initialState, action) {
-    console.log("ticketReducer", state.eventTransient);
+    console.log("ticketReducer", state, action);
     switch (action.type) {
         case "FETCH_CATEGORY_SUCCESS":
             return {...state, categories: action.payload};

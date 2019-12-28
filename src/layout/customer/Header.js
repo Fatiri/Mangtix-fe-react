@@ -22,23 +22,20 @@ class Header extends Component {
                                     <span className="icon-bar"></span>
                                 </button>
 
-                                <div className="collapse navbar-collapse offset" id="navbarSupportedContent">
-                                    <ul className="nav navbar-nav menu_nav justify-content-end">
-                                        <li className="nav-item active"><a className="nav-link"
-                                                                           href="index.html">Home</a></li>
-                                        <li className="nav-item"><a className="nav-link" href="about.html">About</a>
-                                        </li>
-                                        <li className="nav-item"><Link className="nav-link" to="/event">Events</Link>
-                                        </li>
-                                    </ul>
+            <div className="collapse navbar-collapse offset" id="navbarSupportedContent">
+            <ul className="nav navbar-nav menu_nav justify-content-end">
+            <li className="nav-item"><a className="nav-link" href="index.html">Home</a></li>
+        <li className="nav-item"><a className="nav-link" href="about.html">About</a></li>
+        <li className="nav-item"><Link className="nav-link" to="/event">Events</Link></li>
+        </ul>
 
-                                </div>
-                            </div>
-                        </nav>
-                    </div>
-                </header>
+        </div>
+        </div>
+        </nav>
+        </div>
+        </header>
             </div>
-        );
+    );
     }
 }
 
