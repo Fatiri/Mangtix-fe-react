@@ -13,7 +13,15 @@ const initialState = {
     companyInfo:{
         companyName:"",
         companyUsers:[]
-    }
+    },
+
+    location:{
+        city:"",
+        address:"",
+        latitude:"",
+        longitude:""
+    },
+    idLocation:""
 }
 
 export default function registrationReducer(state = initialState, action) {
@@ -32,6 +40,16 @@ export default function registrationReducer(state = initialState, action) {
             return {...state, companyInfo :{...state.companyInfo, companyName: action.companyName}}
         case 'SUCCESS_INPUT_USER_ID':
             return {...state, companyInfo :{...state.companyInfo, companyUsers: state.companyInfo.companyUsers.concat([{userIdTransient:action.userIdTransient}])}}
+
+        case 'SUCCESS_INPUT_CITY':
+            return {...state, location: {...state.location, city: action.city}}
+        case 'SUCCESS_INPUT_ADDRESS':
+            return {...state, location: {...state.location, address: action.address}}
+        case 'SUCCESS_INPUT_LATITUDE':
+            return {...state, location: {...state.location, latitude: action.latitude}}
+        case 'SUCCESS_INPUT_LONGITUDE':
+            return {...state, location: {...state.location, longitude: action.longitude}}
+
         default:return state
     }
 

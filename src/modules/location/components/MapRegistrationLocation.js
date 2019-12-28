@@ -10,7 +10,7 @@ import registrationReducer from "../../register/reducer/RegistrationReducer";
 Geocode.setApiKey("AIzaSyB7jbVjgBd0Ueyn49tj0Zzgp0EsRrHwJgQ");
 Geocode.enableDebug();
 
-class Map extends Component {
+class MapRegistrationLocation extends Component {
 
     constructor(props) {
         super(props);
@@ -162,7 +162,7 @@ class Map extends Component {
         this.props.dispatch({...locationCity, city: city})
         this.props.dispatch({...locationLatitude, latitude: latValue})
         this.props.dispatch({...locationLongitude, longitude: lngValue})
-        console.log()
+        console.log(this.props.location)
 
 
     };
@@ -274,11 +274,11 @@ class Map extends Component {
     }
 
    handleSubmitLocation=async()=>{
-        const dataLocation = {...this.props.locationReducer.location}
+        const dataLocation = {...this.props.location}
         console.log(dataLocation)
         const dataPostLocation = await saveDataLocation(dataLocation);
-        this.props.registrationReducer.userInfo.locationIdTransient = dataPostLocation.id;
-        console.log( this.props.registrationReducer.userInfo)
+        this.props.userInfo.locationIdTransient = dataPostLocation.id;
+        console.log( this.props.userInfo)
        console.log(this.props)
     }
 }
@@ -286,4 +286,4 @@ class Map extends Component {
 const mapsStateToProps = (state) => {
     return {...state}
 }
-export default connect(mapsStateToProps)(Map);
+export default connect(mapsStateToProps)(MapRegistrationLocation);

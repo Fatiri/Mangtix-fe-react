@@ -7,7 +7,7 @@ import {
     registrationFUllName, registrationPassword,
     registrationUsername
 } from "../RegistartionAction";
-import FormLocation from "../../location/components/FormLocation";
+import FormLocation from "../../location/components/FormLocationRegistration";
 
 class FormRegisterManagement extends Component {
     render() {

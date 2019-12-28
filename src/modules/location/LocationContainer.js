@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import FormLocation from "./components/FormLocation";
+import FormLocation from "./components/FormLocationRegistration";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import locationReducer from "./reducer/LocationReducer";

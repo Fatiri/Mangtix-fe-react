@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class Map extends Component {
+class MapRegistrationLocation extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,7 +22,7 @@ class Map extends Component {
     }
 
     // Render method builds the URL dynamically to fetch the image from the
-    // HERE Map Image API
+    // HERE MapRegistrationLocation Image API
 
     render() {
         return (
@@ -33,10 +33,10 @@ class Map extends Component {
                     + '&app_code=' + this.props.app_code
                     + this.getPOIList()
                     }
-                    alt="Todo Map"/>
+                    alt="Todo MapRegistrationLocation"/>
             </div>
         );
     }
 }
 
-export default Map;
+export default MapRegistrationLocation;

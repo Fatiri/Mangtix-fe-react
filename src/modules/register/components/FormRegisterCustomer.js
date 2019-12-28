@@ -8,8 +8,8 @@ import {
     registrationUsername
 } from "../RegistartionAction";
 import {registrationPost} from "../service/RegistrationService";
-import FormLocation from "../../location/components/FormLocation";
-import Map from "../../location/components/Map";
+import FormLocation from "../../location/components/FormLocationRegistration";
+import Map from "../../location/components/MapRegistrationLocation";
 
 class FormRegisterCustomer extends Component {
     render() {
