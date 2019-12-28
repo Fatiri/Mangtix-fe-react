@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {
     registrationBirthDate,
     registrationBornPlace,
     registrationFUllName, registrationPassword,
     registrationUsername
 } from "../RegistartionAction";
-import {registrationPost} from "../service/RegistrationService";
 import FormLocation from "../../location/components/FormLocation";
-import Map from "../../location/components/Map";
 
 class FormRegisterManagement extends Component {
     render() {
@@ -65,7 +63,7 @@ class FormRegisterManagement extends Component {
                                                     <button className="btn btn-primary" type="button"
                                                             data-toggle="collapse"
                                                             data-target="#collapseExample" aria-expanded="false"
-                                                            aria-controls="collapseExample">
+                                                            aria-controls="collapseExample" onChange={this.handleTwoFunction}>
                                                         Choose Location
                                                     </button>
                                                 </div>
@@ -73,25 +71,12 @@ class FormRegisterManagement extends Component {
                                                 <div className="form-group">
                                                     <div className="collapse" id="collapseExample">
                                                         <div className="card card-body">
-                                                            <Map
-                                                                google={this.props.google}
-                                                                center={{lat: -6.267699, lng: 106.78272}}
-                                                                height='300px'
-                                                                zoom={15}
-                                                            />
                                                             <div className="form-group">
-                                                                <button className="btn btn-primary" type="button"
-                                                                        data-toggle="collapse"
-                                                                        data-target="#collapseExample" aria-expanded="false"
-                                                                        aria-controls="collapseExample">
-                                                                    Save Location
-                                                                </button>
+                                                                <FormLocation/>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
-
                                                 <div>
                                                     <button className="btn btn-primary btn-block" onClick={this.handleTwoFunction}>Next Step</button>
                                                 </div>
@@ -112,7 +97,6 @@ class FormRegisterManagement extends Component {
                     </div>
                 </div>
 
-                <FormLocation/>
             </>
 
         );
@@ -146,8 +130,6 @@ class FormRegisterManagement extends Component {
         password.preventDefault();
         this.props.dispatch({...registrationPassword, password:password.target.value})
     }
-
-
 
     handleTwoFunction=()=>{
         this.props.nextStep();

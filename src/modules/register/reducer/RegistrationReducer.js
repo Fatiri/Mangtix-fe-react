@@ -5,10 +5,8 @@ const initialState = {
       password:"",
       bornPlace:"",
       birthDate:"",
-
-          roleIdTransient:"798ce0b0-24a9-4963-81cc-84d61f54aab6",
-
-          locationIdTransient:"db1aa51c-3b56-49d0-9b2b-c80b6b511ee0"
+      roleIdTransient:"798ce0b0-24a9-4963-81cc-84d61f54aab6",
+      locationIdTransient:"db1aa51c-3b56-49d0-9b2b-c80b6b511ee0"
 
     },
 

@@ -77,19 +77,8 @@ class FormRegisterCustomer extends Component {
                                                 <div className="form-group">
                                                 <div className="collapse" id="collapseExample">
                                                     <div className="card card-body">
-                                                        <Map
-                                                            google={this.props.google}
-                                                            center={{lat: -6.267699, lng: 106.78272}}
-                                                            height='300px'
-                                                            zoom={15}
-                                                        />
                                                         <div className="form-group">
-                                                            <button className="btn btn-primary" type="button"
-                                                                    data-toggle="collapse"
-                                                                    data-target="#collapseExample" aria-expanded="false"
-                                                                    aria-controls="collapseExample">
-                                                                Save Location
-                                                            </button>
+                                                            <FormLocation/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -116,7 +105,7 @@ class FormRegisterCustomer extends Component {
                         </div>
                     </div>
                 </div>
-                <FormLocation/>
+
             </>
         );
     }

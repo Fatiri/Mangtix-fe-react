@@ -12,13 +12,13 @@ import ListSchedule from "../../modules/schedules/components/ListSchedule";
 import FormLogin from "../../modules/login/components/FormLogin";
 import TicketForm from "../../modules/tickets/components/component-admin/TicketForm";
 import {Provider} from "react-redux";
-import {createStore} from "redux";
+import {combineReducers, createStore} from "redux";
 import ticketReducer from "../../modules/tickets/reducer/TicketReducer";
 import loginReducer from "../../modules/login/reducer/LoginReducer";
 import FormRegistration from "../../modules/register/components/FormRegistration";
 import RegistrationManagementContainer from "../../modules/register/RegistrationManagementContainer";
 import FormRegisterCustomer from "../../modules/register/components/FormRegisterCustomer";
-import registrationReducer from "../../modules/register/reducer/RegistrationReducer";
+import CombineReducer from "../../helper/CombineReducer";
 
 
 // public route
@@ -70,7 +70,7 @@ export const RegistrationManagementRoute = ({component: Component, ...rest}) => 
 
                         <Header/> {/* HEADER ALWAYS VISIBLE */}
                         <div className="container-fluid" id="container-wrapper">
-                            <Provider store={createStore(registrationReducer)}>
+                            <Provider store={createStore(CombineReducer)}>
                             <RegistrationManagementContainer/>
                             </Provider>
                         </div>
@@ -92,7 +92,7 @@ export const RegistrationCustomerRoute = ({component: Component, ...rest}) => {
 
                         <Header/> {/* HEADER ALWAYS VISIBLE */}
                         <div className="container-fluid" id="container-wrapper">
-                            <Provider store={createStore(registrationReducer)}>
+                            <Provider store={createStore(CombineReducer)}>
                             <FormRegisterCustomer/>
                             </Provider>
                         </div>
