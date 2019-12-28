@@ -4,9 +4,9 @@ import Cart from "../../../layout/customer/Cart";
 class BookingForm extends Component {
     render() {
         return (
-            < div >
+            <div>
             <Cart/>
-            < /div>
+            </div>
          );
     }
 }

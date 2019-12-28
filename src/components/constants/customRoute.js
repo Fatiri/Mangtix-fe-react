@@ -27,6 +27,8 @@ import EventDetail from "../../modules/events/components/adminComponent/EventDet
 import EventForm from "../../modules/events/components/adminComponent/EventForm";
 import EventByCompany from "../../modules/events/components/adminComponent/EventByCompany";
 import CategoryContainer from "../../modules/categories/CategoryContainer";
+import BookingFormAdmin from "../../modules/booking/components/component-admin/BookingFormAdmin";
+import bookingReducer from "../../modules/booking/reducer/BookingReducer";
 
 
 // public route
@@ -394,6 +396,30 @@ export const CategoryRoute = ({component: Component, ...rest}) => {
                             <AdminNavBar/>
                             <div className="container-fluid" id="container-wrapper">
                                 <CategoryContainer/>
+                            </div>
+                        </div>
+                        <AdminFooter/>
+                    </div>
+                </>
+            )}
+        />
+    )
+}
+
+export const BookingRouteAdmin = ({component: Component, ...rest}) => {
+    return (
+        <Route
+            {...rest}
+            component={(props) => (
+                <>
+                    <Admin {...props}/>
+                    <div id="content-wrapper" className="d-flex flex-column">
+                        <div id="content">
+                            <AdminNavBar/>
+                            <div className="container-fluid" id="container-wrapper">
+                                <Provider store={createStore(bookingReducer)}>
+                                <BookingFormAdmin/>
+                                </Provider>
                             </div>
                         </div>
                         <AdminFooter/>

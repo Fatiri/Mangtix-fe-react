@@ -1,21 +1,23 @@
 const initialState= {
     booking: [],
+    bookingDetail:[],
     bookingForm: {
-        id: null,
-        book: '',
-        total_price: null,
-        payment_status: '',
-        mst_user: {
-            user_id: null,
-        }
-    }
+        },
+    user:[],
+    userTransient:"",
+    ticket:[],
+    event:[],
+    eventDetail:[]
+
 }
         export default function bookingReducer(state=initialState, action){
             console.log('booking-reducer', state, action)
             switch(action.type){
-                case 'FETCH_DATA_BOOKING_SUCCESS':
-                    return{...state, booking:action.payload}
-                case 'HANDLE_ON_CHANGE_USER_ID':
-                    return {...state, bookingForm: {...state.bookingForm,}}
+                case "FETCH_DATA_BOOKING_SUCCESS":
+                    return{...state, booking:action.booking,  bookingDetail: action.bookingDetail}
+                case "FETCH_USER_SUCCESS":
+                    return {...state, user: action.payload}
+                    default:
+                    return {...state}
             }
 }

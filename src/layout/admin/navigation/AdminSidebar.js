@@ -53,7 +53,7 @@ export default class AdminSidebar extends Component {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="payment">
+                        <Link className="nav-link" to="/booking-list">
                             <i className="fas fa-fw fa-credit-card"/>
                             <span>Booking</span>
                         </Link>
