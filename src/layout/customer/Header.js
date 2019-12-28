@@ -24,7 +24,7 @@ class Header extends Component {
 
             <div className="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul className="nav navbar-nav menu_nav justify-content-end">
-            <li className="nav-item"><a className="nav-link" href="index.html">Home</a></li>
+        <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
         <li className="nav-item"><a className="nav-link" href="about.html">About</a></li>
         <li className="nav-item"><Link className="nav-link" to="/event">Events</Link></li>
         </ul>

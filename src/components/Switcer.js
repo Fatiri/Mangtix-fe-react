@@ -22,7 +22,7 @@ import {
     RegistrationRoute, TicketFormRoute,
     TicketListRoute, TicketRoute
 } from "./constants/customRoute";
-import {CategoryRoute, TicketDetailRoute} from "./constants";
+import {CategoryRoute, EventRoute, TicketDetailRoute} from "./constants";
 class Switcer extends Component {
     render() {
         return (
@@ -32,7 +32,6 @@ class Switcer extends Component {
             <Switch>
                 {/*admin component*/}
                 <AdminRoute exact path="/admin" ></AdminRoute>
-                <EventsRoute exact path="/events"></EventsRoute>
                 {/*<TicketRoute exact path="/tickets"></TicketRoute>*/}
                 <Route exact path="/location"><LocationContainer/></Route>
                 {/*public component*/}
@@ -43,6 +42,7 @@ class Switcer extends Component {
                 <LoginRoute exact path="/login"></LoginRoute>
                 <BookingRoute exact path="/booking"></BookingRoute>
                 <EventScheduleRoute exact path="/event-schedule"></EventScheduleRoute>
+                <EventRoute exact path="/event"></EventRoute>
                 <TicketRoute exact path="/ticket"></TicketRoute>
                 <Route exact path="/event"></Route>
                 <CategoryRoute exact path="/category"></CategoryRoute>
