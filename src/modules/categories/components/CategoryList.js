@@ -8,22 +8,23 @@ import {
     handlecategorynameupdate
 } from "../CategoryAction";
 import {fetchDataCategory, fetchDataCategoryById, saveDataCategory} from "../service/CategoryService";
+import CategoryForm from "./CategoryForm";
 
-class CategoryForm extends React.Component {
+class CategoryList extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" value={this.props.categoryForm.categoryName}
-                           onChange={(event) => {
-                               this.props.dispatch(
-                                   {...handlecategoryname, categoryName: event.target.value})}} required/>
-                    <button type="submit">Save</button>
-                </form>
-
-                <div>
-                    <table>
-                        <thead>
+                <div className="card">
+                    <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 className="m-0 font-weight-bold text-primary">TABLES CATEGORY</h6>
+                        <button className="btn btn-primary" type="button" data-toggle="modal"
+                                data-target="#exampleModal">
+                            Add
+                        </button>
+                    </div>
+                    <div className="table-responsive">
+                        <table className="table align-items-center table-flush">
+                        <thead className="thead-light">
                             <td>No</td>
                             <td>Category Name</td>
                             <td>Action</td>
@@ -32,22 +33,30 @@ class CategoryForm extends React.Component {
                           return  <tbody>
                               <td>{index+1}</td>
                                 <td>{element.categoryName}</td>
-                              <td><button  onClick={() =>{this.handleDataEdit(element.id)}}>Edit</button>
-                                  <button value={element.id} onClick={this.handleDataDelete}>Delete</button></td>
+                              <td><button data-target="#editData" onClick={() =>{this.handleDataEdit(element.id)}}  className="btn btn-sm btn-warning"><i className="fa fa-pencil-alt"/></button>
+                                  <button value={element.id} onClick={this.handleDataDelete} className="btn btn-sm btn-danger"><i className="fa fa-trash"/></button></td>
                             </tbody>
                         })}
 
                     </table>
+                    </div>
+                    <CategoryForm handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
+                    <CategoryForm handleSubmit={this.handleUpdate} handleChange={this.handleChangeUpdate} />
                 </div>
-                <form onSubmit={this.handleUpdate}>
-                    <input type="text" value={this.props.categoryUpdate.categoryName}
-                           onChange={(event) => {
-                               this.props.dispatch(
-                                   {...handlecategorynameupdate, categoryName: event.target.value})}} required/>
-                    <button type="submit">Update</button>
-                </form>
             </div>
+
+
         )
+    }
+    handleChange = (event) => {
+        this.props.dispatch(
+            {...handlecategoryname, categoryName: event.target.value}
+        );
+    }
+    handleChangeUpdate = (event) => {
+        this.props.dispatch(
+            {...handlecategorynameupdate, categoryName: event.target.value}
+        );
     }
 
     handleSubmit = async (event) => {
@@ -84,4 +93,4 @@ const mapStateToProps = (state) => {
     console.log(state, "ini mapStateToProps");
     return {...state};
 }
-export default connect(mapStateToProps)(CategoryForm)
+export default connect(mapStateToProps)(CategoryList)
