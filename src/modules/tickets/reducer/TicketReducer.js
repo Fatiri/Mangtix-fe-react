@@ -19,7 +19,7 @@ const initialState = {
 }
 
 export default function ticketReducer(state = initialState, action) {
-    console.log("ticketReducer", state.ticketUpdate);
+    console.log("ticketReducer", state.ticketById);
     switch (action.type) {
         case "FETCH_CATEGORY_SUCCESS":
             return {...state, categories: action.payload};
@@ -53,7 +53,7 @@ export default function ticketReducer(state = initialState, action) {
             return {...state, ticket: {...initialState.ticket.onSaleTransient}};
         case "CLEAR_STATE_FREE":
             return {...state, ticket: {...initialState.ticket.freeTransient}};
-        case "HANDLE_CHANGE_DATA":
+        case "HANDLE_CHANGE_DATA_TICKET":
             return {...state, ticketById:action.ticketById, category: action.category, eventDetail: action.eventDetail, ticketCode: action.ticketCode}
         default:
             return {...state}

@@ -11,6 +11,10 @@ import FormLocation from "../../location/components/FormLocationRegistration";
 
 class FormRegisterManagement extends Component {
     render() {
+        function goBack() {
+            window.history.back()
+        }
+
         return (
             <>
 
@@ -23,7 +27,12 @@ class FormRegisterManagement extends Component {
                                         <div className="col-lg-12">
                                             <div className="login-form">
                                                 <div className="text-center">
-                                                    <h1 className="h4 text-gray-900 mb-4">Register As Management</h1>
+                                                    <h1 className="h4 text-gray-900 mb-4">
+                                                        <h5 className="card-title">
+                                                            <button className="btn btn-primary" onClick={goBack}><i
+                                                                className="fa fa-arrow-alt-circle-left"></i></button>
+                                                        </h5>
+                                                        Register As Management</h1>
                                                 </div>
 
                                                     <div className="form-group">

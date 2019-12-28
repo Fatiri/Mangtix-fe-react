@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {fetchDataTicket, fetchDataTicketById} from "../../service/TicketService";
-import {fetchticketsuccess, handleChangeData} from "../../TicketAction";
+import {fetchticketsuccess, handleChangeData, handleChangeDataTicket} from "../../TicketAction";
 import {Link} from "react-router-dom";
-
+import {fetchDataEventId} from "../../../events/service/EventService";
 class TicketListAdmin extends React.Component{
     render() {
         return(
@@ -43,9 +43,10 @@ class TicketListAdmin extends React.Component{
     handleDetail = async (id) => {
         console.log(id + "ini id")
         const data = await fetchDataTicketById(id)
-        this.props.dispatch({...handleChangeData, ticketById: data, category: data.category,
+        console.log(data.eventDetail+"iniiiiiiiiiiiii")
+        this.props.dispatch({...handleChangeDataTicket, ticketById: data, category: data.category,
             eventDetail: data.eventDetail,ticketCode: data.ticketCodes})
-        console.log(this.props.eventDetail)
+        console.log(this.props.eventDetail+"ini ticket detail")
     }
 
     dataTicket=async ()=>{

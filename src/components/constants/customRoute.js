@@ -19,6 +19,14 @@ import FormRegistration from "../../modules/register/components/FormRegistration
 import RegistrationManagementContainer from "../../modules/register/RegistrationManagementContainer";
 import FormRegisterCustomer from "../../modules/register/components/FormRegisterCustomer";
 import registrationReducer from "../../modules/register/reducer/RegistrationReducer";
+import TicketDetail from "../../modules/tickets/components/component-admin/TicketDetail";
+import TicketListAdmin from "../../modules/tickets/components/component-admin/TicketListAdmin";
+import TicketContainer from "../../modules/tickets/TicketContainer";
+import {Switch} from "react-router-dom";
+import EventDetail from "../../modules/events/components/adminComponent/EventDetail";
+import EventForm from "../../modules/events/components/adminComponent/EventForm";
+import EventByCompany from "../../modules/events/components/adminComponent/EventByCompany";
+import CategoryContainer from "../../modules/categories/CategoryContainer";
 
 
 // public route
@@ -148,25 +156,7 @@ export const BookingRoute = ({component: Component, ...rest}) => {
 }
 
 
-export const TicketListRoute = ({component: Component, ...rest}) => {
-    return (
-        <Route {...rest} component={(props) => (
-            <>
-                <div id="content-wrapper" className="d-flex flex-column">
-                    <div id="content">
 
-                        <Header/> {/* HEADER ALWAYS VISIBLE */}
-                        <div className="container-fluid" id="container-wrapper">
-                            <TicketList/>
-                        </div>
-                    </div>
-                    <Footer/>
-                </div>
-            </>
-        )}
-        />
-    )
-}
 
 export const EventScheduleRoute = ({component: Component, ...rest}) => {
     return (
@@ -187,6 +177,27 @@ export const EventScheduleRoute = ({component: Component, ...rest}) => {
         />
     )
 }
+export const TicketRoute = ({component: Component, ...rest}) => {
+    return (
+        <Route {...rest} component={(props) => (
+            <>
+                <div id="content-wrapper" className="d-flex flex-column">
+                    <div id="content">
+
+                        <Header/> {/* HEADER ALWAYS VISIBLE */}
+                        <div className="container-fluid" id="container-wrapper">
+                            <TicketContainer/>
+                        </div>
+                    </div>
+                    <Footer/>
+                </div>
+            </>
+        )}
+        />
+    )
+}
+
+
 
 // private route
 
@@ -234,7 +245,7 @@ export const EventsRoute = ({component: Component, ...rest}) => {
     );
 };
 
-export const TicketRoute = ({component: Component, ...rest}) => {
+export const TicketFormRoute = ({component: Component, ...rest}) => {
     return (
         <Route
             {...rest}
@@ -257,3 +268,138 @@ export const TicketRoute = ({component: Component, ...rest}) => {
         />
     );
 };
+
+export const TicketDetailRoute = ({component: Component, ...rest}) => {
+    return (
+        <Route
+            {...rest}
+            component={(props) => (
+                <>
+                    <Admin {...props}/>
+                    <div id="content-wrapper" className="d-flex flex-column">
+                        <div id="content">
+                            <AdminNavBar/>
+                            <div className="container-fluid" id="container-wrapper">
+                                    <TicketDetail/>
+                            </div>
+                        </div>
+                        <AdminFooter/>
+                    </div>
+                </>
+            )}
+        />
+    );
+};
+export const TicketListRoute = ({component: Component, ...rest}) => {
+    return (
+        <Route
+            {...rest}
+            component={(props) => (
+                <>
+                    <Admin {...props}/>
+                    <div id="content-wrapper" className="d-flex flex-column">
+                        <div id="content">
+                            <AdminNavBar/>
+                            <div className="container-fluid" id="container-wrapper">
+
+                                    <TicketListAdmin/>
+                            </div>
+                        </div>
+                        <AdminFooter/>
+                    </div>
+                </>
+            )}
+        />
+    )
+}
+
+export const EventDetailRoute = ({component: Component, ...rest}) => {
+    return (
+        <Route
+            {...rest}
+            component={(props) => (
+                <>
+                    <Admin {...props}/>
+                    <div id="content-wrapper" className="d-flex flex-column">
+                        <div id="content">
+                            <AdminNavBar/>
+                            <div className="container-fluid" id="container-wrapper">
+
+                                <EventDetail/>
+                            </div>
+                        </div>
+                        <AdminFooter/>
+                    </div>
+                </>
+            )}
+        />
+    )
+}
+
+export const EventFormRoute = ({component: Component, ...rest}) => {
+    return (
+        <Route
+            {...rest}
+            component={(props) => (
+                <>
+                    <Admin {...props}/>
+                    <div id="content-wrapper" className="d-flex flex-column">
+                        <div id="content">
+                            <AdminNavBar/>
+                            <div className="container-fluid" id="container-wrapper">
+
+                                <EventForm/>
+                            </div>
+                        </div>
+                        <AdminFooter/>
+                    </div>
+                </>
+            )}
+        />
+    )
+}
+
+export const EventByCompanyRoute = ({component: Component, ...rest}) => {
+    return (
+        <Route
+            {...rest}
+            component={(props) => (
+                <>
+                    <Admin {...props}/>
+                    <div id="content-wrapper" className="d-flex flex-column">
+                        <div id="content">
+                            <AdminNavBar/>
+                            <div className="container-fluid" id="container-wrapper">
+
+                                <EventByCompany/>
+                            </div>
+                        </div>
+                        <AdminFooter/>
+                    </div>
+                </>
+            )}
+        />
+    )
+}
+
+export const CategoryRoute = ({component: Component, ...rest}) => {
+    return (
+        <Route
+            {...rest}
+            component={(props) => (
+                <>
+                    <Admin {...props}/>
+                    <div id="content-wrapper" className="d-flex flex-column">
+                        <div id="content">
+                            <AdminNavBar/>
+                            <div className="container-fluid" id="container-wrapper">
+                                <CategoryContainer/>
+                            </div>
+                        </div>
+                        <AdminFooter/>
+                    </div>
+                </>
+            )}
+        />
+    )
+}
