@@ -1,7 +1,19 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
+import {companyId, loginPassword, loginUsername, role, userId} from "../reducer/LoginAction";
+import Authentication from "../../../authentication/Authentication";
+import {Link, Redirect} from "react-router-dom";
+import {GenerateTokenAccess} from "../service/AuthenticationLoginService";
+import decodeJwtToken from "../../../authentication/AutheticationDecodeJwt";
+import * as jwt from "jsonwebtoken";
 
-export default class FormLogin extends Component {
+class FormLogin extends Component {
     render() {
+        const Auth = new Authentication();
+        if (Auth.isLogin()){
+            alert("has been login")
+            return <Redirect t="/"/>
+        }
         return (
             <>
                 <div className="container-login">
@@ -15,15 +27,14 @@ export default class FormLogin extends Component {
                                                 <div className="text-center">
                                                     <h1 className="h4 text-gray-900 mb-4">Login</h1>
                                                 </div>
-                                                <form className="user">
                                                     <div className="form-group">
-                                                        <input type="email" className="form-control"
+                                                        <input type="username" className="form-control"
                                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                               placeholder="Enter Email Address..."/>
+                                                               placeholder="Username..." onChange={this.handleInputUsername}/>
                                                     </div>
                                                     <div className="form-group">
                                                         <input type="password" className="form-control"
-                                                               id="exampleInputPassword" placeholder="Password"/>
+                                                               id="exampleInputPassword" placeholder="Password" onChange={this.handleInputPassword}/>
                                                     </div>
                                                     <div className="form-group">
                                                         <div className="custom-control custom-checkbox small"
@@ -35,22 +46,14 @@ export default class FormLogin extends Component {
                                                         </div>
                                                     </div>
                                                     <div className="form-group">
-                                                        <a href="index.html"
-                                                           className="btn btn-primary btn-block">Login</a>
+                                                        <button
+                                                           className="btn btn-primary btn-block" onClick={this.handleSubmitLoginAction}>Login</button>
                                                     </div>
                                                     <hr/>
-                                                    <a href="index.html" className="btn btn-google btn-block">
-                                                        <i className="fab fa-google fa-fw"></i> Login with Google
-                                                    </a>
-                                                    <a href="index.html" className="btn btn-facebook btn-block">
-                                                        <i className="fab fa-facebook-f fa-fw"></i> Login with
-                                                        Facebook
-                                                    </a>
-                                                </form>
                                                 <hr/>
                                                 <div className="text-center">
-                                                    <a className="font-weight-bold small" href="register.html">Create
-                                                        an Account!</a>
+                                                    <Link to="/registration" className="font-weight-bold small" >Create
+                                                        an Account!</Link>
                                                 </div>
                                                 <div className="text-center">
                                                 </div>
@@ -65,4 +68,36 @@ export default class FormLogin extends Component {
             </>
         );
     }
+
+
+    handleInputUsername=(username)=>{
+        username.preventDefault();
+        this.props.dispatch ({...loginUsername, userName:username.target.value})
+    }
+
+    handleInputPassword=(password)=>{
+        password.preventDefault();
+        this.props.dispatch({...loginPassword, password: password.target.value})
+    }
+
+    handleSubmitLoginAction= async ()=>{
+        const dataUser = {...this.props.userAccess}
+        console.log(dataUser)
+        if(!(dataUser===null)){
+            const token = await GenerateTokenAccess(dataUser);
+            localStorage.clear();
+            localStorage.setItem("token", token.jwt);
+            const dataToken = decodeJwtToken();
+            this.props.dispatch({...role, role:dataToken.sub})
+            this.props.dispatch({...userId, userId:dataToken.jti})
+            this.props.dispatch({...companyId, companyId:dataToken.aud})
+            console.log(this.props.tokenDecode)
+        }
+    }
+
 }
+const mapsStateToProps=(state)=>{
+    return {...state}
+}
+
+export default connect (mapsStateToProps) (FormLogin);

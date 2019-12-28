@@ -1,7 +1,12 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
+import $ from "jquery";
 
 export default class AdminSidebar extends Component {
+    handleButtonToggled(e) {
+        $('body').toggleClass('sidebar-toggled');
+        $('.sidebar').toggleClass('toggled');
+    };
     render() {
         return (
             <>

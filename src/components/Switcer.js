@@ -1,16 +1,5 @@
 import React, {Component} from 'react';
-import Admin from "../layout/admin/Admin";
-import AdminNavBar from "../layout/admin/AdminNavBar";
 import {Route, Switch} from "react-router-dom";
-import RegisterContainer from "../modules/register/RegisterContainer";
-import LoginContainer from "../modules/login/LoginContainer";
-import TicketList from "../modules/tickets/components/TicketList";
-import ListEvent from "../modules/events/components/ListEvent";
-import ListSchedule from "../modules/schedules/components/ListSchedule";
-import AdminFooter from "../layout/admin/AdminFooter";
-import BookingContainer from "../modules/booking/BookingContainer";
-import EventContainer from "../modules/events/EventContainer";
-import App from "../App";
 import LocationContainer from "../modules/location/LocationContainer";
 import CategoryContainer from "../modules/categories/CategoryContainer";
 import TicketContainer from "../modules/tickets/TicketContainer";
@@ -25,15 +14,18 @@ import EventByCompany from "../modules/events/components/adminComponent/EventByC
 import EventForm from "../modules/events/components/adminComponent/EventForm";
 import TicketDetail from "../modules/tickets/components/component-admin/TicketDetail";
 
+import {
+    AdminRoute,
+    BookingRoute, EventScheduleRoute, EventsRoute,
+    LoginRoute,
+    PublicRoute, RegistrationCustomerRoute, RegistrationManagementRoute,
+    RegistrationRoute,
+    TicketListRoute, TicketRoute
+} from "./constants/customRoute";
 class Switcer extends Component {
     render() {
         return (
             <>
-                <Admin/>
-                <div id="content-wrapper" className="d-flex flex-column">
-                    <div id="content">
-                        <AdminNavBar/>
-                        <div className="container-fluid" id="container-wrapper">
 
                             <Switch>
                                 <Route exact path="/registration"><RegisterContainer/></Route>

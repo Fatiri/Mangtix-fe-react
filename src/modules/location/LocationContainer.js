@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
-import ListLocation from "./components/ListLocation";
+import FormLocation from "./components/FormLocationRegistration";
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+import locationReducer from "./reducer/LocationReducer";
 
 class LocationContainer extends Component {
     render() {
         return (
             <div className="row">
-                <ListLocation/>
+
+                <FormLocation/>
+
             </div>
          );
     }
