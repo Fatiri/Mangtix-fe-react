@@ -1,10 +1,8 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {fetchDataTicket, fetchDataTicketById} from "../../service/TicketService";
-import { fetchticketsuccess} from "../../TicketAction";
+import {fetchticketsuccess, handleChangeData} from "../../TicketAction";
 import {Link} from "react-router-dom";
-import {fetchDataEventId} from "../../../events/service/EventService";
-import {handleChangeData} from "../../../events/EventAction";
 
 class TicketListAdmin extends React.Component{
     render() {

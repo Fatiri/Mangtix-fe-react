@@ -22,13 +22,20 @@ import {
     RegistrationRoute,
     TicketListRoute, TicketRoute
 } from "./constants/customRoute";
+import AdminFooter from "../layout/admin/AdminFooter";
+import TicketList from "../modules/tickets/components/TicketList";
+import ListEvent from "../modules/events/components/ListEvent";
+import ListSchedule from "../modules/schedules/components/ListSchedule";
+import LoginContainer from "../modules/login/LoginContainer";
+import BookingContainer from "../modules/booking/BookingContainer";
+import EventContainer from "../modules/events/EventContainer";
 class Switcer extends Component {
     render() {
         return (
             <>
 
                             <Switch>
-                                <Route exact path="/registration"><RegisterContainer/></Route>
+                                {/*<Route exact path="/registration"><RegisterContainer/></Route>*/}
                                 <Route exact path="/login"><LoginContainer/></Route>
                                 <Route exact path="/users">Users</Route>
                                 <Route exact path="/location"><LocationContainer/></Route>
@@ -55,11 +62,10 @@ class Switcer extends Component {
                                 <Route exact path="/event-schedule"><ListSchedule/></Route>
 
                             </Switch>
-                        </div>
-                    </div>
+
+
                     {/*<Footer/>*/}
                     <AdminFooter/>
-                </div>
             </>
         );
     }

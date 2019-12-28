@@ -70,18 +70,6 @@ export default class AdminSidebar extends Component {
                             <span>Category</span>
                         </Link>
                     </li>
-                    {/*<li className="nav-item">*/}
-                    {/*    <Link className="nav-link" to="events">*/}
-                    {/*        <i className="fas fa-fw fa-location-arrow"/>*/}
-                    {/*        <span>Events</span>*/}
-                    {/*    </Link>*/}
-                    {/*</li>*/}
-                    {/*<li className="nav-item">*/}
-                    {/*    <Link className="nav-link" to="#">*/}
-                    {/*        <i className="fas fa-fw fa-sad-tear"/>*/}
-                    {/*        <span>Ticket</span>*/}
-                    {/*    </Link>*/}
-                    {/*</li>*/}
                     <li className="nav-item">
                         <Link className="nav-link" to="/ticket-list-admin">
                             <i className="fas fa-fw fa-home"/>
