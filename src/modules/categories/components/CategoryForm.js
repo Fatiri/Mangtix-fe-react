@@ -1,58 +1,44 @@
-import React from 'react';
+import React from "react";
+import {handlecategoryname, handlecategorynameupdate} from "../CategoryAction";
 import {connect} from "react-redux";
-import {clearstate, fetchcategorysuccess, handlecategoryname} from "../CategoryAction";
-import {fetchDataCategory, saveDataCategory} from "../service/CategoryService";
 
 class CategoryForm extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}{...clearstate}>
-                    <input type="text" value={this.props.categoryForm.categoryName}
-                           onChange={(event) => {
-                               this.props.dispatch(
-                                   {...handlecategoryname, categoryName: event.target.value})}} required/>
-                    <button type="submit">Save</button>
-                </form>
+            <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Add Category</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form className="modal-body"
+                              onSubmit={this.handleSubmit}>
+                <input className="form-control" type="text" value={this.props.categoryForm.categoryName}
+                       onChange={(event) => {
+                           this.props.dispatch(
+                               {...handlecategoryname, categoryName: event.target.value})
+                       }} required/>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close
+                                </button>
 
-                <div>
-                    <table>
-                        <thead>
-                            <td>No</td>
-                            <td>Category Name</td>
-                            <td>Action</td>
-                        </thead>
-                        {this.props.category.map((element, index)=>{
-                          return  <tbody>
-                              <td>{index+1}</td>
-                                <td>{element.categoryName}</td>
-                              <td><button>Edit</button><button>Delete</button></td>
-                            </tbody>
-                        })}
-
-                    </table>
+                                <button type="submit">Save</button>
+                            </div>
+            </form>
+                    </div>
                 </div>
             </div>
+
+    </div>
         )
     }
-
-    handleSubmit = async (event) => {
-        event.preventDefault();
-        await saveDataCategory(this.props.categoryForm).then(this.dataCategory)
-    }
-    dataCategory=async ()=>{
-        const data = await fetchDataCategory();
-        if (!(data === undefined)){
-            let action ={...fetchcategorysuccess, payload:data}
-            console.log(action)
-            this.props.dispatch(action)
-        }
-    }
-    componentDidMount() {
-        this.dataCategory()
-    }
 }
-
 const mapStateToProps = (state) => {
     console.log(state, "ini mapStateToProps");
     return {...state};

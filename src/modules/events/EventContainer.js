@@ -3,6 +3,7 @@ import {Provider} from "react-redux";
 import {createStore} from "redux";
 import EventForm from "./components/adminComponent/EventForm";
 import eventReducer from "./reducer/EventReducer";
+import EventByCompany from "./components/adminComponent/EventByCompany";
 
 
 class EventContainer extends Component {
@@ -10,7 +11,7 @@ class EventContainer extends Component {
         console.log("ini Event")
         return (
             <div>
-                <Provider store={createStore(eventReducer)}><EventForm/></Provider>
+                <Provider store={createStore(eventReducer)}></Provider>
 
             </div>
          );

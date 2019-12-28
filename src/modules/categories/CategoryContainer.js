@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {createStore} from "redux";
 import categoryReducer from "./reducer/CategoryReducer";
 import {Provider} from "react-redux";
-import CategoryForm from "./components/CategoryForm";
+import CategoryForm from "./components/CategoryList";
 
 class CategoryContainer extends Component {
     render() {
