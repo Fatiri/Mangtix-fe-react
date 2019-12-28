@@ -22,6 +22,8 @@ import TicketListAdmin from "../modules/tickets/components/component-admin/Ticke
 import EventDetail from "../modules/events/components/adminComponent/EventDetail";
 import eventReducer from "../modules/events/reducer/EventReducer";
 import EventByCompany from "../modules/events/components/adminComponent/EventByCompany";
+import EventForm from "../modules/events/components/adminComponent/EventForm";
+import TicketDetail from "../modules/tickets/components/component-admin/TicketDetail";
 
 class Switcer extends Component {
     render() {
@@ -44,11 +46,14 @@ class Switcer extends Component {
                                 <Route exact path="/events"><EventContainer/></Route>
                                 <Route exact path="/ticket"><TicketContainer/></Route>
                                 <Route exact path="/ticket-form"><Provider store={createStore(ticketReducer)}><TicketForm/></Provider></Route>
-                                <Route exact path="/ticket-list-admin"><Provider store={createStore(ticketReducer)}><TicketListAdmin/></Provider>
-                                </Route>
+                                <Provider store={createStore(ticketReducer)}>
+                                <Route exact path="/ticket-detail"><TicketDetail/></Route>
+                                <Route exact path="/ticket-list-admin"><TicketListAdmin/></Route>
+                                </Provider>
                                 <Provider store={createStore(eventReducer)}>
                                 <Route exact path="/event-detail"><EventDetail/></Route>
-                                <Route exact path="/event-form"><EventByCompany/></Route></Provider>
+                                <Route exact path="/event-form"><EventForm/></Route>
+                                <Route exact path="/event-list"><EventByCompany/></Route></Provider>
                                 <Route exact path="/payment">Payment</Route>
                                 <Route exact path="/cart">Cart</Route>
                                 <Route exact path="/chatting">Chatting</Route>
