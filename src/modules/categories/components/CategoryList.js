@@ -9,6 +9,7 @@ import {
 } from "../CategoryAction";
 import {fetchDataCategory, fetchDataCategoryById, saveDataCategory} from "../service/CategoryService";
 import CategoryForm from "./CategoryForm";
+import CategoryFormEdit from "./CategoryFormEdit";
 
 class CategoryList extends React.Component {
     render() {
@@ -33,7 +34,12 @@ class CategoryList extends React.Component {
                           return  <tbody>
                               <td>{index+1}</td>
                                 <td>{element.categoryName}</td>
-                              <td><button data-target="#editData" onClick={() =>{this.handleDataEdit(element.id)}}  className="btn btn-sm btn-warning"><i className="fa fa-pencil-alt"/></button>
+                              <td>
+                                  <button  className="btn btn-sm btn-warning" type="button" data-toggle="modal"
+                                          data-target="#editData" onClick={() =>{this.handleDataEdit(element.id)}} >
+                                      <i className="fa fa-pencil-alt"/>
+                                  </button>
+
                                   <button value={element.id} onClick={this.handleDataDelete} className="btn btn-sm btn-danger"><i className="fa fa-trash"/></button></td>
                             </tbody>
                         })}
@@ -41,7 +47,7 @@ class CategoryList extends React.Component {
                     </table>
                     </div>
                     <CategoryForm handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
-                    <CategoryForm handleSubmit={this.handleUpdate} handleChange={this.handleChangeUpdate} />
+                    <CategoryFormEdit handleSubmit={this.handleUpdate} handleChange={this.handleChangeUpdate} />
                 </div>
             </div>
 
