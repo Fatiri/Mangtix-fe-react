@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { database } from '../firebase';
-import '../../../App.css'
+import './chat.css'
 
 export default class FormChat extends Component {
     constructor() {
@@ -51,7 +51,7 @@ export default class FormChat extends Component {
                         <div className="row justify-content-center h-100">
 
                             <div className="col-md-8 col-xl-6 chat">
-                                <div className="card">
+                                <div className="carde">
                                     <div className="card-header msg_head">
                                         <div className="d-flex bd-highlight">
                                             {/*<div className="img_cont">*/}
