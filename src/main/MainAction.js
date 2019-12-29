@@ -1,0 +1,1 @@
+export const listEVent= {type: 'FETCH_LIST_EVENT'}

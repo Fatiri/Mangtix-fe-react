@@ -1,15 +1,19 @@
 import React, {Component} from 'react';
+import {listEVent} from "./MainAction";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {connect} from "react-redux";
+import {fetchListDataEvent} from "./MainService";
 
 class Main extends Component {
     render() {
         return (
             <>
-			<div id="overlayer"></div>
-			<div class="loader">
-				<div class="spinner-border text-primary" role="status">
-					<span class="sr-only">Loading...</span>
-				</div>
-			</div>
+			{/*<div id="overlayer"></div>*/}
+			{/*<div class="loader">*/}
+			{/*	<div class="spinner-border text-primary" role="status">*/}
+			{/*		<span class="sr-only">Loading...</span>*/}
+			{/*	</div>*/}
+			{/*</div>*/}
 
 			<div class="site-wrap" id="home-section">
 
@@ -27,11 +31,11 @@ class Main extends Component {
 						<div class="container">
 							<div class="row align-items-center">
 								<div class="col-lg-6">
-									<h1>Choose Your Quality Delivery of Your Cargo</h1>
+									<h1>Find Our Event</h1>
 									<p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est magni perferendis fugit modi similique, suscipit, deserunt a iure.</p>
 									<form action="#">
 										<div class="form-group d-flex">
-											<input type="text" class="form-control" placeholder="Enter your tracking number"/>
+											<input type="text" class="form-control" placeholder="Enter Locatiob"/>
 												<input type="submit" class="btn btn-primary text-white px-4" value="Track Now"/>
 										</div>
 									</form>
@@ -39,34 +43,41 @@ class Main extends Component {
 							</div>
 						</div>
 					</div>
-					<div class="ftco-service-image-1 pb-5">
-						<div class="container">
-							<div class="owl-carousel owl-all">
-								<div class="service text-center">
-									<img src="../../public/main/images/cargo_sea_small.jpg" alt="Image" class="img-fluid"/>
-									<div class="px-md-3">
-										<h3><a href="#">Sea Freight</a></h3>
-										<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-									</div>
-								</div>
-								<div class="service text-center">
-									<img src="../../public/main/images/cargo_air_small.jpg" alt="Image" class="img-fluid"/>
-									<div class="px-md-3">
-										<h3><a href="#">Air Freight</a></h3>
-										<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-									</div>
-								</div>
-								<div class="service text-center">
-									<img src="../../public/main/images/cargo_delivery_small.jpg" alt="Image" class="img-fluid"/>
-									<div class="px-md-3">
-										<h3><a href="#">Package Forwarding</a></h3>
-										<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-									</div>
-								</div>
+
+				</div>
+
+				<div className="site-section bg-light block-13" id="testimonials-section" data-aos="fade">
+					<div className="container">
+
+						<div className="text-center mb-5">
+							<div className="block-heading-1">
+								<h2>List Event </h2>
 							</div>
 						</div>
-					</div>
 
+						<div className="owl-carousel nonloop-block-13">
+
+
+							{this.props.listEvent.map(data =>{
+								return <div>
+									<div className="block-testimony-1 text-center">
+
+										<blockquote className="mb-4">
+											{data.descriptionEvent}
+										</blockquote>
+
+										<figure>
+											<div className="icon mb-0">
+												<span className="flaticon-lorry"></span>
+											</div>
+										</figure>
+										<h3 className="font-size-16 text-black">{data.eventName}</h3>
+									</div>
+								</div>
+							})}
+
+						</div>
+					</div>
 				</div>
 
 				<div class="site-section bg-light" id="services-section">
@@ -192,156 +203,6 @@ class Main extends Component {
 					</div>
 				</div>
 
-				<div class="site-section bg-light" id="pricing-section">
-					<div class="container">
-						<div class="row mb-5 justify-content-center text-center">
-							<div class="col-md-7">
-								<div class="block-heading-1" data-aos="fade-up" data-aos-delay="">
-									<h2>Pricing</h2>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-								</div>
-							</div>
-						</div>
-						<div class="row mb-5">
-							<div class="col-md-6 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay="">
-								<div class="pricing">
-									<h3 class="text-center text-black">Basic</h3>
-									<div class="price text-center mb-4 ">
-										<span><span>$47</span> / year</span>
-									</div>
-									<ul class="list-unstyled ul-check success mb-5">
-
-										<li>Officia quaerat eaque neque</li>
-										<li>Possimus aut consequuntur incidunt</li>
-										<li class="remove">Lorem ipsum dolor sit amet</li>
-										<li class="remove">Consectetur adipisicing elit</li>
-										<li class="remove">Dolorum esse odio quas architecto sint</li>
-									</ul>
-									<p class="text-center">
-										<a href="#" class="btn btn-secondary btn-md">Buy Now</a>
-									</p>
-								</div>
-							</div>
-
-							<div class="col-md-6 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-								<div class="pricing">
-									<h3 class="text-center text-black">Premium</h3>
-									<div class="price text-center mb-4 ">
-										<span><span>$200</span> / year</span>
-									</div>
-									<ul class="list-unstyled ul-check success mb-5">
-
-										<li>Officia quaerat eaque neque</li>
-										<li>Possimus aut consequuntur incidunt</li>
-										<li>Lorem ipsum dolor sit amet</li>
-										<li>Consectetur adipisicing elit</li>
-										<li class="remove">Dolorum esse odio quas architecto sint</li>
-									</ul>
-									<p class="text-center">
-										<a href="#" class="btn btn-primary btn-md text-white">Buy Now</a>
-									</p>
-								</div>
-							</div>
-
-							<div class="col-md-6 mb-4 mb-lg-0 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-								<div class="pricing">
-									<h3 class="text-center text-black">Professional</h3>
-									<div class="price text-center mb-4 ">
-										<span><span>$750</span> / year</span>
-									</div>
-									<ul class="list-unstyled ul-check success mb-5">
-
-										<li>Officia quaerat eaque neque</li>
-										<li>Possimus aut consequuntur incidunt</li>
-										<li>Lorem ipsum dolor sit amet</li>
-										<li>Consectetur adipisicing elit</li>
-										<li>Dolorum esse odio quas architecto sint</li>
-									</ul>
-									<p class="text-center">
-										<a href="#" class="btn btn-secondary btn-md">Buy Now</a>
-									</p>
-								</div>
-							</div>
-						</div>
-
-
-					</div>
-				</div>
-
-				<div class="site-section bg-light block-13" id="testimonials-section" data-aos="fade">
-					<div class="container">
-
-						<div class="text-center mb-5">
-							<div class="block-heading-1">
-								<h2>Happy Clients</h2>
-							</div>
-						</div>
-
-						<div class="owl-carousel nonloop-block-13">
-							<div>
-								<div class="block-testimony-1 text-center">
-
-									<blockquote class="mb-4">
-										<p>&ldquo;The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt
-											and made herself on the way.&rdquo;</p>
-									</blockquote>
-
-									<figure>
-										<img src="images/person_4.jpg" alt="Image" class="img-fluid rounded-circle mx-auto"/>
-									</figure>
-									<h3 class="font-size-20 text-black">Ricky Fisher</h3>
-								</div>
-							</div>
-
-							<div>
-								<div class="block-testimony-1 text-center">
-									<blockquote class="mb-4">
-										<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
-									</blockquote>
-									<figure>
-										<img src="images/person_2.jpg" alt="Image" class="img-fluid rounded-circle mx-auto"/>
-									</figure>
-									<h3 class="font-size-20 mb-4 text-black">Ken Davis</h3>
-
-								</div>
-							</div>
-
-							<div>
-								<div class="block-testimony-1 text-center">
-
-
-									<blockquote class="mb-4">
-										<p>&ldquo;A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.&rdquo;</p>
-									</blockquote>
-
-									<figure>
-										<img src="images/person_1.jpg" alt="Image" class="img-fluid rounded-circle mx-auto"/>
-									</figure>
-									<h3 class="font-size-20 text-black">Mellisa Griffin</h3>
-
-
-								</div>
-							</div>
-
-							<div>
-								<div class="block-testimony-1 text-center">
-									<blockquote class="mb-4">
-										<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-									</blockquote>
-
-									<figure>
-										<img src="images/person_3.jpg" alt="Image" class="img-fluid rounded-circle mx-auto"/>
-									</figure>
-									<h3 class="font-size-20 mb-4 text-black">Robert Steward</h3>
-
-								</div>
-							</div>
-
-
-						</div>
-
-					</div>
-				</div>
 
 				<div className="site-section" id="team-section">
 					<div className="container">
@@ -556,6 +417,15 @@ class Main extends Component {
             </>
         );
     }
+     componentDidMount=async()=> {
+    	const dataListEvent = await fetchListDataEvent();
+    	console.log(dataListEvent.descriptionEvent+"iniiiiiiiiiiiiiiiiiiiiiiiiiii")
+    	this.props.dispatch({...listEVent, listEvent:dataListEvent})
+	}
 }
 
-export default Main;
+const mapsStateToProps=(state)=>{
+	return {...state}
+}
+
+export default connect (mapsStateToProps)(Main);
