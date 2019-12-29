@@ -1295,7 +1295,16 @@ a:focus {
 .card-ticket{
   margin-right: 955px;
 }
-
+.publishStatus-true{
+  background-color: #34e3a4;
+}
+.publishStatus-false{
+  background-color: lightcoral;
+}
+.columns-event{
+  column-span: all;
+  margin-left: 15px;
+}
 .modal-content{
   margin-top: 50px;
 }

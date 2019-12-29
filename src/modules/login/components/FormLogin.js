@@ -12,7 +12,7 @@ class FormLogin extends Component {
         const Auth = new Authentication();
         if (Auth.isLogin()){
             alert("has been login")
-            return <Redirect t="/"/>
+            return <Redirect to="/"/>
         }
         return (
             <>

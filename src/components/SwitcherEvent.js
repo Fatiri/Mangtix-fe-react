@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
-import {EventByCompanyRoute, EventDetailRoute, EventFormRoute} from "./constants";
-import {Switch} from "react-router-dom";
+import {
+    EventAdminRoute,
+    EventByCompanyRoute,
+    EventDetailRoute,
+    EventFormRoute,
+    EventLocationRoute,
+    EventUpdateRoute
+} from "./constants";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
-import ticketReducer from "../modules/tickets/reducer/TicketReducer";
 import eventReducer from "../modules/events/reducer/EventReducer";
 
 class SwitcherEvent extends Component {
@@ -14,6 +19,9 @@ class SwitcherEvent extends Component {
                 <EventDetailRoute exact path="/event-detail"></EventDetailRoute>
                 <EventFormRoute exact path="/event-form"></EventFormRoute>
                 <EventByCompanyRoute exact path="/event-list"></EventByCompanyRoute>
+                    <EventLocationRoute exact path="/event-location"></EventLocationRoute>
+                    <EventAdminRoute exact path="/event"></EventAdminRoute>
+                    <EventUpdateRoute exact path="/event-update"></EventUpdateRoute>
                 </Provider>
             </>
         );
