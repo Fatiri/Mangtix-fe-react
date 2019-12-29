@@ -16,50 +16,44 @@ import TicketDetail from "../modules/tickets/components/component-admin/TicketDe
 
 import {
     AdminRoute,
-    BookingRoute, EventScheduleRoute, EventsRoute,
+    BookingRoute, EventDetailRoute, EventFormRoute, EventScheduleRoute, EventsRoute,
     LoginRoute,
     PublicRoute, RegistrationCustomerRoute, RegistrationManagementRoute,
-    RegistrationRoute,
+    RegistrationRoute, TicketFormRoute,
     TicketListRoute, TicketRoute
 } from "./constants/customRoute";
+import {CategoryRoute, TicketDetailRoute} from "./constants";
 class Switcer extends Component {
     render() {
         return (
             <>
 
-                            <Switch>
-                                <Route exact path="/registration"><RegisterContainer/></Route>
-                                <Route exact path="/login"><LoginContainer/></Route>
-                                <Route exact path="/users">Users</Route>
-                                <Route exact path="/location"><LocationContainer/></Route>
-                                <Route exact path="/category"><CategoryContainer/></Route>
-                                {/*<Route exact path="/dashboard"></Route>*/}
-                                <Route exact path="/booking"><BookingContainer/></Route>
-                                <Route exact path="/events"><EventContainer/></Route>
-                                <Route exact path="/ticket"><TicketContainer/></Route>
-                                <Route exact path="/ticket-form"><Provider store={createStore(ticketReducer)}><TicketForm/></Provider></Route>
-                                <Provider store={createStore(ticketReducer)}>
-                                <Route exact path="/ticket-detail"><TicketDetail/></Route>
-                                <Route exact path="/ticket-list-admin"><TicketListAdmin/></Route>
-                                </Provider>
-                                <Provider store={createStore(eventReducer)}>
-                                <Route exact path="/event-detail"><EventDetail/></Route>
-                                <Route exact path="/event-form"><EventForm/></Route>
-                                <Route exact path="/event-list"><EventByCompany/></Route></Provider>
-                                <Route exact path="/payment">Payment</Route>
-                                <Route exact path="/cart">Cart</Route>
-                                <Route exact path="/chatting">Chatting</Route>
-                                {/*<Route exact path="/login"><LoginContainer/></Route>*/}
-                                <Route exact path="/ticket"><TicketList/></Route>
-                                <Route exact path="/event"><ListEvent/></Route>
-                                <Route exact path="/event-schedule"><ListSchedule/></Route>
 
-                            </Switch>
-                        </div>
-                    </div>
-                    {/*<Footer/>*/}
-                    <AdminFooter/>
-                </div>
+            <Switch>
+                {/*admin component*/}
+                <AdminRoute exact path="/admin" ></AdminRoute>
+                <EventsRoute exact path="/events"></EventsRoute>
+                {/*<TicketRoute exact path="/tickets"></TicketRoute>*/}
+                <Route exact path="/location"><LocationContainer/></Route>
+                {/*public component*/}
+                <PublicRoute exact path="/" ></PublicRoute>
+                <RegistrationRoute exact path="/registration"></RegistrationRoute>
+                <RegistrationManagementRoute exact path="/management/registration"></RegistrationManagementRoute>
+                <RegistrationCustomerRoute exact path="/customer/registration"></RegistrationCustomerRoute>
+                <LoginRoute exact path="/login"></LoginRoute>
+                <BookingRoute exact path="/booking"></BookingRoute>
+                <EventScheduleRoute exact path="/event-schedule"></EventScheduleRoute>
+                <TicketRoute exact path="/ticket"></TicketRoute>
+                <Route exact path="/event"></Route>
+                <CategoryRoute exact path="/category"></CategoryRoute>
+                <Route exact path="/users">Users</Route>
+                {/*<Route exact path="/dashboard"></Route>*/}
+                <Route exact path="/">Ticket</Route>
+                <Route exact path="/payment">Payment</Route>
+                <Route exact path="/cart">Cart</Route>
+                <Route exact path="/chatting">Chatting</Route>
+
+            </Switch>
             </>
         );
     }

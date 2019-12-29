@@ -59,6 +59,7 @@ class EventByCompany extends React.Component {
 
     dataEvent = async (event) => {
         const data = await fetchDataEventByCompany(event);
+        console.log(data)
         if (!(data === undefined)) {
             let action = {...fetcheventsuccess, payload: data}
             console.log(action)

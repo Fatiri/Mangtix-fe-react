@@ -25,6 +25,7 @@ class Events extends Component {
             <li className="nav-item"><a className="nav-link" href="index.html">Home</a></li>
         <li className="nav-item"><a className="nav-link" href="about.html">About</a></li>
         <li className="nav-item active"><Link className="nav-link" to="/event">Events</Link></li>
+                <li className="nav-item active"><Link className="nav-link" to="/event">Contact</Link></li>
         </ul>
 
         </div>
