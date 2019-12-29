@@ -19,7 +19,7 @@ const initialState= {
     multipartFile:[],
     eventById:[],
     eventDetail:[],
-    company:{id:"293b4491-50aa-4a96-91d2-db691eeb3f78"},
+    company:{id:"3db79ed6-34b8-4fde-9a05-327ee0d900f1"},
     companies:[]
 }
 export default function eventReducer(state=initialState, action){
