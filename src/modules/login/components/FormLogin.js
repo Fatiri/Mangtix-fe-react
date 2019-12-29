@@ -15,9 +15,9 @@ class FormLogin extends Component {
             const data = decodeJwtToken();
             console.log(data.sub)
             if (data.sub === "ADMIN"){
-                return <Redirect to="/admin"/>
+                return <Redirect to="/dashboard"/>
             }else if (data.sub === "MANAGEMENT"){
-                return <Redirect to="/management"/>
+                return <Redirect to="/dashboard"/>
             }else {
                 return <Redirect to="/"/>
             }
