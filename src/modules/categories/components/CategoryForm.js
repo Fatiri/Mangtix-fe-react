@@ -18,12 +18,8 @@ class CategoryForm extends React.Component {
                             </button>
                         </div>
                         <form className="modal-body"
-                              onSubmit={this.handleSubmit}>
-                <input className="form-control" type="text" value={this.props.categoryForm.categoryName}
-                       onChange={(event) => {
-                           this.props.dispatch(
-                               {...handlecategoryname, categoryName: event.target.value})
-                       }} required/>
+                              onSubmit={this.props.handleSubmit}>
+                <input className="form-control" type="text" onChange={this.props.handleChange} required/>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close
                                 </button>

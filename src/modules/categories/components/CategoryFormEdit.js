@@ -18,11 +18,9 @@ class CategoryFormEdit extends Component {
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form className="modal-body" onSubmit={this.handleUpdate}>
+                            <form className="modal-body" onSubmit={this.props.handleUpdate}>
                                 <input className="form-control" type="text" value={this.props.categoryUpdate.categoryName}
-                                       onChange={(event) => {
-                                           this.props.dispatch(
-                                               {...handlecategorynameupdate, categoryName: event.target.value})}} required/>
+                                       onChange={this.props.handleChangeUpdate} required/>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close
                                     </button>
