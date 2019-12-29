@@ -27,7 +27,7 @@ import EventDetail from "../../modules/events/components/adminComponent/EventDet
 import EventForm from "../../modules/events/components/adminComponent/EventForm";
 import EventByCompany from "../../modules/events/components/adminComponent/EventByCompany";
 import CategoryContainer from "../../modules/categories/CategoryContainer";
-import BookingFormAdmin from "../../modules/booking/components/component-admin/BookingFormAdmin";
+import BookingFormAdmin from "../../modules/booking/components/component-admin/BookingListAdmin";
 import bookingReducer from "../../modules/booking/reducer/BookingReducer";
 
 

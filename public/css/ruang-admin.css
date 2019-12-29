@@ -1289,7 +1289,12 @@ a:focus {
 .card .card-header .dropdown {
   line-height: 1;
 }
-
+.accordion{
+  margin-left: 20px;
+}
+.modal-content{
+  margin-top: 50px;
+}
 .card .card-header .dropdown .dropdown-menu {
   line-height: 1.5;
 }

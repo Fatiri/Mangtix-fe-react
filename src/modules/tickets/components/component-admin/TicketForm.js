@@ -40,7 +40,7 @@ class TicketForm extends React.Component {
                                             <div className="form-row">
                                                 <div className="form-group col-md-6">
                                                     <label className="col-sm-2 col-form-label">Event</label>
-                                                    <select onChange={this.handleInputIdEvent}
+                                                    <select onChange={this.dataEventById}
                                                             className="form-control" required>
                                                         <option required>Choose Event</option>
                                                         {this.props.event.map(element => {
@@ -237,19 +237,20 @@ class TicketForm extends React.Component {
             this.props.dispatch(action)
         }
     }
-    dataEventById = async (idEvent) => {
+    dataEventById = async (event) => {
+        await this.handleInputIdEvent(event)
+        const idEvent = this.props.eventTransient
         const data = await fetchDataEventId(idEvent);
-        if (!(data === undefined)) {
-            let action = {...fetcheventdetailsuccess, payload: data.eventDetailList}
-            console.log(action)
-            this.props.dispatch(action)
-        }
+        await this.handleFetchData(data)
     }
-    handleInputIdEvent = (event) => {
+    handleInputIdEvent =async (event) => {
         console.log(event.target.value)
         this.props.dispatch({...handleeventid, eventTransient: event.target.value})
-        const idEvent = this.props.eventTransient
-        this.dataEventById(idEvent);
+    }
+
+    handleFetchData=async (data)=>{
+        let action = {...fetcheventdetailsuccess, payload: data.eventDetailList}
+        this.props.dispatch(action)
     }
 }
 

@@ -40,3 +40,11 @@ export async function fetchDataUserAll() {
     console.log(data);
     return data;
 }
+export async function fetchDataUserId(userId) {
+    const data=await fetch(`http://localhost:9090/user/${userId}`,
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
+    console.log(data);
+    return data;
+}

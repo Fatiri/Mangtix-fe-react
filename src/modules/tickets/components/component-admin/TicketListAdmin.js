@@ -43,7 +43,6 @@ class TicketListAdmin extends React.Component{
     handleDetail = async (id) => {
         console.log(id + "ini id")
         const data = await fetchDataTicketById(id)
-        console.log(data.eventDetail+"iniiiiiiiiiiiii")
         this.props.dispatch({...handleChangeDataTicket, ticketById: data, category: data.category,
             eventDetail: data.eventDetail,ticketCode: data.ticketCodes})
         console.log(this.props.eventDetail+"ini ticket detail")
