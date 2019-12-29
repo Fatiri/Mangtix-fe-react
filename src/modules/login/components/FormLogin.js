@@ -11,16 +11,19 @@ class FormLogin extends Component {
     render() {
         const Auth = new Authentication();
         if (Auth.isLogin()){
-
             const data = decodeJwtToken();
-            console.log(data.sub)
-            if (data.sub === "ADMIN"){
-                return <Redirect to="/dashboard"/>
-            }else if (data.sub === "MANAGEMENT"){
-                return <Redirect to="/dashboard"/>
-            }else {
-                return <Redirect to="/"/>
-            }
+           if (data===null){
+               localStorage.clear();
+               alert("you must login correctly")
+           }else {
+               if (data.sub === "ADMIN") {
+                   return <Redirect to="/dashboard"/>
+               } else if (data.sub === "MANAGEMENT") {
+                   return <Redirect to="/dashboard"/>
+               } else {
+                   return <Redirect to="/"/>
+               }
+           }
         }
         return (
             <>
@@ -96,13 +99,19 @@ class FormLogin extends Component {
             localStorage.clear();
             localStorage.setItem("token", token.jwt);
             const dataToken = decodeJwtToken();
-            this.props.dispatch({...role, role:dataToken.sub})
-            this.props.dispatch({...userId, userId:dataToken.jti})
-            this.props.dispatch({...companyId, companyId:dataToken.aud})
-            console.log(this.props.tokenDecode)
+            if (!(dataToken===null)){
+                this.props.dispatch({...role, role:dataToken.sub})
+                this.props.dispatch({...userId, userId:dataToken.jti})
+                this.props.dispatch({...companyId, companyId:dataToken.aud})
+                console.log(this.props.tokenDecode)
+            }
+           else {
+               localStorage.clear();
+                alert("you must login correctly")
+                return <Redirect to="/login"/>
+            }
         }
     }
-
 }
 const mapsStateToProps=(state)=>{
     return {...state}
