@@ -16,7 +16,8 @@ import TicketDetail from "../modules/tickets/components/component-admin/TicketDe
 
 import {
     AdminRoute,
-    BookingRoute, CartRoute, EventDetailRoute, EventFormRoute, EventScheduleRoute, EventsRoute,
+    BookingRoute, BookingRouteAdmin, EventDetailRoute, EventFormRoute, EventScheduleRoute, EventsRoute,
+    CartRoute,
     LoginRoute,
     PublicRoute, RegistrationCustomerRoute, RegistrationManagementRoute,
     RegistrationRoute, TicketFormRoute,
@@ -49,6 +50,7 @@ class Switcer extends Component {
                 <TicketRoute exact path="/ticket"></TicketRoute>
                 <Route exact path="/event"></Route>
                 <CategoryRoute exact path="/category"></CategoryRoute>
+                <BookingRouteAdmin exact path="/booking-list"></BookingRouteAdmin>
                 <CartRoute exact path="/cart"></CartRoute>
                 <Route exact path="/chat" ><Chat/></Route>
                 <Route exact path="/user-chat" ><UserChat/></Route>

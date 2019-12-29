@@ -25,6 +25,11 @@ import EventDetail from "../../modules/events/components/adminComponent/EventDet
 import EventForm from "../../modules/events/components/adminComponent/EventForm";
 import EventByCompany from "../../modules/events/components/adminComponent/EventByCompany";
 import CategoryContainer from "../../modules/categories/CategoryContainer";
+import BookingFormAdmin from "../../modules/booking/components/component-admin/BookingListAdmin";
+import bookingReducer from "../../modules/booking/reducer/BookingReducer";
+import FormLocationEvent from "../../modules/location/components/FormLocationEvent";
+import EventAdmin from "../../modules/events/components/adminComponent/EventAdmin";
+import EventUpdate from "../../modules/events/components/adminComponent/EventUpdate";
 import Main from "../../main/Main";
 import mainReducer from "../../main/MainReducer";
 import Cart from "../../layout/customer/Cart";
@@ -267,9 +272,9 @@ export const TicketFormRoute = ({component: Component, ...rest}) => {
                         <div id="content">
                             <AdminNavBar/>
                             <div className="container-fluid" id="container-wrapper">
-                                <Provider store={createStore(ticketReducer)}>
+
                                 <TicketForm/>
-                                </Provider>
+
                             </div>
                         </div>
                         <AdminFooter/>
@@ -369,6 +374,28 @@ export const EventFormRoute = ({component: Component, ...rest}) => {
         />
     )
 }
+export const EventUpdateRoute = ({component: Component, ...rest}) => {
+    return (
+        <Route
+            {...rest}
+            component={(props) => (
+                <>
+                    <Admin {...props}/>
+                    <div id="content-wrapper" className="d-flex flex-column">
+                        <div id="content">
+                            <AdminNavBar/>
+                            <div className="container-fluid" id="container-wrapper">
+
+                                <EventUpdate/>
+                            </div>
+                        </div>
+                        <AdminFooter/>
+                    </div>
+                </>
+            )}
+        />
+    )
+}
 
 export const EventByCompanyRoute = ({component: Component, ...rest}) => {
     return (
@@ -392,6 +419,51 @@ export const EventByCompanyRoute = ({component: Component, ...rest}) => {
         />
     )
 }
+export const EventLocationRoute = ({component: Component, ...rest}) => {
+    return (
+        <Route
+            {...rest}
+            component={(props) => (
+                <>
+                    <Admin {...props}/>
+                    <div id="content-wrapper" className="d-flex flex-column">
+                        <div id="content">
+                            <AdminNavBar/>
+                            <div className="container-fluid" id="container-wrapper">
+
+                                <FormLocationEvent/>
+                            </div>
+                        </div>
+                        <AdminFooter/>
+                    </div>
+                </>
+            )}
+        />
+    )
+}
+
+export const EventAdminRoute = ({component: Component, ...rest}) => {
+    return (
+        <Route
+            {...rest}
+            component={(props) => (
+                <>
+                    <Admin {...props}/>
+                    <div id="content-wrapper" className="d-flex flex-column">
+                        <div id="content">
+                            <AdminNavBar/>
+                            <div className="container-fluid" id="container-wrapper">
+
+                                <EventAdmin/>
+                            </div>
+                        </div>
+                        <AdminFooter/>
+                    </div>
+                </>
+            )}
+        />
+    )
+}
 
 export const CategoryRoute = ({component: Component, ...rest}) => {
     return (
@@ -405,6 +477,30 @@ export const CategoryRoute = ({component: Component, ...rest}) => {
                             <AdminNavBar/>
                             <div className="container-fluid" id="container-wrapper">
                                 <CategoryContainer/>
+                            </div>
+                        </div>
+                        <AdminFooter/>
+                    </div>
+                </>
+            )}
+        />
+    )
+}
+
+export const BookingRouteAdmin = ({component: Component, ...rest}) => {
+    return (
+        <Route
+            {...rest}
+            component={(props) => (
+                <>
+                    <Admin {...props}/>
+                    <div id="content-wrapper" className="d-flex flex-column">
+                        <div id="content">
+                            <AdminNavBar/>
+                            <div className="container-fluid" id="container-wrapper">
+                                <Provider store={createStore(bookingReducer)}>
+                                <BookingFormAdmin/>
+                                </Provider>
                             </div>
                         </div>
                         <AdminFooter/>

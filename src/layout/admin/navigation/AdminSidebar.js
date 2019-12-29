@@ -53,7 +53,7 @@ export default class AdminSidebar extends Component {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="payment">
+                        <Link className="nav-link" to="/booking-list">
                             <i className="fas fa-fw fa-credit-card"/>
                             <span>Booking</span>
                         </Link>
@@ -65,23 +65,17 @@ export default class AdminSidebar extends Component {
                         </Link>
                     </li>
                     <li className="nav-item">
+                        <Link className="nav-link" to="/admin/event">
+                            <i className="fas fa-fw fa-credit-card"/>
+                            <span>Event</span>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
                         <Link className="nav-link" to="/category">
                             <i className="fas fa-fw fa-location-arrow"/>
                             <span>Category</span>
                         </Link>
                     </li>
-                    {/*<li className="nav-item">*/}
-                    {/*    <Link className="nav-link" to="events">*/}
-                    {/*        <i className="fas fa-fw fa-location-arrow"/>*/}
-                    {/*        <span>Events</span>*/}
-                    {/*    </Link>*/}
-                    {/*</li>*/}
-                    {/*<li className="nav-item">*/}
-                    {/*    <Link className="nav-link" to="#">*/}
-                    {/*        <i className="fas fa-fw fa-sad-tear"/>*/}
-                    {/*        <span>Ticket</span>*/}
-                    {/*    </Link>*/}
-                    {/*</li>*/}
                     <li className="nav-item">
                         <Link className="nav-link" to="/ticket-list-admin">
                             <i className="fas fa-fw fa-home"/>
