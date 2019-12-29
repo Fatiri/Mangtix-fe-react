@@ -33,6 +33,9 @@ import EventUpdate from "../../modules/events/components/adminComponent/EventUpd
 import Main from "../../main/Main";
 import mainReducer from "../../main/MainReducer";
 import Cart from "../../layout/customer/Cart";
+import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
+import {Redirect} from "react-router-dom";
+import Authentication from "../../authentication/Authentication";
 
 
 // public route
@@ -237,6 +240,17 @@ export const CartRoute = ({component: Component, ...rest}) => {
 // private route
 
 export const AdminRoute = ({component: Component, ...rest}) => {
+    const Auth = new Authentication();
+    if (Auth.isLogin()){
+        const data = decodeJwtToken();
+        console.log(data.sub)
+        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+            return <Redirect to="/"/>
+        }
+    }
+    else {
+        return <Redirect to="/login"/>
+    }
     return (
         <Route
             {...rest}
@@ -262,6 +276,17 @@ export const AdminRoute = ({component: Component, ...rest}) => {
 
 
 export const TicketFormRoute = ({component: Component, ...rest}) => {
+    const Auth = new Authentication();
+    if (Auth.isLogin()){
+        const data = decodeJwtToken();
+        console.log(data.sub)
+        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+            return <Redirect to="/"/>
+        }
+    }
+    else {
+        return <Redirect to="/login"/>
+    }
     return (
         <Route
             {...rest}
@@ -286,6 +311,17 @@ export const TicketFormRoute = ({component: Component, ...rest}) => {
 };
 
 export const TicketDetailRoute = ({component: Component, ...rest}) => {
+    const Auth = new Authentication();
+    if (Auth.isLogin()){
+        const data = decodeJwtToken();
+        console.log(data.sub)
+        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+            return <Redirect to="/"/>
+        }
+    }
+    else {
+        return <Redirect to="/login"/>
+    }
     return (
         <Route
             {...rest}
@@ -307,6 +343,17 @@ export const TicketDetailRoute = ({component: Component, ...rest}) => {
     );
 };
 export const TicketListRoute = ({component: Component, ...rest}) => {
+    const Auth = new Authentication();
+    if (Auth.isLogin()){
+        const data = decodeJwtToken();
+        console.log(data.sub)
+        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+            return <Redirect to="/"/>
+        }
+    }
+    else {
+        return <Redirect to="/login"/>
+    }
     return (
         <Route
             {...rest}
@@ -330,6 +377,17 @@ export const TicketListRoute = ({component: Component, ...rest}) => {
 }
 
 export const EventDetailRoute = ({component: Component, ...rest}) => {
+    const Auth = new Authentication();
+    if (Auth.isLogin()){
+        const data = decodeJwtToken();
+        console.log(data.sub)
+        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+            return <Redirect to="/"/>
+        }
+    }
+    else {
+        return <Redirect to="/login"/>
+    }
     return (
         <Route
             {...rest}
@@ -353,6 +411,17 @@ export const EventDetailRoute = ({component: Component, ...rest}) => {
 }
 
 export const EventFormRoute = ({component: Component, ...rest}) => {
+    const Auth = new Authentication();
+    if (Auth.isLogin()){
+        const data = decodeJwtToken();
+        console.log(data.sub)
+        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+            return <Redirect to="/"/>
+        }
+    }
+    else {
+        return <Redirect to="/login"/>
+    }
     return (
         <Route
             {...rest}
@@ -375,6 +444,17 @@ export const EventFormRoute = ({component: Component, ...rest}) => {
     )
 }
 export const EventUpdateRoute = ({component: Component, ...rest}) => {
+    const Auth = new Authentication();
+    if (Auth.isLogin()){
+        const data = decodeJwtToken();
+        console.log(data.sub)
+        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+            return <Redirect to="/"/>
+        }
+    }
+    else {
+        return <Redirect to="/login"/>
+    }
     return (
         <Route
             {...rest}
@@ -398,6 +478,17 @@ export const EventUpdateRoute = ({component: Component, ...rest}) => {
 }
 
 export const EventByCompanyRoute = ({component: Component, ...rest}) => {
+    const Auth = new Authentication();
+    if (Auth.isLogin()){
+        const data = decodeJwtToken();
+        console.log(data.sub)
+        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+            return <Redirect to="/"/>
+        }
+    }
+    else {
+        return <Redirect to="/login"/>
+    }
     return (
         <Route
             {...rest}
@@ -420,6 +511,17 @@ export const EventByCompanyRoute = ({component: Component, ...rest}) => {
     )
 }
 export const EventLocationRoute = ({component: Component, ...rest}) => {
+    const Auth = new Authentication();
+    if (Auth.isLogin()){
+        const data = decodeJwtToken();
+        console.log(data.sub)
+        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+            return <Redirect to="/"/>
+        }
+    }
+    else {
+        return <Redirect to="/login"/>
+    }
     return (
         <Route
             {...rest}
@@ -443,6 +545,17 @@ export const EventLocationRoute = ({component: Component, ...rest}) => {
 }
 
 export const EventAdminRoute = ({component: Component, ...rest}) => {
+    const Auth = new Authentication();
+    if (Auth.isLogin()){
+        const data = decodeJwtToken();
+        console.log(data.sub)
+        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+            return <Redirect to="/"/>
+        }
+    }
+    else {
+        return <Redirect to="/login"/>
+    }
     return (
         <Route
             {...rest}
@@ -466,6 +579,17 @@ export const EventAdminRoute = ({component: Component, ...rest}) => {
 }
 
 export const CategoryRoute = ({component: Component, ...rest}) => {
+    const Auth = new Authentication();
+    if (Auth.isLogin()){
+        const data = decodeJwtToken();
+        console.log(data.sub)
+        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+            return <Redirect to="/"/>
+        }
+    }
+    else {
+        return <Redirect to="/login"/>
+    }
     return (
         <Route
             {...rest}
@@ -488,6 +612,17 @@ export const CategoryRoute = ({component: Component, ...rest}) => {
 }
 
 export const BookingRouteAdmin = ({component: Component, ...rest}) => {
+    const Auth = new Authentication();
+    if (Auth.isLogin()){
+        const data = decodeJwtToken();
+        console.log(data.sub)
+        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+            return <Redirect to="/"/>
+        }
+    }
+    else {
+        return <Redirect to="/login"/>
+    }
     return (
         <Route
             {...rest}

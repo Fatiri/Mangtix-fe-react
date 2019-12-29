@@ -11,15 +11,15 @@ class FormLogin extends Component {
     render() {
         const Auth = new Authentication();
         if (Auth.isLogin()){
-            alert("has been login")
+
             const data = decodeJwtToken();
-            if (data.aud === "ADMIN"){
-                return <Redirect t="/admin"/>
-            }else if (data.aud === "MANAGEMENT"){
-                return <Redirect t="/management"/>
+            console.log(data.sub)
+            if (data.sub === "ADMIN"){
+                return <Redirect to="/admin"/>
+            }else if (data.sub === "MANAGEMENT"){
+                return <Redirect to="/management"/>
             }else {
-                alert("has been login")
-                return <Redirect t="/"/>
+                return <Redirect to="/"/>
             }
         }
         return (
