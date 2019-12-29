@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import Map from "./MapRegistrationLocation";
-import {combineReducers, createStore} from "redux";
+import { createStore} from "redux";
 import {connect, Provider} from "react-redux";
-import registrationReducer from "../../register/reducer/RegistrationReducer";
+import eventReducer from "../../events/reducer/EventReducer";
+import MapEventLocation from "./MapEventLocation";
 
-class FormLocationRegistration extends Component {
+class FormLocationEvent extends Component {
 
     render() {
         return (
             <>
-                <Provider store={createStore(registrationReducer)}>
-                    <Map
+                <Provider store={createStore(eventReducer)}>
+                    <MapEventLocation
                         google={this.props.google}
                         center={{lat: 18.5204, lng: 73.8567}}
                         height='300px'
@@ -26,4 +27,4 @@ class FormLocationRegistration extends Component {
 const mapsStateToProps = (state) => {
     return {...state}
 }
-export default connect(mapsStateToProps)(FormLocationRegistration);
+export default connect(mapsStateToProps)(FormLocationEvent);

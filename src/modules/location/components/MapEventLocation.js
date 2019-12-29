@@ -4,8 +4,9 @@ import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
 import {connect, Provider} from "react-redux";
 import {locationAddress, locationCity, locationLatitude, locationLongitude} from "../LocationAction";
-import {saveDataLocation} from "../service/LocationServices";
-import registrationReducer from "../../register/reducer/RegistrationReducer";
+import {fetchDataLocationId, saveDataLocation} from "../service/LocationServices";
+import {fetchDataEventId} from "../../events/service/EventService";
+import {handleChangeData, handlelocationid} from "../../events/EventAction";
 
 Geocode.setApiKey("AIzaSyB7jbVjgBd0Ueyn49tj0Zzgp0EsRrHwJgQ");
 Geocode.enableDebug();
@@ -273,13 +274,20 @@ class MapRegistrationLocation extends Component {
         return (map)
     }
 
-   handleSubmitLocation=async()=>{
+    handleSubmitLocation=async()=>{
         const dataLocation = {...this.props.location}
         console.log(dataLocation)
         const dataPostLocation = await saveDataLocation(dataLocation);
-        this.props.userInfo.locationIdTransient = dataPostLocation.id;
-        console.log( this.props.userInfo)
-       console.log(this.props)
+        this.props.dispatch({...handlelocationid, locationIdTransient:dataPostLocation.id})
+        console.log( this.props.idLocation)
+        console.log(this.props)
+    }
+    handleLocationById = async (id) => {
+        console.log(id + "ini id")
+        const data = await fetchDataLocationId(id)
+        console.log(data.eventName + "ini data event form")
+        // this.props.dispatch({...handlelocationid, locationIdTransient:data})
+        console.log(this.props.eventById)
     }
 }
 
