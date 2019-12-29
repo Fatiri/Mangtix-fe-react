@@ -17,12 +17,16 @@ import TicketDetail from "../modules/tickets/components/component-admin/TicketDe
 import {
     AdminRoute,
     BookingRoute, BookingRouteAdmin, EventDetailRoute, EventFormRoute, EventScheduleRoute, EventsRoute,
+    CartRoute,
     LoginRoute,
     PublicRoute, RegistrationCustomerRoute, RegistrationManagementRoute,
     RegistrationRoute, TicketFormRoute,
     TicketListRoute, TicketRoute
 } from "./constants/customRoute";
-import {CategoryRoute, TicketDetailRoute} from "./constants";
+import {CategoryRoute, EventRoute, TicketDetailRoute} from "./constants";
+import Chat from "../modules/Chat/components/Chat";
+import UserChat from "../modules/Chat/components/UserChat";
+import FormChat from "../modules/Chat/components/FormChat";
 class Switcer extends Component {
     render() {
         return (
@@ -32,7 +36,6 @@ class Switcer extends Component {
             <Switch>
                 {/*admin component*/}
                 <AdminRoute exact path="/admin" ></AdminRoute>
-                <EventsRoute exact path="/events"></EventsRoute>
                 {/*<TicketRoute exact path="/tickets"></TicketRoute>*/}
                 <Route exact path="/location"><LocationContainer/></Route>
                 {/*public component*/}
@@ -43,15 +46,19 @@ class Switcer extends Component {
                 <LoginRoute exact path="/login"></LoginRoute>
                 <BookingRoute exact path="/booking"></BookingRoute>
                 <EventScheduleRoute exact path="/event-schedule"></EventScheduleRoute>
+                <EventRoute exact path="/event"></EventRoute>
                 <TicketRoute exact path="/ticket"></TicketRoute>
                 <Route exact path="/event"></Route>
                 <CategoryRoute exact path="/category"></CategoryRoute>
                 <BookingRouteAdmin exact path="/booking-list"></BookingRouteAdmin>
+                <CartRoute exact path="/cart"></CartRoute>
+                <Route exact path="/chat" ><Chat/></Route>
+                <Route exact path="/user-chat" ><UserChat/></Route>
+                <Route exact path="/chat-form"><FormChat/></Route>
                 <Route exact path="/users">Users</Route>
                 {/*<Route exact path="/dashboard"></Route>*/}
                 <Route exact path="/">Ticket</Route>
                 <Route exact path="/payment">Payment</Route>
-                <Route exact path="/cart">Cart</Route>
                 <Route exact path="/chatting">Chatting</Route>
 
             </Switch>

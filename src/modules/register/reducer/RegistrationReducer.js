@@ -40,7 +40,6 @@ export default function registrationReducer(state = initialState, action) {
             return {...state, companyInfo :{...state.companyInfo, companyName: action.companyName}}
         case 'SUCCESS_INPUT_USER_ID':
             return {...state, companyInfo :{...state.companyInfo, companyUsers: state.companyInfo.companyUsers.concat([{userIdTransient:action.userIdTransient}])}}
-
         case 'SUCCESS_INPUT_CITY':
             return {...state, location: {...state.location, city: action.city}}
         case 'SUCCESS_INPUT_ADDRESS':

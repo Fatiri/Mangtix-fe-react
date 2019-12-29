@@ -68,16 +68,23 @@ class MapRegistrationLocation extends Component {
 
     getCity = (addressArray) => {
         let city = '';
-        for (let i = 0; i < addressArray.length; i++) {
-            if (addressArray[i].types[0] && 'administrative_area_level_2' === addressArray[i].types[0]) {
-                city = addressArray[i].long_name;
-                return city;
+        if(!(addressArray===undefined)){
+            for (let i = 0; i < addressArray.length; i++) {
+                if (addressArray[i].types[0] && 'administrative_area_level_2' === addressArray[i].types[0]) {
+                    city = addressArray[i].long_name;
+                    return city;
+                }
             }
+        }else {
+            alert("LOcation Not FOund")
         }
+
+
     };
 
     getArea = (addressArray) => {
         let area = '';
+        if(!(addressArray===undefined)){
         for (let i = 0; i < addressArray.length; i++) {
             if (addressArray[i].types[0]) {
                 for (let j = 0; j < addressArray[i].types.length; j++) {
@@ -88,15 +95,18 @@ class MapRegistrationLocation extends Component {
                 }
             }
         }
+        }
     };
 
     getState = (addressArray) => {
         let state = '';
-        for (let i = 0; i < addressArray.length; i++) {
+        if(!(addressArray===undefined)) {
             for (let i = 0; i < addressArray.length; i++) {
-                if (addressArray[i].types[0] && 'administrative_area_level_1' === addressArray[i].types[0]) {
-                    state = addressArray[i].long_name;
-                    return state;
+                for (let i = 0; i < addressArray.length; i++) {
+                    if (addressArray[i].types[0] && 'administrative_area_level_1' === addressArray[i].types[0]) {
+                        state = addressArray[i].long_name;
+                        return state;
+                    }
                 }
             }
         }
@@ -141,27 +151,33 @@ class MapRegistrationLocation extends Component {
 
 
     onPlaceSelected = (place) => {
+
         console.log(place)
         const address = place.formatted_address;
         const addressArray = place.address_components;
         const city = this.getCity(addressArray);
         const area = this.getArea(addressArray);
         const state = this.getState(addressArray);
-        const latValue = place.geometry.location.lat();
-        const lngValue = place.geometry.location.lng();
+        if (!(place.geometry===undefined)){
+            const latValue = place.geometry.location.lat();
+            const lngValue = place.geometry.location.lng();
+            this.state.markerPosition.lat = latValue;
+            this.state.markerPosition.lng = lngValue;
+            this.state.mapPosition.lat = latValue;
+            this.state.mapPosition.lng = lngValue;
+            this.props.dispatch({...locationLatitude, latitude: latValue})
+            this.props.dispatch({...locationLongitude, longitude: lngValue})
+        }
+
         this.state.address = (address) ? address : '';
         this.state.area = (area) ? area : '';
         this.state.city = (city) ? city : '';
         this.state.state = (state) ? state : '';
-        this.state.markerPosition.lat = latValue;
-        this.state.markerPosition.lng = lngValue;
-        this.state.mapPosition.lat = latValue;
-        this.state.mapPosition.lng = lngValue;
+
 
         this.props.dispatch({...locationAddress, address: address})
         this.props.dispatch({...locationCity, city: city})
-        this.props.dispatch({...locationLatitude, latitude: latValue})
-        this.props.dispatch({...locationLongitude, longitude: lngValue})
+
         console.log(this.props.location)
 
 

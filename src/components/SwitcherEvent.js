@@ -20,7 +20,7 @@ class SwitcherEvent extends Component {
                 <EventFormRoute exact path="/event-form"></EventFormRoute>
                 <EventByCompanyRoute exact path="/event-list"></EventByCompanyRoute>
                     <EventLocationRoute exact path="/event-location"></EventLocationRoute>
-                    <EventAdminRoute exact path="/event"></EventAdminRoute>
+                    <EventAdminRoute exact path="/admin/event"></EventAdminRoute>
                     <EventUpdateRoute exact path="/event-update"></EventUpdateRoute>
                 </Provider>
             </>
