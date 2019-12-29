@@ -23,7 +23,7 @@ import {
     RegistrationRoute, TicketFormRoute,
     TicketListRoute, TicketRoute
 } from "./constants/customRoute";
-import {CategoryRoute, EventRoute, TicketDetailRoute} from "./constants";
+import {CategoryRoute, ChatRoute, EventRoute, TicketDetailRoute} from "./constants";
 import Chat from "../modules/Chat/components/Chat";
 import UserChat from "../modules/Chat/components/UserChat";
 import FormChat from "../modules/Chat/components/FormChat";
@@ -52,9 +52,7 @@ class Switcer extends Component {
                 <CategoryRoute exact path="/category"></CategoryRoute>
                 <BookingRouteAdmin exact path="/booking-list"></BookingRouteAdmin>
                 <CartRoute exact path="/cart"></CartRoute>
-                <Route exact path="/chat" ><Chat/></Route>
-                <Route exact path="/user-chat" ><UserChat/></Route>
-                <Route exact path="/chat-form"><FormChat/></Route>
+                <ChatRoute exact path="/chat-form"></ChatRoute>
                 <Route exact path="/users">Users</Route>
                 {/*<Route exact path="/dashboard"></Route>*/}
                 <Route exact path="/">Ticket</Route>
