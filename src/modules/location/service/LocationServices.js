@@ -25,3 +25,19 @@ export async function saveDataLocation(event) {
         })
     return data;
 }
+export async function fetchDataLocationId(id) {
+    const data = await fetch(`http://localhost:9090/location/${id}`, {method: "GET"})
+        .then((response) => {
+            return response.json()
+        });
+    console.log(data);
+    return data;
+}
+export async function fetchDataLocation() {
+    const data = await fetch(`http://localhost:9090/locations`, {method: "GET"})
+        .then((response) => {
+            return response.json()
+        });
+    console.log(data);
+    return data;
+}
