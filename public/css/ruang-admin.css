@@ -1292,6 +1292,10 @@ a:focus {
 .accordion{
   margin-left: 20px;
 }
+.card-ticket{
+  margin-right: 955px;
+}
+
 .modal-content{
   margin-top: 50px;
 }

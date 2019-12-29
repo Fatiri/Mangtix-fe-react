@@ -258,9 +258,9 @@ export const TicketFormRoute = ({component: Component, ...rest}) => {
                         <div id="content">
                             <AdminNavBar/>
                             <div className="container-fluid" id="container-wrapper">
-                                <Provider store={createStore(ticketReducer)}>
+
                                 <TicketForm/>
-                                </Provider>
+
                             </div>
                         </div>
                         <AdminFooter/>

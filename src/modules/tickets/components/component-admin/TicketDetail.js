@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 class TicketDetail extends React.Component {
     render() {
@@ -16,21 +17,30 @@ class TicketDetail extends React.Component {
                                 <button className="btn btn-primary" onClick={goBack}><i
                                     className="fa fa-arrow-alt-circle-left"></i></button>
                             </h5>
-                            <h3 className="card-category">Detail Ticket</h3>
+                            <div className="row">
+                            <h3 className="card-ticket">Detail Ticket</h3>
+                                <Link to={"/ticket-form"} class="btn btn-outline-primary btn-sm" role="button" aria-pressed="true">Update Ticket
+                                </Link>
+                            </div>
                         </div>
+
                         <div className="card-body">
-                            <label className="col-sm-4 col-form-label">{this.props.ticketById.id}</label>
-                            <label className="col-sm-4 col-form-label">{this.props.category.categoryName}</label>
-                            <label className="col-sm-6 col-form-label">{this.props.eventDetail.eventDay}</label>
+                            <label className="col-sm-3 col-form-label">Ticket Id : {this.props.ticketById.id}</label>
+                            <label className="col-sm-3 col-form-label">Category  : {this.props.category.categoryName}</label>
+                            <label className="col-sm-3 col-form-label">Event Date: {this.props.eventDetail.eventDate}</label>
                             <table className="table table-sm">
                                 <thead>
                                 <th scope="col">Ticket Code</th>
                                 <th scope="col">Status Ticket Out</th>
+                                <th scope="col">Status Available</th>
+                                <th scope="col">Status Arrived</th>
                                 </thead>
                                 {this.props.ticketCode.map((element, index) => {
                                     return <tbody>
                                     <td>{element.ticketCode}</td>
                                     <td>{element.statusTicketOut}</td>
+                                    <td>{this.handleAvailable(element.available)}</td>
+                                    <td>{this.handleArrived(element.arrived)}</td>
                                     </tbody>
                                 })}
                             </table>
@@ -40,6 +50,20 @@ class TicketDetail extends React.Component {
             </div>
 
         )
+    }
+    handleAvailable = (data) => {
+        if (data) {
+            return "Available"
+        } else {
+            return "No Available"
+        }
+    }
+    handleArrived = (data) => {
+        if (data) {
+            return "Arrived"
+        } else {
+            return "No Arrived"
+        }
     }
 }
 
