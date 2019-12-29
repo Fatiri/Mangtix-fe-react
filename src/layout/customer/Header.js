@@ -24,7 +24,7 @@ class Header extends Component {
                                     <li><a href="#why-us-section" className="nav-link">Why Us</a></li>
 
                                     <li><a href="#testimonials-section" className="nav-link">Testimonials</a></li>
-                                    <li><a href="#blog-section" className="nav-link">About Us</a></li>
+                                    <li><Link className="nav-link" to="/chat-form">Forum</Link></li>
                                     <li><Link className="nav-link" to="/event">Events</Link></li>
                                     <li className="has-children">
                                         <a className="nav-link">Profile</a>
