@@ -57,6 +57,14 @@ class Header extends Component {
         localStorage.clear();
         const Auth = new Authentication();
         if (Auth.isLogin()){
+            const dataToken = decodeJwtToken();
+            if (!(dataToken===null)){
+
+            }else {
+                alert("wrong credential")
+                localStorage.clear();
+                return <Redirect to="/login"/>
+            }
         }
         else {
             return <Redirect to="/login"/>

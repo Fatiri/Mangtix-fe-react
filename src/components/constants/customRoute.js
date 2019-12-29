@@ -12,7 +12,6 @@ import FormLogin from "../../modules/login/components/FormLogin";
 import TicketForm from "../../modules/tickets/components/component-admin/TicketForm";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
-import ticketReducer from "../../modules/tickets/reducer/TicketReducer";
 import loginReducer from "../../modules/login/reducer/LoginReducer";
 import FormRegistration from "../../modules/register/components/FormRegistration";
 import RegistrationManagementContainer from "../../modules/register/RegistrationManagementContainer";
@@ -33,10 +32,10 @@ import EventUpdate from "../../modules/events/components/adminComponent/EventUpd
 import Main from "../../main/Main";
 import mainReducer from "../../main/MainReducer";
 import Cart from "../../layout/customer/Cart";
-import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
-import {Redirect} from "react-router-dom";
 import Authentication from "../../authentication/Authentication";
 import FormChat from "../../modules/Chat/components/FormChat";
+import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
+import {Redirect} from "react-router-dom";
 
 
 // public route
@@ -239,9 +238,15 @@ export const CartRoute = ({component: Component, ...rest}) => {
 export const AdminRoute = ({component: Component, ...rest}) => {
     const Auth = new Authentication();
     if (Auth.isLogin()) {
-        const data = decodeJwtToken();
-        console.log(data.sub)
-        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+        const dataToken = decodeJwtToken();
+        if (!(dataToken===null)){
+
+        }else {
+            alert("wrong credential")
+            localStorage.clear();
+            return <Redirect to="/login"/>
+        }
+        if (!(dataToken.sub === "ADMIN" || dataToken.sub === "MANAGEMENT")) {
             return <Redirect to="/"/>
         }
     } else {
@@ -273,9 +278,15 @@ export const AdminRoute = ({component: Component, ...rest}) => {
 export const TicketFormRoute = ({component: Component, ...rest}) => {
     const Auth = new Authentication();
     if (Auth.isLogin()) {
-        const data = decodeJwtToken();
-        console.log(data.sub)
-        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+        const dataToken = decodeJwtToken();
+        if (!(dataToken===null)){
+
+        }else {
+            alert("wrong credential")
+            localStorage.clear();
+            return <Redirect to="/login"/>
+        }
+        if (!(dataToken.sub === "ADMIN" || dataToken.sub === "MANAGEMENT")) {
             return <Redirect to="/"/>
         }
     } else {
@@ -307,9 +318,15 @@ export const TicketFormRoute = ({component: Component, ...rest}) => {
 export const TicketDetailRoute = ({component: Component, ...rest}) => {
     const Auth = new Authentication();
     if (Auth.isLogin()) {
-        const data = decodeJwtToken();
-        console.log(data.sub)
-        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+        const dataToken = decodeJwtToken();
+        if (!(dataToken===null)){
+
+        }else {
+            alert("wrong credential")
+            localStorage.clear();
+            return <Redirect to="/login"/>
+        }
+        if (!(dataToken.sub === "ADMIN" || dataToken.sub === "MANAGEMENT")) {
             return <Redirect to="/"/>
         }
     } else {
@@ -338,9 +355,15 @@ export const TicketDetailRoute = ({component: Component, ...rest}) => {
 export const TicketListRoute = ({component: Component, ...rest}) => {
     const Auth = new Authentication();
     if (Auth.isLogin()) {
-        const data = decodeJwtToken();
-        console.log(data.sub)
-        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+        const dataToken = decodeJwtToken();
+        if (!(dataToken===null)){
+
+        }else {
+            alert("wrong credential")
+            localStorage.clear();
+            return <Redirect to="/login"/>
+        }
+        if (!(dataToken.sub === "ADMIN" || dataToken.sub === "MANAGEMENT")) {
             return <Redirect to="/"/>
         }
     } else {
@@ -371,9 +394,15 @@ export const TicketListRoute = ({component: Component, ...rest}) => {
 export const EventDetailRoute = ({component: Component, ...rest}) => {
     const Auth = new Authentication();
     if (Auth.isLogin()) {
-        const data = decodeJwtToken();
-        console.log(data.sub)
-        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+        const dataToken = decodeJwtToken();
+        if (!(dataToken===null)){
+
+        }else {
+            alert("wrong credential")
+            localStorage.clear();
+            return <Redirect to="/login"/>
+        }
+        if (!(dataToken.sub === "ADMIN" || dataToken.sub === "MANAGEMENT")) {
             return <Redirect to="/"/>
         }
     } else {
@@ -404,9 +433,15 @@ export const EventDetailRoute = ({component: Component, ...rest}) => {
 export const EventFormRoute = ({component: Component, ...rest}) => {
     const Auth = new Authentication();
     if (Auth.isLogin()) {
-        const data = decodeJwtToken();
-        console.log(data.sub)
-        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+        const dataToken = decodeJwtToken();
+        if (!(dataToken===null)){
+
+        }else {
+            alert("wrong credential")
+            localStorage.clear();
+            return <Redirect to="/login"/>
+        }
+        if (!(dataToken.sub === "ADMIN" || dataToken.sub === "MANAGEMENT")) {
             return <Redirect to="/"/>
         }
     } else {
@@ -436,9 +471,15 @@ export const EventFormRoute = ({component: Component, ...rest}) => {
 export const EventUpdateRoute = ({component: Component, ...rest}) => {
     const Auth = new Authentication();
     if (Auth.isLogin()) {
-        const data = decodeJwtToken();
-        console.log(data.sub)
-        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+        const dataToken = decodeJwtToken();
+        if (!(dataToken===null)){
+
+        }else {
+            alert("wrong credential")
+            localStorage.clear();
+            return <Redirect to="/login"/>
+        }
+        if (!(dataToken.sub === "ADMIN" || dataToken.sub === "MANAGEMENT")) {
             return <Redirect to="/"/>
         }
     } else {
@@ -469,9 +510,15 @@ export const EventUpdateRoute = ({component: Component, ...rest}) => {
 export const EventByCompanyRoute = ({component: Component, ...rest}) => {
     const Auth = new Authentication();
     if (Auth.isLogin()) {
-        const data = decodeJwtToken();
-        console.log(data.sub)
-        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+        const dataToken = decodeJwtToken();
+        if (!(dataToken===null)){
+
+        }else {
+            alert("wrong credential")
+            localStorage.clear();
+            return <Redirect to="/login"/>
+        }
+        if (!(dataToken.sub === "ADMIN" || dataToken.sub === "MANAGEMENT")) {
             return <Redirect to="/"/>
         }
     } else {
@@ -501,9 +548,15 @@ export const EventByCompanyRoute = ({component: Component, ...rest}) => {
 export const EventLocationRoute = ({component: Component, ...rest}) => {
     const Auth = new Authentication();
     if (Auth.isLogin()) {
-        const data = decodeJwtToken();
-        console.log(data.sub)
-        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+        const dataToken = decodeJwtToken();
+        if (!(dataToken===null)){
+
+        }else {
+            alert("wrong credential")
+            localStorage.clear();
+            return <Redirect to="/login"/>
+        }
+        if (!(dataToken.sub === "ADMIN" || dataToken.sub === "MANAGEMENT")) {
             return <Redirect to="/"/>
         }
     } else {
@@ -534,9 +587,15 @@ export const EventLocationRoute = ({component: Component, ...rest}) => {
 export const EventAdminRoute = ({component: Component, ...rest}) => {
     const Auth = new Authentication();
     if (Auth.isLogin()) {
-        const data = decodeJwtToken();
-        console.log(data.sub)
-        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+        const dataToken = decodeJwtToken();
+        if (!(dataToken===null)){
+
+        }else {
+            alert("wrong credential")
+            localStorage.clear();
+            return <Redirect to="/login"/>
+        }
+        if (!(dataToken.sub === "ADMIN" || dataToken.sub === "MANAGEMENT")) {
             return <Redirect to="/"/>
         }
     } else {
@@ -567,9 +626,15 @@ export const EventAdminRoute = ({component: Component, ...rest}) => {
 export const CategoryRoute = ({component: Component, ...rest}) => {
     const Auth = new Authentication();
     if (Auth.isLogin()) {
-        const data = decodeJwtToken();
-        console.log(data.sub)
-        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+        const dataToken = decodeJwtToken();
+        if (!(dataToken===null)){
+
+        }else {
+            alert("wrong credential")
+            localStorage.clear();
+            return <Redirect to="/login"/>
+        }
+        if (!(dataToken.sub === "ADMIN" || dataToken.sub === "MANAGEMENT")) {
             return <Redirect to="/"/>
         }
     } else {
@@ -599,9 +664,15 @@ export const CategoryRoute = ({component: Component, ...rest}) => {
 export const BookingRouteAdmin = ({component: Component, ...rest}) => {
     const Auth = new Authentication();
     if (Auth.isLogin()) {
-        const data = decodeJwtToken();
-        console.log(data.sub)
-        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+        const dataToken = decodeJwtToken();
+        if (!(dataToken===null)){
+
+        }else {
+            alert("wrong credential")
+            localStorage.clear();
+            return <Redirect to="/login"/>
+        }
+        if (!(dataToken.sub === "ADMIN" || dataToken.sub === "MANAGEMENT")) {
             return <Redirect to="/"/>
         }
     } else {
@@ -633,9 +704,15 @@ export const BookingRouteAdmin = ({component: Component, ...rest}) => {
 export const ChatRoute = ({component: Component, ...rest}) => {
     const Auth = new Authentication();
     if (Auth.isLogin()) {
-        const data = decodeJwtToken();
-        console.log(data.sub)
-        if (!(data.sub === "ADMIN" || data.sub === "MANAGEMENT")) {
+        const dataToken = decodeJwtToken();
+        if (!(dataToken===null)){
+
+        }else {
+            alert("wrong credential")
+            localStorage.clear();
+            return <Redirect to="/login"/>
+        }
+        if (!(dataToken.sub === "ADMIN" || dataToken.sub === "MANAGEMENT")) {
             return <Redirect to="/"/>
         }
     } else {
