@@ -6,6 +6,7 @@ import {fetchbookingsuccess, fetchusersuccess} from "../../BookingAction";
 class BookingFormAdmin extends React.Component{
     render() {
         return(
+            <>
             <div className="accordion" id="accordionExample">
                 <div className="card">
                     <div className="card-header" id="headingOne">
@@ -20,19 +21,20 @@ class BookingFormAdmin extends React.Component{
                         <td>{element.userName}</td>
                         <td>{element.fullName}</td>
                         <td>
-                            <button onClick={()=>{this.dataBookingByUser(element.id)}} className="btn btn-primary" type="button" data-toggle="collapse"
-                                    data-target="#collapseExample" aria-expanded="false"
-                                    aria-controls="collapseExample">
+                            <button onClick={()=>{this.dataBookingByUser(element.id).then(r =>r )}} className="btn btn-primary" type="button">
                                 List Booking
                             </button></td>
                         </tbody>
                     })}
                 </table>
-                        <label>{this.props.booking.id}</label>
                     </div>
                 </div>
             </div>
-        )
+                <div className="card">
+            <label>{this.props.booking.id}</label>
+                </div>
+</>
+    )
     }
 
     dataBookingByUser = async (event) => {
