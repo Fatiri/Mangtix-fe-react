@@ -1,21 +1,28 @@
 import React from 'react';
 import {
-    addeventdetail,
+    addeventdetail, clearstate, fetchlocationsuccess,
     handledescriptionevent,
     handledescriptioneventdetail,
     handleeventdate,
-    handleeventday,
-    handleeventname, handlelocationid,
+    handleeventday, handleeventimage,
+    handleeventname, handleeventpdf, handlelocationid,
     handlevenue
 } from "../../EventAction";
 import {connect} from "react-redux";
 import {saveDataEvent} from "../../service/EventService";
+import FormLocation from "../../../location/components/FormLocationRegistration";
+import FormLocationEvent from "../../../location/components/FormLocationEvent";
+import {Link} from "react-router-dom";
+import {fetchDataCategory} from "../../../categories/service/CategoryService";
+import {fetchcategorysucces, handlecategoryid} from "../../../tickets/TicketAction";
+import {fetchDataLocation} from "../../../location/service/LocationServices";
 
 class EventForm extends React.Component {
     render() {
         function goBack() {
             window.history.back()
         }
+
         return (
             <div className="row">
                 <div className="col-md-12">
@@ -29,67 +36,160 @@ class EventForm extends React.Component {
                             <h3 className="card-category">Add Event</h3>
                         </div>
                         <div className="card-body">
-                <form onSubmit={this.handleSubmit}>
-                    <div className="form-row">
-                        <div className="form-group col-md-6">
-                            <label className="col-form-label">Event Name</label>
-                    <input type="text" className="form-control" value={this.props.eventForm.eventName} onChange={(event) => {
-                        this.props.dispatch({...handleeventname, eventName: event.target.value})
-                    }} required/>
-                        </div>
-                        <div className="form-group col-md-6">
-                            <label className="col-form-label">Description Event</label>
-                    <textarea className="form-control" value={this.props.eventForm.descriptionEvent} onChange={(event) => {
-                        this.props.dispatch({...handledescriptionevent, descriptionEvent: event.target.value})
-                    }} required/>
-                        </div>
-                    <button onClick={this.handleAddEventDetails} className="form-control btn btn-primary">Add Detail Event</button>
-                        <br/>
-                    {this.props.eventForm.eventDetailList.map((element, index) => {
-                        return<div className="card-body">
+                            <form onSubmit={this.handleSubmit}>
+                                <div className="form-row">
+                                    <div className="form-group col-md-6">
+                                        <label className="col-form-label">Event Name</label>
+                                        <input type="text" className="form-control"
+                                               value={this.props.eventForm.eventName} onChange={(event) => {
+                                            this.props.dispatch({...handleeventname, eventName: event.target.value})
+                                        }} required/>
+                                    </div>
+                                    <div className="form-group col-md-6">
+                                        <label className="col-form-label">Foto Event</label>
+                                        <input type="file" className="form-control"onChange={(event) => {
+                                            this.props.dispatch({...handleeventimage, multipartImage: event.target.files[0]})
+                                        }} required/>
+                                    </div>
+                                    <div className="form-group col-md-6">
+                                        <label className="col-form-label">Description Event</label>
+                                        <textarea className="form-control" value={this.props.eventForm.descriptionEvent}
+                                                  onChange={(event) => {
+                                                      this.props.dispatch({
+                                                          ...handledescriptionevent,
+                                                          descriptionEvent: event.target.value
+                                                      })
+                                                  }} required/>
+                                    </div>
+                                    <div className="form-group col-md-6">
+                                        <label className="col-form-label">Permission Letter</label>
+                                        <input type="file" className="form-control"
+                                                onChange={(event) => {
+                                            this.props.dispatch({...handleeventpdf, multipartFile: event.target.files[0]})
+                                        }} required/>
+                                    </div>
+                                    <button onClick={this.handleAddEventDetails}
+                                            className="form-control btn btn-primary">Add Detail Event
+                                    </button>
+                                    <br/>
+                                    {this.props.eventForm.eventDetailList.map((element, index) => {
+                                        return <div className="card-body">
 
-                            <label>Venue Event</label>
-                            <input className="form-control" value={element.venue} onChange={(event) => {
-                                this.props.dispatch({...handlevenue, venue: event.target.value, index:index})
-                            }} required/>
-                            <label>Event Day</label>
-                            <input className="form-control" value={element.eventDay} onChange={(event) => {
-                                this.props.dispatch({...handleeventday, eventDay: event.target.value, index:index})
-                            }} required/>
-                            <label>Event Date</label>
-                            <input type="date" className="form-control" value={element.eventDate} onChange={(event)=>{
-                                this.props.dispatch({...handleeventdate, eventDate: event.target.value, index:index})
-                            }} required/>
-                            <label>Event Detail Description</label>
-                            <textarea className="form-control" value={element.description} onChange={(event)=>{
-                                this.props.dispatch({...handledescriptioneventdetail, description:event.target.value, index:index})
-                            }} required/>
-                            <label>Location Event</label>
-                            <input className="form-control" value={element.locationIdTransient} onChange={(event)=>{
-                                this.props.dispatch({...handlelocationid, locationIdTransient: event.target.value, index:index})
-                            }} required/>
+                                            <label>Venue Event</label>
+                                            <input className="form-control" value={element.venue} onChange={(event) => {
+                                                this.props.dispatch({
+                                                    ...handlevenue,
+                                                    venue: event.target.value,
+                                                    index: index
+                                                })
+                                            }} required/>
+                                            <label>Event Day</label>
+                                            <input className="form-control" value={element.eventDay}
+                                                   onChange={(event) => {
+                                                       this.props.dispatch({
+                                                           ...handleeventday,
+                                                           eventDay: event.target.value,
+                                                           index: index
+                                                       })
+                                                   }} required/>
+                                            <label>Event Date</label>
+                                            <input type="date" className="form-control" value={element.eventDate}
+                                                   onChange={(event) => {
+                                                       this.props.dispatch({
+                                                           ...handleeventdate,
+                                                           eventDate: event.target.value,
+                                                           index: index
+                                                       })
+                                                   }} required/>
+                                            <label>Event Detail Description</label>
+                                            <textarea className="form-control" value={element.description}
+                                                      onChange={(event) => {
+                                                          this.props.dispatch({
+                                                              ...handledescriptioneventdetail,
+                                                              description: event.target.value,
+                                                              index: index
+                                                          })
+                                                      }} required/>
+                                            <label className="col-sm-2 col-form-label">Location Event</label>
+                                            <select value={this.props.eventForm.locationIdTransient}
+                                                    onChange={(event) => {
+                                                        this.props.dispatch(
+                                                            {
+                                                                ...handlelocationid,
+                                                                locationIdTransient: event.target.value, index:index
+                                                            })
+                                                    }}
+                                                    className="form-control" required>
+                                                <option required>Choose Event</option>
+                                                {this.props.dataLocation.map(element => {
+                                                    if(!(element.address===""||element.address===null)) {
+                                                        return <option value={element.id} required>
+                                                            {element.address}
+                                                        </option>
+                                                    }
+                                                })}
+                                            </select>
+                                            {/*<input type="text" disabled={true} className="form-control" value={this.props.locationEvent2.id}*/}
+                                            {/*        required/>*/}
+                                            {/*<Link to="/event-location" onClick={()=>this.props}>Choose Location</Link>*/}
+                                            {/*<div className="form-group">*/}
+                                            {/*    <button className="btn btn-primary" type="button"*/}
+                                            {/*            data-toggle="collapse"*/}
+                                            {/*            data-target={`#collapseExample${index}`} aria-expanded="false"*/}
+                                            {/*            aria-controls="collapseExample">*/}
+                                            {/*        Choose Location*/}
+                                            {/*    </button>*/}
+                                            {/*</div>*/}
 
+                                            {/*<div className="form-group">*/}
+                                            {/*    <div className="collapse" id={`collapseExample${index}`}>*/}
+                                            {/*        <div className="card card-body">*/}
+                                            {/*            <div className="form-group">*/}
+                                            {/*                <FormLocationEvent/>*/}
+                                            {/*            </div>*/}
+                                            {/*        </div>*/}
+                                            {/*    </div>*/}
+                                            {/*</div>*/}
+
+                                        </div>
+                                    })}
+                                    <button type="submit" className="form-control btn btn-success">Save</button>
+                                </div>
+                            </form>
                         </div>
-                    })}
-                    <button type="submit" className="form-control btn btn-success">Save</button>
-                    </div>
-                </form>
-            </div>
-                    </div>
                     </div>
                 </div>
+            </div>
         )
     }
 
-    handleAddEventDetails=async (event)=>{
+    handleAddEventDetails = async (event) => {
         event.preventDefault()
-        this.props.dispatch({...addeventdetail})
+        this.props.dispatch(addeventdetail)
     }
-    handleSubmit= async(event)=>{
-        event.preventDefault();
-        saveDataEvent(this.props.eventForm)
+    handleSubmit = async (e) => {
+        e.preventDefault();
+        let event = this.props.eventForm
+        let multipartFile = this.props.multipartFile;
+        console.log(multipartFile)
+        let multipartImage = this.props.multipartImage;
+        console.log(multipartImage)
+        await saveDataEvent(event, multipartFile, multipartImage)
+        this.props.dispatch({...clearstate})
+    }
+    dataLocation=async ()=>{
+        const data = await fetchDataLocation();
+        if (!(data === undefined)) {
+            let action = {...fetchlocationsuccess, payload: data}
+            console.log(action)
+            this.props.dispatch(action)
+        }
+    }
+    componentDidMount() {
+        this.dataLocation()
     }
 }
+
 const mapStateToProps = (state) => {
     console.log(state, "ini mapStateToProps");
     return {...state};
