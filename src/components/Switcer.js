@@ -16,44 +16,24 @@ import TicketDetail from "../modules/tickets/components/component-admin/TicketDe
 
 import {
     AdminRoute,
-    BookingRoute, EventDetailRoute, EventFormRoute, EventScheduleRoute, EventsRoute,
+    BookingRoute, EventScheduleRoute, EventsRoute,
     LoginRoute,
     PublicRoute, RegistrationCustomerRoute, RegistrationManagementRoute,
     RegistrationRoute, TicketFormRoute,
     TicketListRoute, TicketRoute
 } from "./constants/customRoute";
-import {CategoryRoute, TicketDetailRoute} from "./constants";
 class Switcer extends Component {
     render() {
         return (
             <>
 
 
-            <Switch>
-                {/*admin component*/}
-                <AdminRoute exact path="/admin" ></AdminRoute>
-                <EventsRoute exact path="/events"></EventsRoute>
-                {/*<TicketRoute exact path="/tickets"></TicketRoute>*/}
-                <Route exact path="/location"><LocationContainer/></Route>
-                {/*public component*/}
-                <PublicRoute exact path="/" ></PublicRoute>
-                <RegistrationRoute exact path="/registration"></RegistrationRoute>
-                <RegistrationManagementRoute exact path="/management/registration"></RegistrationManagementRoute>
-                <RegistrationCustomerRoute exact path="/customer/registration"></RegistrationCustomerRoute>
-                <LoginRoute exact path="/login"></LoginRoute>
-                <BookingRoute exact path="/booking"></BookingRoute>
-                <EventScheduleRoute exact path="/event-schedule"></EventScheduleRoute>
-                <TicketRoute exact path="/ticket"></TicketRoute>
-                <Route exact path="/event"></Route>
-                <CategoryRoute exact path="/category"></CategoryRoute>
-                <Route exact path="/users">Users</Route>
-                {/*<Route exact path="/dashboard"></Route>*/}
-                <Route exact path="/">Ticket</Route>
-                <Route exact path="/payment">Payment</Route>
-                <Route exact path="/cart">Cart</Route>
-                <Route exact path="/chatting">Chatting</Route>
-
-            </Switch>
+                            </Switch>
+                        </div>
+                    </div>
+                    {/*<Footer/>*/}
+                    <AdminFooter/>
+                </div>
             </>
         );
     }
