@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import {Link, Redirect} from "react-router-dom";
 import Authentication from "../../authentication/Authentication";
 import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
+import {fetchDataUserBYId} from "../../services/auth.services";
 
 class Header extends Component {
     render() {
+        this.handleFetchDataUser();
         return (
             <header className="site-navbar js-sticky-header site-navbar-target" role="banner">
 
@@ -67,6 +69,18 @@ class Header extends Component {
             }
         }
         else {
+            return <Redirect to="/login"/>
+        }
+    }
+
+    handleFetchDataUser=async ()=>{
+        const dataToken = decodeJwtToken();
+        if (!(dataToken===null)){
+            const idUser = dataToken.jti;
+             const dataUser = await fetchDataUserBYId(idUser);
+        }else {
+            alert("wrong credential")
+            localStorage.clear();
             return <Redirect to="/login"/>
         }
     }
