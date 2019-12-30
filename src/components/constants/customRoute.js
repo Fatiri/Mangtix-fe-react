@@ -7,7 +7,7 @@ import AdminFooter from "../../layout/admin/AdminFooter";
 import AdminNavBar from "../../layout/admin/AdminNavBar";
 import EventContainer from "../../modules/events/EventContainer";
 import BookingContainer from "../../modules/booking/BookingContainer";
-import ListSchedule from "../../modules/schedules/components/ListSchedule";
+import EventSchedule from "../../layout/customer/EventSchedule";
 import FormLogin from "../../modules/login/components/FormLogin";
 import TicketForm from "../../modules/tickets/components/component-admin/TicketForm";
 import {Provider} from "react-redux";
@@ -27,7 +27,8 @@ import EventByCompany from "../../modules/events/components/adminComponent/Event
 import CategoryContainer from "../../modules/categories/CategoryContainer";
 import Main from "../../main/Main";
 import mainReducer from "../../main/MainReducer";
-import Cart from "../../layout/customer/Cart";
+import Cart from "../../modules/cart/components/Cart";
+import EventList from "../../modules/events/components/adminComponent/EventList";
 
 
 // public route
@@ -165,7 +166,7 @@ export const EventScheduleRoute = ({component: Component, ...rest}) => {
                     <div id="content">
 
                         <Header/> {/* HEADER ALWAYS VISIBLE */}
-                            <ListSchedule/>
+                            <EventSchedule/>
                     </div>
                     <Footer/>
                 </div>

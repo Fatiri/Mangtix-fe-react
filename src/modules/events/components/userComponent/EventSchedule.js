@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import EventSchedule from "../../../layout/customer/EventSchedule";
+import EventSchedule from "../../../../layout/customer/EventSchedule";
 
 class ListSchedule extends Component {
     render() {
         return (
             <div>
-            <EventSchedule/>
+                <EventSchedule/>
             </div>
-    );
+        );
     }
 }
 export default ListSchedule

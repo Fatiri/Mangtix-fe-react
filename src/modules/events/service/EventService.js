@@ -52,7 +52,7 @@ export async function updateDataEvent(event) {
 }
 
 export async function fetchDataEvent() {
-    const data=await fetch(`http://localhost:9090/event`,
+    const data=await fetch(`http://192.168.1.8:9090/events`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });

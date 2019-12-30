@@ -35,7 +35,7 @@ class Main extends Component {
 									<p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est magni perferendis fugit modi similique, suscipit, deserunt a iure.</p>
 									<form action="#">
 										<div class="form-group d-flex">
-											<input type="text" class="form-control" placeholder="Enter Locatiob"/>
+											<input type="text" class="form-control" placeholder="Enter Location"/>
 												<input type="submit" class="btn btn-primary text-white px-4" value="Track Now"/>
 										</div>
 									</form>
