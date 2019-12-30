@@ -5,6 +5,9 @@ import Authentication from "../../../authentication/Authentication";
 import {Link, Redirect} from "react-router-dom";
 import {GenerateTokenAccess} from "../service/AuthenticationLoginService";
 import decodeJwtToken from "../../../authentication/AutheticationDecodeJwt";
+import {database} from "../../Chat/firebase";
+import {fetchDataUserBYId} from "../../users/service/UserService";
+import {fetchDataUser} from "../../users/UserAction";
 
 class FormLogin extends Component {
     render() {
@@ -97,6 +100,12 @@ class FormLogin extends Component {
             localStorage.clear();
             localStorage.setItem("token", token.jwt);
             const dataToken = decodeJwtToken();
+            if (!(dataToken===null)){
+                const idUser = dataToken.jti;
+                const dataUser = await fetchDataUserBYId(idUser);
+                this.props.dispatch({...fetchDataUser, userAccess:dataUser})
+               localStorage.setItem('chat_username', dataUser.id);
+               }
             if (!(dataToken===null)){
                 this.props.dispatch({...role, role:dataToken.sub})
                 this.props.dispatch({...userId, userId:dataToken.jti})

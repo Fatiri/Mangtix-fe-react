@@ -36,6 +36,7 @@ import Authentication from "../../authentication/Authentication";
 import FormChat from "../../modules/Chat/components/FormChat";
 import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
 import {Redirect} from "react-router-dom";
+import MainHeader from "../../layout/customer/MainHeader";
 
 
 // public route
@@ -46,7 +47,7 @@ export const PublicRoute = ({component: Component, ...rest}) => {
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
 
-                        <Header/> {/* HEADER ALWAYS VISIBLE */}
+                        <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
                         <Provider store={createStore(mainReducer)}>
                             <Main/>
                         </Provider>
@@ -67,7 +68,7 @@ export const RegistrationRoute = ({component: Component, ...rest}) => {
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
 
-                        <Header/> {/* HEADER ALWAYS VISIBLE */}
+                        <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
                         <FormRegistration/>
                     </div>
                     <Footer/>
@@ -85,7 +86,7 @@ export const RegistrationManagementRoute = ({component: Component, ...rest}) => 
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
 
-                        <Header/> {/* HEADER ALWAYS VISIBLE */}
+                        <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
                         <Provider store={createStore(registrationReducer)}>
                             <RegistrationManagementContainer/>
                         </Provider>
@@ -105,7 +106,7 @@ export const RegistrationCustomerRoute = ({component: Component, ...rest}) => {
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
 
-                        <Header/> {/* HEADER ALWAYS VISIBLE */}
+                        <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
 
                         <Provider store={createStore(registrationReducer)}>
                             <FormRegisterCustomer/>
@@ -127,7 +128,7 @@ export const LoginRoute = ({component: Component, ...rest}) => {
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
 
-                        <Header/> {/* HEADER ALWAYS VISIBLE */}
+                        <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
                         <div className="container-fluid" id="container-wrapper">
                             <Provider store={createStore(loginReducer)}>
                                 <FormLogin/>
@@ -149,7 +150,7 @@ export const BookingRoute = ({component: Component, ...rest}) => {
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
 
-                        <Header/> {/* HEADER ALWAYS VISIBLE */}
+                        <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
                         <div className="container-fluid" id="container-wrapper">
                             <BookingContainer/>
                         </div>
@@ -170,7 +171,7 @@ export const EventScheduleRoute = ({component: Component, ...rest}) => {
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
 
-                        <Header/> {/* HEADER ALWAYS VISIBLE */}
+                        <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
                         <ListSchedule/>
                     </div>
                     <Footer/>
@@ -187,7 +188,7 @@ export const TicketRoute = ({component: Component, ...rest}) => {
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
 
-                        <Header/> {/* HEADER ALWAYS VISIBLE */}
+                        <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
                         <TicketContainer/>
                     </div>
                     <Footer/>
@@ -204,7 +205,7 @@ export const EventRoute = ({component: Component, ...rest}) => {
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
 
-                        <Header/> {/* HEADER ALWAYS VISIBLE */}
+                        <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
                         <EventContainer/>
                     </div>
                     <Footer/>
@@ -221,7 +222,7 @@ export const CartRoute = ({component: Component, ...rest}) => {
             <>
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
-                        <Header/> {/* HEADER ALWAYS VISIBLE */}
+                        <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
                         <Cart/>
                     </div>
                     <Footer/>
@@ -711,9 +712,6 @@ export const ChatRoute = ({component: Component, ...rest}) => {
             alert("wrong credential")
             localStorage.clear();
             return <Redirect to="/login"/>
-        }
-        if (!(dataToken.sub === "ADMIN" || dataToken.sub === "MANAGEMENT")) {
-            return <Redirect to="/"/>
         }
     } else {
         return <Redirect to="/login"/>

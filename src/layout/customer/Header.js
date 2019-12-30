@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import {Link, Redirect} from "react-router-dom";
 import Authentication from "../../authentication/Authentication";
 import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
-import {fetchDataUserBYId} from "../../services/auth.services";
+import {fetchDataUserBYId} from "../../modules/users/service/UserService";
+import {fetchDataUser} from "../../modules/users/UserAction";
+import {connect} from "react-redux";
 
 class Header extends Component {
     render() {
-        this.handleFetchDataUser();
+
         return (
             <header className="site-navbar js-sticky-header site-navbar-target" role="banner">
 
@@ -29,7 +31,7 @@ class Header extends Component {
                                     <li><Link className="nav-link" to="/chat-form">Forum</Link></li>
                                     <li><Link className="nav-link" to="/event">Events</Link></li>
                                     {new Authentication().isLogin()?<li className="has-children">
-                                            <a className="nav-link">Profile </a>
+                                            <a className="nav-link">Hi {this.props.userAccess.fullName}</a>
                                             <ul className="dropdown arrow-top">
                                                 <li><Link className="nav-link" to="/cart">Cart</Link></li>
                                                 <li><a href="#pricing-section" className="nav-link">Setting</a></li>
@@ -54,6 +56,9 @@ class Header extends Component {
 
     );
     }
+    componentDidMount() {
+        this.handleFetchDataUser();
+    }
 
     handleLogOut=()=>{
         localStorage.clear();
@@ -63,7 +68,6 @@ class Header extends Component {
             if (!(dataToken===null)){
 
             }else {
-                alert("wrong credential")
                 localStorage.clear();
                 return <Redirect to="/login"/>
             }
@@ -78,8 +82,8 @@ class Header extends Component {
         if (!(dataToken===null)){
             const idUser = dataToken.jti;
              const dataUser = await fetchDataUserBYId(idUser);
+             this.props.dispatch({...fetchDataUser, userAccess:dataUser})
         }else {
-            alert("wrong credential")
             localStorage.clear();
             return <Redirect to="/login"/>
         }
@@ -87,4 +91,10 @@ class Header extends Component {
 
     }
 
-    export default Header;
+function mapStateToProps(state) {
+    return {...state};
+}
+
+export default connect(
+    mapStateToProps,
+)( Header);
