@@ -175,7 +175,7 @@ export const EventScheduleRoute = ({component: Component, ...rest}) => {
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
 
-                        <Header/> {/* HEADER ALWAYS VISIBLE */}
+                        <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
                             <ListSchedule/>
                     </div>
                     <Footer/>
@@ -209,8 +209,8 @@ export const EventRoute = ({component: Component, ...rest}) => {
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
 
-                        <Header/> {/* HEADER ALWAYS VISIBLE */}
-                            <EventContainer/>
+                        <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
+                            <ListEvent/>
                     </div>
                     <Footer/>
                 </div>
