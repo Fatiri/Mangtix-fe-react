@@ -852,3 +852,7 @@ html, body {
   padding: 6px 12px;
 }
 
+.chat-message{
+  width: 20000px;
+}
+

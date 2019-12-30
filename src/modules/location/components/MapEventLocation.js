@@ -4,8 +4,9 @@ import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
 import {connect, Provider} from "react-redux";
 import {locationAddress, locationCity, locationLatitude, locationLongitude} from "../LocationAction";
-import {saveDataLocation} from "../service/LocationServices";
-import registrationReducer from "../../register/reducer/RegistrationReducer";
+import {fetchDataLocationId, saveDataLocation} from "../service/LocationServices";
+import {fetchDataEventId} from "../../events/service/EventService";
+import {handleChangeData, handlelocationid} from "../../events/EventAction";
 
 Geocode.setApiKey("AIzaSyB7jbVjgBd0Ueyn49tj0Zzgp0EsRrHwJgQ");
 Geocode.enableDebug();
@@ -68,30 +69,22 @@ class MapRegistrationLocation extends Component {
 
     getCity = (addressArray) => {
         let city = '';
-        if (!(addressArray === undefined)) {
-            for (let i = 0; i < addressArray.length; i++) {
-                if (addressArray[i].types[0] && 'administrative_area_level_2' === addressArray[i].types[0]) {
-                    city = addressArray[i].long_name;
-                    return city;
-                }
+        for (let i = 0; i < addressArray.length; i++) {
+            if (addressArray[i].types[0] && 'administrative_area_level_2' === addressArray[i].types[0]) {
+                city = addressArray[i].long_name;
+                return city;
             }
-        } else {
-            alert("LOcation Not FOund")
         }
-
-
     };
 
     getArea = (addressArray) => {
         let area = '';
-        if (!(addressArray === undefined)) {
-            for (let i = 0; i < addressArray.length; i++) {
-                if (addressArray[i].types[0]) {
-                    for (let j = 0; j < addressArray[i].types.length; j++) {
-                        if ('sublocality_level_1' === addressArray[i].types[j] || 'locality' === addressArray[i].types[j]) {
-                            area = addressArray[i].long_name;
-                            return area;
-                        }
+        for (let i = 0; i < addressArray.length; i++) {
+            if (addressArray[i].types[0]) {
+                for (let j = 0; j < addressArray[i].types.length; j++) {
+                    if ('sublocality_level_1' === addressArray[i].types[j] || 'locality' === addressArray[i].types[j]) {
+                        area = addressArray[i].long_name;
+                        return area;
                     }
                 }
             }
@@ -100,13 +93,11 @@ class MapRegistrationLocation extends Component {
 
     getState = (addressArray) => {
         let state = '';
-        if (!(addressArray === undefined)) {
+        for (let i = 0; i < addressArray.length; i++) {
             for (let i = 0; i < addressArray.length; i++) {
-                for (let i = 0; i < addressArray.length; i++) {
-                    if (addressArray[i].types[0] && 'administrative_area_level_1' === addressArray[i].types[0]) {
-                        state = addressArray[i].long_name;
-                        return state;
-                    }
+                if (addressArray[i].types[0] && 'administrative_area_level_1' === addressArray[i].types[0]) {
+                    state = addressArray[i].long_name;
+                    return state;
                 }
             }
         }
@@ -151,37 +142,32 @@ class MapRegistrationLocation extends Component {
 
 
     onPlaceSelected = (place) => {
-
         console.log(place)
         const address = place.formatted_address;
         const addressArray = place.address_components;
         const city = this.getCity(addressArray);
         const area = this.getArea(addressArray);
         const state = this.getState(addressArray);
-        if (!(place.geometry === undefined)) {
-            const latValue = place.geometry.location.lat();
-            const lngValue = place.geometry.location.lng();
-            this.state.markerPosition.lat = latValue;
-            this.state.markerPosition.lng = lngValue;
-            this.state.mapPosition.lat = latValue;
-            this.state.mapPosition.lng = lngValue;
-            this.props.dispatch({...locationLatitude, latitude: latValue})
-            this.props.dispatch({...locationLongitude, longitude: lngValue})
-        }
-
+        const latValue = place.geometry.location.lat();
+        const lngValue = place.geometry.location.lng();
         this.state.address = (address) ? address : '';
         this.state.area = (area) ? area : '';
         this.state.city = (city) ? city : '';
         this.state.state = (state) ? state : '';
-
+        this.state.markerPosition.lat = latValue;
+        this.state.markerPosition.lng = lngValue;
+        this.state.mapPosition.lat = latValue;
+        this.state.mapPosition.lng = lngValue;
 
         this.props.dispatch({...locationAddress, address: address})
         this.props.dispatch({...locationCity, city: city})
-
+        this.props.dispatch({...locationLatitude, latitude: latValue})
+        this.props.dispatch({...locationLongitude, longitude: lngValue})
         console.log(this.props.location)
 
 
     };
+
 
     render() {
 
@@ -288,16 +274,20 @@ class MapRegistrationLocation extends Component {
         return (map)
     }
 
-    handleSubmitLocation = async () => {
+    handleSubmitLocation=async()=>{
         const dataLocation = {...this.props.location}
-        console.log(dataLocation.latitude)
-        if (!(this.state.markerPosition.lat===""|| this.state.markerPosition.lng==="")){
-            alert("location must be choose")
-        }else {
-            const dataPostLocation = await saveDataLocation(dataLocation);
-            this.props.userInfo.locationIdTransient = dataPostLocation.id;
-        }
-
+        console.log(dataLocation)
+        const dataPostLocation = await saveDataLocation(dataLocation);
+        this.props.dispatch({...handlelocationid, locationIdTransient:dataPostLocation.id})
+        console.log( this.props.idLocation)
+        console.log(this.props)
+    }
+    handleLocationById = async (id) => {
+        console.log(id + "ini id")
+        const data = await fetchDataLocationId(id)
+        console.log(data.eventName + "ini data event form")
+        // this.props.dispatch({...handlelocationid, locationIdTransient:data})
+        console.log(this.props.eventById)
     }
 }
 

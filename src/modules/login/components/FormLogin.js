@@ -5,21 +5,27 @@ import Authentication from "../../../authentication/Authentication";
 import {Link, Redirect} from "react-router-dom";
 import {GenerateTokenAccess} from "../service/AuthenticationLoginService";
 import decodeJwtToken from "../../../authentication/AutheticationDecodeJwt";
-import * as jwt from "jsonwebtoken";
+import {database} from "../../Chat/firebase";
+import {fetchDataUserBYId} from "../../users/service/UserService";
+import {fetchDataUser} from "../../users/UserAction";
 
 class FormLogin extends Component {
     render() {
         const Auth = new Authentication();
         if (Auth.isLogin()){
             const data = decodeJwtToken();
-            if (data.aud === "ADMIN"){
-                return <Redirect t="/admin"/>
-            }else if (data.aud === "MANAGEMENT"){
-                return <Redirect t="/management"/>
-            }else {
-                alert("has been login")
-                return <Redirect t="/"/>
-            }
+           if (data===null){
+               localStorage.clear();
+               alert("you must login correctly")
+           }else {
+               if (data.sub === "ADMIN") {
+                   return <Redirect to="/dashboard"/>
+               } else if (data.sub === "MANAGEMENT") {
+                   return <Redirect to="/dashboard"/>
+               } else {
+                   return <Redirect to="/"/>
+               }
+           }
         }
         return (
             <>
@@ -57,7 +63,6 @@ class FormLogin extends Component {
                                                            className="btn btn-primary btn-block" onClick={this.handleSubmitLoginAction}>Login</button>
                                                     </div>
                                                     <hr/>
-                                                <hr/>
                                                 <div className="text-center">
                                                     <Link to="/registration" className="font-weight-bold small" >Create
                                                         an Account!</Link>
@@ -95,13 +100,25 @@ class FormLogin extends Component {
             localStorage.clear();
             localStorage.setItem("token", token.jwt);
             const dataToken = decodeJwtToken();
-            this.props.dispatch({...role, role:dataToken.sub})
-            this.props.dispatch({...userId, userId:dataToken.jti})
-            this.props.dispatch({...companyId, companyId:dataToken.aud})
-            console.log(this.props.tokenDecode)
+            if (!(dataToken===null)){
+                const idUser = dataToken.jti;
+                const dataUser = await fetchDataUserBYId(idUser);
+                this.props.dispatch({...fetchDataUser, userAccess:dataUser})
+               localStorage.setItem('chat_username', dataUser.id);
+               }
+            if (!(dataToken===null)){
+                this.props.dispatch({...role, role:dataToken.sub})
+                this.props.dispatch({...userId, userId:dataToken.jti})
+                this.props.dispatch({...companyId, companyId:dataToken.aud})
+                console.log(this.props.tokenDecode)
+            }
+           else {
+               localStorage.clear();
+                alert("you must login correctly")
+                return <Redirect to="/login"/>
+            }
         }
     }
-
 }
 const mapsStateToProps=(state)=>{
     return {...state}

@@ -4,20 +4,16 @@ import {
     handledescriptionevent,
     handledescriptioneventdetail,
     handleeventdate,
-    handleeventday, handleeventimage,
-    handleeventname, handleeventpdf, handlelocationid,
+    handleeventday,
+    handleeventname,  handlelocationid,
     handlevenue
 } from "../../EventAction";
 import {connect} from "react-redux";
-import {saveDataEvent} from "../../service/EventService";
-import FormLocation from "../../../location/components/FormLocationRegistration";
-import FormLocationEvent from "../../../location/components/FormLocationEvent";
-import {Link} from "react-router-dom";
-import {fetchDataCategory} from "../../../categories/service/CategoryService";
-import {fetchcategorysucces, handlecategoryid} from "../../../tickets/TicketAction";
+import {updateDataEvent} from "../../service/EventService";
+
 import {fetchDataLocation} from "../../../location/service/LocationServices";
 
-class EventForm extends React.Component {
+class EventUpdate extends React.Component {
     render() {
         function goBack() {
             window.history.back()
@@ -45,12 +41,7 @@ class EventForm extends React.Component {
                                             this.props.dispatch({...handleeventname, eventName: event.target.value})
                                         }} required/>
                                     </div>
-                                    <div className="form-group col-md-6">
-                                        <label className="col-form-label">Foto Event</label>
-                                        <input type="file" className="form-control"onChange={(event) => {
-                                            this.props.dispatch({...handleeventimage, multipartImage: event.target.files[0]})
-                                        }} required/>
-                                    </div>
+
                                     <div className="form-group col-md-6">
                                         <label className="col-form-label">Description Event</label>
                                         <textarea className="form-control" value={this.props.eventForm.descriptionEvent}
@@ -61,13 +52,7 @@ class EventForm extends React.Component {
                                                       })
                                                   }} required/>
                                     </div>
-                                    <div className="form-group col-md-6">
-                                        <label className="col-form-label">Permission Letter</label>
-                                        <input type="file" className="form-control"
-                                                onChange={(event) => {
-                                            this.props.dispatch({...handleeventpdf, multipartFile: event.target.files[0]})
-                                        }} required/>
-                                    </div>
+
                                     <button onClick={this.handleAddEventDetails}
                                             className="form-control btn btn-primary">Add Detail Event
                                     </button>
@@ -93,7 +78,7 @@ class EventForm extends React.Component {
                                                        })
                                                    }} required/>
                                             <label>Event Date</label>
-                                            <input type="date" className="form-control" value={element.eventDate}
+                                            <input type="date" data-date-format="dd-mm-yyyy" className="form-control" value={element.eventDate}
                                                    onChange={(event) => {
                                                        this.props.dispatch({
                                                            ...handleeventdate,
@@ -167,14 +152,11 @@ class EventForm extends React.Component {
         event.preventDefault()
         this.props.dispatch(addeventdetail)
     }
-    handleSubmit = async (e) => {
+    handleUpdate = async (e) => {
         e.preventDefault();
         let event = this.props.eventForm
-        let multipartFile = this.props.multipartFile;
-        console.log(multipartFile)
-        let multipartImage = this.props.multipartImage;
-        console.log(multipartImage)
-        await saveDataEvent(event, multipartFile, multipartImage)
+
+        await updateDataEvent(event)
         this.props.dispatch({...clearstate})
     }
     dataLocation=async ()=>{
@@ -194,4 +176,4 @@ const mapStateToProps = (state) => {
     console.log(state, "ini mapStateToProps");
     return {...state};
 }
-export default connect(mapStateToProps)(EventForm)
+export default connect(mapStateToProps)(EventUpdate)

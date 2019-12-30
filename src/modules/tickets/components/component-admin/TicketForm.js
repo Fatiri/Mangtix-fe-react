@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {
     clearstate, clearstatefree, clearstateonstate,
     fetchcategorysucces, fetcheventsuccess, fetchticketsavesuccess,
-    handlecategoryid, handleeventdetailid, handleeventid, handlefreeupdate, handleonsaleupdate,
+    handlecategoryid, handleChangeDataTicket, handleeventdetailid, handleeventid, handlefreeupdate, handleonsaleupdate,
     handleprice,
     handlequantity
 } from "../../TicketAction";
@@ -14,6 +14,7 @@ import {
 import {fetchDataCategory} from "../../../categories/service/CategoryService";
 import {fetchDataEventByCompany, fetchDataEventId} from "../../../events/service/EventService";
 import {fetcheventdetailsuccess} from "../../../events/EventAction";
+import {Link} from "react-router-dom";
 
 class TicketForm extends React.Component {
     render() {
@@ -24,7 +25,7 @@ class TicketForm extends React.Component {
 
         return (
             <>
-                {(this.props.ticket.length === 0 ?
+                {(this.props.ticketById.length === 0 ?
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="card">
@@ -33,14 +34,14 @@ class TicketForm extends React.Component {
                                             <button className="btn btn-primary" onClick={goBack}><i
                                                 className="fa fa-arrow-alt-circle-left"></i></button>
                                         </h5>
-                                        <p className="card-category">Add Ticket</p>
+                                        <h3 className="card-category">Add Ticket</h3>
                                     </div>
                                     <div className="card-body">
                                         <form onSubmit={this.handleSubmit}>
                                             <div className="form-row">
                                                 <div className="form-group col-md-6">
                                                     <label className="col-sm-2 col-form-label">Event</label>
-                                                    <select onChange={this.handleInputIdEvent}
+                                                    <select onChange={this.dataEventById}
                                                             className="form-control" required>
                                                         <option required>Choose Event</option>
                                                         {this.props.event.map(element => {
@@ -51,7 +52,7 @@ class TicketForm extends React.Component {
                                                     </select>
                                                 </div>
                                                 <div className="form-group col-md-6">
-                                                    <label className="col-sm-2 col-form-label">EventDetail</label>
+                                                    <label className="col-form-label">Event Detail</label>
                                                     <select className="form-control"
                                                             value={this.props.ticketForm.eventDetailIdTransient}
                                                             onChange={(event) => {
@@ -98,7 +99,7 @@ class TicketForm extends React.Component {
                                                 </div>
                                                 <div className="form-group col-md-6">
                                                     <label className="col-sm-6 col-form-label">Quantity</label>
-                                                    <input className="form-control" type="number"  min={1}
+                                                    <input className="form-control" type="number" min={1}
                                                            value={this.props.ticketForm.quantity}
                                                            onChange={(event) => {
                                                                this.props.dispatch(
@@ -116,68 +117,99 @@ class TicketForm extends React.Component {
                                 </div>
                             </div>
                         </div> : <div className="row">
-                        <div className="col-md-12">
-                            <div className="card">
-                                <div className="card-header card-header-primary">
-                                    <h5 className="card-title">
-                                        <button className="btn btn-primary" onClick={goBack}><i
-                                            className="fa fa-arrow-alt-circle-left"></i></button>
-                                    </h5>
-                                    <p className="card-category">Update Ticket</p>
-                                </div>
-                                <div className="card-body">
-                                    <form onSubmit={this.handleUpdate}>
-                            <div className="form-row">
-                                <div className="form-group col-md-6">
-                                    <label className="col-sm-6 col-form-label">Quantity Status OnSale</label>
-                                    <input className="form-control" type="number"
-                                           value={this.props.ticket.onSaleTransient} onChange={(event) => {
-                                        this.props.dispatch(
-                                            {...handleonsaleupdate, onSaleTransient: event.target.value})
-                                    }} required/>
-                                </div>
-                                <div className="form-group col-md-6">
-                                    <label className="col-sm-6 col-form-label">Quantity Status Free</label>
-                                    <input className="form-control" type="number"
-                                           value={this.props.ticket.freeTransient} onChange={(event) => {
-                                        this.props.dispatch(
-                                            {...handlefreeupdate, freeTransient: event.target.value})
-                                    }} required/>
+                            <div className="col-md-12">
+                                <div className="card">
+                                    <div className="card-header card-header-primary">
+                                        <h5 className="card-title">
+                                            <button className="btn btn-primary" onClick={goBack}><i
+                                                className="fa fa-arrow-alt-circle-left"></i></button>
+                                        </h5>
+                                        <p className="card-category">Update Ticket</p>
+                                    </div>
+                                    <div className="card-body">
+                                        <form onSubmit={this.handleUpdate}>
+                                            <div className="form-row">
+                                                <div className="form-group col-md-6">
+                                                    <label className="col-sm-6 col-form-label">Quantity Status
+                                                        OnSale</label>
+                                                    <input className="form-control" type="number"
+                                                           value={this.props.ticket.onSaleTransient}
+                                                           onChange={(event) => {
+                                                               this.props.dispatch(
+                                                                   {
+                                                                       ...handleonsaleupdate,
+                                                                       onSaleTransient: event.target.value
+                                                                   })
+                                                           }} required/>
+                                                </div>
+                                                <div className="form-group col-md-6">
+                                                    <label className="col-sm-6 col-form-label">Quantity Status
+                                                        Free</label>
+                                                    <input className="form-control" type="number"
+                                                           value={this.props.ticket.freeTransient}
+                                                           onChange={(event) => {
+                                                               this.props.dispatch(
+                                                                   {
+                                                                       ...handlefreeupdate,
+                                                                       freeTransient: event.target.value
+                                                                   })
+                                                           }} required/>
+                                                </div>
+                                            </div>
+                                            <button type="submit" className="form-control btn btn-primary">Update
+                                            </button>
+
+                                            <br/>
+
+
+                                            <div className="card-body">
+                                                <label className="col-sm-4 col-form-label">Ticket Id
+                                                    : {this.props.ticketById.id}</label>
+                                                <label className="col-sm-4 col-form-label">Category
+                                                    : {this.props.category.categoryName}</label>
+                                                <label className="col-sm-4 col-form-label">Event
+                                                    Date: {this.props.eventDetail.eventDate}</label>
+                                                <table className="table table-sm">
+                                                    <thead>
+                                                    <th scope="col">Ticket Code</th>
+                                                    <th scope="col">Status Ticket Out</th>
+                                                    <th scope="col">Status Available</th>
+                                                    <th scope="col">Status Arrived</th>
+                                                    </thead>
+                                                    {this.props.ticketCode.map((element, index) => {
+                                                        return <tbody>
+                                                        <td>{element.ticketCode}</td>
+                                                        <td>{element.statusTicketOut}</td>
+                                                        <td>{this.handleAvailable(element.available)}</td>
+                                                        <td>{this.handleArrived(element.arrived)}</td>
+                                                        </tbody>
+                                                    })}
+                                                </table>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                            <button type="submit" className="form-control btn btn-primary">Update
-                            </button>
-
-                            <br/>
-
-
-                                <label className="col-sm-6 col-form-label">{this.props.ticket.id}</label>
-                                <label className="col-sm-6 col-form-label">{this.props.category.categoryName}</label>
-                                <label className="col-sm-6 col-form-label">{this.props.eventDetail.eventDay}</label>
-                            <table className="table table-sm">
-                                <thead>
-                                <th scope="col">Ticket Code</th>
-                                <th scope="col">Status Ticket Out</th>
-                                </thead>
-                                {this.props.ticketCode.map((element, index) => {
-                                    return <tbody>
-                                    <td>{element.ticketCode}</td>
-                                    <td>{element.statusTicketOut}</td>
-                                    </tbody>
-                                })}
-
-                            </table>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                         </div>
 
                 )}
             </>
         )
     }
-
+    handleAvailable = (data) => {
+        if (data) {
+            return "Available"
+        } else {
+            return "No Available"
+        }
+    }
+    handleArrived = (data) => {
+        if (data) {
+            return "Arrived"
+        } else {
+            return "No Arrived"
+        }
+    }
     handleUpdate = async (event) => {
         event.preventDefault()
         if (this.props.ticket.onSaleTransient + this.props.ticket.freeTransient > this.props.ticketCode.length) {
@@ -205,8 +237,8 @@ class TicketForm extends React.Component {
         const ticket = await saveDataTicket(this.props.ticketForm)
         console.log(ticket);
         let action = {
-            ...fetchticketsavesuccess,
-            ticket: ticket,
+            ...handleChangeDataTicket,
+            ticketById: ticket,
             category: ticket.category,
             eventDetail: ticket.eventDetail,
             ticketCode: ticket.ticketCodes
@@ -237,19 +269,20 @@ class TicketForm extends React.Component {
             this.props.dispatch(action)
         }
     }
-    dataEventById = async (idEvent) => {
+    dataEventById = async (event) => {
+        await this.handleInputIdEvent(event)
+        const idEvent = this.props.eventTransient
         const data = await fetchDataEventId(idEvent);
-        if (!(data === undefined)) {
-            let action = {...fetcheventdetailsuccess, payload: data.eventDetailList}
-            console.log(action)
-            this.props.dispatch(action)
-        }
+        await this.handleFetchData(data)
     }
-    handleInputIdEvent = (event) => {
+    handleInputIdEvent = async (event) => {
         console.log(event.target.value)
         this.props.dispatch({...handleeventid, eventTransient: event.target.value})
-        const idEvent = this.props.eventTransient
-        this.dataEventById(idEvent);
+    }
+
+    handleFetchData = async (data) => {
+        let action = {...fetcheventdetailsuccess, payload: data.eventDetailList}
+        this.props.dispatch(action)
     }
 }
 

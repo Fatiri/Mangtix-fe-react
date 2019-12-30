@@ -28,32 +28,13 @@ export default class AdminSidebar extends Component {
                         Features
                     </div>
                     <li className="nav-item">
-                        <Link className="nav-link" data-toggle="collapse"
-                              data-target="#collapseBootstrap"
-                              aria-expanded="true" aria-controls="collapseBootstrap">
-                            <i className="far fa-fw fa-window-maximize"/>
-                            <span>User Management</span>
-                        </Link>
-                        <div id="collapseBootstrap" className="collapse" aria-labelledby="headingBootstrap"
-                             data-parent="#accordionSidebar">
-                            <div className="bg-white py-2 collapse-inner rounded">
-                                <h6 className="collapse-header">User Detail</h6>
-                                <Link className="collapse-item" to="/users">
-                                    <i className="fas fa-fw fa-shopping-cart"/> User
-                                </Link>
-                                <Link className="collapse-item" to="/booking">Booking</Link>
-                                <Link className="collapse-item" to="/events">Buttons</Link>
-                            </div>
-                        </div>
-                    </li>
-                    <li className="nav-item">
                         <Link className="nav-link" to="cart">
                             <i className="fas fa-fw fa-shopping-basket"/>
                             <span>Cart</span>
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="payment">
+                        <Link className="nav-link" to="/booking-list">
                             <i className="fas fa-fw fa-credit-card"/>
                             <span>Booking</span>
                         </Link>
@@ -65,23 +46,17 @@ export default class AdminSidebar extends Component {
                         </Link>
                     </li>
                     <li className="nav-item">
+                        <Link className="nav-link" to="/admin/event">
+                            <i className="fas fa-fw fa-credit-card"/>
+                            <span>Event</span>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
                         <Link className="nav-link" to="/category">
                             <i className="fas fa-fw fa-location-arrow"/>
                             <span>Category</span>
                         </Link>
                     </li>
-                    {/*<li className="nav-item">*/}
-                    {/*    <Link className="nav-link" to="events">*/}
-                    {/*        <i className="fas fa-fw fa-location-arrow"/>*/}
-                    {/*        <span>Events</span>*/}
-                    {/*    </Link>*/}
-                    {/*</li>*/}
-                    {/*<li className="nav-item">*/}
-                    {/*    <Link className="nav-link" to="#">*/}
-                    {/*        <i className="fas fa-fw fa-sad-tear"/>*/}
-                    {/*        <span>Ticket</span>*/}
-                    {/*    </Link>*/}
-                    {/*</li>*/}
                     <li className="nav-item">
                         <Link className="nav-link" to="/ticket-list-admin">
                             <i className="fas fa-fw fa-home"/>

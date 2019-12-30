@@ -7,7 +7,12 @@ import {
     handlecategoryname,
     handlecategorynameupdate
 } from "../CategoryAction";
-import {fetchDataCategory, fetchDataCategoryById, saveDataCategory} from "../service/CategoryService";
+import {
+    deleteDataCategoryById,
+    fetchDataCategory,
+    fetchDataCategoryById,
+    saveDataCategory
+} from "../service/CategoryService";
 import CategoryForm from "./CategoryForm";
 import CategoryFormEdit from "./CategoryFormEdit";
 
@@ -40,14 +45,14 @@ class CategoryList extends React.Component {
                                       <i className="fa fa-pencil-alt"/>
                                   </button>
 
-                                  <button value={element.id} onClick={this.handleDataDelete} className="btn btn-sm btn-danger"><i className="fa fa-trash"/></button></td>
+                                  <button onClick={() =>{this.handleDataDelete(element.id)}} className="btn btn-sm btn-danger"><i className="fa fa-trash"/></button></td>
                             </tbody>
                         })}
 
                     </table>
                     </div>
                     <CategoryForm handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
-                    <CategoryFormEdit handleSubmit={this.handleUpdate} handleChange={this.handleChangeUpdate} />
+                    <CategoryFormEdit handleUpdate={this.handleUpdate} handleChangeUpdate={this.handleChangeUpdate} />
                 </div>
             </div>
 
@@ -88,7 +93,7 @@ class CategoryList extends React.Component {
         this.props.dispatch({...fetchcategorybyidsuccess, payload: data})
     }
     handleDataDelete = async (id) => {
-        await fetchDataCategoryById(id).then(this.dataCategory)
+        await deleteDataCategoryById(id).then(this.dataCategory)
     }
     componentDidMount() {
         this.dataCategory()

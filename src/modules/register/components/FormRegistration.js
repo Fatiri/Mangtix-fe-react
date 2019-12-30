@@ -15,7 +15,7 @@ class FormRegistration extends Component {
                                         <div className="col-lg-12">
                                             <div className="login-form">
                                                 <div className="text-center">
-                                                    <h1 className="h4 text-gray-900 mb-4">Register</h1>
+                                                    <h1 className="h4 text-gray-100 mb-4">Register</h1>
                                                 </div>
                                                 <div>
                                                     <p><Link to="/customer/registration" className="btn btn-primary btn-block">Customer</Link></p>

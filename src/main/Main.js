@@ -8,12 +8,6 @@ class Main extends Component {
     render() {
         return (
             <>
-			{/*<div id="overlayer"></div>*/}
-			{/*<div class="loader">*/}
-			{/*	<div class="spinner-border text-primary" role="status">*/}
-			{/*		<span class="sr-only">Loading...</span>*/}
-			{/*	</div>*/}
-			{/*</div>*/}
 
 			<div class="site-wrap" id="home-section">
 

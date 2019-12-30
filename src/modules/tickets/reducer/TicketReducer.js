@@ -32,7 +32,7 @@ export default function ticketReducer(state = initialState, action) {
         case "FETCH_TICKET_CODE_SUCCESS":
             return {...state, ticketCode: action.payload};
         case "FETCH_TICKET_SAVE_SUCCESS":
-            return {...state, ticket: action.ticket, category: action.category, event: action.event, ticketCode: action.ticketCode}
+            return {...state, ticket: action.ticket, category: action.category, eventDetail: action.eventDetail, ticketCode: action.ticketCode}
         case "HANDLE_CATEGORY_ID":
             return {...state, ticketForm: {...state.ticketForm, categoryIdTransient:action.categoryIdTransient}};
         case "HANDLE_EVENT_ID":

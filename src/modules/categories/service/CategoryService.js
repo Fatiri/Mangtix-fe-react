@@ -43,10 +43,30 @@ export async function fetchDataCategoryById(id) {
 }
 
 export async function deleteDataCategoryById(id) {
-    const data=await fetch(`http://localhost:9090/category/${id}`,
-        {method:"DELETE"}).then((response)=>{
-        return response.json()
-    });
-    console.log(data);
-    return data;
+    await Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    })
+    return fetch(`http://localhost:9090/category/${id}`, {
+        method: "DELETE", headers: {'Content-Type': 'application/json'},
+    }).then((result) => {
+        if (result.status === 200) {
+            Swal.fire(
+                'Deleted!',
+                'Your Table has been deleted.',
+                'success'
+            )
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+            })
+        }
+    })
 }
