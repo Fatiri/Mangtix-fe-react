@@ -33,6 +33,8 @@ import EventUpdate from "../../modules/events/components/adminComponent/EventUpd
 import Main from "../../main/Main";
 import mainReducer from "../../main/MainReducer";
 import Cart from "../../layout/customer/Cart";
+import paymentReducer from "../../modules/payment/reducer/PaymentReducer";
+import PaymentList from "../../modules/payment/components/componenAdmin/PaymentList";
 
 
 // public route
@@ -500,6 +502,29 @@ export const BookingRouteAdmin = ({component: Component, ...rest}) => {
                             <div className="container-fluid" id="container-wrapper">
                                 <Provider store={createStore(bookingReducer)}>
                                 <BookingFormAdmin/>
+                                </Provider>
+                            </div>
+                        </div>
+                        <AdminFooter/>
+                    </div>
+                </>
+            )}
+        />
+    )
+}
+export const PaymentRouteAdmin = ({component: Component, ...rest}) => {
+    return (
+        <Route
+            {...rest}
+            component={(props) => (
+                <>
+                    <Admin {...props}/>
+                    <div id="content-wrapper" className="d-flex flex-column">
+                        <div id="content">
+                            <AdminNavBar/>
+                            <div className="container-fluid" id="container-wrapper">
+                                <Provider store={createStore(paymentReducer)}>
+                                    <PaymentList/>
                                 </Provider>
                             </div>
                         </div>
