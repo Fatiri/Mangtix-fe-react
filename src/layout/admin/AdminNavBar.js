@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import Authentication from "../../authentication/Authentication";
+import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
+import {Link, Redirect} from "react-router-dom";
 
 export default class AdminNavBar extends Component {
 
@@ -65,7 +68,7 @@ export default class AdminNavBar extends Component {
                         </li>
 
                         <div className="topbar-divider d-none d-sm-block"></div>
-                        <li className="nav-item dropdown no-arrow">
+                         <li className="nav-item dropdown no-arrow">
                             <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
@@ -86,15 +89,32 @@ export default class AdminNavBar extends Component {
                                     Activity Log
                                 </a>
                                 <div className="dropdown-divider"></div>
-                                <a className="dropdown-item" href="login.html">
+                                <Link to="/login" className="dropdown-item" onClick={this.handleLogOut}>
                                     <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
-                                </a>
+                                </Link>
                             </div>
                         </li>
                     </ul>
                 </nav>
             </>
         );
+    }
+    handleLogOut=()=>{
+        localStorage.clear();
+        const Auth = new Authentication();
+        if (Auth.isLogin()){
+            const dataToken = decodeJwtToken();
+            if (!(dataToken===null)){
+
+            }else {
+                alert("wrong credential")
+                localStorage.clear();
+                return <Redirect to="/login"/>
+            }
+        }
+        else {
+            return <Redirect to="/login"/>
+        }
     }
 }

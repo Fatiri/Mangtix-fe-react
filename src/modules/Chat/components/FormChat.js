@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { database } from '../firebase';
+import React, {Component} from 'react';
+import {database} from '../firebase';
 import './chat.css'
+import decodeJwtToken from "../../../authentication/AutheticationDecodeJwt";
 
 export default class FormChat extends Component {
     constructor() {
@@ -24,8 +25,10 @@ export default class FormChat extends Component {
         messagesRef.on('value', snapshot => {
             let messagesObj = snapshot.val();
             let messages = [];
-            Object.keys(messagesObj).forEach(key =>  messages.push(messagesObj[key]));
-            messages = messages.map((message) => { return {message: message.message, user: message.incoming, id: message.key}})
+            Object.keys(messagesObj).forEach(key => messages.push(messagesObj[key]));
+            messages = messages.map((message) => {
+                return {message: message.message, user: message.user, id: message.key}
+            })
             this.setState(prevState => ({
                 messages: messages,
             }));
@@ -41,77 +44,183 @@ export default class FormChat extends Component {
     render() {
         return (
 
-            <div className="chat-message">
-                <div className="padding-70 messages-div">
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <div className="container-fluid h-100">
-                        <div className="row justify-content-center h-100">
+                <div className="container">
+                    <div className="col-md-12 col-lg-6">
+                        <div className="panel">
 
-                            <div className="col-md-8 col-xl-6 chat">
-                                <div className="carde">
-                                    <div className="card-header msg_head">
-                                        <div className="d-flex bd-highlight">
-                                            {/*<div className="img_cont">*/}
-                                            {/*        <span className="online_icon"></span>*/}
-                                            {/*</div>*/}
-                                            <div className="user_info">
-                                                <span>Forum Chat</span>
-                                                <p></p>
-                                            </div>
-                                            <div className="video_cam">
-                                                {/*<span><i className="fas fa-video"></i></span>*/}
-                                                {/*<span><i className="fas fa-phone"></i></span>*/}
-                                            </div>
-                                        </div>
-                                        <span id="action_menu_btn"><i className="fas fa-ellipsis-v"></i></span>
-                                        <div className="action_menu">
-                                            <ul>
-                                                <li><i className="fas fa-user-circle"></i> View profile</li>
-                                                <li><i className="fas fa-users"></i> Add to close friends</li>
-                                                <li><i className="fas fa-plus"></i> Add to group</li>
-                                                <li><i className="fas fa-ban"></i> Block</li>
-                                            </ul>
-                                        </div>
+                            <div className="panel-heading">
+                                <div className="panel-control">
+                                    <div className="btn-group">
+                                        <button className="btn btn-default" type="button" data-toggle="collapse"
+                                                data-target="#demo-chat-body"><i className="fa fa-chevron-down"></i>
+                                        </button>
+                                        <button type="button" className="btn btn-default" data-toggle="dropdown"><i
+                                            className="fa fa-gear"></i></button>
+                                        <ul className="dropdown-menu dropdown-menu-right">
+                                            <li><a href="#">Available</a></li>
+                                            <li><a href="#">Busy</a></li>
+                                            <li><a href="#">Away</a></li>
+                                            <li className="divider"></li>
+                                            <li><a id="demo-connect-chat" href="#" className="disabled-link"
+                                                   data-target="#demo-chat-body">Connect</a></li>
+                                            <li><a id="demo-disconnect-chat" href="#"
+                                                   data-target="#demo-chat-body">Disconect</a></li>
+                                        </ul>
                                     </div>
-                                    <div className="card-body msg_card_body">
-                                        {this.state.messages.map((message) => {
-                                            const _class = message.user === this.state.username ? 'message-left container' : 'message-right container';
-                                            return (
-                                                <div className="d-flex justify-content-end mb-4">
-                                                    <div className="msg_cotainer_send">
-                                                        {message.message}
-                                                        <span className="msg_time_send">8:55 AM, Today</span>
-                                                    </div>
-                                                    <div className="img_cont_msg">
-                                                        {message.incoming}
+                                </div>
+                                <h3 className="panel-title">Chat</h3>
+                            </div>
+
+
+                            <div id="demo-chat-body" className="collapse in">
+                                <div className="nano has-scrollbar">
+                                    <div className="nano-content pad-all" tabIndex="0" >
+                                        <ul className="list-unstyled media-block">
+                                            <li className="mar-btm">
+                                                <div className="media-left">
+                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                                         className="img-circle img-sm" alt="Profile Picture"/>
+                                                </div>
+                                                <div className="media-body pad-hor">
+                                                    <div className="speech">
+                                                        <a href="#" className="media-heading">John Doe</a>
+                                                        <p>Hello Lucy, how can I help you today ?</p>
+                                                        <p className="speech-time">
+                                                            <i className="fa fa-clock-o fa-fw"></i>09:23AM
+                                                        </p>
                                                     </div>
                                                 </div>
-                                            )
-                                        })}
+                                            </li>
+                                            <li className="mar-btm">
+                                                <div className="media-right">
+                                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                                                         className="img-circle img-sm" alt="Profile Picture"/>
+                                                </div>
+                                                <div className="media-body pad-hor speech-right">
+                                                    <div className="speech">
+                                                        <a href="#" className="media-heading">Lucy Doe</a>
+                                                        <p>Hi, I want to buy a new shoes.</p>
+                                                        <p className="speech-time">
+                                                            <i className="fa fa-clock-o fa-fw"></i> 09:23AM
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li className="mar-btm">
+                                                <div className="media-left">
+                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                                         className="img-circle img-sm" alt="Profile Picture"/>
+                                                </div>
+                                                <div className="media-body pad-hor">
+                                                    <div className="speech">
+                                                        <a href="#" className="media-heading">John Doe</a>
+                                                        <p>Shipment is free. You\'ll get your shoes tomorrow!</p>
+                                                        <p className="speech-time">
+                                                            <i className="fa fa-clock-o fa-fw"></i> 09:25
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li className="mar-btm">
+                                                <div className="media-right">
+                                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                                                         className="img-circle img-sm" alt="Profile Picture"/>
+                                                </div>
+                                                <div className="media-body pad-hor speech-right">
+                                                    <div className="speech">
+                                                        <a href="#" className="media-heading">Lucy Doe</a>
+                                                        <p>Wow, that\'s great!</p>
+                                                        <p className="speech-time">
+                                                            <i className="fa fa-clock-o fa-fw"></i> 09:27
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li className="mar-btm">
+                                                <div className="media-right">
+                                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                                                         className="img-circle img-sm" alt="Profile Picture"/>
+                                                </div>
+                                                <div className="media-body pad-hor speech-right">
+                                                    <div className="speech">
+                                                        <a href="#" className="media-heading">Lucy Doe</a>
+                                                        <p>Ok. Thanks for the answer. Appreciated.</p>
+                                                        <p className="speech-time">
+                                                            <i className="fa fa-clock-o fa-fw"></i> 09:28
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li className="mar-btm">
+                                                <div className="media-left">
+                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                                         className="img-circle img-sm" alt="Profile Picture"/>
+                                                </div>
+                                                <div className="media-body pad-hor">
+                                                    <div className="speech">
+                                                        <a href="#" className="media-heading">John Doe</a>
+                                                        <p>You are welcome! <br/> Is there anything else I can do for you
+                                                            today?</p>
+                                                        <p className="speech-time">
+                                                            <i className="fa fa-clock-o fa-fw"></i> 09:30
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li className="mar-btm">
+                                                <div className="media-right">
+                                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                                                         className="img-circle img-sm" alt="Profile Picture"/>
+                                                </div>
+                                                <div className="media-body pad-hor speech-right">
+                                                    <div className="speech">
+                                                        <a href="#" className="media-heading">Lucy Doe</a>
+                                                        <p>Nope, That\'s it.</p>
+                                                        <p className="speech-time">
+                                                            <i className="fa fa-clock-o fa-fw"></i> 09:31
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li className="mar-btm">
+                                                <div className="media-left">
+                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                                         className="img-circle img-sm" alt="Profile Picture"/>
+                                                </div>
+                                                <div className="media-body pad-hor">
+                                                    <div className="speech">
+                                                        <a href="#" className="media-heading">John Doe</a>
+                                                        <p>Thank you for contacting us today</p>
+                                                        <p className="speech-time">
+                                                            <i className="fa fa-clock-o fa-fw"></i> 09:32
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <div className="card-footer">
-                                        <div className="input-group">
-                                            <div className="input-group-append">
-                                                <span className="input-group-text attach_btn"><i
-                                                    className="fas fa-paperclip"></i></span>
-                                            </div>
-                                            <input name="" className="form-control" placeholder="Type your message..." ref={node => this.input = node}></input>
-                                            <div className="input-group-append" onClick={this.onAddMessage}>
-                                                <span className="input-group-text send_btn"><i
-                                                    className="fas fa-location-arrow"></i></span>
-                                            </div>
+                                    <div className="nano-pane">
+                                        <div className="nano-slider"
+                                            ></div>
+                                    </div>
+                                </div>
+
+
+                                <div className="panel-footer">
+                                    <div className="row">
+                                        <div className="col-xs-9">
+                                            <input type="text" placeholder="Enter your text"
+                                                   className="form-control chat-input"/>
+                                        </div>
+                                        <div className="col-xs-3">
+                                            <button className="btn btn-primary btn-block" type="submit">Send</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
-            </div>
         );
     }
 }
