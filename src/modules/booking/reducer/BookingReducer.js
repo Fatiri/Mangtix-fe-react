@@ -6,7 +6,9 @@ const initialState = {
     userTransient: {},
     ticket: [],
     event: [],
-    eventDetail: []
+    eventDetail: [],
+    company:{},
+    companyUsers:[],
 
 }
 export default function bookingReducer(state = initialState, action) {
@@ -17,7 +19,7 @@ export default function bookingReducer(state = initialState, action) {
         case "FETCH_USER_SUCCESS":
             return {...state, user: action.payload}
         case "FETCH_USER_BY_ID":
-            return {...state, userTransient: action.payload}
+            return {...state, userTransient: action.payload, companyUser:action.companyUser}
         default:
             return {...state}
     }

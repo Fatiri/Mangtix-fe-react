@@ -71,6 +71,14 @@ export async function fetchDataTicketById(id) {
     console.log(data);
     return data;
 }
+export async function fetchDataListTicketByEventDetail(eventDetailId) {
+    const data=await fetch(`http://localhost:9090/ticket-list?eventDetailId=${eventDetailId}`,
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
+    console.log(data);
+    return data;
+}
 
 export async function fetchDataTicketByCategory(event) {
     const data=await fetch(`http://localhost:9090/tickets-category?${event}`,

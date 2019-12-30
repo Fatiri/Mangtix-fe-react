@@ -45,8 +45,8 @@ class Switcer extends Component {
                 <RegistrationCustomerRoute exact path="/customer/registration"></RegistrationCustomerRoute>
                 <LoginRoute exact path="/login"></LoginRoute>
                 <BookingRoute exact path="/booking"></BookingRoute>
-                <EventScheduleRoute exact path="/event-schedule"></EventScheduleRoute>
-                <EventRoute exact path="/event"></EventRoute>
+                {/*<EventScheduleRoute exact path="/event-schedule"></EventScheduleRoute>*/}
+                {/*<EventRoute exact path="/event"></EventRoute>*/}
                 <TicketRoute exact path="/ticket"></TicketRoute>
                 <Route exact path="/event"></Route>
                 <CategoryRoute exact path="/category"></CategoryRoute>

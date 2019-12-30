@@ -1,37 +1,39 @@
 import React from "react";
 import {connect} from "react-redux";
-import {fetchDataBookingByUser} from "../../../booking/service/BookingService";
-import {fetchbookingsuccess, fetchusersuccess} from "../../PaymentAction";
-import {fetchDataUserAll} from "../../service/PaymentService";
+import {saveDataBooking, fetchDataBookingByUser, fetchDataBookingById} from "../../../booking/service/BookingService";
+import {fetchbookingsuccess, fetchpaymentsuccess, fetchusersuccess} from "../../PaymentAction";
+import {fetchDataPayments, fetchDataUserAll} from "../../service/PaymentService";
 
 
 class PaymentList extends React.Component {
     render() {
         return (
-            <div className="row">
+            <>
                 <div className="accordion" id="accordionExample">
                     <div className="card">
                         <div className="card-header" id="headingOne">
                             <div className="card-header card-header-success">
-                                <h3 className="card-category">List User</h3>
+                                <h3 className="card-category">List Payment</h3>
                             </div>
                             <table className="table table-hover">
                                 <thead>
-                                <th>Username</th>
-                                <th>Full Name</th>
+                                <th>Id</th>
+                                <th>Payment Date</th>
+                                <th>Total Payment</th>
                                 <th>Action</th>
                                 </thead>
-                                {this.props.user.map((element, index) => {
+                                {this.props.payment.map((element, index) => {
                                     return <tbody>
-                                    <td>{element.userName}</td>
-                                    <td>{element.fullName}</td>
+                                    <td>{element.id}</td>
+                                    <td>{element.paymentDate}</td>
+                                    <td>{element.totalPayment}</td>
                                     <td>
                                         <div className="card">
                                             <button onClick={() => {
-                                                this.dataBookingByUser(element.id).then(r => r)
+                                                this.dataBookingById(element.booking.id).then(r => r)
                                             }} className="btn btn-primary btn-sm" data-toggle="modal"
                                                     data-target=".bd-example-modal-xl">
-                                                List Booking
+                                                Detail Booking
                                             </button>
 
                                         </div>
@@ -44,13 +46,14 @@ class PaymentList extends React.Component {
                 </div>
 
                 <br/>
-                <div className="modal fade bd-example-modal-xl" tabIndex="-1" role="dialog"
+
+                <div  tabIndex="-1" role="dialog" className="modal fade bd-example-modal-xl"
                      aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                    <div className="modal-dialog modal-xl">
+                    <div className="modal-xl modal-dialog ">
 
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">List Booking</h5>
+                                <h5 className="modal-title" id="exampleModalLabel">Detail Booking</h5>
                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -65,13 +68,12 @@ class PaymentList extends React.Component {
                                 <th>Category Ticket</th>
                                 <th>Event Date</th>
                                 </thead>
-                                {this.props.booking.map((element) => {
-                                    return <>
+
                                         <tbody>
-                                        <td>{element.id}</td>
-                                        <td>{element.bookDate}</td>
-                                        <td>{element.user.userName}</td>
-                                        {element.bookingDetailList.map((bookingDetail) => {
+                                        <td>{this.props.booking.id}</td>
+                                        <td>{this.props.booking.bookDate}</td>
+                                        <td>{this.props.user.userName}</td>
+                                        {this.props.bookingDetail.map((bookingDetail) => {
                                             // if (bookingDetail.paymentStatus===true){
                                                 return <>
                                                     <td>{bookingDetail.quantity}</td>
@@ -83,40 +85,49 @@ class PaymentList extends React.Component {
 
                                         })}
                                         </tbody>
-                                    </>
-                                })}
+
 
                             </table>
                         </div>
                     </div>
                 </div>
-            </div>
+                </>
         )
     }
 
-    dataBookingByUser = async (event) => {
-        const data = await fetchDataBookingByUser(event);
+    dataPayments=async ()=>{
+        const data = await fetchDataPayments();
         console.log(data)
-        let action = {...fetchbookingsuccess, payload: data}
+        if (!(data === undefined)) {
+            let action = {...fetchpaymentsuccess, payload: data}
+            console.log(action)
+            this.props.dispatch(action)
+        }
+    }
+    dataBookingById = async (event) => {
+        const data = await fetchDataBookingById(event);
+        console.log(data)
+        let action = {...fetchbookingsuccess, booking: data, bookingDetail:data.bookingDetailList, user:data.user}
         await this.handleGetBooking(action)
+        console.log(action)
     }
     handleGetBooking = async (action) => {
         console.log(action)
         console.log("fcjhk", this.props.booking)
         this.props.dispatch(action)
     }
-    dataUserBooking = async () => {
-        const data = await fetchDataUserAll();
-        console.log(data)
-        if (!(data === undefined)) {
-            let action = {...fetchusersuccess, payload: data}
-            console.log(action)
-            this.props.dispatch(action)
-        }
-    }
+    // dataUserBooking = async () => {
+    //     const data = await fetchDataUserAll();
+    //     console.log(data)
+    //     if (!(data === undefined)) {
+    //         let action = {...fetchusersuccess, payload: data}
+    //         console.log(action)
+    //         this.props.dispatch(action)
+    //     }
+    // }
 
     componentDidMount() {
-        this.dataUserBooking()
+        this.dataPayments()
     }
 }
 

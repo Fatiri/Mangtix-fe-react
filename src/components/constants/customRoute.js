@@ -35,6 +35,8 @@ import mainReducer from "../../main/MainReducer";
 import Cart from "../../layout/customer/Cart";
 import paymentReducer from "../../modules/payment/reducer/PaymentReducer";
 import PaymentList from "../../modules/payment/components/componenAdmin/PaymentList";
+import ListEvent from "../../modules/events/components/ListEvent";
+import EventSchedule from "../../layout/customer/EventSchedule";
 
 
 // public route
@@ -172,7 +174,7 @@ export const EventScheduleRoute = ({component: Component, ...rest}) => {
                     <div id="content">
 
                         <Header/> {/* HEADER ALWAYS VISIBLE */}
-                            <ListSchedule/>
+                            <EventSchedule/>
                     </div>
                     <Footer/>
                 </div>
@@ -206,7 +208,7 @@ export const EventRoute = ({component: Component, ...rest}) => {
                     <div id="content">
 
                         <Header/> {/* HEADER ALWAYS VISIBLE */}
-                            <EventContainer/>
+                            <ListEvent/>
                     </div>
                     <Footer/>
                 </div>
