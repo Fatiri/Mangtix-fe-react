@@ -33,7 +33,7 @@ class EventByCompany extends React.Component {
                                 <td>{element.descriptionEvent}</td>
                                 <td><Link to={"/event-detail"} onClick={() => {
                                     this.handleDetail(element.id)
-                                }}>Detail</Link></td>
+                                }} className="btn btn-primary btn-sm">Detail</Link></td>
                                 </tbody>
                             })}
 

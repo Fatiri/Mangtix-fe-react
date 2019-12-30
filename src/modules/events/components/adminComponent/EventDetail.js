@@ -30,7 +30,7 @@ class EventDetail extends React.Component {
                 <form>
                     <div className="row">
                         <div className="card-image">
-                            <img src={`http://localhost/data-events/${this.props.eventById.id}`}/>
+                            <img className="card-image-event" src={`http://localhost/data-events/${this.props.eventById.id}`}/>
                         </div>
                         <div className="columns-event"><h3>{this.props.eventById.eventName}</h3><br/>
                             <h4>{this.props.eventById.descriptionEvent}</h4>

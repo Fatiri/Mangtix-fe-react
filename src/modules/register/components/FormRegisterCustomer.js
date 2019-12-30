@@ -151,6 +151,7 @@ class FormRegisterCustomer extends Component {
 }
 
 const mapsStateToProps = (state) => {
+    console.log(state)
     return {...state}
 }
 

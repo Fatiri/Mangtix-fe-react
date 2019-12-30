@@ -292,10 +292,12 @@ class MapRegistrationLocation extends Component {
         const dataLocation = {...this.props.location}
         console.log(dataLocation.latitude)
         if (!(this.state.markerPosition.lat===""|| this.state.markerPosition.lng==="")){
-            alert("location must be choose")
-        }else {
             const dataPostLocation = await saveDataLocation(dataLocation);
+            console.log(dataPostLocation,"ini location")
             this.props.userInfo.locationIdTransient = dataPostLocation.id;
+            console.log(this.props.userInfo.locationIdTransient)
+        }else {
+            alert("location must be choose")
         }
 
     }

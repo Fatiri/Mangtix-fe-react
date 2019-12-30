@@ -69,7 +69,7 @@ class EventForm extends React.Component {
                                         }} required/>
                                     </div>
                                     <button onClick={this.handleAddEventDetails}
-                                            className="form-control btn btn-primary">Add Detail Event
+                                            className="btn btn-primary col-md-12">Add Detail Event
                                     </button>
                                     <br/>
                                     {this.props.eventForm.eventDetailList.map((element, index) => {
@@ -153,7 +153,7 @@ class EventForm extends React.Component {
 
                                         </div>
                                     })}
-                                    <button type="submit" className="form-control btn btn-success">Save</button>
+                                    <button type="submit" className="btn btn-success col-md-12">Save</button>
                                 </div>
                             </form>
                         </div>

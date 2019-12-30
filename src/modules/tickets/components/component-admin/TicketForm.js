@@ -108,7 +108,7 @@ class TicketForm extends React.Component {
                                                 </div>
                                                 <div className="form-group col-md-6">
                                                     <label className="col-sm-6 col-form-label"/>
-                                                    <button type="submit" className="form-control btn btn-primary">Save
+                                                    <button type="submit" className="btn btn-primary col-md-12">Save
                                                     </button>
                                                 </div>
                                             </div>
@@ -132,21 +132,21 @@ class TicketForm extends React.Component {
                                                 <div className="form-group col-md-6">
                                                     <label className="col-sm-6 col-form-label">Quantity Status
                                                         OnSale</label>
-                                                    <input className="form-control" type="number"
-                                                           value={this.props.ticket.onSaleTransient}
-                                                           onChange={(event) => {
-                                                               this.props.dispatch(
-                                                                   {
-                                                                       ...handleonsaleupdate,
-                                                                       onSaleTransient: event.target.value
-                                                                   })
-                                                           }} required/>
+                                                    <input onChange={(event) => {
+                                                        this.props.dispatch(
+                                                            {
+                                                                ...handleonsaleupdate,
+                                                                onSaleTransient: event.target.value
+                                                            })
+                                                    }} className="form-control" type="number"
+                                                           value={this.props.ticketById.onSaleTransient}
+                                                            required/>
                                                 </div>
                                                 <div className="form-group col-md-6">
                                                     <label className="col-sm-6 col-form-label">Quantity Status
                                                         Free</label>
                                                     <input className="form-control" type="number"
-                                                           value={this.props.ticket.freeTransient}
+                                                           value={this.props.ticketById.freeTransient}
                                                            onChange={(event) => {
                                                                this.props.dispatch(
                                                                    {
@@ -156,7 +156,7 @@ class TicketForm extends React.Component {
                                                            }} required/>
                                                 </div>
                                             </div>
-                                            <button type="submit" className="form-control btn btn-primary">Update
+                                            <button type="submit" className="btn btn-primary col-md-12">Update
                                             </button>
 
                                             <br/>
@@ -212,13 +212,15 @@ class TicketForm extends React.Component {
     }
     handleUpdate = async (event) => {
         event.preventDefault()
-        if (this.props.ticket.onSaleTransient + this.props.ticket.freeTransient > this.props.ticketCode.length) {
+        console.log(this.props.ticketById.ticketCodes.length)
+        console.log(parseInt(this.props.ticketById.onSaleTransient) + parseInt(this.props.ticketById.freeTransient))
+        if (parseInt(this.props.ticketById.onSaleTransient) + parseInt(this.props.ticketById.freeTransient)  > parseInt(this.props.ticketById.ticketCodes.length)) {
             alert("status OnSale and status Free exceeds quantity")
             return;
         }
-        this.props.ticket.categoryIdTransient = this.props.category.id;
-        this.props.ticket.eventDetailIdTransient = this.props.eventDetail.id;
-        const ticket = await updateDataTicket(this.props.ticket);
+        this.props.ticketById.categoryIdTransient = this.props.category.id;
+        this.props.ticketById.eventDetailIdTransient = this.props.eventDetail.id;
+        const ticket = await updateDataTicket(this.props.ticketById);
         console.log(ticket);
         let action = {
             ...fetchticketsavesuccess,
