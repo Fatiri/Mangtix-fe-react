@@ -1,11 +1,24 @@
-import React, {Component} from 'react';
+const initialState = {
+    booking: [],
+    bookingDetail: [],
+    bookingForm: {},
+    user: [],
+    userTransient: {},
+    ticket: [],
+    event: [],
+    eventDetail: []
 
-class PaymentReducer extends Component {
-    render() {
-        return (
-
-        );
+}
+export default function paymentReducer(state = initialState, action) {
+    console.log('booking-reducer', state, action)
+    switch (action.type) {
+        case "FETCH_DATA_BOOKING":
+            return {...state, booking: action.booking}
+        case "FETCH_USER_SUCCESS":
+            return {...state, user: action.payload}
+        case "FETCH_USER_BY_ID":
+            return {...state, userTransient: action.payload}
+        default:
+            return {...state}
     }
 }
-
-export default PaymentReducer;
