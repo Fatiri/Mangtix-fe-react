@@ -68,14 +68,14 @@ class MapRegistrationLocation extends Component {
 
     getCity = (addressArray) => {
         let city = '';
-        if(!(addressArray===undefined)){
+        if (!(addressArray === undefined)) {
             for (let i = 0; i < addressArray.length; i++) {
                 if (addressArray[i].types[0] && 'administrative_area_level_2' === addressArray[i].types[0]) {
                     city = addressArray[i].long_name;
                     return city;
                 }
             }
-        }else {
+        } else {
             alert("LOcation Not FOund")
         }
 
@@ -84,23 +84,23 @@ class MapRegistrationLocation extends Component {
 
     getArea = (addressArray) => {
         let area = '';
-        if(!(addressArray===undefined)){
-        for (let i = 0; i < addressArray.length; i++) {
-            if (addressArray[i].types[0]) {
-                for (let j = 0; j < addressArray[i].types.length; j++) {
-                    if ('sublocality_level_1' === addressArray[i].types[j] || 'locality' === addressArray[i].types[j]) {
-                        area = addressArray[i].long_name;
-                        return area;
+        if (!(addressArray === undefined)) {
+            for (let i = 0; i < addressArray.length; i++) {
+                if (addressArray[i].types[0]) {
+                    for (let j = 0; j < addressArray[i].types.length; j++) {
+                        if ('sublocality_level_1' === addressArray[i].types[j] || 'locality' === addressArray[i].types[j]) {
+                            area = addressArray[i].long_name;
+                            return area;
+                        }
                     }
                 }
             }
-        }
         }
     };
 
     getState = (addressArray) => {
         let state = '';
-        if(!(addressArray===undefined)) {
+        if (!(addressArray === undefined)) {
             for (let i = 0; i < addressArray.length; i++) {
                 for (let i = 0; i < addressArray.length; i++) {
                     if (addressArray[i].types[0] && 'administrative_area_level_1' === addressArray[i].types[0]) {
@@ -158,7 +158,7 @@ class MapRegistrationLocation extends Component {
         const city = this.getCity(addressArray);
         const area = this.getArea(addressArray);
         const state = this.getState(addressArray);
-        if (!(place.geometry===undefined)){
+        if (!(place.geometry === undefined)) {
             const latValue = place.geometry.location.lat();
             const lngValue = place.geometry.location.lng();
             this.state.markerPosition.lat = latValue;
@@ -182,7 +182,6 @@ class MapRegistrationLocation extends Component {
 
 
     };
-
 
     render() {
 
@@ -289,13 +288,16 @@ class MapRegistrationLocation extends Component {
         return (map)
     }
 
-   handleSubmitLocation=async()=>{
+    handleSubmitLocation = async () => {
         const dataLocation = {...this.props.location}
-        console.log(dataLocation)
-        const dataPostLocation = await saveDataLocation(dataLocation);
-        this.props.userInfo.locationIdTransient = dataPostLocation.id;
-        console.log( this.props.userInfo)
-       console.log(this.props)
+        console.log(dataLocation.latitude)
+        if (!(this.state.markerPosition.lat===""|| this.state.markerPosition.lng==="")){
+            alert("location must be choose")
+        }else {
+            const dataPostLocation = await saveDataLocation(dataLocation);
+            this.props.userInfo.locationIdTransient = dataPostLocation.id;
+        }
+
     }
 }
 

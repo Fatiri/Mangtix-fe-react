@@ -60,7 +60,6 @@ class FormLogin extends Component {
                                                            className="btn btn-primary btn-block" onClick={this.handleSubmitLoginAction}>Login</button>
                                                     </div>
                                                     <hr/>
-                                                <hr/>
                                                 <div className="text-center">
                                                     <Link to="/registration" className="font-weight-bold small" >Create
                                                         an Account!</Link>
