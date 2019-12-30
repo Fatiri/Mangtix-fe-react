@@ -25,9 +25,9 @@ class TicketDetail extends React.Component {
                         </div>
 
                         <div className="card-body">
-                            <label className="col-sm-3 col-form-label">Ticket Id : {this.props.ticketById.id}</label>
-                            <label className="col-sm-3 col-form-label">Category  : {this.props.category.categoryName}</label>
-                            <label className="col-sm-3 col-form-label">Event Date: {this.props.eventDetail.eventDate}</label>
+                            <label className="col-sm-4 col-form-label">Ticket Id : {this.props.ticketById.id}</label>
+                            <label className="col-sm-4 col-form-label">Category  : {this.props.category.categoryName}</label>
+                            <label className="col-sm-4 col-form-label">Event Date: {this.props.eventDetail.eventDate}</label>
                             <table className="table table-sm">
                                 <thead>
                                 <th scope="col">Ticket Code</th>

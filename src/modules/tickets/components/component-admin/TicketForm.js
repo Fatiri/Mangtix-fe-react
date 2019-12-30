@@ -108,7 +108,7 @@ class TicketForm extends React.Component {
                                                 </div>
                                                 <div className="form-group col-md-6">
                                                     <label className="col-sm-6 col-form-label"/>
-                                                    <button type="submit" className="form-control btn btn-primary">Save
+                                                    <button type="submit" className="btn btn-primary col-md-12">Save
                                                     </button>
                                                 </div>
                                             </div>
@@ -156,7 +156,7 @@ class TicketForm extends React.Component {
                                                            }} required/>
                                                 </div>
                                             </div>
-                                            <button type="submit" className="form-control btn btn-primary">Update
+                                            <button type="submit" className="btn btn-primary col-md-12">Update
                                             </button>
 
                                             <br/>
