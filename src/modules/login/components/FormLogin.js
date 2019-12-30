@@ -84,7 +84,6 @@ class FormLogin extends Component {
         );
     }
 
-
     handleInputUsername = (username) => {
         username.preventDefault();
         this.props.dispatch({...loginUsername, userName: username.target.value})
@@ -97,7 +96,6 @@ class FormLogin extends Component {
 
     handleSubmitLoginAction = async () => {
         const dataUser = {...this.props.userAccess}
-
         if (!(dataUser === null)) {
             const token = await GenerateTokenAccess(dataUser);
             localStorage.clear();
@@ -105,7 +103,7 @@ class FormLogin extends Component {
             const dataToken = decodeJwtToken();
             if (!(dataToken === null)) {
                 const idUser = dataToken.jti;
-                const dataUser = await fetchDataUserBYId(idUser);
+                const dataUser =  fetchDataUserBYId(idUser);
                 this.props.dispatch({...fetchDataUser, userAccess: dataUser})
                 localStorage.setItem('chat_username', dataUser.id);
             }

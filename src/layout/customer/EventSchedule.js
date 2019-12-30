@@ -41,7 +41,7 @@ class EventSchedule extends Component {
 
                                         })}
 
-                                        <label>  {this.props.ticket.id}</label>
+                                        <label>{this.props.ticket.id}</label>
                                     </ul>
 
 

@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import Map from "./MapRegistrationLocation";
-import {combineReducers, createStore} from "redux";
-import {connect, Provider} from "react-redux";
-import registrationReducer from "../../register/reducer/RegistrationReducer";
+import {connect} from "react-redux";
 
 class FormLocationRegistration extends Component {
 
