@@ -1289,7 +1289,11 @@ a:focus {
 .card .card-header .dropdown {
   line-height: 1;
 }
-
+.card-image-event{
+  width: 300px;
+  height: 200px;
+  margin: 20px;
+}
 .card-ticket{
   margin-right: 955px;
 }
@@ -1301,7 +1305,7 @@ a:focus {
 }
 .columns-event{
   column-span: all;
-  margin-left: 15px;
+  margin: 15px;
 }
 .modal-content{
   margin-top: 50px;

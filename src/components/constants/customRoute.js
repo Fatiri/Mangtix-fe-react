@@ -37,6 +37,10 @@ import FormChat from "../../modules/Chat/components/FormChat";
 import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
 import {Redirect} from "react-router-dom";
 import MainHeader from "../../layout/customer/MainHeader";
+import paymentReducer from "../../modules/payment/reducer/PaymentReducer";
+import PaymentList from "../../modules/payment/components/componenAdmin/PaymentList";
+import ListEvent from "../../modules/events/components/ListEvent";
+import EventSchedule from "../../layout/customer/EventSchedule";
 
 
 // public route
@@ -172,7 +176,7 @@ export const EventScheduleRoute = ({component: Component, ...rest}) => {
                     <div id="content">
 
                         <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
-                        <ListSchedule/>
+                            <ListSchedule/>
                     </div>
                     <Footer/>
                 </div>
@@ -206,7 +210,7 @@ export const EventRoute = ({component: Component, ...rest}) => {
                     <div id="content">
 
                         <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
-                        <EventContainer/>
+                            <EventContainer/>
                     </div>
                     <Footer/>
                 </div>
@@ -691,6 +695,29 @@ export const BookingRouteAdmin = ({component: Component, ...rest}) => {
                             <div className="container-fluid" id="container-wrapper">
                                 <Provider store={createStore(bookingReducer)}>
                                     <BookingFormAdmin/>
+                                </Provider>
+                            </div>
+                        </div>
+                        <AdminFooter/>
+                    </div>
+                </>
+            )}
+        />
+    )
+}
+export const PaymentRouteAdmin = ({component: Component, ...rest}) => {
+    return (
+        <Route
+            {...rest}
+            component={(props) => (
+                <>
+                    <Admin {...props}/>
+                    <div id="content-wrapper" className="d-flex flex-column">
+                        <div id="content">
+                            <AdminNavBar/>
+                            <div className="container-fluid" id="container-wrapper">
+                                <Provider store={createStore(paymentReducer)}>
+                                    <PaymentList/>
                                 </Provider>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 import {badRequest400, succsessFetchData200} from "../../../components/constants";
 
-export async function fetchDataBooking(event) {
+export async function saveDataBooking(event) {
     const data = await fetch("http://localhost:9090/booking", {method:"POST",
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(event)})
@@ -17,6 +17,14 @@ export async function fetchDataBooking(event) {
 }
 export async function fetchDataBookingByUser(userId) {
     const data=await fetch(`http://localhost:9090/booking-user?userId=${userId}`,
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
+    console.log(data);
+    return data;
+}
+export async function fetchDataBookingById(id) {
+    const data=await fetch(`http://localhost:9090/booking/${id}`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });

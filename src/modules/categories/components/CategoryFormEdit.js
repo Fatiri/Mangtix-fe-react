@@ -24,7 +24,7 @@ class CategoryFormEdit extends Component {
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close
                                     </button>
-                                    <button type="submit">Update</button>
+                                    <button className="btn btn-success" type="submit">Update</button>
                                 </div>
                             </form>
                         </div>

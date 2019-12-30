@@ -31,13 +31,13 @@ class CategoryList extends React.Component {
                     <div className="table-responsive">
                         <table className="table align-items-center table-flush">
                         <thead className="thead-light">
-                            <td>No</td>
-                            <td>Category Name</td>
-                            <td>Action</td>
+                            <th>No</th>
+                            <th>Category Name</th>
+                            <th>Action</th>
                         </thead>
                         {this.props.category.map((element, index)=>{
                           return  <tbody>
-                              <td>{index+1}</td>
+                              <th>{index+1}</th>
                                 <td>{element.categoryName}</td>
                               <td>
                                   <button  className="btn btn-sm btn-warning" type="button" data-toggle="modal"

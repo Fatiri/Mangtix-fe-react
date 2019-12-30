@@ -31,7 +31,7 @@ class Header extends Component {
                                     <li><Link className="nav-link" to="/chat-form">Forum</Link></li>
                                     <li><Link className="nav-link" to="/event">Events</Link></li>
                                     {new Authentication().isLogin()?<li className="has-children">
-                                            <a className="nav-link">Hi {this.props.userAccess.fullName}</a>
+                                            <a className="nav-link">Hi {this.props.userAccess.userName}</a>
                                             <ul className="dropdown arrow-top">
                                                 <li><Link className="nav-link" to="/cart">Cart</Link></li>
                                                 <li><a href="#pricing-section" className="nav-link">Setting</a></li>

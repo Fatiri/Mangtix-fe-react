@@ -24,7 +24,7 @@ class CategoryForm extends React.Component {
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close
                                 </button>
 
-                                <button type="submit">Save</button>
+                                <button className="btn btn-success" type="submit">Save</button>
                             </div>
             </form>
                     </div>

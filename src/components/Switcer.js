@@ -4,14 +4,12 @@ import LocationContainer from "../modules/location/LocationContainer";
 
 import {
     AdminRoute,
-    BookingRoute, BookingRouteAdmin, EventDetailRoute, EventFormRoute, EventScheduleRoute, EventsRoute,
+    BookingRoute, BookingRouteAdmin,
     CartRoute,
     LoginRoute,
-    PublicRoute, RegistrationCustomerRoute, RegistrationManagementRoute,
-    RegistrationRoute, TicketFormRoute,
-    TicketListRoute, TicketRoute
+    PublicRoute, TicketRoute, PaymentRouteAdmin
 } from "./constants/customRoute";
-import {CategoryRoute, ChatRoute, EventRoute, TicketDetailRoute} from "./constants";
+import {CategoryRoute, ChatRoute} from "./constants";
 class Switcer extends Component {
     render() {
         return (
@@ -25,17 +23,16 @@ class Switcer extends Component {
                 <Route exact path="/location"><LocationContainer/></Route>
                 {/*public component*/}
                 <PublicRoute exact path="/" ></PublicRoute>
-                <RegistrationRoute exact path="/registration"></RegistrationRoute>
-                <RegistrationManagementRoute exact path="/management/registration"></RegistrationManagementRoute>
-                <RegistrationCustomerRoute exact path="/customer/registration"></RegistrationCustomerRoute>
+
                 <LoginRoute exact path="/login"></LoginRoute>
                 <BookingRoute exact path="/booking"></BookingRoute>
-                <EventScheduleRoute exact path="/event-schedule"></EventScheduleRoute>
-                <EventRoute exact path="/event"></EventRoute>
+                {/*<EventScheduleRoute exact path="/event-schedule"></EventScheduleRoute>*/}
+                {/*<EventRoute exact path="/event"></EventRoute>*/}
                 <TicketRoute exact path="/ticket"></TicketRoute>
                 <Route exact path="/event"></Route>
                 <CategoryRoute exact path="/category"></CategoryRoute>
                 <BookingRouteAdmin exact path="/booking-list"></BookingRouteAdmin>
+                <PaymentRouteAdmin exact path="/admin/payment-list"></PaymentRouteAdmin>
                 <CartRoute exact path="/cart"></CartRoute>
                 <ChatRoute exact path="/chat-form"></ChatRoute>
                 <Route exact path="/users">Users</Route>

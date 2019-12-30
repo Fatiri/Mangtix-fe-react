@@ -9,7 +9,6 @@ import {
 } from "../RegistartionAction";
 import {registrationPost} from "../service/RegistrationService";
 import FormLocation from "../../location/components/FormLocationRegistration";
-import Map from "../../location/components/MapRegistrationLocation";
 
 class FormRegisterCustomer extends Component {
     render() {
@@ -157,6 +156,7 @@ class FormRegisterCustomer extends Component {
 }
 
 const mapsStateToProps = (state) => {
+    console.log(state)
     return {...state}
 }
 

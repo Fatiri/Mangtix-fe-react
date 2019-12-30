@@ -4,7 +4,7 @@ import {
     EventByCompanyRoute,
     EventDetailRoute,
     EventFormRoute,
-    EventLocationRoute,
+    EventLocationRoute, EventRoute, EventScheduleRoute,
     EventUpdateRoute
 } from "./constants";
 import {Provider} from "react-redux";

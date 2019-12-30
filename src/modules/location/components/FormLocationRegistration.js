@@ -9,14 +9,12 @@ class FormLocationRegistration extends Component {
     render() {
         return (
             <>
-                <Provider store={createStore(registrationReducer)}>
                     <Map
                         google={this.props.google}
                         center={{lat: 18.5204, lng: 73.8567}}
                         height='300px'
                         zoom={15}
                     />
-                </Provider>
             </>
         );
     }

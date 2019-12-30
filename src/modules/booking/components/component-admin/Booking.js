@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
-import {fetchDataBookingByUser, fetchDataUserAll} from "../../service/BookingService";
-import {fetchbookingsuccess, fetchusersuccess} from "../../BookingAction";
+import {fetchDataBookingByUser, fetchDataUserAll, fetchDataUserId} from "../../service/BookingService";
+import {fetchbookingsuccess, fetchuserbyid, fetchusersuccess} from "../../BookingAction";
 
 class BookingListAdmin extends React.Component{
     render() {
@@ -21,11 +21,11 @@ class BookingListAdmin extends React.Component{
         this.props.dispatch(action)
 
     }
-    dataUserBooking = async ()=>{
-        const data = await fetchDataUserAll();
+    dataUserBooking = async (userId)=>{
+        const data = await fetchDataUserId(userId);
         console.log(data)
         if (!(data === undefined)) {
-            let action = {...fetchusersuccess, payload:data}
+            let action = {...fetchuserbyid, payload:data, companyUser:data.companyUser}
             console.log(action)
             this.props.dispatch(action)
         }

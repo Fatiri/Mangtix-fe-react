@@ -86,9 +86,7 @@ class FormRegisterManagement extends Component {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div>
-                                                    <button className="btn btn-primary btn-block" onClick={this.handleTwoFunction}>Next Step</button>
-                                                </div>
+
                                                 <hr/>
 
                                                 <div className="text-center">
@@ -96,6 +94,9 @@ class FormRegisterManagement extends Component {
                                                         an account?</Link>
                                                 </div>
                                                 <div className="text-center">
+                                                    <div>
+                                                        <button className="btn btn-primary btn-block" onClick={this.handleTwoFunction}>Next Step</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

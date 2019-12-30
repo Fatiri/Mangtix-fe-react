@@ -5,7 +5,7 @@ const initialState = {
       password:"",
       bornPlace:"",
       birthDate:"",
-      roleIdTransient:"8a328cf4-dd50-4e74-981c-b8068931942b",
+      roleIdTransient:"ac3ed1d7-6dcc-4353-861c-7bab76732069",
       locationIdTransient:""
 
     },
@@ -28,6 +28,8 @@ export default function registrationReducer(state = initialState, action) {
     switch (action.type) {
         case 'SUCCESS_INPUT_FULL_NAME':
             return {...state, userInfo :{...state.userInfo, fullName: action.fullName}}
+        case 'SUCCESS_INPUT_ROLE':
+            return {...state, userInfo :{...state.userInfo, roleIdTransient: action.roleIdTransient}}
         case 'SUCCESS_INPUT_USER_NAME':
             return {...state, userInfo :{...state.userInfo, userName: action.userName}}
         case 'SUCCESS_INPUT_PASSWORD':

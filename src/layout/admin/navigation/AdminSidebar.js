@@ -63,6 +63,12 @@ export default class AdminSidebar extends Component {
                             <span>Ticket</span>
                         </Link>
                     </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/admin/payment-list">
+                            <i className="fas fa-fw fa-home"/>
+                            <span>Payment</span>
+                        </Link>
+                    </li>
                     <hr className="sidebar-divider"/>
                     <div className="version" id="version-mangtix"/>
                 </ul>
