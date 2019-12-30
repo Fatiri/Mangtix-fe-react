@@ -1,0 +1,1 @@
+export const fetchDataUser = {type:'SUCCESS_FETCH_USER'}
