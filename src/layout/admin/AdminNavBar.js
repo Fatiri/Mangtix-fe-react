@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import Authentication from "../../authentication/Authentication";
 import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
 import {Link, Redirect} from "react-router-dom";
+import {connect} from "react-redux";
 
-export default class AdminNavBar extends Component {
+class AdminNavBar extends Component {
 
     render() {
         return (
@@ -16,12 +17,6 @@ export default class AdminNavBar extends Component {
 
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item dropdown no-arrow mx-1">
-                            <a className="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                               data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">
-                                <i className="fas fa-bell fa-fw"/>
-                                <span className="badge badge-danger badge-counter">100+</span>
-                            </a>
                             <div
                                 className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
@@ -72,7 +67,7 @@ export default class AdminNavBar extends Component {
                             <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
-                                <span className="ml-2 d-none d-lg-inline text-white small">Maman Ketoprak</span>
+                                <span className="ml-2 d-none d-lg-inline text-white small">{this.props.userAccess.fullName}</span>
                             </a>
                             <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
@@ -117,4 +112,11 @@ export default class AdminNavBar extends Component {
             return <Redirect to="/login"/>
         }
     }
+
 }
+
+function mapStateToProps(state) {
+    return {...state};
+}
+
+export default connect(mapStateToProps)(AdminNavBar);

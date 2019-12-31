@@ -146,7 +146,7 @@ class FormRegisterCustomer extends Component {
 
     handleSubmitRegistration = async () => {
         const dataUser = {...this.props.userInfo}
-         const dataPostUser = await registrationPost(dataUser);
+        const dataPostUser = await registrationPost(dataUser);
         console.log(this.props.userInfo)
         console.log(this.props.location)
         if (!(dataPostUser===null)){
