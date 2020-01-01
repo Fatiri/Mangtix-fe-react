@@ -3,6 +3,8 @@ import Authentication from "../../authentication/Authentication";
 import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
 import {Link, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
+import {fetchDataUserBYId} from "../../modules/users/service/UserService";
+import {fetchDataUser} from "../../modules/users/UserAction";
 
 class AdminNavBar extends Component {
 
@@ -67,7 +69,8 @@ class AdminNavBar extends Component {
                             <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
-                                <span className="ml-2 d-none d-lg-inline text-white small">{this.props.userAccess.fullName}</span>
+                                <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <span className="ml-2 d-none d-lg-inline text-white small">Hi {this.props.userAccess.fullName}</span>
                             </a>
                             <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
@@ -95,6 +98,11 @@ class AdminNavBar extends Component {
             </>
         );
     }
+
+    componentDidMount() {
+        this.handleFetchDataUser();
+    }
+
     handleLogOut=()=>{
         localStorage.clear();
         const Auth = new Authentication();
@@ -109,6 +117,20 @@ class AdminNavBar extends Component {
             }
         }
         else {
+            return <Redirect to="/login"/>
+        }
+    }
+
+    handleFetchDataUser=async ()=>{
+        const dataToken = decodeJwtToken();
+        if (!(dataToken===null)){
+            const idUser = dataToken.jti;
+            const dataUser = await fetchDataUserBYId(idUser);
+            console.log(dataUser.fullName+"ini loh")
+            this.props.dispatch({...fetchDataUser, userAccess:dataUser})
+            console.log(this.props.userAccess.fullName)
+        }else {
+            localStorage.clear();
             return <Redirect to="/login"/>
         }
     }

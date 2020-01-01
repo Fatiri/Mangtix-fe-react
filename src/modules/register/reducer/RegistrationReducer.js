@@ -5,7 +5,7 @@ const initialState = {
       password:"",
       bornPlace:"",
       birthDate:"",
-      roleIdTransient:"ac3ed1d7-6dcc-4353-861c-7bab76732069",
+      roleIdTransient:"",
       locationIdTransient:""
 
     },

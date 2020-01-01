@@ -9,6 +9,7 @@ import {
 } from "../RegistartionAction";
 import {registrationPost} from "../service/RegistrationService";
 import FormLocation from "../../location/components/FormLocationRegistration";
+import render from "enzyme/src/render";
 
 class FormRegisterCustomer extends Component {
     render() {
@@ -82,19 +83,17 @@ class FormRegisterCustomer extends Component {
                                                     </div>
                                                 </div>
                                                 </div>
-
-
                                                 <hr/>
-
-                                                <div className="text-center">
-                                                    <Link to="/login" className="font-weight-bold small">Already have
-                                                        an account?</Link>
-                                                </div>
                                                 <div>
                                                     <button className="btn btn-primary btn-block"
                                                             onClick={this.handleSubmitRegistration}>Create Account
                                                     </button>
                                                 </div>
+                                                <div className="text-center">
+                                                    <Link to="/login" className="font-weight-bold small">Already have
+                                                        an account?</Link>
+                                                </div>
+
                                                 <div className="text-center">
                                                 </div>
                                             </div>
@@ -148,9 +147,8 @@ class FormRegisterCustomer extends Component {
         const dataUser = {...this.props.userInfo}
         const dataPostUser = await registrationPost(dataUser);
         console.log(this.props.userInfo)
-        console.log(this.props.location)
-        if (!(dataPostUser===null)){
-            return <Redirect to="/login"/>
+        if (!(dataPostUser === null)) {
+            return (<Redirect to="/login"/>)
         }
     }
 }

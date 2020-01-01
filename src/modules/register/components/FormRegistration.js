@@ -18,7 +18,7 @@ class FormRegistration extends Component {
                                         <div className="col-lg-12">
                                             <div className="login-form">
                                                 <div className="text-center">
-                                                    <h1 className="h4 text-gray-100 mb-4">Register</h1>
+                                                    <h1 className="h4 text-black-100 mb-4">Register</h1>
                                                 </div>
                                                 <div>
                                                     <p><Link to="/customer/registration" className="btn btn-primary btn-block" onClick={()=>{this.roleByRoleName("CUSTOMER")}}>Customer</Link></p>
@@ -37,9 +37,8 @@ class FormRegistration extends Component {
     }
     roleByRoleName=async(roleName)=>{
         const data=await fetchDataRoleByRoleName(roleName);
-        let action = {...registrationRole, roleIdTransient:data.id}
-        console.log(action,"role")
-        this.props.dispatch(action);
+        console.log(data.id)
+        this.props.userInfo.roleIdTransient = data.id;
     }
 }
 const mapsStateToProps = (state) => {

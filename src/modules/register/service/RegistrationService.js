@@ -6,23 +6,21 @@ export async function registrationPost(userInfo) {
             method: "POST", headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(userInfo)
         }
-    )
-    return await data.json();
+    ).then(response=>{
+        return response.json();
+    }).catch(error=>{
+        return error;
+    })
+return data;
 
-     if (data.status === 500) {
-        await Swal.fire({
-            icon: 'error',
-            title: 'Sorry user not created!!!',
-            timer: 3000
-        });
-        return null;
-
-    }
 }
 export async function fetchDataRoleByRoleName(roleName) {
     const data=await fetch(`http://localhost:9090/role-name?roleName=${roleName}`,
-        {method:"GET"}).then((response)=>{
+        {method:"GET"})
+        .then((response)=>{
         return response.json()
+    }).catch(error=>{
+        return error
     });
     console.log(data);
     return data;
