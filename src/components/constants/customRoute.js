@@ -33,12 +33,12 @@ import Main from "../../main/Main";
 import mainReducer from "../../main/MainReducer";
 import Cart from "../../modules/cart/components/Cart";
 import EventList from "../../modules/events/components/adminComponent/EventList";
-import Cart from "../../layout/customer/Cart";
 import Authentication from "../../authentication/Authentication";
 import FormChat from "../../modules/Chat/components/FormChat";
 import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
 import {Redirect} from "react-router-dom";
 import MainHeader from "../../layout/customer/MainHeader";
+import ListSchedule from "../../modules/events/components/userComponent/EventSchedule";
 
 
 // public route
@@ -723,7 +723,14 @@ export const ChatRoute = ({component: Component, ...rest}) => {
     return (
         <Route {...rest} component={(props) => (
             <>
+                <div id="content-wrapper" className="d-flex flex-column">
+                    <div id="content">
+
+                        <MainHeader/>
                 <FormChat/>
+                    </div>
+                    <Footer/>
+                </div>
             </>
         )}
         />
