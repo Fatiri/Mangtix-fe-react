@@ -32,7 +32,7 @@
     margin-left: 330px;
 }
 .comments-main{
-    background: grey;
+    background: black;
     margin-bottom: 80px;
     margin-top: 50px;
     width: 576px;
@@ -122,7 +122,7 @@
 }
 
 .comment-box-main{
-    background: grey;
+    background: black;
     width: 576px;
     margin: 0 .125rem 0 0;
 }
