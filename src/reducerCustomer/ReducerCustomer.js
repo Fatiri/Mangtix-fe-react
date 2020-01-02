@@ -5,7 +5,8 @@ const initialState= {
     eventDetailById:[],
     ticket:[],
     cart:[],
-    cartForm:{ticketIdTransient:"",userIdTransient:"",quantity:""}
+    cartForm:{ticketIdTransient:"",userIdTransient:"",quantity:""},
+    bookingForm:{userIdTransient:"",bookingDetailList:[]}
 }
 export default function reducerCustomer(state=initialState, action){
     console.log('event-reducer', state, action)

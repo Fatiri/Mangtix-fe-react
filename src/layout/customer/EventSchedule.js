@@ -14,6 +14,18 @@ import {saveDataCart} from "../../modules/cart/service/CartService";
 class EventSchedule extends Component {
     render() {
         console.log("LOGGG", this.props);
+        let stock = 0;
+        this.props.ticket.map((element1) => {
+            if (element1.eventDetail.id === this.props.eventDetailById.id) {
+                return element1.ticketCodes.map((ticketCode) => {
+                    if (ticketCode.available == true) {
+                        return stock = stock + 1;
+                    }
+                })
+            }
+
+
+        })
         return (
             <div>
 
@@ -58,25 +70,49 @@ class EventSchedule extends Component {
                                                                          alt=""></img>
                                                                 </div>
 
-
-                                                                <div className="col-md-9 align-self-center">
-                                                                    <div className="schedule-content">
-                                                                        <p className="schedule-date">{element1.eventDetail.eventDate}</p>
-                                                                        <a className="schedule-title"
-                                                                           href="#"></a>
-                                                                        <h3>{element1.category.categoryName}</h3>
-                                                                        <div className="row mt-5">
-                                                                            <div className="col-12 text-center">
-                                                                                <button className="button mb-2">Choose
-                                                                                    Ticket
-                                                                                </button>
-                                                                                <Link onClick={()=>{this.addCart(element1.id)}} className="button mb-2"
-                                                                                      to="/cart">Buy
-                                                                                    Ticket</Link>
+                                                                {stock > 0 ?
+                                                                    <div className="col-md-9 align-self-center">
+                                                                        <div className="schedule-content">
+                                                                            <p className="schedule-date">{element1.eventDetail.eventDate}</p>
+                                                                            <a className="schedule-title"
+                                                                               href="#"></a>
+                                                                            <h3>{element1.category.categoryName}</h3>
+                                                                            <h4>{stock}</h4>
+                                                                            <div className="row mt-5">
+                                                                                <div className="col-12 text-center">
+                                                                                    <button onClick={() => {
+                                                                                        this.addCart(element1.id)
+                                                                                    }} className="button mb-2">Choose
+                                                                                        Ticket
+                                                                                    </button>
+                                                                                    <Link onClick={() => {
+                                                                                        this.addCart(element1.id)
+                                                                                    }} className="button mb-2"
+                                                                                          to="/cart">Buy
+                                                                                        Ticket</Link>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                    : <div className="col-md-9 align-self-center">
+                                                                        <div className="schedule-content">
+                                                                            <p className="schedule-date">{element1.eventDetail.eventDate}</p>
+                                                                            <a className="schedule-title"
+                                                                               href="#"></a>
+                                                                            <h3>{element1.category.categoryName}</h3>
+                                                                            <h4>Ticket Sold Out</h4>
+                                                                            <div className="row mt-5">
+                                                                                <div className="col-12 text-center">
+                                                                                    <button disabled={true} className="button mb-2">Choose
+                                                                                        Ticket
+                                                                                    </button>
+                                                                                    <Link disabled={true} className="button mb-2">Buy
+                                                                                        Ticket</Link>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                }
                                                             </div>
                                                         </div>
                                                     </div>
@@ -94,15 +130,15 @@ class EventSchedule extends Component {
         );
     }
 
-    addCart=async (ticketId)=>{
-        this.props.dispatch({...handletickettransient, ticketIdTransient:ticketId})
+    addCart = async (ticketId) => {
+        this.props.dispatch({...handletickettransient, ticketIdTransient: ticketId})
         const dataToken = decodeJwtToken();
         if (!(dataToken === null)) {
             const idUser = dataToken.jti;
-            console.log(idUser,"userId")
-            this.props.dispatch({...handleusertransient, userIdTransient:idUser})
+            console.log(idUser, "userId")
+            this.props.dispatch({...handleusertransient, userIdTransient: idUser})
         }
-        this.props.dispatch({...handlequantity, quantity:1})
+        this.props.dispatch({...handlequantity, quantity: 1})
         await saveDataCart(this.props.cartForm)
     }
     dataTickets = async () => {

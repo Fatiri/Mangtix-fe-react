@@ -50,18 +50,18 @@ class Cart extends Component {
 
                                                         <div><img src="img/clients-logo/VVIP.png" alt=""></img></div>
                                                         {this.props.events.map((element1, index1) => {
-                                                            {
-                                                                element1.eventDetailList.map((eventDetail) => {
-                                                                    console.log(element.ticket.eventDetail.id, "  ke1")
-                                                                    console.log(eventDetail.id, "  ke2")
-                                                                    if (eventDetail.id === element.ticket.eventDetail.id) {
-                                                                        console.log(element1.eventName)
-                                                                        return <div
-                                                                            className="cart_item_product">{element1.eventName}</div>
-                                                                    }
-                                                                })
-                                                            }
-
+                                                            return <>
+                                                                {element1.eventDetailList.map((eventDetail) => {
+                                                                        console.log(element.ticket.eventDetail.id, "  ke1")
+                                                                        console.log(eventDetail.id, "  ke2")
+                                                                        if (eventDetail.id === element.ticket.eventDetail.id) {
+                                                                            console.log(element1.eventName)
+                                                                            return <div
+                                                                                className="cart_item_product">{element1.eventName}</div>
+                                                                        }
+                                                                    })
+                                                                }
+                                                            </>
                                                         })}
 
 
@@ -102,7 +102,9 @@ class Cart extends Component {
                                                         <div className="button continue_shopping_button"><Link to="#">Continue
                                                             Booking</Link></div>
                                                         <div className="cart_buttons_right ml-lg-auto">
-                                                            <div onClick={()=>{this.deleteACart(element.id)}} className="button clear_cart_button"><Link to="#">Clear
+                                                            <div onClick={() => {
+                                                                this.deleteACart(element.id)
+                                                            }} className="button clear_cart_button"><Link to="#">Clear
                                                                 cart</Link>
                                                             </div>
                                                             <div className="button update_cart_button"><Link to="#">Update
@@ -128,8 +130,8 @@ class Cart extends Component {
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <div className="button checkout_button"><a href="#">Proceed to
-                                                    checkout</a>
+                                                <div className="button checkout_button"><Link to="#">Proceed to
+                                                    checkout</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -143,8 +145,9 @@ class Cart extends Component {
         );
     }
 
-    deleteACart=async (cartId)=>{
+    deleteACart = async (cartId) => {
         await deleteDataCartsById(cartId);
+        this.dataCart()
     }
     dataCart = async () => {
         const dataToken = decodeJwtToken();
