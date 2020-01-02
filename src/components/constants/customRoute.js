@@ -37,8 +37,8 @@ import {Redirect} from "react-router-dom";
 import MainHeader from "../../layout/customer/MainHeader";
 import paymentReducer from "../../modules/payment/reducer/PaymentReducer";
 import PaymentList from "../../modules/payment/components/componenAdmin/PaymentList";
-import ListSchedule from "../../modules/events/components/adminComponent/EventSchedule";
-import ListEvent from "../../modules/events/components/adminComponent/ListEvent";
+import ListSchedule from "../../modules/events/components/EventSchedule";
+import ListEvent from "../../modules/events/components/ListEvent";
 
 
 // public route
