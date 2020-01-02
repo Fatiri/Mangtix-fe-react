@@ -5,9 +5,7 @@ import Admin from "../../layout/admin/Admin";
 import Footer from "../../layout/customer/Footer";
 import AdminFooter from "../../layout/admin/AdminFooter";
 import AdminNavBar from "../../layout/admin/AdminNavBar";
-import EventContainer from "../../modules/events/EventContainer";
 import BookingContainer from "../../modules/booking/BookingContainer";
-import EventSchedule from "../../layout/customer/EventSchedule";
 import FormLogin from "../../modules/login/components/FormLogin";
 import TicketForm from "../../modules/tickets/components/component-admin/TicketForm";
 import {Provider} from "react-redux";
@@ -32,7 +30,6 @@ import EventUpdate from "../../modules/events/components/adminComponent/EventUpd
 import Main from "../../main/Main";
 import mainReducer from "../../main/MainReducer";
 import Cart from "../../modules/cart/component/Cart";
-import EventList from "../../modules/events/components/adminComponent/EventList";
 import Authentication from "../../authentication/Authentication";
 import FormChat from "../../modules/Chat/components/FormChat";
 import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
@@ -40,8 +37,8 @@ import {Redirect} from "react-router-dom";
 import MainHeader from "../../layout/customer/MainHeader";
 import paymentReducer from "../../modules/payment/reducer/PaymentReducer";
 import PaymentList from "../../modules/payment/components/componenAdmin/PaymentList";
-import ListEvent from "../../modules/events/components/ListEvent";
-import EventSchedule from "../../layout/customer/EventSchedule";
+import ListSchedule from "../../modules/events/components/adminComponent/EventSchedule";
+import ListEvent from "../../modules/events/components/adminComponent/ListEvent";
 
 
 // public route
@@ -176,8 +173,6 @@ export const EventScheduleRoute = ({component: Component, ...rest}) => {
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
 
-                        <Header/> {/* HEADER ALWAYS VISIBLE */}
-                            <EventSchedule/>
                         <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
                             <ListSchedule/>
                     </div>
