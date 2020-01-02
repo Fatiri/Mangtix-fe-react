@@ -47,9 +47,10 @@ class Events extends Component {
         console.log(id + "ini id")
         const data = await fetchDataEventId(id)
         console.log(data.eventName + "ini data event form")
-        this.props.dispatch({...handleChangeData, eventById: data, eventDetail: data.eventDetailList})
+        this.props.dispatch({...handleChangeData, eventById: data, eventDetail: data.eventDetailList, eventDetailById:data.eventDetailList[0]})
         console.log(this.props.eventById)
     }
+
 
     dataEventAll = async () => {
         const data = await fetchDataEvent();

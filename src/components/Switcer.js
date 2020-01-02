@@ -33,7 +33,6 @@ class Switcer extends Component {
                 <CategoryRoute exact path="/category"></CategoryRoute>
                 <BookingRouteAdmin exact path="/booking-list"></BookingRouteAdmin>
                 <PaymentRouteAdmin exact path="/admin/payment-list"></PaymentRouteAdmin>
-                <CartRoute exact path="/cart"></CartRoute>
                 <ChatRoute exact path="/chat-form"></ChatRoute>
                 <Route exact path="/users">Users</Route>
                 {/*<Route exact path="/dashboard"></Route>*/}

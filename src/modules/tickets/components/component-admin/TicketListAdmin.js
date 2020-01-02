@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {fetchDataTicket, fetchDataTicketById} from "../../service/TicketService";
-import {fetchticketsuccess, handleChangeData, handleChangeDataTicket} from "../../TicketAction";
+import {clearstatticketbyid, fetchticketsuccess, handleChangeData, handleChangeDataTicket} from "../../TicketAction";
 import {Link} from "react-router-dom";
 import {fetchDataEventId} from "../../../events/service/EventService";
 class TicketListAdmin extends React.Component{
@@ -11,7 +11,7 @@ class TicketListAdmin extends React.Component{
                 <div className="card">
                     <div className="card-header card-header-success">
                     <span className="card-title ">
-                        <Link to={"/ticket-form"} class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">Add Ticket
+                        <Link onClick={this.handleClear} to={"/ticket-form"} class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">Add Ticket
                             </Link>
                     </span>
                         <h3 className="card-category">Ticket List</h3>
@@ -54,6 +54,10 @@ class TicketListAdmin extends React.Component{
             let action = {...fetchticketsuccess, payload:data}
             this.props.dispatch(action)
         }
+    }
+
+    handleClear=()=>{
+        this.props.dispatch({...clearstatticketbyid})
     }
     componentDidMount() {
         this.dataTicket()
