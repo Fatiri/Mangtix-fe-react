@@ -1,33 +1,39 @@
-.App-employee {
+.App-forum {
     text-align: center;
     display: flex;
     flex-direction: row;
 }
 
-.homepage-employee {
+.chat-page {
     width: 100%;
-    display: flex-start;
+    display: flex;
     text-align: left;
 }
 
-.employeepage-employee {
+.page-image{
     width: 100%;
-    background: url('bg-cs.jpg');
-    background-repeat: no-repeat;
-    display: flex-start;
-    margin-top: 150px;
+    background: url('bg-cs.jpg') no-repeat;
+    display: flex;
+    margin-top: 100px;
 }
 
-.tulisan{
+.wrt{
     margin-top: 500px;
     font-size: 20px;
     font-weight: bold;
-    margin-left: 260px;
+    margin-left: 380px;
 }
 
+.msg{
+    margin-top: 20px;
+}
+
+.tm{
+    margin-left: 330px;
+}
 .comments-main{
-    background: black;
-    margin-bottom: 50px;
+    background: grey;
+    margin-bottom: 80px;
     margin-top: 50px;
     width: 576px;
 }
@@ -44,7 +50,7 @@
 }
 .comments .comment {
     background: #00AF90;
-    width: 150px;
+    width: 200px;
     margin-top: 15px;
     margin-right: 15px;
 }
@@ -54,7 +60,6 @@
 .comments .user-img img {
     width: 50px;
     height: 50px;
-    background-color: darkgrey;
     margin-top: 30px;
     margin-left: 15px;
 }
@@ -117,7 +122,7 @@
 }
 
 .comment-box-main{
-    background: black;
+    background: grey;
     width: 576px;
     margin: 0 .125rem 0 0;
 }
