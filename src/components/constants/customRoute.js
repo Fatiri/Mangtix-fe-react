@@ -31,7 +31,7 @@ import EventAdmin from "../../modules/events/components/adminComponent/EventAdmi
 import EventUpdate from "../../modules/events/components/adminComponent/EventUpdate";
 import Main from "../../main/Main";
 import mainReducer from "../../main/MainReducer";
-import Cart from "../../layout/customer/Cart";
+import Cart from "../../modules/cart/component/Cart";
 import Authentication from "../../authentication/Authentication";
 import FormChat from "../../modules/Chat/components/FormChat";
 import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";

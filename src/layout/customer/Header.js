@@ -5,6 +5,8 @@ import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
 import {fetchDataUserBYId} from "../../modules/users/service/UserService";
 import {fetchDataUser} from "../../modules/users/UserAction";
 import {connect} from "react-redux";
+import {fetchDataCartsByUser} from "../../modules/cart/service/CartService";
+import {fetchcart} from "../../reducerCustomer/ActionReducerCustomer";
 
 class Header extends Component {
     render() {
@@ -58,6 +60,7 @@ class Header extends Component {
     }
     componentDidMount() {
         this.handleFetchDataUser();
+        this.dataCart();
     }
 
     handleLogOut=()=>{
@@ -86,6 +89,15 @@ class Header extends Component {
         }else {
             localStorage.clear();
             return <Redirect to="/login"/>
+        }
+    }
+    dataCart=async ()=> {
+        const dataToken = decodeJwtToken();
+        if (!(dataToken === null)) {
+            const idUser = dataToken.jti;
+            const data = await fetchDataCartsByUser(idUser)
+            let action = {...fetchcart, cart: data}
+            this.props.dispatch(action)
         }
     }
 

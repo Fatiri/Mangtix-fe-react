@@ -6,6 +6,7 @@ import {fetchListDataEvent} from "./MainService";
 
 class Main extends Component {
     render() {
+
         return (
             <>
 
@@ -411,14 +412,19 @@ class Main extends Component {
             </>
         );
     }
-     componentDidMount=async()=> {
-    	const dataListEvent = await fetchListDataEvent();
-    	console.log(dataListEvent.descriptionEvent+"iniiiiiiiiiiiiiiiiiiiiiiiiiii")
-    	this.props.dispatch({...listEVent, listEvent:dataListEvent})
+    listDataEvent=async ()=>{
+		const dataListEvent = await fetchListDataEvent();
+		console.log(dataListEvent.descriptionEvent+"iniiiiiiiiiiiiiiiiiiiiiiiiiii")
+		let action={...listEVent, listEvent:dataListEvent}
+		this.props.dispatch(action)
 	}
+   componentDidMount() {
+    	this.listDataEvent()
+   }
 }
 
 const mapsStateToProps=(state)=>{
+	console.log(state)
 	return {...state}
 }
 
