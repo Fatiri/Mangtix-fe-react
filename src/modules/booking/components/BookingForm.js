@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Cart from "../../cart/component/Cart";
 
 class BookingForm extends React.Component {
     constructor(props) {
@@ -46,10 +47,10 @@ class BookingForm extends React.Component {
 
         return (
             <div>
-            <button onClick={this.IncrementItem}>+</button>
-            <input className="inputne" value={this.state.quantity} onChange={this.handleChange}/>
-            <button onClick = {this.DecreaseItem}>-</button>
-        </div>
-            )}}
+
+            </div>
+         );
+    }
+}
 
 export default BookingForm;

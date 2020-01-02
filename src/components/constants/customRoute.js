@@ -31,14 +31,17 @@ import EventAdmin from "../../modules/events/components/adminComponent/EventAdmi
 import EventUpdate from "../../modules/events/components/adminComponent/EventUpdate";
 import Main from "../../main/Main";
 import mainReducer from "../../main/MainReducer";
-import Cart from "../../modules/cart/components/Cart";
+import Cart from "../../modules/cart/component/Cart";
 import EventList from "../../modules/events/components/adminComponent/EventList";
 import Authentication from "../../authentication/Authentication";
 import FormChat from "../../modules/Chat/components/FormChat";
 import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
 import {Redirect} from "react-router-dom";
 import MainHeader from "../../layout/customer/MainHeader";
-import ListSchedule from "../../modules/events/components/userComponent/EventSchedule";
+import paymentReducer from "../../modules/payment/reducer/PaymentReducer";
+import PaymentList from "../../modules/payment/components/componenAdmin/PaymentList";
+import ListEvent from "../../modules/events/components/ListEvent";
+import EventSchedule from "../../layout/customer/EventSchedule";
 
 
 // public route
@@ -176,7 +179,7 @@ export const EventScheduleRoute = ({component: Component, ...rest}) => {
                         <Header/> {/* HEADER ALWAYS VISIBLE */}
                             <EventSchedule/>
                         <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
-                        <ListSchedule/>
+                            <ListSchedule/>
                     </div>
                     <Footer/>
                 </div>
@@ -210,7 +213,7 @@ export const EventRoute = ({component: Component, ...rest}) => {
                     <div id="content">
 
                         <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
-                        <EventContainer/>
+                            <ListEvent/>
                     </div>
                     <Footer/>
                 </div>
@@ -695,6 +698,29 @@ export const BookingRouteAdmin = ({component: Component, ...rest}) => {
                             <div className="container-fluid" id="container-wrapper">
                                 <Provider store={createStore(bookingReducer)}>
                                     <BookingFormAdmin/>
+                                </Provider>
+                            </div>
+                        </div>
+                        <AdminFooter/>
+                    </div>
+                </>
+            )}
+        />
+    )
+}
+export const PaymentRouteAdmin = ({component: Component, ...rest}) => {
+    return (
+        <Route
+            {...rest}
+            component={(props) => (
+                <>
+                    <Admin {...props}/>
+                    <div id="content-wrapper" className="d-flex flex-column">
+                        <div id="content">
+                            <AdminNavBar/>
+                            <div className="container-fluid" id="container-wrapper">
+                                <Provider store={createStore(paymentReducer)}>
+                                    <PaymentList/>
                                 </Provider>
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 import {badRequest400, succsessFetchData200} from "../../../components/constants";
 
-export async function saveDataPayment(event) {
-    const data = await fetch("http://localhost:9090/payment", {method:"POST",
+export async function saveDataCart(event) {
+    const data = await fetch("http://localhost:9090/cart", {method:"POST",
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(event)})
         .then((response) => {
@@ -15,21 +15,27 @@ export async function saveDataPayment(event) {
         })
     return data;
 }
-
-export async function fetchDataPayments() {
-    const data=await fetch(`http://localhost:9090/payments`,
+export async function fetchDataCartsByUser(userId) {
+    const data=await fetch(`http://localhost:9090/cart-user?userId=${userId}`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });
     console.log(data);
     return data;
 }
-export async function fetchDataUserAll() {
-    const data=await fetch(`http://localhost:9090/users`,
+export async function fetchDataCartsById(id) {
+    const data=await fetch(`http://localhost:9090/cart/${id}`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });
     console.log(data);
     return data;
 }
-
+export async function deleteDataCartsById(id) {
+    const data=await fetch(`http://localhost:9090/cart/${id}`,
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
+    console.log(data);
+    return data;
+}

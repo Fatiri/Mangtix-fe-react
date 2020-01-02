@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
+import {fetchDataRoleByRoleName} from "../service/RegistrationService";
+import {registrationRole} from "../RegistartionAction";
 
 
 class FormRegistration extends Component {
@@ -18,8 +21,8 @@ class FormRegistration extends Component {
                                                     <h1 className="h4 text-gray-100 mb-4">Register</h1>
                                                 </div>
                                                 <div>
-                                                    <p><Link to="/customer/registration" className="btn btn-primary btn-block">Customer</Link></p>
-                                                    <p><Link to="/management/registration" className="btn btn-primary btn-block">Management</Link></p>
+                                                    <p><Link to="/customer/registration" className="btn btn-primary btn-block" onClick={()=>{this.roleByRoleName("CUSTOMER")}}>Customer</Link></p>
+                                                    <p><Link onClick={()=>{this.roleByRoleName("MANAGEMENT")}} to="/management/registration" className="btn btn-primary btn-block">Management</Link></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -32,7 +35,15 @@ class FormRegistration extends Component {
             </div>
         );
     }
+    roleByRoleName=async(roleName)=>{
+        const data=await fetchDataRoleByRoleName(roleName);
+        let action = {...registrationRole, roleIdTransient:data.id}
+        console.log(action,"role")
+        this.props.dispatch(action);
+    }
+}
+const mapsStateToProps = (state) => {
+    return {...state}
 }
 
-
-export default FormRegistration;
+export default connect(mapsStateToProps)(FormRegistration);

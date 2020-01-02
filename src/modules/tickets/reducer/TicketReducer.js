@@ -19,7 +19,7 @@ const initialState = {
 }
 
 export default function ticketReducer(state = initialState, action) {
-    console.log("ticketReducer", state.ticketById);
+    console.log("ticketReducer", state,action);
     switch (action.type) {
         case "FETCH_CATEGORY_SUCCESS":
             return {...state, categories: action.payload};
@@ -44,15 +44,17 @@ export default function ticketReducer(state = initialState, action) {
         case "HANDLE_QUANTITY":
             return {...state, ticketForm: {...state.ticketForm, quantity: action.quantity}};
         case "HANDLE_ON_SALE_UPDATE":
-            return {...state, ticket: {...state.ticket, onSaleTransient: action.onSaleTransient}}
+            return {...state, ticketById: {...state.ticketById, onSaleTransient: action.onSaleTransient}}
         case "HANDLE_FREE_UPDATE":
-            return {...state, ticket: {...state.ticket, freeTransient: action.freeTransient}}
+            return {...state, ticketById: {...state.ticketById, freeTransient: action.freeTransient}}
         case "CLEAR_STATE":
             return {...state, ticketForm: {...initialState.ticketForm}};
+        case "CLEAR_STATE_TICKET_BY_ID":
+            return {...state, ticketById: initialState.ticketById, ticketCode: initialState.ticketCode, eventDetail: initialState.eventDetail};
         case "CLEAR_STATE_ON_SALE":
-            return {...state, ticket: {...initialState.ticket.onSaleTransient}};
+            return {...state, ticketById: {...initialState.ticketById.onSaleTransient}};
         case "CLEAR_STATE_FREE":
-            return {...state, ticket: {...initialState.ticket.freeTransient}};
+            return {...state, ticketById: {...initialState.ticketById.freeTransient}};
         case "HANDLE_CHANGE_DATA_TICKET":
             return {...state, ticketById:action.ticketById, category: action.category, eventDetail: action.eventDetail, ticketCode: action.ticketCode}
         default:

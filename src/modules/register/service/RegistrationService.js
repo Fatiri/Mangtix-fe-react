@@ -19,3 +19,11 @@ export async function registrationPost(userInfo) {
 
     }
 }
+export async function fetchDataRoleByRoleName(roleName) {
+    const data=await fetch(`http://localhost:9090/role-name?roleName=${roleName}`,
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
+    console.log(data);
+    return data;
+}

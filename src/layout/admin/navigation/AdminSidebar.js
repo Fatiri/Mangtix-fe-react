@@ -28,12 +28,6 @@ export default class AdminSidebar extends Component {
                         Features
                     </div>
                     <li className="nav-item">
-                        <Link className="nav-link" to="cart">
-                            <i className="fas fa-fw fa-shopping-basket"/>
-                            <span>Cart</span>
-                        </Link>
-                    </li>
-                    <li className="nav-item">
                         <Link className="nav-link" to="/booking-list">
                             <i className="fas fa-fw fa-credit-card"/>
                             <span>Booking</span>
@@ -61,6 +55,12 @@ export default class AdminSidebar extends Component {
                         <Link className="nav-link" to="/ticket-list-admin">
                             <i className="fas fa-fw fa-home"/>
                             <span>Ticket</span>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/admin/payment-list">
+                            <i className="fas fa-fw fa-home"/>
+                            <span>Payment</span>
                         </Link>
                     </li>
                     <hr className="sidebar-divider"/>

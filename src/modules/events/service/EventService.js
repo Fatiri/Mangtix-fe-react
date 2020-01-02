@@ -81,3 +81,19 @@ export async function fetchDataEventId(id) {
     console.log(data);
     return data;
 }
+export async function fetchDataEventDetailId(id) {
+    const data = await fetch(`http://localhost:9090/event-detail/${id}`, {method: "GET"})
+        .then((response) => {
+            return response.json()
+        });
+    console.log(data);
+    return data;
+}
+export async function fetchDataEventByEventDetail(eventDetailId) {
+    const data = await fetch(`http://localhost:9090/event-detail?eventDetailId=${eventDetailId}`, {method: "GET"})
+        .then((response) => {
+            return response.json()
+        });
+    console.log(data);
+    return data;
+}

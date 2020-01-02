@@ -6,7 +6,7 @@ import {fetchbookingsuccess, fetchusersuccess} from "../../BookingAction";
 class BookingListAdmin extends React.Component {
     render() {
         return (
-            <div className="row">
+            <div>
                 <div className="accordion" id="accordionExample">
                     <div className="card">
                         <div className="card-header" id="headingOne">
