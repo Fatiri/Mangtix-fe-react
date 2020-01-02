@@ -5,9 +5,8 @@ import LocationContainer from "../modules/location/LocationContainer";
 import {
     AdminRoute,
     BookingRoute, BookingRouteAdmin,
-    CartRoute,
-    LoginRoute,
-    PublicRoute, TicketRoute, PaymentRouteAdmin
+    LoginRoute, PaymentRouteAdmin,
+    PublicRoute, TicketRoute,
 } from "./constants/customRoute";
 import {CategoryRoute, ChatRoute} from "./constants";
 class Switcer extends Component {

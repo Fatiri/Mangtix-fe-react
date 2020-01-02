@@ -515,7 +515,7 @@
 .product_quantity input
 {
   display: block;
-  width: 30px;
+  width: 50px;
   height: 57px;
   border: none;
   outline: none;
@@ -551,7 +551,7 @@
 }
 .quantity_control i
 {
-  font-size: 10px;
+  font-size: 12px;
   color: #232323;
   pointer-events: none;
 }
