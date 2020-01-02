@@ -4,7 +4,7 @@ import {createStore} from "redux";
 import EventForm from "./components/adminComponent/EventForm";
 import eventReducer from "./reducer/EventReducer";
 import EventByCompany from "./components/adminComponent/EventByCompany";
-import ListEvent from "./components/adminComponent/ListEvent";
+import ListEvent from "./components/ListEvent";
 
 
 class EventContainer extends Component {
