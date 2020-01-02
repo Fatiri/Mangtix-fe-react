@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import Events from "../../../layout/customer/Events";
+import Events from "../../../../layout/customer/Events";
 
 class ListEvent extends Component {
     render() {
         return (
             <div>
-            <Events/>
+                <Events/>
             </div>
-    );
+        );
     }
 }
 

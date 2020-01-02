@@ -5,9 +5,7 @@ import Admin from "../../layout/admin/Admin";
 import Footer from "../../layout/customer/Footer";
 import AdminFooter from "../../layout/admin/AdminFooter";
 import AdminNavBar from "../../layout/admin/AdminNavBar";
-import EventContainer from "../../modules/events/EventContainer";
 import BookingContainer from "../../modules/booking/BookingContainer";
-import ListSchedule from "../../modules/schedules/components/ListSchedule";
 import FormLogin from "../../modules/login/components/FormLogin";
 import TicketForm from "../../modules/tickets/components/component-admin/TicketForm";
 import {Provider} from "react-redux";
@@ -39,8 +37,8 @@ import {Redirect} from "react-router-dom";
 import MainHeader from "../../layout/customer/MainHeader";
 import paymentReducer from "../../modules/payment/reducer/PaymentReducer";
 import PaymentList from "../../modules/payment/components/componenAdmin/PaymentList";
-import ListEvent from "../../modules/events/components/ListEvent";
-import EventSchedule from "../../layout/customer/EventSchedule";
+import ListSchedule from "../../modules/events/components/adminComponent/EventSchedule";
+import ListEvent from "../../modules/events/components/adminComponent/ListEvent";
 
 
 // public route
@@ -746,7 +744,14 @@ export const ChatRoute = ({component: Component, ...rest}) => {
     return (
         <Route {...rest} component={(props) => (
             <>
+                <div id="content-wrapper" className="d-flex flex-column">
+                    <div id="content">
+
+                        <MainHeader/>
                 <FormChat/>
+                    </div>
+                    <Footer/>
+                </div>
             </>
         )}
         />
