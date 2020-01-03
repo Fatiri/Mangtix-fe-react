@@ -15,17 +15,20 @@ class EventSchedule extends Component {
     render() {
         console.log("LOGGG", this.props);
         let stock = 0;
-        this.props.ticket.map((element1) => {
-            if (element1.eventDetail.id === this.props.eventDetailById.id) {
-                return element1.ticketCodes.map((ticketCode) => {
-                    if (ticketCode.available == true) {
-                        return stock = stock + 1;
-                    }
-                })
-            }
-
-
-        })
+        let stockVvip = 0;
+        let stockVip = 0;
+        let stockPresale = 0;
+        let stockPresale1 = 0;
+        // this.props.ticket.map((element1, index) => {
+        //     if (element1.eventDetail.id === this.props.eventDetailById.id) {
+        //         element1.ticketCodes.map((ticketCode) => {
+        //             if (ticketCode.available === true) {
+        //                 return stock = stock + 1;
+        //             }
+        //             console.log(stock, "stock")
+        //         })
+        //     }
+        // })
         return (
             <div>
 
@@ -47,7 +50,7 @@ class EventSchedule extends Component {
                                             return <>
                                                 <li className="nav-tabstabsitem text-center">
                                                     <button onClick={() => (this.handleEventDetail(element.id))}
-                                                            className={element.id === this.props.eventDetailById.id ? "btn active btn-group-toggle" : "btn btn-group-toggle"}
+                                                            className={element.id === this.props.eventDetailById.id ? "btn active btn-secondary" : "btn btn-outline-secondary"}
                                                             data-toggle="tab">
                                                         <h4>{element.eventDay}</h4>
                                                         <p>{element.eventDate}</p>
@@ -61,6 +64,29 @@ class EventSchedule extends Component {
                                         {this.props.ticket.map((element1) => {
                                             console.log("kondisi")
                                             if (element1.eventDetail.id === this.props.eventDetailById.id) {
+                                                element1.ticketCodes.map((ticketCode) => {
+                                                    if (ticketCode.available === true) {
+                                                        if (element1.category.categoryName === "VVIP") {
+                                                            stockVvip = stockVvip + 1;
+                                                            return stock = stockVvip
+                                                        }
+                                                        if (element1.category.categoryName === "VIP") {
+                                                             stockVip = stockVip + 1;
+                                                            return stock = stockVip
+                                                        }
+                                                        if (element1.category.categoryName == "PRESALE") {
+                                                            stockPresale = stockPresale + 1;
+                                                            return stock = stockPresale
+                                                        }
+                                                        if (element1.category.categoryName == "PRESALE2") {
+                                                             stockPresale1 = stockPresale1 + 1;
+                                                            return stock = stockPresale1
+                                                        }
+
+                                                    }
+
+
+                                                })
                                                 return <div>
                                                     <div id="day" className="tab-pane">
                                                         <div className="schedule-card">
@@ -70,24 +96,24 @@ class EventSchedule extends Component {
                                                                          alt=""></img>
                                                                 </div>
 
-                                                                {stock > 0 ?
+                                                                {stock > 0  ?
                                                                     <div className="col-md-9 align-self-center">
                                                                         <div className="schedule-content">
                                                                             <p className="schedule-date">{element1.eventDetail.eventDate}</p>
                                                                             <a className="schedule-title"
                                                                                href="#"></a>
                                                                             <h3>{element1.category.categoryName}</h3>
-                                                                            <h4>{stock}</h4>
+                                                                            <h4>Stock = {stock}</h4>
                                                                             <div className="row mt-5">
                                                                                 <div className="col-12 text-center">
-                                                                                    <button onClick={() => {
-                                                                                        this.addCart(element1.id)
-                                                                                    }} className="button mb-2">Choose
-                                                                                        Ticket
-                                                                                    </button>
                                                                                     <Link onClick={() => {
                                                                                         this.addCart(element1.id)
-                                                                                    }} className="button mb-2"
+                                                                                    }} className="button mb-4">Choose
+                                                                                        Ticket
+                                                                                    </Link>
+                                                                                    <Link onClick={() => {
+                                                                                        this.addCart(element1.id)
+                                                                                    }} className="button mb-4"
                                                                                           to="/cart">Buy
                                                                                         Ticket</Link>
                                                                                 </div>
@@ -103,10 +129,12 @@ class EventSchedule extends Component {
                                                                             <h4>Ticket Sold Out</h4>
                                                                             <div className="row mt-5">
                                                                                 <div className="col-12 text-center">
-                                                                                    <button disabled={true} className="button mb-2">Choose
+                                                                                    <button disabled={true}
+                                                                                            className="button mb-4">Choose
                                                                                         Ticket
                                                                                     </button>
-                                                                                    <Link disabled={true} className="button mb-2">Buy
+                                                                                    <Link disabled={true}
+                                                                                          className="button mb-4">Buy
                                                                                         Ticket</Link>
                                                                                 </div>
                                                                             </div>

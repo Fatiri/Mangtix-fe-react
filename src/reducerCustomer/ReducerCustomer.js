@@ -6,6 +6,7 @@ const initialState= {
     ticket:[],
     cart:[],
     cartForm:{ticketIdTransient:"",userIdTransient:"",quantity:""},
+    cartFormUpdate:{},
     bookingForm:{userIdTransient:"",bookingDetailList:[]}
 }
 export default function reducerCustomer(state=initialState, action){
@@ -23,12 +24,32 @@ export default function reducerCustomer(state=initialState, action){
             return {...state, eventDetailById: action.payload}
         case "FETCH_CART":
             return {...state, cart: action.cart}
+        case "FETCH_CART_BY_ID":
+            return {...state, cartFormUpdate: action.cartFormUpdate}
         case "HANDLE_TICKET_TRANSIENT":
             return {...state, cartForm: {...state.cartForm, ticketIdTransient: action.ticketIdTransient}}
         case "HANDLE_USER_TRANSIENT":
             return {...state, cartForm: {...state.cartForm, userIdTransient: action.userIdTransient}}
         case "HANDLE_QUANTITY":
             return {...state, cartForm: {...state.cartForm, quantity: action.quantity}}
+        case "HANDLE_QUANTITY_UPDATE":
+            return {...state, cartFormUpdate:{...state.cartFormUpdate, quantity:action.quantity}}
+        case "HANDLE_INCREMENT":
+            return {...state, cart: state.cart.map((element, index)=>{
+                        if (index===action.index){
+                            return element.quantity + 1;
+                        }else {
+                            return element.quantity;
+                        }
+                    })}
+        case "HANDLE_DECREMENT":
+            return {...state, cart: state.cart.map((element, index)=>{
+                    if (index===action.index){
+                        return element.quantity - 1;
+                    }else {
+                        return element.quantity;
+                    }
+                })}
         default:
             return {...state}
     }
