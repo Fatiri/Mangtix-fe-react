@@ -46,41 +46,34 @@ export default class FormChat extends Component {
             <div className="container col-md-12">
                 <div className="App-forum">
                     <div className="page-image">
-                        <div className="wrt">For a faster response, <br/>send your question or request through this
-                            forum.
-                        </div>
+                        <div className="wrt">For a faster response, <br/>send your question or request through this forum.</div>
                     </div>
                     <div className="chat-page">
-                    <div className="comments-main pt-4 rounded">
-                        <ul className="p-0">
-                            <h2 className="title">Chatting</h2>
-                                    <li>
-                                        <h3 className="ex1">
-                                            {this.state.messages.map((message) => {
-                                                const _class = message.user === this.state.username
-                                                return (
-                                                    <div className="row comments bd">
-                                                        <div className="user-img">
-                                                            <img src="http://brainstormcursos.com.br/wp-content/uploads/2016/01/default-avatar.jpg"
-                                                                 className="rounded-circle" alt="Profile Picture"/>
-                                                        </div>
-                                                        <div className="box chat">
-                                                            <h5 className="m-0">{message.user}</h5>
-                                                    <h6 className="msg">{message.message}</h6>
+                        <div className="comments-main pt-4 rounded">
+                            <ul className="p-0">
+                                <h2 className="title">Chatting</h2>
+                                <li>
+                                    <h3 className="ex1">
+                                        {this.state.messages.map((message) => {
+                                            const _class = message.user === this.state.username
+                                            return (
+                                                <div className="row comments bd">
+                                                    <div className="user-img">
+                                                        <img src="http://brainstormcursos.com.br/wp-content/uploads/2016/01/default-avatar.jpg"
+                                                             className="rounded-circle" alt="Profile Picture"/>
                                                     </div>
-                                                    <div className="col-md-9 col-sm-9 col-9 comment rounded mb-2">
-                                                        <h4 className="m-0">{message.user}</h4>
-                                                        <div className="msg">
-                                                            <p className="mb-0 text-white">{message.message}</p>
-                                                            <time className="tm">1 hours ago</time>
-                                                        </div>
-                                                    )})}
-                                        </h3>
-                                    </li>
+                                                    <div className="box chat">
+                                                        <h5 className="m-0">{message.user}</h5>
+                                                        <h6 className="msg">{message.message}</h6>
+                                                    </div>
+                                                </div>
+                                            )})}
+                                    </h3>
+                                </li>
 
                                 <div class="row comment-box-main p-3 rounded-bottom">
                                     <div class="col-md-9 col-sm-9 col-9 pr-0 comment-box">
-                                        <input type="text" class="form-control" placeholder="comment ...."/>
+                                        <input type="text" class="form-control" placeholder="comment ...." />
                                     </div>
                                     <div class="col-md-3 col-sm-2 col-2 pl-0 text-center send-btn">
                                         <button class="btn btn-info">Send</button>
@@ -95,3 +88,4 @@ export default class FormChat extends Component {
         );
     }
 }
+
