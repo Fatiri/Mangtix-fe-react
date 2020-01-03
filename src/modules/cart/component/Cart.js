@@ -2,9 +2,14 @@ import React, {Component} from 'react';
 import '../../../App.css';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {deleteDataCartsById, fetchDataCartsByUser} from "../service/CartService";
+import {deleteDataCartsById, fetchDataCartsById, fetchDataCartsByUser} from "../service/CartService";
 import decodeJwtToken from "../../../authentication/AutheticationDecodeJwt";
-import {fetchcart, fetcheventsuccess} from "../../../reducerCustomer/ActionReducerCustomer";
+import {
+    fetchcart,
+    fetchcartbyid,
+    fetcheventsuccess, handledecrement,
+    handleincrement
+} from "../../../reducerCustomer/ActionReducerCustomer";
 import {fetchDataEvent} from "../../events/service/EventService";
 
 class Cart extends Component {
@@ -50,8 +55,8 @@ class Cart extends Component {
 
                                                         <div><img src="img/clients-logo/VVIP.png" alt=""></img></div>
                                                         {this.props.events.map((element1, index1) => {
-                                                            {
-                                                                element1.eventDetailList.map((eventDetail) => {
+                                                            return <>
+                                                                {element1.eventDetailList.map((eventDetail) => {
                                                                     console.log(element.ticket.eventDetail.id, "  ke1")
                                                                     console.log(eventDetail.id, "  ke2")
                                                                     if (eventDetail.id === element.ticket.eventDetail.id) {
@@ -60,8 +65,8 @@ class Cart extends Component {
                                                                             className="cart_item_product">{element1.eventName}</div>
                                                                     }
                                                                 })
-                                                            }
-
+                                                                }
+                                                            </>
                                                         })}
 
 
@@ -75,13 +80,13 @@ class Cart extends Component {
                                                                    value={element.quantity}></input>
                                                             <div className="quantity_buttons">
                                                                 <div id="quantity_inc_button"
-                                                                     className="quantity_inc quantity_control"><i
-                                                                    className="fa fa-chevron-up" aria-hidden="true"></i>
+                                                                     className="quantity_inc quantity_control"><button onClick={()=>{this.handleIncrement(index)}}><i
+                                                                    className="fa fa-chevron-up" aria-hidden="true"></i></button>
                                                                 </div>
                                                                 <div id="quantity_dec_button"
-                                                                     className="quantity_dec quantity_control"><i
+                                                                     className="quantity_dec quantity_control"><button onClick={()=>{this.handleDecrement(index)}}><i
                                                                     className="fa fa-chevron-down"
-                                                                    aria-hidden="true"></i>
+                                                                    aria-hidden="true"></i></button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -102,8 +107,10 @@ class Cart extends Component {
                                                         <div className="button continue_shopping_button"><Link to="#">Continue
                                                             Booking</Link></div>
                                                         <div className="cart_buttons_right ml-lg-auto">
-                                                            <div onClick={()=>{this.deleteACart(element.id)}} className="button clear_cart_button"><Link to="#">Clear
-                                                                cart</Link>
+                                                            <div className="button clear_cart_button"><Link
+                                                                onClick={() => {
+                                                                    this.deleteACart(element.id)
+                                                                }} to="#">Clear cart</Link>
                                                             </div>
                                                             <div className="button update_cart_button"><Link to="#">Update
                                                                 cart</Link>
@@ -128,8 +135,8 @@ class Cart extends Component {
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <div className="button checkout_button"><a href="#">Proceed to
-                                                    checkout</a>
+                                                <div className="button checkout_button"><Link to="#">Proceed to
+                                                    checkout</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -142,9 +149,25 @@ class Cart extends Component {
             </div>
         );
     }
+    handleIncrement=(index)=>{
+        this.props.dispatch({...handleincrement, index:index})
+        this.dataCart()
+    }
+    handleDecrement=(index)=>{
+        this.props.dispatch({...handledecrement, index:index})
+        this.dataCart()
+    }
+    updateCart = async (cartId) => {
+        const data = await fetchDataCartsById(cartId);
+        console.log(data)
+        let action = {...fetchcartbyid, cartFormUpdate: data}
+        this.props.dispatch(action)
 
-    deleteACart=async (cartId)=>{
+    }
+
+    deleteACart = async (cartId) => {
         await deleteDataCartsById(cartId);
+        this.dataCart()
     }
     dataCart = async () => {
         const dataToken = decodeJwtToken();
