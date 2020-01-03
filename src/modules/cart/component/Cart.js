@@ -8,7 +8,7 @@ import {
     fetchcart,
     fetchcartbyid,
     fetcheventsuccess, handledecrement,
-    handleincrement
+    handleincrement, handlequantityupdate
 } from "../../../reducerCustomer/ActionReducerCustomer";
 import {fetchDataEvent} from "../../events/service/EventService";
 
@@ -34,6 +34,7 @@ class Cart extends Component {
                         {this.props.cart.length === 0 ? <h3>Please choose a ticket</h3> :
                             <div className="cart_info">
                                 <div className="container">
+                                    <form>
                                     <div className="row">
                                         <div className="col">
                                             <div className="cart_info_columns clearfix">
@@ -74,21 +75,24 @@ class Cart extends Component {
                                                             <span>Rp. </span> {element.ticket.price}
                                                         </div>
 
-                                                        <div className="product_quantity clearfix">
+                                                        <div className="product_quantity">
                                                             <span>Qty</span>
-                                                            <input id="quantity_input" type="text" pattern="[0-9]*"
-                                                                   value={element.quantity}></input>
-                                                            <div className="quantity_buttons">
-                                                                <div id="quantity_inc_button"
-                                                                     className="quantity_inc quantity_control"><button onClick={()=>{this.handleIncrement(index)}}><i
-                                                                    className="fa fa-chevron-up" aria-hidden="true"></i></button>
-                                                                </div>
-                                                                <div id="quantity_dec_button"
-                                                                     className="quantity_dec quantity_control"><button onClick={()=>{this.handleDecrement(index)}}><i
-                                                                    className="fa fa-chevron-down"
-                                                                    aria-hidden="true"></i></button>
-                                                                </div>
-                                                            </div>
+                                                            <input className="form-control-sm" id="quantity_input" type="number" min={1} pattern="[0-9]*" max={4}
+                                                                   value={element.quantity}
+                                                                   onChange={(event)=>{this.props.dispatch({...handlequantityupdate, quantity:event.target.value, index:index})}}
+                                                            >
+                                                            </input>
+                                                            {/*<div className="quantity_buttons">*/}
+                                                            {/*    <div id="quantity_inc_button"*/}
+                                                            {/*         className="quantity_inc quantity_control"><button onClick={()=>{this.handleIncrement(element.quantity,index)}}><i*/}
+                                                            {/*        className="fa fa-chevron-up" aria-hidden="true"></i></button>*/}
+                                                            {/*    </div>*/}
+                                                            {/*    <div id="quantity_dec_button"*/}
+                                                            {/*         className="quantity_dec quantity_control"><button onClick={()=>{this.handleDecrement(index)}}><i*/}
+                                                            {/*        className="fa fa-chevron-down"*/}
+                                                            {/*        aria-hidden="true"></i></button>*/}
+                                                            {/*    </div>*/}
+                                                            {/*</div>*/}
                                                         </div>
 
                                                         <div className="cart_item_total">
@@ -135,12 +139,13 @@ class Cart extends Component {
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <div className="button checkout_button"><Link to="#">Proceed to
+                                                <div className="button checkout_button"><Link to="/booking">Proceed to
                                                     checkout</Link>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         }
@@ -149,8 +154,8 @@ class Cart extends Component {
             </div>
         );
     }
-    handleIncrement=(index)=>{
-        this.props.dispatch({...handleincrement, index:index})
+    handleIncrement=(quantity,index)=>{
+        this.props.dispatch({...handleincrement, quantity:quantity, index:index})
         this.dataCart()
     }
     handleDecrement=(index)=>{

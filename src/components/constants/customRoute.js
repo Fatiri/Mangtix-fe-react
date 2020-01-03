@@ -39,6 +39,7 @@ import paymentReducer from "../../modules/payment/reducer/PaymentReducer";
 import PaymentList from "../../modules/payment/components/componenAdmin/PaymentList";
 import ListSchedule from "../../modules/events/components/EventSchedule";
 import ListEvent from "../../modules/events/components/ListEvent";
+import BookingForm from "../../modules/booking/components/BookingForm";
 
 
 // public route
@@ -145,25 +146,6 @@ export const LoginRoute = ({component: Component, ...rest}) => {
     )
 }
 
-export const BookingRoute = ({component: Component, ...rest}) => {
-    return (
-        <Route {...rest} component={(props) => (
-            <>
-                <div id="content-wrapper" className="d-flex flex-column">
-                    <div id="content">
-
-                        <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
-                        <div className="container-fluid" id="container-wrapper">
-                            <BookingContainer/>
-                        </div>
-                    </div>
-                    <Footer/>
-                </div>
-            </>
-        )}
-        />
-    )
-}
 
 
 export const EventScheduleRoute = ({component: Component, ...rest}) => {
@@ -226,6 +208,22 @@ export const CartRoute = ({component: Component, ...rest}) => {
                     <div id="content">
                         <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
                         <Cart/>
+                    </div>
+                    <Footer/>
+                </div>
+            </>
+        )}
+        />
+    );
+};
+export const BookingRoute = ({component: Component, ...rest}) => {
+    return (
+        <Route {...rest} component={(props) => (
+            <>
+                <div id="content-wrapper" className="d-flex flex-column">
+                    <div id="content">
+                        <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
+                        <BookingForm/>
                     </div>
                     <Footer/>
                 </div>
