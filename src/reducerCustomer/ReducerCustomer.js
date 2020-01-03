@@ -33,13 +33,19 @@ export default function reducerCustomer(state=initialState, action){
         case "HANDLE_QUANTITY":
             return {...state, cartForm: {...state.cartForm, quantity: action.quantity}}
         case "HANDLE_QUANTITY_UPDATE":
-            return {...state, cartFormUpdate:{...state.cartFormUpdate, quantity:action.quantity}}
+            return {...state, cart: state.cart.map((element, index)=>{
+                    if (index===action.index){
+                        return {...element, quantity:action.quantity};
+                    }else {
+                        return {...element};
+                    }
+                })}
         case "HANDLE_INCREMENT":
             return {...state, cart: state.cart.map((element, index)=>{
                         if (index===action.index){
-                            return element.quantity + 1;
+                            return {...element, quantity:action.quantity + 1};
                         }else {
-                            return element.quantity;
+                            return {...element};
                         }
                     })}
         case "HANDLE_DECREMENT":

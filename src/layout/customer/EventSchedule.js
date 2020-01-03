@@ -68,18 +68,22 @@ class EventSchedule extends Component {
                                                     if (ticketCode.available === true) {
                                                         if (element1.category.categoryName === "VVIP") {
                                                             stockVvip = stockVvip + 1;
+                                                            console.log(stockVvip,"stockVvip")
                                                             return stock = stockVvip
                                                         }
-                                                        if (element1.category.categoryName === "VIP") {
+                                                        else if (element1.category.categoryName === "VIP") {
                                                              stockVip = stockVip + 1;
+                                                            console.log(stockVip,"stockVip")
                                                             return stock = stockVip
                                                         }
-                                                        if (element1.category.categoryName == "PRESALE") {
+                                                        else if (element1.category.categoryName === "PRESALE") {
                                                             stockPresale = stockPresale + 1;
+                                                            console.log(stockPresale, "stockPresale")
                                                             return stock = stockPresale
                                                         }
-                                                        if (element1.category.categoryName == "PRESALE2") {
+                                                        else if (element1.category.categoryName === "PRESALE1") {
                                                              stockPresale1 = stockPresale1 + 1;
+                                                            console.log(stockPresale1,"stockPresale1")
                                                             return stock = stockPresale1
                                                         }
 
