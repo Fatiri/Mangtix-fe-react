@@ -17,7 +17,7 @@ class BookingListAdmin extends React.Component {
                                 <thead>
                                 <th>Username</th>
                                 <th>Full Name</th>
-                                <th>Action</th>
+                                <th><center>Action</center></th>
                                 </thead>
                                 {this.props.user.map((element, index) => {
                                     return <tbody>
@@ -54,7 +54,7 @@ class BookingListAdmin extends React.Component {
                                 </button>
                             </div>
                             <table className="table table-hover modal-body">
-                                <thead>
+                                <thead className="thead-dark">
                                 <th>Id Booking</th>
                                 <th>Booking Date</th>
                                 <th>Username</th>
