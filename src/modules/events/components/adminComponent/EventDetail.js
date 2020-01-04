@@ -17,14 +17,14 @@ class EventDetail extends React.Component {
                 <div className="card-header card-header-primary">
                     <h5 className="card-title">
                         <button className="btn btn-primary" onClick={goBack}><i
-                            className="fa fa-arrow-alt-circle-left"></i></button>
+                            className="fas fa-arrow-alt-circle-left"></i></button>
                     </h5>
                     <br/>
                     <h3 className="card-category">Detail Event</h3>
                     {role === "ADMIN"?this.props.eventById.publishStatus===true?"":<button
-                                              onClick={() => this.handleUpdateAdmin(this.props.eventById.id)}>Validation</button>
+                                              onClick={() => this.handleUpdateAdmin(this.props.eventById.id)} className="btn btn-primary">Validation</button>
                         :role ==="MANAGEMENT"?
-                    <Link to={"/event-update"} onClick={() => this.handleUpdate(this.props.eventById.id)}>Update</Link>:""}
+                    <Link to={"/event-update"} onClick={() => this.handleUpdate(this.props.eventById.id)}  className="btn btn-warning">Update</Link>:""}
 
                 </div>
                 <form>

@@ -11,7 +11,7 @@ class TicketListAdmin extends React.Component{
                 <div className="card">
                     <div className="card-header card-header-success">
                     <span className="card-title ">
-                        <Link onClick={this.handleClear} to={"/ticket-form"} class="btn btn-outline-primary btn-sm " role="button" aria-pressed="true">Add Ticket
+                        <Link onClick={this.handleClear} to={"/ticket-form"} class="btn btn-outline-primary btn-md" role="button" aria-pressed="true" style={{marginBottom:30}}>Add Ticket
                             </Link>
                     </span>
                         <h3 className="card-category">Ticket List</h3>

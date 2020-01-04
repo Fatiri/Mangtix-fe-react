@@ -30,7 +30,7 @@ class EventForm extends React.Component {
                         <div className="card-header card-header-primary">
                             <h5 className="card-title">
                                 <button className="btn btn-primary" onClick={goBack}><i
-                                    className="fa fa-arrow-alt-circle-left"></i></button>
+                                    className="fas fa-arrow-alt-circle-left"></i></button>
                             </h5>
                             <br/>
                             <h3 className="card-category">Add Event</h3>
