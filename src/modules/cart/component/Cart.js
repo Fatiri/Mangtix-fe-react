@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import '../../../App.css';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {deleteDataCartsById, fetchDataCartsById, fetchDataCartsByUser} from "../service/CartService";
+import {deleteDataCartsById, fetchDataCartsById, fetchDataCartsByUser, updateDataCart} from "../service/CartService";
 import decodeJwtToken from "../../../authentication/AutheticationDecodeJwt";
 import {
+    addbookingdetail,
     fetchcart,
     fetchcartbyid,
-    fetcheventsuccess, handledecrement,
-    handleincrement, handlequantityupdate
+    fetcheventsuccess, handlebooking,
+    handlequantitybooking, handlequantityupdate, handletickettransientbooking
 } from "../../../reducerCustomer/ActionReducerCustomer";
 import {fetchDataEvent} from "../../events/service/EventService";
 
@@ -35,116 +36,116 @@ class Cart extends Component {
                             <div className="cart_info">
                                 <div className="container">
                                     <form>
-                                    <div className="row">
-                                        <div className="col">
-                                            <div className="cart_info_columns clearfix">
-                                                <div className="cart_info_col cart_info_col_product">Ticket</div>
-                                                <div className="cart_info_col cart_info_col_event">Event</div>
-                                                <div className="cart_info_col cart_info_col_price">Price</div>
-                                                <div className="cart_info_col cart_info_col_quantity">Quantity</div>
-                                                <div className="cart_info_col cart_info_col_total">Sub Total</div>
+                                        <div className="row">
+                                            <div className="col">
+                                                <div className="cart_info_columns clearfix">
+                                                    <div className="cart_info_col cart_info_col_product">Ticket</div>
+                                                    <div className="cart_info_col cart_info_col_event">Event</div>
+                                                    <div className="cart_info_col cart_info_col_price">Price</div>
+                                                    <div className="cart_info_col cart_info_col_quantity">Quantity</div>
+                                                    <div className="cart_info_col cart_info_col_total">Sub Total</div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    {this.props.cart.map((element, index) => {
-                                        return <>
-                                            <div className="row cart_items_row">
-                                                <div className="col">
+                                        {this.props.cart.map((element, index) => {
+                                            return <>
+                                                <div className="row cart_items_row">
+                                                    <div className="col">
 
-                                                    <div
-                                                        className="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+                                                        <div
+                                                            className="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
 
-                                                        <div><img src="img/clients-logo/VVIP.png" alt=""></img></div>
-                                                        {this.props.events.map((element1, index1) => {
-                                                            return <>
-                                                                {element1.eventDetailList.map((eventDetail) => {
-                                                                    console.log(element.ticket.eventDetail.id, "  ke1")
-                                                                    console.log(eventDetail.id, "  ke2")
-                                                                    if (eventDetail.id === element.ticket.eventDetail.id) {
-                                                                        console.log(element1.eventName)
-                                                                        return <div
-                                                                            className="cart_item_product">{element1.eventName}</div>
+                                                            <div><img src="img/clients-logo/VVIP.png" alt=""></img>
+                                                            </div>
+                                                            {this.props.events.map((element1, index1) => {
+                                                                return <>
+                                                                    {element1.eventDetailList.map((eventDetail) => {
+                                                                        console.log(element.ticket.eventDetail.id, "  ke1")
+                                                                        console.log(eventDetail.id, "  ke2")
+                                                                        if (eventDetail.id === element.ticket.eventDetail.id) {
+                                                                            console.log(element1.eventName)
+                                                                            return <div
+                                                                                className="cart_item_product">{element1.eventName}</div>
+                                                                        }
+                                                                    })
                                                                     }
-                                                                })
-                                                                }
-                                                            </>
-                                                        })}
+                                                                </>
+                                                            })}
 
 
-                                                        <div className="cart_item_price">
-                                                            <span>Rp. </span> {element.ticket.price}
-                                                        </div>
-
-                                                        <div className="product_quantity">
-                                                            <span>Qty</span>
-                                                            <input className="form-control-sm" id="quantity_input" type="number" min={1} pattern="[0-9]*" max={4}
-                                                                   value={element.quantity}
-                                                                   onChange={(event)=>{this.props.dispatch({...handlequantityupdate, quantity:event.target.value, index:index})}}
-                                                            >
-                                                            </input>
-                                                            {/*<div className="quantity_buttons">*/}
-                                                            {/*    <div id="quantity_inc_button"*/}
-                                                            {/*         className="quantity_inc quantity_control"><button onClick={()=>{this.handleIncrement(element.quantity,index)}}><i*/}
-                                                            {/*        className="fa fa-chevron-up" aria-hidden="true"></i></button>*/}
-                                                            {/*    </div>*/}
-                                                            {/*    <div id="quantity_dec_button"*/}
-                                                            {/*         className="quantity_dec quantity_control"><button onClick={()=>{this.handleDecrement(index)}}><i*/}
-                                                            {/*        className="fa fa-chevron-down"*/}
-                                                            {/*        aria-hidden="true"></i></button>*/}
-                                                            {/*    </div>*/}
-                                                            {/*</div>*/}
-                                                        </div>
-
-                                                        <div className="cart_item_total">
-                                                            <span>Rp. </span> {element.subTotal}
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-
-                                            <div className="row row_cart_buttons">
-                                                <div className="col">
-                                                    <div
-                                                        className="cart_buttons d-flex flex-lg-row flex-column align-items-start justify-content-start">
-                                                        <div className="button continue_shopping_button"><Link to="#">Continue
-                                                            Booking</Link></div>
-                                                        <div className="cart_buttons_right ml-lg-auto">
-                                                            <div className="button clear_cart_button"><Link
-                                                                onClick={() => {
-                                                                    this.deleteACart(element.id)
-                                                                }} to="#">Clear cart</Link>
+                                                            <div className="cart_item_price">
+                                                                <span>Rp. </span> {element.ticket.price}
                                                             </div>
-                                                            <div className="button update_cart_button"><Link to="#">Update
-                                                                cart</Link>
+
+                                                            <div className="product_quantity">
+                                                                <span>Qty</span>
+                                                                <input className="form-control-sm" id="quantity_input"
+                                                                       type="number" min={1} pattern="[1-4]*" max={4}
+                                                                       value={element.quantity}
+                                                                       onChange={(event) => {
+                                                                           this.props.dispatch({
+                                                                               ...handlequantityupdate,
+                                                                               quantity: event.target.value,
+                                                                               index: index
+                                                                           })
+                                                                       }}
+                                                                >
+                                                                </input>
+                                                            </div>
+
+                                                            <div className="cart_item_total">
+                                                                <span>Rp. </span> {element.subTotal}
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+
+                                                <div className="row row_cart_buttons">
+                                                    <div className="col">
+                                                        <div
+                                                            className="cart_buttons d-flex flex-lg-row flex-column align-items-start justify-content-start">
+                                                            <div className="button continue_shopping_button"><Link onClick={()=>{this.bookingById(element.id, index)}}
+                                                                to="/booking">Continue
+                                                                Booking</Link></div>
+                                                            <div className="cart_buttons_right ml-lg-auto">
+                                                                <div className="button clear_cart_button"><Link
+                                                                    onClick={() => {
+                                                                        this.deleteACart(element.id)
+                                                                    }} to="#">Clear cart</Link>
+                                                                </div>
+                                                                <div className="button update_cart_button"><Link onClick={()=>{this.updateCart(element, index)}} to="#">Update
+                                                                    cart</Link>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </>
-                                    })}
-                                    <div className="row row_extra">
+                                            </>
+                                        })}
+                                        <div className="row row_extra">
 
-                                        <div className="col-lg-12">
-                                            <div className="cart_total">
-                                                <div className="section_title">Cart total</div>
-                                                <div className="section_subtitle">Final info</div>
-                                                <div className="cart_total_container">
-                                                    <ul>
-                                                        <li className="d-flex flex-row align-items-center justify-content-start">
-                                                            <div className="cart_total_title">Total</div>
-                                                            <div className="cart_total_value ml-auto">Rp. {total}</div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div className="button checkout_button"><Link to="/booking">Proceed to
-                                                    checkout</Link>
+                                            <div className="col-lg-12">
+                                                <div className="cart_total">
+                                                    <div className="section_title">Cart total</div>
+                                                    <div className="section_subtitle">Final info</div>
+                                                    <div className="cart_total_container">
+                                                        <ul>
+                                                            <li className="d-flex flex-row align-items-center justify-content-start">
+                                                                <div className="cart_total_title">Total</div>
+                                                                <div
+                                                                    className="cart_total_value ml-auto">Rp. {total}</div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div className="button checkout_button"><Link onClick={()=>{this.bookingAll(this.props.cart)}} to="/booking">Proceed
+                                                        to
+                                                        checkout</Link>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                     </form>
                                 </div>
                             </div>
@@ -154,20 +155,39 @@ class Cart extends Component {
             </div>
         );
     }
-    handleIncrement=(quantity,index)=>{
-        this.props.dispatch({...handleincrement, quantity:quantity, index:index})
-        this.dataCart()
+    bookingById=async (cartId, index)=>{
+        let data = await fetchDataCartsById(cartId);
+        await this.props.dispatch({...addbookingdetail})
+        let action = {...handlebooking, userIdTransient:data.user.id}
+        await this.props.dispatch(action)
+        let ticket = {...handletickettransientbooking, ticketIdTransient:data.ticket.id, index:index}
+        await this.props.dispatch(ticket)
+        let quantity = {...handlequantitybooking, quantity:data.quantity, index:index}
+        await this.props.dispatch(quantity)
+        console.log(this.props.bookingForm,"booking form")
     }
-    handleDecrement=(index)=>{
-        this.props.dispatch({...handledecrement, index:index})
-        this.dataCart()
+    bookingAll=async (carts)=>{
+        carts.map((element,index)=>{
+            this.props.dispatch({...addbookingdetail})
+            let ticket = {...handletickettransientbooking, ticketIdTransient:element.ticket.id, index:index}
+            this.props.dispatch(ticket)
+            let quantity = {...handlequantitybooking, quantity:element.quantity, index:index}
+            this.props.dispatch(quantity)
+        })
+        const dataToken = decodeJwtToken();
+        if (!(dataToken === null)) {
+            const idUser = dataToken.jti;
+            console.log(idUser, "userId")
+            let action = {...handlebooking, userIdTransient:idUser}
+            await this.props.dispatch(action)
+        }
     }
-    updateCart = async (cartId) => {
-        const data = await fetchDataCartsById(cartId);
-        console.log(data)
-        let action = {...fetchcartbyid, cartFormUpdate: data}
-        this.props.dispatch(action)
 
+    updateCart = async (cartId, index) => {
+        let action = {...fetchcartbyid, cartFormUpdate: cartId, index:index}
+        this.props.dispatch(action)
+        await updateDataCart(this.props.cartFormUpdate)
+        this.dataCart()
     }
 
     deleteACart = async (cartId) => {
