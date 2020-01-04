@@ -7,7 +7,8 @@ const initialState= {
     cart:[],
     cartForm:{ticketIdTransient:"",userIdTransient:"",quantity:""},
     cartFormUpdate:{},
-    bookingForm:{userIdTransient:"",bookingDetailList:[]}
+    bookingForm:{userIdTransient:"",bookingDetailList:[]},
+    bookingDetail:[]
 }
 export default function reducerCustomer(state=initialState, action){
     console.log('event-reducer', state, action)
@@ -40,22 +41,37 @@ export default function reducerCustomer(state=initialState, action){
                         return {...element};
                     }
                 })}
-        case "HANDLE_INCREMENT":
-            return {...state, cart: state.cart.map((element, index)=>{
-                        if (index===action.index){
-                            return {...element, quantity:action.quantity + 1};
-                        }else {
-                            return {...element};
+        case "BOOKING_DETAIL":
+            return {...state, bookingDetail: action.bookingDetail}
+        case "ADD_BOOKING_DETAIL":
+            return {...state, bookingForm: {...state.bookingForm, bookingDetailList:state.bookingForm.bookingDetailList.concat(
+                [{ticketIdTransient:"",quantity:""}]
+                    )}}
+        case "HANDLE_BOOKING":
+            return {...state, bookingForm: {...state.bookingForm, userIdTransient:action.userIdTransient}}
+        case "HANDLE_TICKET_TRANSIENT_BOOKING":
+            return {...state, bookingForm: {...state.bookingForm, bookingDetailList: state.bookingForm.bookingDetailList.map(
+                        (element,index)=>{
+                            if (index===action.index){
+                                return {...element, ticketIdTransient:action.ticketIdTransient}
+                            }else {
+                                return {...element}
+                            }
                         }
-                    })}
-        case "HANDLE_DECREMENT":
-            return {...state, cart: state.cart.map((element, index)=>{
-                    if (index===action.index){
-                        return element.quantity - 1;
-                    }else {
-                        return element.quantity;
-                    }
-                })}
+                    )}}
+        case "HANDLE_QUANTITY_BOOKING":
+            return {...state, bookingForm: {...state.bookingForm, bookingDetailList:state.bookingForm.bookingDetailList.map(
+                        (element,index)=>{
+                            if (index===action.index){
+                                return {...element, quantity:action.quantity}
+                            }else {
+                                return {...element}
+                            }
+                        }
+                    )
+            }}
+        case "CLEAR_STATE_BOOKING_FORM":
+            return {...state, bookingForm: initialState.bookingForm}
         default:
             return {...state}
     }

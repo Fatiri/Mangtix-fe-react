@@ -1,4 +1,4 @@
-import {badRequest400, succsessFetchData200} from "../../../components/constants";
+import {badRequest400, internalServerError500, succsessFetchData200} from "../../../components/constants";
 import Swal from "sweetalert2";
 
 export async function saveDataCart(event) {
@@ -24,8 +24,10 @@ export async function updateDataCart(event) {
             if (response.status===200){
                 succsessFetchData200(response)
                 return response.json();
-            } else {
-                badRequest400()
+            } else if (response.status===400){
+                badRequest400(response)
+            }else{
+                internalServerError500(response);
             }
         }).catch(reason => {
         })

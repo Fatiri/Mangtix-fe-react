@@ -111,12 +111,12 @@ class EventSchedule extends Component {
                                                                             <div className="row mt-5">
                                                                                 <div className="col-12 text-center">
                                                                                     <Link onClick={() => {
-                                                                                        this.addCart(element1.id)
+                                                                                        this.addCart(element1.id).then(r => r)
                                                                                     }} className="button mb-4">Choose
                                                                                         Ticket
                                                                                     </Link>
                                                                                     <Link onClick={() => {
-                                                                                        this.addCart(element1.id)
+                                                                                        this.addCart(element1.id).then(r => r)
                                                                                     }} className="button mb-4"
                                                                                           to="/cart">Buy
                                                                                         Ticket</Link>
@@ -163,7 +163,8 @@ class EventSchedule extends Component {
     }
 
     addCart = async (ticketId) => {
-        this.props.dispatch({...handletickettransient, ticketIdTransient: ticketId})
+        let action={...handletickettransient, ticketIdTransient: ticketId}
+        this.props.dispatch(action)
         const dataToken = decodeJwtToken();
         if (!(dataToken === null)) {
             const idUser = dataToken.jti;
