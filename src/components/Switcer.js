@@ -35,7 +35,6 @@ class Switcer extends Component {
                 <Route exact path="/users">Users</Route>
                 {/*<Route exact path="/dashboard"></Route>*/}
                 <Route exact path="/">Ticket</Route>
-                <Route exact path="/payment">Payment</Route>
                 <Route exact path="/chatting">Chatting</Route>
 
             </Switch>
