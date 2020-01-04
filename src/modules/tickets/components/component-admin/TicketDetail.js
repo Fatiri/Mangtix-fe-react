@@ -15,11 +15,11 @@ class TicketDetail extends React.Component {
                         <div className="card-header card-header-primary">
                             <h5 className="card-title">
                                 <button className="btn btn-primary" onClick={goBack}><i
-                                    className="fa fa-arrow-alt-circle-left"></i></button>
+                                    className="fas fa-arrow-alt-circle-left"></i></button>
                             </h5>
                             <div className="row">
                             <h3 className="card-ticket">Detail Ticket</h3>
-                                <Link to={"/ticket-form"} class="btn btn-outline-primary btn-sm" role="button" aria-pressed="true">Update Ticket
+                                <Link to={"/ticket-form"} class="btn btn-outline-primary btn-sm" role="button" aria-pressed="true" style={{marginLeft:400}}>Update Ticket
                                 </Link>
                             </div>
                         </div>

@@ -42,10 +42,10 @@ class CategoryList extends React.Component {
                               <td>
                                   <button  className="btn btn-sm btn-warning" type="button" data-toggle="modal"
                                           data-target="#editData" onClick={() =>{this.handleDataEdit(element.id)}} >
-                                      <i className="fa fa-pencil-alt"/>
+                                      <i className="fas fa-pencil-alt"/>
                                   </button>
 
-                                  <button onClick={() =>{this.handleDataDelete(element.id)}} className="btn btn-sm btn-danger"><i className="fa fa-trash"/></button></td>
+                                  <button onClick={() =>{this.handleDataDelete(element.id)}} className="btn btn-sm btn-danger" style={{marginLeft:5}}><i className="fa fa-trash"/></button></td>
                             </tbody>
                         })}
 

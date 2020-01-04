@@ -32,7 +32,7 @@ class TicketForm extends React.Component {
                                     <div className="card-header card-header-primary">
                                         <h5 className="card-title">
                                             <button className="btn btn-primary" onClick={goBack}><i
-                                                className="fa fa-arrow-alt-circle-left"></i></button>
+                                                className="fas fa-arrow-alt-circle-left"></i></button>
                                         </h5>
                                         <h3 className="card-category">Add Ticket</h3>
                                     </div>
@@ -122,7 +122,7 @@ class TicketForm extends React.Component {
                                     <div className="card-header card-header-primary">
                                         <h5 className="card-title">
                                             <button className="btn btn-primary" onClick={goBack}><i
-                                                className="fa fa-arrow-alt-circle-left"></i></button>
+                                                className="fas fa-arrow-alt-circle-left"></i></button>
                                         </h5>
                                         <p className="card-category">Update Ticket</p>
                                     </div>
