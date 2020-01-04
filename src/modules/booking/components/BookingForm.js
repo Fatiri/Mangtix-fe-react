@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Cart from "../../cart/component/Cart";
+import {Link} from "react-router-dom";
 
 class BookingForm extends React.Component {
 
@@ -113,8 +114,8 @@ class BookingForm extends React.Component {
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                    <div className="button checkout_button"><a href="#">Proceed to
-                                                        checkout</a>
+                                                    <div className="button checkout_button"><Link to="/payment">Proceed to
+                                                        checkout</Link>
                                                     </div>
                                                 </div>
                                             </div>
