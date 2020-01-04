@@ -107,7 +107,11 @@ class EventSchedule extends Component {
                                                                             <a className="schedule-title"
                                                                                href="#"></a>
                                                                             <h3>{element1.category.categoryName}</h3>
-                                                                            <h4>Stock = {stock}</h4>
+                                                                            <h4>{new Intl.NumberFormat('id-ID', {
+                                                                                style: 'currency',
+                                                                                currency: 'IDR'
+                                                                            }).format(element1.price)}</h4>
+                                                                            <h5>Stock = {stock}</h5>
                                                                             <div className="row mt-5">
                                                                                 <div className="col-12 text-center">
                                                                                     <Link onClick={() => {
@@ -130,7 +134,8 @@ class EventSchedule extends Component {
                                                                             <a className="schedule-title"
                                                                                href="#"></a>
                                                                             <h3>{element1.category.categoryName}</h3>
-                                                                            <h4>Ticket Sold Out</h4>
+                                                                            <h4>{element1.price}</h4>
+                                                                            <h5>Ticket Sold Out</h5>
                                                                             <div className="row mt-5">
                                                                                 <div className="col-12 text-center">
                                                                                     <button disabled={true}
