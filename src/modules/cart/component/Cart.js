@@ -74,7 +74,10 @@ class Cart extends Component {
 
 
                                                             <div className="cart_item_price">
-                                                                <span>Rp. </span> {element.ticket.price}
+                                                                {new Intl.NumberFormat('id-ID', {
+                                                                    style: 'currency',
+                                                                    currency: 'IDR'
+                                                                }).format(element.ticket.price)}
                                                             </div>
 
                                                             <div className="product_quantity">
@@ -94,7 +97,10 @@ class Cart extends Component {
                                                             </div>
 
                                                             <div className="cart_item_total">
-                                                                <span>Rp. </span> {element.subTotal}
+                                                                {new Intl.NumberFormat('id-ID', {
+                                                                    style: 'currency',
+                                                                    currency: 'IDR'
+                                                                }).format(element.subTotal)}
                                                             </div>
                                                         </div>
 
@@ -135,7 +141,10 @@ class Cart extends Component {
                                                             <li className="d-flex flex-row align-items-center justify-content-start">
                                                                 <div className="cart_total_title">Total</div>
                                                                 <div
-                                                                    className="cart_total_value ml-auto">Rp. {total}</div>
+                                                                    className="cart_total_value ml-auto">{new Intl.NumberFormat('id-ID', {
+                                                                    style: 'currency',
+                                                                    currency: 'IDR'
+                                                                }).format(total)}</div>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -183,11 +192,12 @@ class Cart extends Component {
         }
     }
 
-    updateCart = async (cartId, index) => {
-        let action = {...fetchcartbyid, cartFormUpdate: cartId, index:index}
-        this.props.dispatch(action)
+    updateCart = async (cartId) => {
+        let action = {...fetchcartbyid, cartFormUpdate: cartId}
+        await this.props.dispatch(action)
+        console.log(this.props.cartFormUpdate.id+"iniiiiiiiiiiiiiiiiii")
         await updateDataCart(this.props.cartFormUpdate)
-        this.dataCart()
+        await this.dataCart()
     }
 
     deleteACart = async (cartId) => {
