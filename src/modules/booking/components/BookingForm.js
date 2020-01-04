@@ -75,7 +75,10 @@ class BookingForm extends React.Component {
 
 
                                                     <div className="cart_item_price">
-                                                        <span>Rp. {ticket.price}</span>
+                                                        <span>{new Intl.NumberFormat('id-ID', {
+                                                            style: 'currency',
+                                                            currency: 'IDR'
+                                                        }).format(ticket.price)}</span>
                                                     </div>
 
                                                     <div className="product_quantity clearfix">
@@ -85,7 +88,10 @@ class BookingForm extends React.Component {
                                                     </div>
 
                                                     <div className="cart_item_total">
-                                                        <span>Rp. {subTotal}</span>
+                                                        <span>{new Intl.NumberFormat('id-ID', {
+                                                            style: 'currency',
+                                                            currency: 'IDR'
+                                                        }).format(subTotal)}</span>
                                                     </div>
                                                            </>
                                                         }
@@ -123,7 +129,10 @@ class BookingForm extends React.Component {
                                                 <ul>
                                                     <li className="d-flex flex-row align-items-center justify-content-start">
                                                         <div className="cart_total_title">Total</div>
-                                                        <div className="cart_total_value ml-auto">Rp. {total}
+                                                        <div className="cart_total_value ml-auto">{new Intl.NumberFormat('id-ID', {
+                                                            style: 'currency',
+                                                            currency: 'IDR'
+                                                        }).format(total)}
                                                         </div>
                                                     </li>
                                                 </ul>
