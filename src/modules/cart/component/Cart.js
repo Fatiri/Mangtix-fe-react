@@ -2,9 +2,14 @@ import React, {Component} from 'react';
 import '../../../App.css';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {deleteDataCartsById, fetchDataCartsByUser} from "../service/CartService";
+import {deleteDataCartsById, fetchDataCartsById, fetchDataCartsByUser} from "../service/CartService";
 import decodeJwtToken from "../../../authentication/AutheticationDecodeJwt";
-import {fetchcart, fetcheventsuccess} from "../../../reducerCustomer/ActionReducerCustomer";
+import {
+    fetchcart,
+    fetchcartbyid,
+    fetcheventsuccess, handledecrement,
+    handleincrement, handlequantityupdate
+} from "../../../reducerCustomer/ActionReducerCustomer";
 import {fetchDataEvent} from "../../events/service/EventService";
 
 class Cart extends Component {
@@ -29,6 +34,7 @@ class Cart extends Component {
                         {this.props.cart.length === 0 ? <h3>Please choose a ticket</h3> :
                             <div className="cart_info">
                                 <div className="container">
+                                    <form>
                                     <div className="row">
                                         <div className="col">
                                             <div className="cart_info_columns clearfix">
@@ -50,8 +56,8 @@ class Cart extends Component {
 
                                                         <div><img src="img/clients-logo/VVIP.png" alt=""></img></div>
                                                         {this.props.events.map((element1, index1) => {
-                                                            {
-                                                                element1.eventDetailList.map((eventDetail) => {
+                                                            return <>
+                                                                {element1.eventDetailList.map((eventDetail) => {
                                                                     console.log(element.ticket.eventDetail.id, "  ke1")
                                                                     console.log(eventDetail.id, "  ke2")
                                                                     if (eventDetail.id === element.ticket.eventDetail.id) {
@@ -60,8 +66,8 @@ class Cart extends Component {
                                                                             className="cart_item_product">{element1.eventName}</div>
                                                                     }
                                                                 })
-                                                            }
-
+                                                                }
+                                                            </>
                                                         })}
 
 
@@ -69,21 +75,24 @@ class Cart extends Component {
                                                             <span>Rp. </span> {element.ticket.price}
                                                         </div>
 
-                                                        <div className="product_quantity clearfix">
+                                                        <div className="product_quantity">
                                                             <span>Qty</span>
-                                                            <input id="quantity_input" type="text" pattern="[0-9]*"
-                                                                   value={element.quantity}></input>
-                                                            <div className="quantity_buttons">
-                                                                <div id="quantity_inc_button"
-                                                                     className="quantity_inc quantity_control"><i
-                                                                    className="fa fa-chevron-up" aria-hidden="true"></i>
-                                                                </div>
-                                                                <div id="quantity_dec_button"
-                                                                     className="quantity_dec quantity_control"><i
-                                                                    className="fa fa-chevron-down"
-                                                                    aria-hidden="true"></i>
-                                                                </div>
-                                                            </div>
+                                                            <input className="form-control-sm" id="quantity_input" type="number" min={1} pattern="[0-9]*" max={4}
+                                                                   value={element.quantity}
+                                                                   onChange={(event)=>{this.props.dispatch({...handlequantityupdate, quantity:event.target.value, index:index})}}
+                                                            >
+                                                            </input>
+                                                            {/*<div className="quantity_buttons">*/}
+                                                            {/*    <div id="quantity_inc_button"*/}
+                                                            {/*         className="quantity_inc quantity_control"><button onClick={()=>{this.handleIncrement(element.quantity,index)}}><i*/}
+                                                            {/*        className="fa fa-chevron-up" aria-hidden="true"></i></button>*/}
+                                                            {/*    </div>*/}
+                                                            {/*    <div id="quantity_dec_button"*/}
+                                                            {/*         className="quantity_dec quantity_control"><button onClick={()=>{this.handleDecrement(index)}}><i*/}
+                                                            {/*        className="fa fa-chevron-down"*/}
+                                                            {/*        aria-hidden="true"></i></button>*/}
+                                                            {/*    </div>*/}
+                                                            {/*</div>*/}
                                                         </div>
 
                                                         <div className="cart_item_total">
@@ -102,8 +111,10 @@ class Cart extends Component {
                                                         <div className="button continue_shopping_button"><Link to="#">Continue
                                                             Booking</Link></div>
                                                         <div className="cart_buttons_right ml-lg-auto">
-                                                            <div onClick={()=>{this.deleteACart(element.id)}} className="button clear_cart_button"><Link to="#">Clear
-                                                                cart</Link>
+                                                            <div className="button clear_cart_button"><Link
+                                                                onClick={() => {
+                                                                    this.deleteACart(element.id)
+                                                                }} to="#">Clear cart</Link>
                                                             </div>
                                                             <div className="button update_cart_button"><Link to="#">Update
                                                                 cart</Link>
@@ -128,12 +139,13 @@ class Cart extends Component {
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <div className="button checkout_button"><a href="#">Proceed to
-                                                    checkout</a>
+                                                <div className="button checkout_button"><Link to="/booking">Proceed to
+                                                    checkout</Link>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         }
@@ -142,9 +154,25 @@ class Cart extends Component {
             </div>
         );
     }
+    handleIncrement=(quantity,index)=>{
+        this.props.dispatch({...handleincrement, quantity:quantity, index:index})
+        this.dataCart()
+    }
+    handleDecrement=(index)=>{
+        this.props.dispatch({...handledecrement, index:index})
+        this.dataCart()
+    }
+    updateCart = async (cartId) => {
+        const data = await fetchDataCartsById(cartId);
+        console.log(data)
+        let action = {...fetchcartbyid, cartFormUpdate: data}
+        this.props.dispatch(action)
 
-    deleteACart=async (cartId)=>{
+    }
+
+    deleteACart = async (cartId) => {
         await deleteDataCartsById(cartId);
+        this.dataCart()
     }
     dataCart = async () => {
         const dataToken = decodeJwtToken();
