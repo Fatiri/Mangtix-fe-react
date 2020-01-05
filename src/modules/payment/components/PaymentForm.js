@@ -7,10 +7,10 @@ import {fetchbookingsuccess} from "../../../reducerCustomer/ActionReducerCustome
 
 class PaymentForm extends Component {
     render() {
-        let total=0;
-        this.props.booking.bookingDetailList.map((element)=>{
-            return total=total+element.subtotal;
-        })
+        // let total=0;
+        // this.props.booking.bookingDetailList.map((element)=>{
+        //     return total=total+element.subtotal;
+        // })
         return (
             <div>
                 <section className="hero-banner hero-banner-sm">
@@ -31,10 +31,10 @@ class PaymentForm extends Component {
                                         <div className="section_title">Cart total</div>
                                         <li className="d-flex flex-row align-items-center justify-content-start">
                                             <div className="cart_total_title">Total</div>
-                                            <div className="cart_total_value ml-auto">{new Intl.NumberFormat('id-ID', {
-                                                style: 'currency',
-                                                currency: 'IDR'
-                                            }).format(total)}</div>
+                                            {/*<div className="cart_total_value ml-auto">{new Intl.NumberFormat('id-ID', {*/}
+                                            {/*    style: 'currency',*/}
+                                            {/*    currency: 'IDR'*/}
+                                            {/*}).format(total)}</div>*/}
                                         </li>
                                     </div>
                                 </ul>
