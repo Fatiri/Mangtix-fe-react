@@ -5,9 +5,13 @@ const initialState= {
     eventDetailById:[],
     ticket:[],
     cart:[],
+    cartById:[],
     cartForm:{ticketIdTransient:"",userIdTransient:"",quantity:""},
     cartFormUpdate:{},
-    bookingForm:{userIdTransient:"",bookingDetailList:[]}
+    bookingForm:{userIdTransient:"",bookingDetailList:[]},
+    bookingDetail:[],
+    booking:[],
+    paymentForm:{bookingIdTransient:""}
 }
 export default function reducerCustomer(state=initialState, action){
     console.log('event-reducer', state, action)
@@ -24,6 +28,8 @@ export default function reducerCustomer(state=initialState, action){
             return {...state, eventDetailById: action.payload}
         case "FETCH_CART":
             return {...state, cart: action.cart}
+        case "FETCH_CART_ID":
+            return {...state, cartById: action.cartById}
         case "FETCH_CART_BY_ID":
             return {...state, cartFormUpdate: action.cartFormUpdate}
         case "HANDLE_TICKET_TRANSIENT":
@@ -33,23 +39,48 @@ export default function reducerCustomer(state=initialState, action){
         case "HANDLE_QUANTITY":
             return {...state, cartForm: {...state.cartForm, quantity: action.quantity}}
         case "HANDLE_QUANTITY_UPDATE":
-            return {...state, cartFormUpdate:{...state.cartFormUpdate, quantity:action.quantity}}
-        case "HANDLE_INCREMENT":
-            return {...state, cart: state.cart.map((element, index)=>{
-                        if (index===action.index){
-                            return element.quantity + 1;
-                        }else {
-                            return element.quantity;
-                        }
-                    })}
-        case "HANDLE_DECREMENT":
             return {...state, cart: state.cart.map((element, index)=>{
                     if (index===action.index){
-                        return element.quantity - 1;
+                        return {...element, quantity:action.quantity};
                     }else {
-                        return element.quantity;
+                        return {...element};
                     }
                 })}
+        case "BOOKING_DETAIL":
+            return {...state, bookingDetail: action.bookingDetail}
+        case "ADD_BOOKING_DETAIL":
+            return {...state, bookingForm: {...state.bookingForm, bookingDetailList:state.bookingForm.bookingDetailList.concat(
+                [{ticketIdTransient:"",quantity:""}]
+                    )}}
+        case "HANDLE_BOOKING":
+            return {...state, bookingForm: {...state.bookingForm, userIdTransient:action.userIdTransient}}
+        case "HANDLE_TICKET_TRANSIENT_BOOKING":
+            return {...state, bookingForm: {...state.bookingForm, bookingDetailList: state.bookingForm.bookingDetailList.map(
+                        (element,index)=>{
+                            if (index===action.index){
+                                return {...element, ticketIdTransient:action.ticketIdTransient}
+                            }else {
+                                return {...element}
+                            }
+                        }
+                    )}}
+        case "HANDLE_QUANTITY_BOOKING":
+            return {...state, bookingForm: {...state.bookingForm, bookingDetailList:state.bookingForm.bookingDetailList.map(
+                        (element,index)=>{
+                            if (index===action.index){
+                                return {...element, quantity:action.quantity}
+                            }else {
+                                return {...element}
+                            }
+                        }
+                    )
+            }}
+        case "CLEAR_STATE_BOOKING_FORM":
+            return {...state, bookingForm: initialState.bookingForm}
+        case "FETCH_BOOKING_SUCCESS":
+            return {...state, booking: action.booking}
+        case "HANDLE_PAYMENT":
+            return {...state, paymentForm: {...state.paymentForm, bookingIdTransient: action.bookingIdTransient}}
         default:
             return {...state}
     }

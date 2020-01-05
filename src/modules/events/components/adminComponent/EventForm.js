@@ -10,11 +10,6 @@ import {
 } from "../../EventAction";
 import {connect} from "react-redux";
 import {saveDataEvent} from "../../service/EventService";
-import FormLocation from "../../../location/components/FormLocationRegistration";
-import FormLocationEvent from "../../../location/components/FormLocationEvent";
-import {Link} from "react-router-dom";
-import {fetchDataCategory} from "../../../categories/service/CategoryService";
-import {fetchcategorysucces, handlecategoryid} from "../../../tickets/TicketAction";
 import {fetchDataLocation} from "../../../location/service/LocationServices";
 import decodeJwtToken from "../../../../authentication/AutheticationDecodeJwt";
 
@@ -31,7 +26,7 @@ class EventForm extends React.Component {
                         <div className="card-header card-header-primary">
                             <h5 className="card-title">
                                 <button className="btn btn-primary" onClick={goBack}><i
-                                    className="fa fa-arrow-alt-circle-left"></i></button>
+                                    className="fas fa-arrow-alt-circle-left"></i></button>
                             </h5>
                             <br/>
                             <h3 className="card-category">Add Event</h3>
@@ -130,27 +125,6 @@ class EventForm extends React.Component {
                                                     }
                                                 })}
                                             </select>
-                                            {/*<input type="text" disabled={true} className="form-control" value={this.props.locationEvent2.id}*/}
-                                            {/*        required/>*/}
-                                            {/*<Link to="/event-location" onClick={()=>this.props}>Choose Location</Link>*/}
-                                            {/*<div className="form-group">*/}
-                                            {/*    <button className="btn btn-primary" type="button"*/}
-                                            {/*            data-toggle="collapse"*/}
-                                            {/*            data-target={`#collapseExample${index}`} aria-expanded="false"*/}
-                                            {/*            aria-controls="collapseExample">*/}
-                                            {/*        Choose Location*/}
-                                            {/*    </button>*/}
-                                            {/*</div>*/}
-
-                                            {/*<div className="form-group">*/}
-                                            {/*    <div className="collapse" id={`collapseExample${index}`}>*/}
-                                            {/*        <div className="card card-body">*/}
-                                            {/*            <div className="form-group">*/}
-                                            {/*                <FormLocationEvent/>*/}
-                                            {/*            </div>*/}
-                                            {/*        </div>*/}
-                                            {/*    </div>*/}
-                                            {/*</div>*/}
 
                                         </div>
                                     })}

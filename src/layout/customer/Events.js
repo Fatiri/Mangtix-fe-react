@@ -37,7 +37,7 @@ class Events extends Component {
                                 return <div className="col-lg-4 col-sm-6 mb-4 mb-lg-0">
                                     <div className="card-speaker">
                                         <img className="image-event"
-                                             src={`http://localhost/data-events/${element.id}`} alt=""></img>
+                                             src={imgUrl+`/${element.id}`} alt=""></img>
                                         <div className="speaker-footer">
                                             <h4>{element.eventName}</h4>
                                             <p></p>

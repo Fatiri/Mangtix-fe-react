@@ -3,6 +3,8 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {fetchDataEventId, updateDataEvent} from "../../service/EventService";
 import {handleChangeData, handleupdate} from "../../EventAction";
+import {imgUrl} from "../../../../services/serviceCenter";
+import decodeJwtToken from "../../../../authentication/AutheticationDecodeJwt";
 
 
 class EventDetail extends React.Component {
@@ -10,27 +12,32 @@ class EventDetail extends React.Component {
         function goBack() {
             window.history.back()
         }
-
-        const role = "MANAGEMENT";
+        let role;
+        const dataToken = decodeJwtToken();
+        if (!(dataToken === null)) {
+            const sub = dataToken.sub;
+            console.log(sub, "role")
+             role = sub;
+        }
         return (
             <div>
                 <div className="card-header card-header-primary">
                     <h5 className="card-title">
                         <button className="btn btn-primary" onClick={goBack}><i
-                            className="fa fa-arrow-alt-circle-left"></i></button>
+                            className="fas fa-arrow-alt-circle-left"></i></button>
                     </h5>
                     <br/>
                     <h3 className="card-category">Detail Event</h3>
                     {role === "ADMIN"?this.props.eventById.publishStatus===true?"":<button
-                                              onClick={() => this.handleUpdateAdmin(this.props.eventById.id)}>Validation</button>
+                                              onClick={() => this.handleUpdateAdmin(this.props.eventById.id)} className="btn btn-primary">Validation</button>
                         :role ==="MANAGEMENT"?
-                    <Link to={"/event-update"} onClick={() => this.handleUpdate(this.props.eventById.id)}>Update</Link>:""}
+                    <Link to={"/event-update"} onClick={() => this.handleUpdate(this.props.eventById.id)}  className="btn btn-warning">Update</Link>:""}
 
                 </div>
                 <form>
                     <div className="row">
                         <div className="card-image">
-                            <img className="card-image-event" src={`http://localhost/data-events/${this.props.eventById.id}`}/>
+                            <img className="card-image-event" src={imgUrl+`/${this.props.eventById.id}`}/>
                         </div>
                         <div className="columns-event"><h3>{this.props.eventById.eventName}</h3><br/>
                             <h4>{this.props.eventById.descriptionEvent}</h4>

@@ -26,10 +26,10 @@ class EventUpdate extends React.Component {
                         <div className="card-header card-header-primary">
                             <h5 className="card-title">
                                 <button className="btn btn-primary" onClick={goBack}><i
-                                    className="fa fa-arrow-alt-circle-left"></i></button>
+                                    className="fas fa-arrow-alt-circle-left"></i></button>
                             </h5>
                             <br/>
-                            <h3 className="card-category">Add Event</h3>
+                            <h3 className="card-category">Update Event</h3>
                         </div>
                         <div className="card-body">
                             <form onSubmit={this.handleSubmit}>
@@ -54,7 +54,7 @@ class EventUpdate extends React.Component {
                                     </div>
 
                                     <button onClick={this.handleAddEventDetails}
-                                            className="form-control btn btn-primary">Add Detail Event
+                                            className="btn btn-primary col-md-12">Add Detail Event
                                     </button>
                                     <br/>
                                     {this.props.eventForm.eventDetailList.map((element, index) => {
@@ -139,7 +139,7 @@ class EventUpdate extends React.Component {
 
                                         </div>
                                     })}
-                                    <button type="submit" className="form-control btn btn-success">Save</button>
+                                    <button type="submit" className="btn btn-success col-md-12">Save</button>
                                 </div>
                             </form>
                         </div>

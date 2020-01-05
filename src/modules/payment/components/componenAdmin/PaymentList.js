@@ -20,7 +20,7 @@ class PaymentList extends React.Component {
                                 <th>Id</th>
                                 <th>Payment Date</th>
                                 <th>Total Payment</th>
-                                <th>Action</th>
+                                <th><center>Action</center></th>
                                 </thead>
                                 {this.props.payment.map((element, index) => {
                                     return <tbody>
@@ -59,7 +59,7 @@ class PaymentList extends React.Component {
                                 </button>
                             </div>
                             <table className="table table-hover modal-body">
-                                <thead>
+                                <thead className="thead-dark">
                                 <th>Id Booking</th>
                                 <th>Booking Date</th>
                                 <th>Username</th>

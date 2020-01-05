@@ -8,52 +8,45 @@ export async function saveDataEvent(event,multipartFile,multipartImage) {
     formData.append("event", JSON.stringify(event));
     return await fetch(`${serverAddress}/event`, {
         method: "POST",
-        body: formData,})
-        .then((response) => {
-            if (response.status===200){
-                Swal.fire({
+        body: formData})
+            if (formData.status===200){
+                await Swal.fire({
                     position: 'top-end',
                     icon: 'success',
                     title: 'Data has been saved',
                     showConfirmButton: false,
                     timer: 3000
                 })
-                return response.json();
+                return formData.json();
             } else {
-                Swal.fire({
+                await Swal.fire({
                     icon: 'error',
                     title: 'Sorry...',
-                    timer:3000
+                    timer: 3000
                 })
             }
-        }).catch(reason => {
-            console.log(reason)
-        })
     return formData;
 }
 export async function updateDataEvent(event) {
     const data = await fetch(`${serverAddress}/event`, {method:"PUT",
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(event)})
-        .then((response) => {
-            if (response.status===200){
-                Swal.fire({
+            if (data.status===200){
+                await Swal.fire({
                     position: 'top-end',
                     icon: 'success',
                     title: 'Data has been saved',
                     showConfirmButton: false,
                     timer: 3000
                 })
-                return response.json();
-            } else if (response.status===500){
-                Swal.fire({
+                return data.json();
+            } else if (data.status===500){
+                await Swal.fire({
                     icon: 'error',
                     title: 'Sorry!!!',
-                    timer:3000
+                    timer: 3000
                 })
             }
-        }).catch(reason => {
-        })
     return data;
 }
 
@@ -63,7 +56,7 @@ export async function fetchDataEvent() {
         return response.json()
     });
     console.log(data);
-    return data;
+        return data.json()
 }
 
 export async function fetchDataEventByCompany(event) {
@@ -72,7 +65,7 @@ export async function fetchDataEventByCompany(event) {
         return response.json()
     });
     console.log(data);
-    return data;
+    return data.json()
 }
 export async function fetchDataEventId(id) {
     const data = await fetch(`${serverAddress}/event/${id}`, {method: "GET"})
