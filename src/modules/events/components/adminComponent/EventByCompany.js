@@ -1,12 +1,17 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {fetchDataEventByCompany, fetchDataEventId} from "../../service/EventService";
-import {fetcheventsuccess, handleChangeData, handlechangedata} from "../../EventAction";
+import {eventBYCompanyId, fetcheventsuccess, handleChangeData, handlechangedata} from "../../EventAction";
 import EventDetail from "./EventDetail";
 import {Link} from "react-router-dom";
+import decodeJwtToken from "../../../../authentication/AutheticationDecodeJwt";
+import {companyId} from "../../../login/reducer/LoginAction";
 
 class EventByCompany extends React.Component {
     render() {
+        const token = decodeJwtToken();
+        const companyId= token.aud;
+        this.props.company.id = companyId;
         return (
             <div className="col-xl-auto flex-column">
                 <div className="card">
@@ -45,24 +50,23 @@ class EventByCompany extends React.Component {
     }
 
     handleDetail = async (id) => {
-        console.log(id + "ini id")
         const data = await fetchDataEventId(id)
-        console.log(data.eventName + "ini data event form")
         this.props.dispatch({...handleChangeData, eventById: data, eventDetail: data.eventDetailList})
         console.log(this.props.eventById)
     }
 
     componentDidMount() {
-        let data = this.props.company.id;
-        this.dataEvent(data)
+        const token = decodeJwtToken();
+        const companyId= token.aud;
+        this.props.dispatch({...eventBYCompanyId, company:companyId})
+        let id = companyId;
+        this.dataEvent(id)
     }
 
     dataEvent = async (event) => {
         const data = await fetchDataEventByCompany(event);
-        console.log(data)
         if (!(data === undefined)) {
             let action = {...fetcheventsuccess, payload: data}
-            console.log(action)
             this.props.dispatch(action)
         }
     }

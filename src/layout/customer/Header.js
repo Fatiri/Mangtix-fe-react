@@ -5,6 +5,8 @@ import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
 import {fetchDataUserBYId} from "../../modules/users/service/UserService";
 import {fetchDataUser} from "../../modules/users/UserAction";
 import {connect} from "react-redux";
+import {fetchDataCartsByUser} from "../../modules/cart/service/CartService";
+import {fetchcart} from "../../reducerCustomer/ActionReducerCustomer";
 
 class Header extends Component {
     render() {
@@ -31,7 +33,7 @@ class Header extends Component {
                                     <li><Link className="nav-link" to="/chat-form">Forum</Link></li>
                                     <li><Link className="nav-link" to="/event">Events</Link></li>
                                     {new Authentication().isLogin()?<li className="has-children">
-                                            <a className="nav-link">Hi {this.props.userAccess.userName}</a>
+                                            <a className="nav-link">Hi {this.props.userAccess.fullName}</a>
                                             <ul className="dropdown arrow-top">
                                                 <li><Link className="nav-link" to="/cart">Cart</Link></li>
                                                 <li><a href="#pricing-section" className="nav-link">Setting</a></li>
@@ -40,7 +42,7 @@ class Header extends Component {
                                             </ul>
                                         </li>
                                         :<li><Link className="nav-link" to="/login">Login</Link></li>
-                                        }
+                                    }
                                 </ul>
                             </nav>
 
@@ -58,6 +60,7 @@ class Header extends Component {
     }
     componentDidMount() {
         this.handleFetchDataUser();
+        this.dataCart();
     }
 
     handleLogOut=()=>{
@@ -88,6 +91,16 @@ class Header extends Component {
             return <Redirect to="/login"/>
         }
     }
+    dataCart=async ()=> {
+        const dataToken = decodeJwtToken();
+        if (!(dataToken === null)) {
+            const idUser = dataToken.jti;
+            const data = await fetchDataCartsByUser(idUser)
+            let action = {...fetchcart, cart: data}
+            this.props.dispatch(action)
+        }
+    }
+
 
     }
 

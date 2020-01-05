@@ -1,7 +1,8 @@
 import Swal from "sweetalert2";
+import {serverAddress} from "../../../server/ServerConstant";
 
 export async function saveDataCategory(event) {
-    const data = await fetch("http://localhost:9090/category", {method:"POST",
+    const data = await fetch(`${serverAddress}/category`, {method:"POST",
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(event)})
             if (data.status===200){
@@ -25,7 +26,7 @@ export async function saveDataCategory(event) {
 }
 
 export async function fetchDataCategory() {
-    const data=await fetch(`http://localhost:9090/categories`,
+    const data=await fetch(`${serverAddress}/categories`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });
@@ -34,7 +35,7 @@ export async function fetchDataCategory() {
 }
 
 export async function fetchDataCategoryById(id) {
-    const data=await fetch(`http://localhost:9090/category/${id}`,
+    const data=await fetch(`${serverAddress}/category/${id}`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });
@@ -52,7 +53,7 @@ export async function deleteDataCategoryById(id) {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
     })
-    return fetch(`http://localhost:9090/category/${id}`, {
+    return fetch(`${serverAddress}/category/${id}`, {
         method: "DELETE", headers: {'Content-Type': 'application/json'},
     }).then((result) => {
         if (result.status === 200) {

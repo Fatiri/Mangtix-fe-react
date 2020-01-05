@@ -291,17 +291,14 @@ class MapRegistrationLocation extends Component {
     handleSubmitLocation = async () => {
         const dataLocation = {...this.props.location}
         console.log(dataLocation.latitude)
-
         if (!(this.state.markerPosition.lat===""|| this.state.markerPosition.lng==="")){
             const dataPostLocation = await saveDataLocation(dataLocation);
             console.log(dataPostLocation,"ini location")
             this.props.userInfo.locationIdTransient = dataPostLocation.id;
-            console.log(this.props.userInfo)
             console.log(this.props.userInfo.locationIdTransient)
         }else {
             alert("location must be choose")
         }
-
 
     }
 }

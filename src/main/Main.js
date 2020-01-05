@@ -3,9 +3,29 @@ import {listEVent} from "./MainAction";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {connect} from "react-redux";
 import {fetchListDataEvent} from "./MainService";
+import Authentication from "../authentication/Authentication";
+import decodeJwtToken from "../authentication/AutheticationDecodeJwt";
+import {Redirect} from "react-router-dom";
 
 class Main extends Component {
     render() {
+		const Auth = new Authentication();
+		if (Auth.isLogin()) {
+			const dataToken = decodeJwtToken();
+			if (!(dataToken===null)){
+
+			}else {
+				alert("wrong credential")
+				localStorage.clear();
+				return <Redirect to="/login"/>
+			}
+			if (!(dataToken.sub === "CUSTOMER")) {
+				return <Redirect to="/dashboard"/>
+			}
+		} else {
+			return <Redirect to="/login"/>
+		}
+
         return (
             <>
 
@@ -29,7 +49,7 @@ class Main extends Component {
 									<p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est magni perferendis fugit modi similique, suscipit, deserunt a iure.</p>
 									<form action="#">
 										<div class="form-group d-flex">
-											<input type="text" class="form-control" placeholder="Enter Locatiob"/>
+											<input type="text" class="form-control" placeholder="Enter Location"/>
 												<input type="submit" class="btn btn-primary text-white px-4" value="Track Now"/>
 										</div>
 									</form>
@@ -411,14 +431,19 @@ class Main extends Component {
             </>
         );
     }
-     componentDidMount=async()=> {
-    	const dataListEvent = await fetchListDataEvent();
-    	console.log(dataListEvent.descriptionEvent+"iniiiiiiiiiiiiiiiiiiiiiiiiiii")
-    	this.props.dispatch({...listEVent, listEvent:dataListEvent})
+    listDataEvent=async ()=>{
+		const dataListEvent = await fetchListDataEvent();
+		console.log(dataListEvent.descriptionEvent+"iniiiiiiiiiiiiiiiiiiiiiiiiiii")
+		let action={...listEVent, listEvent:dataListEvent}
+		this.props.dispatch(action)
 	}
+   componentDidMount() {
+    	this.listDataEvent()
+   }
 }
 
 const mapsStateToProps=(state)=>{
+	console.log(state)
 	return {...state}
 }
 

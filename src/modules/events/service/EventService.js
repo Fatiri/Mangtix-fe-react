@@ -1,11 +1,12 @@
 import Swal from "sweetalert2";
+import {serverAddress} from "../../../server/ServerConstant";
 
 export async function saveDataEvent(event,multipartFile,multipartImage) {
     let formData = new FormData();
     formData.append("multipartFile", multipartFile);
     formData.append("multipartImage", multipartImage);
     formData.append("event", JSON.stringify(event));
-    return await fetch(`http://localhost:9090/event`, {
+    return await fetch(`${serverAddress}/event`, {
         method: "POST",
         body: formData,})
         .then((response) => {
@@ -31,7 +32,7 @@ export async function saveDataEvent(event,multipartFile,multipartImage) {
     return formData;
 }
 export async function updateDataEvent(event) {
-    const data = await fetch("http://localhost:9090/event", {method:"PUT",
+    const data = await fetch(`${serverAddress}/event`, {method:"PUT",
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(event)})
         .then((response) => {
@@ -57,7 +58,7 @@ export async function updateDataEvent(event) {
 }
 
 export async function fetchDataEvent() {
-    const data=await fetch(`http://localhost:9090/events`,
+    const data=await fetch(`${serverAddress}/events`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });
@@ -66,7 +67,7 @@ export async function fetchDataEvent() {
 }
 
 export async function fetchDataEventByCompany(event) {
-    const data=await fetch(`http://localhost:9090/event-company/?companyId=${event}`,
+    const data=await fetch(`${serverAddress}/event-company/?companyId=${event}`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });
@@ -74,7 +75,23 @@ export async function fetchDataEventByCompany(event) {
     return data;
 }
 export async function fetchDataEventId(id) {
-    const data = await fetch(`http://localhost:9090/event/${id}`, {method: "GET"})
+    const data = await fetch(`${serverAddress}/event/${id}`, {method: "GET"})
+        .then((response) => {
+            return response.json()
+        });
+    console.log(data);
+    return data;
+}
+export async function fetchDataEventDetailId(id) {
+    const data = await fetch(`${serverAddress}/event-detail/${id}`, {method: "GET"})
+        .then((response) => {
+            return response.json()
+        });
+    console.log(data);
+    return data;
+}
+export async function fetchDataEventByEventDetail(eventDetailId) {
+    const data = await fetch(`${serverAddress}/event-detail?eventDetailId=${eventDetailId}`, {method: "GET"})
         .then((response) => {
             return response.json()
         });

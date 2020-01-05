@@ -1,5 +1,7 @@
+import {serverAddress} from "../../../server/ServerConstant";
+
 export async function GenerateTokenAccess(user) {
-    const token = await  fetch(`http://localhost:9090/login`,
+    const token = await  fetch(`${serverAddress}/login`,
         {
             method: "POST", headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(user)

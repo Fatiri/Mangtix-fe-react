@@ -1,7 +1,8 @@
 import {badRequest400, succsessFetchData200} from "../../../components/constants";
+import {serverAddress} from "../../../server/ServerConstant";
 
 export async function saveDataPayment(event) {
-    const data = await fetch("http://localhost:9090/payment", {method:"POST",
+    const data = await fetch(`${serverAddress}/payment`, {method:"POST",
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(event)})
         .then((response) => {
@@ -17,7 +18,7 @@ export async function saveDataPayment(event) {
 }
 
 export async function fetchDataPayments() {
-    const data=await fetch(`http://localhost:9090/payments`,
+    const data=await fetch(`${serverAddress}/payments`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });
@@ -25,7 +26,7 @@ export async function fetchDataPayments() {
     return data;
 }
 export async function fetchDataUserAll() {
-    const data=await fetch(`http://localhost:9090/users`,
+    const data=await fetch(`${serverAddress}/users`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });

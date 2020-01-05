@@ -1,7 +1,8 @@
 import Swal from "sweetalert2";
+import {serverAddress} from "../../../server/ServerConstant";
 
 export async function saveDataCompany(event) {
-    const data = await fetch("http://localhost:9090/company", {method:"POST",
+    const data = await fetch(`${serverAddress}/company`, {method:"POST",
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(event)})
         .then((response) => {
@@ -27,7 +28,7 @@ export async function saveDataCompany(event) {
 }
 
 export async function fetchDataCompany() {
-    const data=await fetch(`http://localhost:9090/companies`,
+    const data=await fetch(`${serverAddress}/companies`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link, Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {
     registrationBirthDate,
@@ -9,7 +9,7 @@ import {
 } from "../RegistartionAction";
 import {registrationPost} from "../service/RegistrationService";
 import FormLocation from "../../location/components/FormLocationRegistration";
-import render from "enzyme/src/render";
+import Map from "../../location/components/MapRegistrationLocation";
 
 class FormRegisterCustomer extends Component {
     render() {
@@ -83,17 +83,18 @@ class FormRegisterCustomer extends Component {
                                                     </div>
                                                 </div>
                                                 </div>
-                                                <hr/>
+
                                                 <div>
                                                     <button className="btn btn-primary btn-block"
                                                             onClick={this.handleSubmitRegistration}>Create Account
                                                     </button>
                                                 </div>
+                                                <hr/>
+
                                                 <div className="text-center">
                                                     <Link to="/login" className="font-weight-bold small">Already have
                                                         an account?</Link>
                                                 </div>
-
                                                 <div className="text-center">
                                                 </div>
                                             </div>
@@ -145,11 +146,7 @@ class FormRegisterCustomer extends Component {
 
     handleSubmitRegistration = async () => {
         const dataUser = {...this.props.userInfo}
-        const dataPostUser = await registrationPost(dataUser);
-        console.log(this.props.userInfo)
-        if (!(dataPostUser === null)) {
-            return (<Redirect to="/login"/>)
-        }
+        await registrationPost(dataUser);
     }
 }
 

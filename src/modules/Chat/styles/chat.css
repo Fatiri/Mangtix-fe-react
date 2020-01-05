@@ -1,0 +1,99 @@
+.App-forum {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.chat-page {
+    width: 100%;
+    display: flex;
+    text-align: left;
+}
+
+.page-image{
+    width: 100%;
+    background: url('bg-cs.jpg') no-repeat;
+    display: flex;
+    margin-top: 100px;
+}
+
+.wrt{
+    margin-top: 500px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 380px;
+}
+
+.box{
+    width: 430px;
+    border-radius: 15px;
+    background: #00bfb6;
+    color: #fff;
+    padding: 20px;
+    text-align: left;
+    font-weight: 400;
+    font-family: arial;
+    margin-top: 30px;
+    margin-left: 15px;
+    margin-bottom: 30px;
+    position: relative;
+}
+.chat:before {
+    content: "";
+    height: auto;
+    font-size: 20px;
+    position: absolute;
+    border-left: 15px solid transparent;
+    border-right: 15px solid #00bfb6;
+    border-top: 15px solid #00bfb6;
+    border-bottom: 15px solid transparent;
+    left: -12px;
+    top: 0px;
+}
+
+.msg{
+    margin-top: 15px;
+    font-size: 15px;
+    color: white;
+}
+
+.comments-main{
+    background: navy;
+    margin-bottom: 80px;
+    margin-top: 50px;
+    width: 576px;
+}
+
+.comments-main ul li{
+    background: url('bg.jpg');
+    width: 576px;
+}
+
+.bd{
+    width: 574px;
+}
+
+.user-img img {
+    width: 50px;
+    height: 50px;
+    margin-top: 25px;
+    margin-left: 40px;
+}
+
+.ex1 {
+    height: 600px;
+    width: 576px;
+    overflow-y: scroll;
+}
+
+.title{
+   text-align: center;
+    width: 576px;
+    color: white;
+}
+
+.comment-box-main{
+    background: navy;
+    width: 576px;
+    margin: 0 .125rem 0 0;
+}

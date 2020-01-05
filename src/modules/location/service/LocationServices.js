@@ -1,7 +1,8 @@
 import Swal from "sweetalert2";
+import {serverAddress} from "../../../server/ServerConstant";
 
 export async function saveDataLocation(event) {
-    const data = await fetch("http://localhost:9090/location", {method:"POST",
+    const data = await fetch(`${serverAddress}/location`, {method:"POST",
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(event)})
         .then((response) => {
@@ -26,7 +27,7 @@ export async function saveDataLocation(event) {
     return data;
 }
 export async function fetchDataLocationId(id) {
-    const data = await fetch(`http://localhost:9090/location/${id}`, {method: "GET"})
+    const data = await fetch(`${serverAddress}/location/${id}`, {method: "GET"})
         .then((response) => {
             return response.json()
         });
@@ -34,7 +35,7 @@ export async function fetchDataLocationId(id) {
     return data;
 }
 export async function fetchDataLocation() {
-    const data = await fetch(`http://localhost:9090/locations`, {method: "GET"})
+    const data = await fetch(`${serverAddress}/locations`, {method: "GET"})
         .then((response) => {
             return response.json()
         });

@@ -80,6 +80,7 @@ class EventUpdate extends React.Component {
                                             <label>Event Date</label>
                                             <input type="date" data-date-format="dd-mm-yyyy" className="form-control" value={element.eventDate}
                                                    onChange={(event) => {
+                                                       console.log(event)
                                                        this.props.dispatch({
                                                            ...handleeventdate,
                                                            eventDate: event.target.value,
@@ -170,6 +171,7 @@ class EventUpdate extends React.Component {
     componentDidMount() {
         this.dataLocation()
     }
+
 }
 
 const mapStateToProps = (state) => {

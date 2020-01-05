@@ -1,3 +1,9 @@
 export const fetchbookingsuccess={type:"FETCH_DATA_BOOKING_SUCCESS"}
 export const fetchusersuccess={type:"FETCH_USER_SUCCESS"}
 export const fetchuserbyid={type:"FETCH_USER_BY_ID"}
+export const fetchEventManagement={type:"FETCH_DATA_EVENT_MANAGEMENT_SUCCESS"}
+export const fetchBookingManagement={type:"FETCH_DATA_BOOKING_MANAGEMENT_SUCCESS"}
+export const ticketManagement={type:"ADD_TICKET_MANAGEMENT"}
+export const eventDetailManagement={type:"ADD_EVENT_DETAIL_MANAGEMENT"}
+export const bookingDetailManagement={type:"ADD_BOOKING__DETAIL_MANAGEMENT_SUCCESS"}
+export const pureBookingManagement={type:"ADD_PURE_BOOKING_MANAGEMENT_SUCCESS"}

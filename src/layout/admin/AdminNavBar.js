@@ -2,11 +2,8 @@ import React, {Component} from 'react';
 import Authentication from "../../authentication/Authentication";
 import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
 import {Link, Redirect} from "react-router-dom";
-import {connect} from "react-redux";
-import {fetchDataUserBYId} from "../../modules/users/service/UserService";
-import {fetchDataUser} from "../../modules/users/UserAction";
 
-class AdminNavBar extends Component {
+export default class AdminNavBar extends Component {
 
     render() {
         return (
@@ -19,6 +16,12 @@ class AdminNavBar extends Component {
 
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item dropdown no-arrow mx-1">
+                            <a className="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                               data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                <i className="fas fa-bell fa-fw"/>
+                                <span className="badge badge-danger badge-counter">100+</span>
+                            </a>
                             <div
                                 className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
@@ -69,8 +72,7 @@ class AdminNavBar extends Component {
                             <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
-                                <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                <span className="ml-2 d-none d-lg-inline text-white small">Hi {this.props.userAccess.fullName}</span>
+                                <span className="ml-2 d-none d-lg-inline text-white small">Maman Ketoprak</span>
                             </a>
                             <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
@@ -98,11 +100,6 @@ class AdminNavBar extends Component {
             </>
         );
     }
-
-    componentDidMount() {
-        this.handleFetchDataUser();
-    }
-
     handleLogOut=()=>{
         localStorage.clear();
         const Auth = new Authentication();
@@ -120,25 +117,4 @@ class AdminNavBar extends Component {
             return <Redirect to="/login"/>
         }
     }
-
-    handleFetchDataUser=async ()=>{
-        const dataToken = decodeJwtToken();
-        if (!(dataToken===null)){
-            const idUser = dataToken.jti;
-            const dataUser = await fetchDataUserBYId(idUser);
-            console.log(dataUser.fullName+"ini loh")
-            this.props.dispatch({...fetchDataUser, userAccess:dataUser})
-            console.log(this.props.userAccess.fullName)
-        }else {
-            localStorage.clear();
-            return <Redirect to="/login"/>
-        }
-    }
-
 }
-
-function mapStateToProps(state) {
-    return {...state};
-}
-
-export default connect(mapStateToProps)(AdminNavBar);

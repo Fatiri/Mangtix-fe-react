@@ -5,9 +5,9 @@ class ListEvent extends Component {
     render() {
         return (
             <div>
-            <Events/>
+                <Events/>
             </div>
-    );
+        );
     }
 }
 

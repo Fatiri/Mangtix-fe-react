@@ -16,6 +16,7 @@ import {Link} from "react-router-dom";
 import {fetchDataCategory} from "../../../categories/service/CategoryService";
 import {fetchcategorysucces, handlecategoryid} from "../../../tickets/TicketAction";
 import {fetchDataLocation} from "../../../location/service/LocationServices";
+import decodeJwtToken from "../../../../authentication/AutheticationDecodeJwt";
 
 class EventForm extends React.Component {
     render() {
@@ -169,6 +170,9 @@ class EventForm extends React.Component {
     }
     handleSubmit = async (e) => {
         e.preventDefault();
+        const token = decodeJwtToken();
+        const companyId = token.aud;
+        this.props.eventForm.companyIdTransient= companyId;
         let event = this.props.eventForm
         let multipartFile = this.props.multipartFile;
         console.log(multipartFile)

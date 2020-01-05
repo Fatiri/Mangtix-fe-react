@@ -1,7 +1,8 @@
 import Swal from "sweetalert2";
+import {serverAddress} from "../../../server/ServerConstant";
 
 export async function saveDataTicket(event) {
-    const data = await fetch("http://localhost:9090/ticket", {
+    const data = await fetch(`${serverAddress}/ticket`, {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(event)
@@ -28,7 +29,7 @@ export async function saveDataTicket(event) {
 }
 
 export async function updateDataTicket(event) {
-    const data = await fetch("http://localhost:9090/ticket", {
+    const data = await fetch(`${serverAddress}/ticket`, {
         method: "PUT",
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(event)
@@ -55,7 +56,7 @@ export async function updateDataTicket(event) {
 }
 
 export async function fetchDataTicket() {
-    const data=await fetch(`http://localhost:9090/tickets`,
+    const data=await fetch(`${serverAddress}/tickets`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });
@@ -64,7 +65,7 @@ export async function fetchDataTicket() {
 }
 
 export async function fetchDataTicketById(id) {
-    const data=await fetch(`http://localhost:9090/ticket/${id}`,
+    const data=await fetch(`${serverAddress}/ticket/${id}`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });
@@ -72,7 +73,7 @@ export async function fetchDataTicketById(id) {
     return data;
 }
 export async function fetchDataListTicketByEventDetail(eventDetailId) {
-    const data=await fetch(`http://localhost:9090/ticket-list?eventDetailId=${eventDetailId}`,
+    const data=await fetch(`${serverAddress}/ticket-list?eventDetailId=${eventDetailId}`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });
@@ -81,7 +82,7 @@ export async function fetchDataListTicketByEventDetail(eventDetailId) {
 }
 
 export async function fetchDataTicketByCategory(event) {
-    const data=await fetch(`http://localhost:9090/tickets-category?${event}`,
+    const data=await fetch(`${serverAddress}/tickets-category?${event}`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });

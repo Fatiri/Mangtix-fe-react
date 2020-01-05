@@ -1,7 +1,8 @@
 import {badRequest400, succsessFetchData200} from "../../../components/constants";
+import {serverAddress} from "../../../server/ServerConstant";
 
 export async function saveDataBooking(event) {
-    const data = await fetch("http://localhost:9090/booking", {method:"POST",
+    const data = await fetch(`${serverAddress}/booking`, {method:"POST",
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(event)})
         .then((response) => {
@@ -16,7 +17,7 @@ export async function saveDataBooking(event) {
     return data;
 }
 export async function fetchDataBookingByUser(userId) {
-    const data=await fetch(`http://localhost:9090/booking-user?userId=${userId}`,
+    const data=await fetch(`${serverAddress}/booking-user?userId=${userId}`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });
@@ -24,7 +25,7 @@ export async function fetchDataBookingByUser(userId) {
     return data;
 }
 export async function fetchDataBookingById(id) {
-    const data=await fetch(`http://localhost:9090/booking/${id}`,
+    const data=await fetch(`${serverAddress}/booking/${id}`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });
@@ -33,7 +34,7 @@ export async function fetchDataBookingById(id) {
 }
 
 export async function fetchDataBookingAll() {
-    const data=await fetch(`http://localhost:9090/booking-list`,
+    const data=await fetch(`${serverAddress}/booking-list`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });
@@ -41,7 +42,7 @@ export async function fetchDataBookingAll() {
     return data;
 }
 export async function fetchDataUserAll() {
-    const data=await fetch(`http://localhost:9090/users`,
+    const data=await fetch(`${serverAddress}/users`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });
@@ -49,7 +50,7 @@ export async function fetchDataUserAll() {
     return data;
 }
 export async function fetchDataUserId(userId) {
-    const data=await fetch(`http://localhost:9090/user/${userId}`,
+    const data=await fetch(`${serverAddress}/user/${userId}`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });

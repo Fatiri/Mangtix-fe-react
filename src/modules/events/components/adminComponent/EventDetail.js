@@ -70,7 +70,7 @@ class EventDetail extends React.Component {
         const data = await fetchDataEventId(id)
         console.log(data.eventName + "ini data event form")
         this.props.dispatch({...handleupdate, payload: data})
-        console.log(this.props.eventForm)
+        console.log(this.props.e)
     }
     handleUpdateAdmin = async (id) => {
         console.log(id + "ini id")

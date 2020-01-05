@@ -13,6 +13,7 @@ export const fetchticketsavesuccess={type:"FETCH_TICKET_SAVE_SUCCESS"}
 export const handleonsaleupdate={type:"HANDLE_ON_SALE_UPDATE"}
 export const handlefreeupdate={type:"HANDLE_FREE_UPDATE"}
 export const clearstateonstate={type:"CLEAR_STATE_ON_SALE"}
+export const clearstatticketbyid={type:"CLEAR_STATE_TICKET_BY_ID"}
 export const clearstatefree={type:"CLEAR_STATE_FREE"}
 export const handleChangeDataTicket={type:"HANDLE_CHANGE_DATA_TICKET"}
 

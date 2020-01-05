@@ -1,13 +1,34 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {fetchDataEvent, fetchDataEventId} from "../../modules/events/service/EventService";
-import {handleChangeData} from "../../modules/events/EventAction";
-import {fetchDataListTicketByEventDetail, fetchDataTicket} from "../../modules/tickets/service/TicketService";
-import {fetcheventsuccess, fetchticketsuccess} from "../../reducerCustomer/ActionReducerCustomer";
+import {fetchDataTicket} from "../../modules/tickets/service/TicketService";
+import {
+    fetcheventdetailbyid,
+    fetchticketsuccess, handlequantity,
+    handletickettransient, handleusertransient
+} from "../../reducerCustomer/ActionReducerCustomer";
+import {Link} from "react-router-dom";
+import {fetchDataEventDetailId} from "../../modules/events/service/EventService";
+import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
+import {saveDataCart} from "../../modules/cart/service/CartService";
 
 class EventSchedule extends Component {
     render() {
+        console.log("LOGGG", this.props);
+        let stock = 0;
+        let stockVvip = 0;
+        let stockVip = 0;
+        let stockPresale = 0;
+        let stockPresale1 = 0;
+        // this.props.ticket.map((element1, index) => {
+        //     if (element1.eventDetail.id === this.props.eventDetailById.id) {
+        //         element1.ticketCodes.map((ticketCode) => {
+        //             if (ticketCode.available === true) {
+        //                 return stock = stock + 1;
+        //             }
+        //             console.log(stock, "stock")
+        //         })
+        //     }
+        // })
         return (
             <div>
 
@@ -21,317 +42,157 @@ class EventSchedule extends Component {
                             <h2 className="primary-text">Schedule</h2>
                             <img src="img/home/section-style.png" alt=""></img>
                         </div>
-
                         <div className="row">
                             <div className="col-xl-10 offset-xl-1">
                                 <div className="scheduleTab">
                                     <ul className="nav nav-tabs">
                                         {this.props.eventDetail.map((element, index) => {
                                             return <>
-                                                <li className="nav-item text-center">
-                                                    <a onClick={() => {
-                                                        this.dataTickets(element.id)
-                                                    }} data-toggle="tab" href="#day"></a>
-                                                    <h4>{element.eventDay}</h4>
-                                                    <p>{element.eventDate}</p>
-                                                    <p>{this.props.ticket.id}</p>
+                                                <li className="nav-tabstabsitem text-center">
+                                                    <button onClick={() => (this.handleEventDetail(element.id))}
+                                                            className={element.id === this.props.eventDetailById.id ? "btn active btn-secondary" : "btn btn-outline-secondary"}
+                                                            data-toggle="tab">
+                                                        <h4>{element.eventDay}</h4>
+                                                        <p>{element.eventDate}</p>
+                                                    </button>
                                                 </li>
-
                                             </>
-
                                         })}
-
-                                        <label>{this.props.ticket.id}</label>
                                     </ul>
 
+                                    <div className="tab-content">
+                                        {this.props.ticket.map((element1) => {
+                                            console.log("kondisi")
+                                            if (element1.eventDetail.id === this.props.eventDetailById.id) {
+                                                element1.ticketCodes.map((ticketCode) => {
+                                                    if (ticketCode.available === true) {
+                                                        if (element1.category.categoryName === "VVIP") {
+                                                            stockVvip = stockVvip + 1;
+                                                            return stock = stockVvip
+                                                        }
+                                                        if (element1.category.categoryName === "VIP") {
+                                                             stockVip = stockVip + 1;
+                                                            return stock = stockVip
+                                                        }
+                                                        if (element1.category.categoryName == "PRESALE") {
+                                                            stockPresale = stockPresale + 1;
+                                                            return stock = stockPresale
+                                                        }
+                                                        if (element1.category.categoryName == "PRESALE2") {
+                                                             stockPresale1 = stockPresale1 + 1;
+                                                            return stock = stockPresale1
+                                                        }
 
-                                    {/*<div className="tab-content">*/}
-                                    {/*    <div id="day" className="tab-pane">*/}
+                                                    }
 
-                                    {/*        <div className="schedule-card">*/}
-                                    {/*            <div className="row no-gutters">*/}
-                                    {/*                <div className="col-lg-3">*/}
-                                    {/*                    <img src="img/clients-logo/VVIP.png" alt=""></img>*/}
-                                    {/*                </div>*/}
-                                    {/*                <div className="col-md-9 align-self-center">*/}
-                                    {/*                    <div className="schedule-content">*/}
-                                    {/*                        <p className="schedule-date">9.00 AM - 10.30 AM</p>*/}
-                                    {/*                        <a className="schedule-title" href="#"></a>*/}
-                                    {/*                        <h3>Previous Year achivement</h3>*/}
-                                    {/*                        <div class="row mt-5">*/}
-                                    {/*                            <div class="col-12 text-center">*/}
-                                    {/*                                <a class="button mb-2" href="#">Buy Ticket</a>*/}
-                                    {/*                            </div>*/}
-                                    {/*                        </div>*/}
-                                    {/*                    </div>*/}
-                                    {/*                </div>*/}
-                                    {/*            </div>*/}
-                                    {/*        </div>*/}
 
-                                            {/*        <div className="schedule-card">*/}
-                                            {/*            <div className="row no-gutters">*/}
-                                            {/*                <div className="col-lg-3">*/}
-                                            {/*                    <img src="img/clients-logo/VIP.png" alt=""></img>*/}
-                                            {/*                </div>*/}
-                                            {/*                <div className="col-md-9 align-self-center">*/}
-                                            {/*                    <div className="schedule-content">*/}
-                                            {/*                        <p className="schedule-date">9.00 AM - 10.30 AM</p>*/}
-                                            {/*                        <a className="schedule-title" href="#"></a>*/}
-                                            {/*                        <h3>Previous Year achivement</h3>*/}
-                                            {/*                        <div className="row mt-5">*/}
-                                            {/*                            <div className="col-12 text-center">*/}
-                                            {/*                                <a className="button mb-2" href="#">Buy Ticket</a>*/}
-                                            {/*                            </div>*/}
-                                            {/*                        </div>*/}
-                                            {/*                    </div>*/}
-                                            {/*                </div>*/}
-                                            {/*            </div>*/}
-                                            {/*        </div>*/}
+                                                })
+                                                return <div>
+                                                    <div id="day" className="tab-pane">
+                                                        <div className="schedule-card">
+                                                            <div className="row no-gutters">
+                                                                <div className="col-lg-3">
+                                                                    <img src="img/clients-logo/VVIP.png"
+                                                                         alt=""></img>
+                                                                </div>
 
-                                            {/*</div>*/}
-                                            {/*<div id="day2" className="tab-pane active">*/}
-
-                                            {/*    <div className="schedule-card">*/}
-                                            {/*        <div className="row no-gutters">*/}
-                                            {/*            <div className="col-lg-3">*/}
-                                            {/*                <img src="img/clients-logo/VVIP.png" alt=""></img>*/}
-                                            {/*            </div>*/}
-                                            {/*            <div className="col-md-9 align-self-center">*/}
-                                            {/*                <div className="schedule-content">*/}
-                                            {/*                    <p className="schedule-date">9.00 AM - 10.30 AM</p>*/}
-                                            {/*                    <a className="schedule-title" href="#"></a>*/}
-                                            {/*                    <h3>Previous Year achivement</h3>*/}
-                                            {/*                    <div className="row mt-5">*/}
-                                            {/*                        <div className="col-12 text-center">*/}
-                                            {/*                            <a className="button mb-2" href="#">Buy Ticket</a>*/}
-                                            {/*                        </div>*/}
-                                            {/*                    </div>*/}
-                                            {/*                </div>*/}
-                                            {/*            </div>*/}
-                                            {/*        </div>*/}
-                                            {/*    </div>*/}
-
-                                            {/*    <div className="schedule-card">*/}
-                                            {/*        <div className="row no-gutters">*/}
-                                            {/*            <div className="col-lg-3">*/}
-                                            {/*                <img src="img/clients-logo/VIP.png" alt=""></img>*/}
-                                            {/*            </div>*/}
-                                            {/*            <div className="col-md-9 align-self-center">*/}
-                                            {/*                <div className="schedule-content">*/}
-                                            {/*                    <p className="schedule-date">9.00 AM - 10.30 AM</p>*/}
-                                            {/*                    <a className="schedule-title" href="#"></a>*/}
-                                            {/*                    <h3>Previous Year achivement</h3>*/}
-                                            {/*                    <div className="row mt-5">*/}
-                                            {/*                        <div className="col-12 text-center">*/}
-                                            {/*                            <a className="button mb-2" href="#">Buy Ticket</a>*/}
-                                            {/*                        </div>*/}
-                                            {/*                    </div>*/}
-                                            {/*                </div>*/}
-                                            {/*            </div>*/}
-                                            {/*        </div>*/}
-                                            {/*    </div>*/}
-
-                                            {/*    <div className="schedule-card">*/}
-                                            {/*        <div className="row no-gutters">*/}
-                                            {/*            <div className="col-lg-3">*/}
-                                            {/*                <img src="img/clients-logo/VVIP.png" alt=""></img>*/}
-                                            {/*            </div>*/}
-                                            {/*            <div className="col-md-9 align-self-center">*/}
-                                            {/*                <div className="schedule-content">*/}
-                                            {/*                    <p className="schedule-date">9.00 AM - 10.30 AM</p>*/}
-                                            {/*                    <a className="schedule-title" href="#"></a>*/}
-                                            {/*                    <h3>Previous Year achivement</h3>*/}
-                                            {/*                    <div className="row mt-5">*/}
-                                            {/*                        <div className="col-12 text-center">*/}
-                                            {/*                            <a className="button mb-2" href="#">Buy Ticket</a>*/}
-                                            {/*                        </div>*/}
-                                            {/*                    </div>*/}
-                                            {/*                </div>*/}
-                                            {/*            </div>*/}
-                                            {/*        </div>*/}
-                                            {/*    </div>*/}
-                                            {/*</div>*/}
-
-                                            {/*<div id="day3" className="tab-pane">*/}
-                                            {/*    <div className="schedule-card">*/}
-                                            {/*        <div className="row no-gutters">*/}
-                                            {/*            <div className="col-lg-3">*/}
-                                            {/*                <img src="img/clients-logo/VVIP.png" alt=""></img>*/}
-                                            {/*            </div>*/}
-                                            {/*            <div className="col-md-9 align-self-center">*/}
-                                            {/*                <div className="schedule-content">*/}
-                                            {/*                    <p className="schedule-date">9.00 AM - 10.30 AM</p>*/}
-                                            {/*                    <a className="schedule-title" href="#"></a>*/}
-                                            {/*                    <h3>Previous Year achivement</h3>*/}
-                                            {/*                    <div className="row mt-5">*/}
-                                            {/*                        <div className="col-12 text-center">*/}
-                                            {/*                            <a className="button mb-2" href="#">Buy Ticket</a>*/}
-                                            {/*                        </div>*/}
-                                            {/*                    </div>*/}
-                                            {/*                </div>*/}
-                                            {/*            </div>*/}
-                                            {/*        </div>*/}
-                                            {/*    </div>*/}
-
-                                            {/*    <div className="schedule-card">*/}
-                                            {/*        <div className="row no-gutters">*/}
-                                            {/*            <div className="col-lg-3">*/}
-                                            {/*                <img src="img/clients-logo/VIP.png" alt=""></img>*/}
-                                            {/*            </div>*/}
-                                            {/*            <div className="col-md-9 align-self-center">*/}
-                                            {/*                <div className="schedule-content">*/}
-                                            {/*                    <p className="schedule-date">9.00 AM - 10.30 AM</p>*/}
-                                            {/*                    <a className="schedule-title" href="#"></a>*/}
-                                            {/*                    <h3>Previous Year achivement</h3>*/}
-                                            {/*                    <div className="row mt-5">*/}
-                                            {/*                        <div className="col-12 text-center">*/}
-                                            {/*                            <a className="button mb-2" href="#">Buy Ticket</a>*/}
-                                            {/*                        </div>*/}
-                                            {/*                    </div>*/}
-                                            {/*                </div>*/}
-                                            {/*            </div>*/}
-                                            {/*        </div>*/}
-                                            {/*    </div>*/}
-
-                                            {/*    <div className="schedule-card">*/}
-                                            {/*        <div className="row no-gutters">*/}
-                                            {/*            <div className="col-lg-3">*/}
-                                            {/*                <img src="img/clients-logo/VVIP.png" alt=""></img>*/}
-                                            {/*            </div>*/}
-                                            {/*            <div className="col-md-9 align-self-center">*/}
-                                            {/*                <div className="schedule-content">*/}
-                                            {/*                    <p className="schedule-date">9.00 AM - 10.30 AM</p>*/}
-                                            {/*                    <a className="schedule-title" href="#"></a>*/}
-                                            {/*                    <h3>Previous Year achivement</h3>*/}
-                                            {/*                    <div className="row mt-5">*/}
-                                            {/*                        <div className="col-12 text-center">*/}
-                                            {/*                            <a className="button mb-2" href="#">Buy Ticket</a>*/}
-                                            {/*                        </div>*/}
-                                            {/*                    </div>*/}
-                                            {/*                </div>*/}
-                                            {/*            </div>*/}
-                                            {/*        </div>*/}
-                                            {/*    </div>*/}
-                                            {/*</div>*/}
-
-                                            {/*<div id="day4" className="tab-pane">*/}
-                                            {/*    <div className="schedule-card">*/}
-                                            {/*        <div className="row no-gutters">*/}
-                                            {/*            <div className="col-lg-3">*/}
-                                            {/*                <img src="img/clients-logo/VVIP.png" alt=""></img>*/}
-                                            {/*            </div>*/}
-                                            {/*            <div className="col-md-9 align-self-center">*/}
-                                            {/*                <div className="schedule-content">*/}
-                                            {/*                    <p className="schedule-date">9.00 AM - 10.30 AM</p>*/}
-                                            {/*                    <a className="schedule-title" href="#"></a>*/}
-                                            {/*                    <h3>Previous Year achivement</h3>*/}
-                                            {/*                    <div className="row mt-5">*/}
-                                            {/*                        <div className="col-12 text-center">*/}
-                                            {/*                            <a className="button mb-2" href="#">Buy Ticket</a>*/}
-                                            {/*                        </div>*/}
-                                            {/*                    </div>*/}
-                                            {/*                </div>*/}
-                                            {/*            </div>*/}
-                                            {/*        </div>*/}
-                                            {/*    </div>*/}
-
-                                            {/*    <div className="schedule-card">*/}
-                                            {/*        <div className="row no-gutters">*/}
-                                            {/*            <div className="col-lg-3">*/}
-                                            {/*                <img src="img/clients-logo/VVIP.png" alt=""></img>*/}
-                                            {/*            </div>*/}
-                                            {/*            <div className="col-md-9 align-self-center">*/}
-                                            {/*                <div className="schedule-content">*/}
-                                            {/*                    <p className="schedule-date">9.00 AM - 10.30 AM</p>*/}
-                                            {/*                    <a className="schedule-title" href="#"></a>*/}
-                                            {/*                    <h3>Previous Year achivement</h3>*/}
-                                            {/*                    <div className="row mt-5">*/}
-                                            {/*                        <div className="col-12 text-center">*/}
-                                            {/*                            <a className="button mb-2" href="#">Buy Ticket</a>*/}
-                                            {/*                        </div>*/}
-                                            {/*                    </div>*/}
-                                            {/*                </div>*/}
-                                            {/*            </div>*/}
-                                            {/*        </div>*/}
-                                            {/*    </div>*/}
-
-                                            {/*    <div className="schedule-card">*/}
-                                            {/*        <div className="row no-gutters">*/}
-                                            {/*            <div className="col-lg-3">*/}
-                                            {/*                <img src="img/clients-logo/VIP.png" alt=""></img>*/}
-                                            {/*            </div>*/}
-                                            {/*            <div className="col-md-9 align-self-center">*/}
-                                            {/*                <div className="schedule-content">*/}
-                                            {/*                    <p className="schedule-date">9.00 AM - 10.30 AM</p>*/}
-                                            {/*                    <a className="schedule-title" href="#"></a>*/}
-                                            {/*                    <h3>Previous Year achivement</h3>*/}
-                                            {/*                    <div className="row mt-5">*/}
-                                            {/*                        <div className="col-12 text-center">*/}
-                                            {/*                            <a className="button mb-2" href="#">Buy Ticket</a>*/}
-                                            {/*                        </div>*/}
-                                            {/*                    </div>*/}
-                                            {/*                </div>*/}
-                                            {/*            </div>*/}
-                                            {/*        </div>*/}
-                                            {/*    </div>*/}
-
-                                            {/*    <div className="schedule-card">*/}
-                                            {/*        <div className="row no-gutters">*/}
-                                            {/*            <div className="col-lg-3">*/}
-                                            {/*                <img src="img/clients-logo/VIP.png" alt=""></img>*/}
-                                            {/*            </div>*/}
-                                            {/*            <div className="col-md-9 align-self-center">*/}
-                                            {/*                <div className="schedule-content">*/}
-                                            {/*                    <p className="schedule-date">9.00 AM - 10.30 AM</p>*/}
-                                            {/*                    <a className="schedule-title" href="#"></a>*/}
-                                            {/*                    <h3>Previous Year achivement</h3>*/}
-                                            {/*                    <div className="row mt-5">*/}
-                                            {/*                        <div className="col-12 text-center">*/}
-                                            {/*                            <a className="button mb-2" href="#">Buy Ticket</a>*/}
-                                            {/*                        </div>*/}
-                                            {/*                    </div>*/}
-                                            {/*                </div>*/}
-                                            {/*            </div>*/}
-                                            {/*        </div>*/}
-                                            {/*    </div>*/}
-                                            {/*</div>*/}
-                                            {/*</div>*/}
-                                        </div>
+                                                                {stock > 0  ?
+                                                                    <div className="col-md-9 align-self-center">
+                                                                        <div className="schedule-content">
+                                                                            <p className="schedule-date">{element1.eventDetail.eventDate}</p>
+                                                                            <a className="schedule-title"
+                                                                               href="#"></a>
+                                                                            <h3>{element1.category.categoryName}</h3>
+                                                                            <h4>Stock = {stock}</h4>
+                                                                            <div className="row mt-5">
+                                                                                <div className="col-12 text-center">
+                                                                                    <Link onClick={() => {
+                                                                                        this.addCart(element1.id)
+                                                                                    }} className="button mb-4">Choose
+                                                                                        Ticket
+                                                                                    </Link>
+                                                                                    <Link onClick={() => {
+                                                                                        this.addCart(element1.id)
+                                                                                    }} className="button mb-4"
+                                                                                          to="/cart">Buy
+                                                                                        Ticket</Link>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    : <div className="col-md-9 align-self-center">
+                                                                        <div className="schedule-content">
+                                                                            <p className="schedule-date">{element1.eventDetail.eventDate}</p>
+                                                                            <a className="schedule-title"
+                                                                               href="#"></a>
+                                                                            <h3>{element1.category.categoryName}</h3>
+                                                                            <h4>Ticket Sold Out</h4>
+                                                                            <div className="row mt-5">
+                                                                                <div className="col-12 text-center">
+                                                                                    <button disabled={true}
+                                                                                            className="button mb-4">Choose
+                                                                                        Ticket
+                                                                                    </button>
+                                                                                    <Link disabled={true}
+                                                                                          className="button mb-4">Buy
+                                                                                        Ticket</Link>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        })}
                                     </div>
+
                                 </div>
                             </div>
+                        </div>
+                    </div>
                 </section>
             </div>
-    );
+        );
     }
 
-    dataTickets = async (eventDetailId)=>{
-        const data = await fetchDataListTicketByEventDetail(eventDetailId);
+    addCart = async (ticketId) => {
+        this.props.dispatch({...handletickettransient, ticketIdTransient: ticketId})
+        const dataToken = decodeJwtToken();
+        if (!(dataToken === null)) {
+            const idUser = dataToken.jti;
+            console.log(idUser, "userId")
+            this.props.dispatch({...handleusertransient, userIdTransient: idUser})
+        }
+        this.props.dispatch({...handlequantity, quantity: 1})
+        await saveDataCart(this.props.cartForm)
+    }
+    dataTickets = async () => {
+        const data = await fetchDataTicket();
         let action = {...fetchticketsuccess, payload: data}
         this.props.dispatch(action)
-        console.log(this.props.ticket+"data ticket")
+        console.log(this.props.ticket + "data ticket")
 
     }
 
-    dataEvent=async (eventDetail)=> {
-        let eventDetailId="";
-        console.log(this.props.eventDetail,"fghjk")
-        eventDetail.map((element,index)=>{
-        if(index===0){
-        console.log(index)
-        eventDetailId=element.id
-        console.log(eventDetailId+"ksdnhjksdhjksdhjk")
+    handleEventDetail = async (eventDetailId) => {
+        const data = await fetchDataEventDetailId(eventDetailId)
+        console.log(data)
+        let action = {...fetcheventdetailbyid, payload: data}
+        console.log(action)
+        this.props.dispatch(action)
     }
-    })
-        this.dataTickets(eventDetailId)
-    }
+
     componentDidMount() {
-        this.dataEvent(this.props.eventDetail);
+        this.dataTickets();
     }
 
-    }
-    const mapStateToProps = (state) => {
-        console.log(state, "ini mapStateToProps");
-        return {...state};
-    }
-    export default connect(mapStateToProps)(EventSchedule);
+}
+
+const mapStateToProps = (state) => {
+    console.log(state, "ini mapStateToProps");
+    return {...state};
+}
+export default connect(mapStateToProps)(EventSchedule);

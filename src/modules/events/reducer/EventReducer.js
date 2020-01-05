@@ -3,7 +3,7 @@ const initialState= {
     eventForm:{
         eventName:"",
         descriptionEvent:"",
-        companyIdTransient:"293b4491-50aa-4a96-91d2-db691eeb3f78",
+        companyIdTransient:"",
         eventDetailList:[]
     },
     location:{
@@ -19,7 +19,7 @@ const initialState= {
     multipartFile:[],
     eventById:[],
     eventDetail:[],
-    company:{id:"293b4491-50aa-4a96-91d2-db691eeb3f78"},
+    company:{id:""},
     companies:[]
 }
 export default function eventReducer(state=initialState, action){
@@ -31,6 +31,8 @@ export default function eventReducer(state=initialState, action){
             return {...state, dataLocation: action.payload}
         case "FETCH_COMPANY_SUCCESS":
             return {...state, companies: action.payload}
+        case "FETCH_COMPANY_ID_SUCCESS":
+            return {...state, company: {...state.company, id:action.company}}
         case "HANDLE_UPDATE":
             return {...state, eventForm: action.payload}
         case "ADD_EVENT_DETAIL":

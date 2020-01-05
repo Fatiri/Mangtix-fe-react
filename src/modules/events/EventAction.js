@@ -8,6 +8,7 @@ export const handlecompanyid={type:"HANDLE_COMPANY_ID"}
 export const handlevenue={type:"HANDLE_VENUE"}
 export const handleeventday={type:"HANDLE_EVENT_DAY"}
 export const handleeventdate={type:"HANDLE_EVENT_DATE"}
+export const eventBYCompanyId={type:"FETCH_COMPANY_ID_SUCCESS"}
 export const handledescriptioneventdetail={type:"HANDLE_DESCRIPTION"}
 export const handlelocationid={type:"HANDLE_LOCATION_ID"}
 export const fetcheventdetailsuccess={type:"FETCH_EVENT_DETAIL_SUCCESS"}
