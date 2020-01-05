@@ -4,6 +4,7 @@ import {fetchDataEventByCompany, fetchDataEventId} from "../../service/EventServ
 import {fetcheventsuccess, handleChangeData, handlechangedata} from "../../EventAction";
 import EventDetail from "./EventDetail";
 import {Link} from "react-router-dom";
+import decodeJwtToken from "../../../../authentication/AutheticationDecodeJwt";
 
 class EventByCompany extends React.Component {
     render() {
@@ -53,8 +54,13 @@ class EventByCompany extends React.Component {
     }
 
     componentDidMount() {
-        let data = this.props.company.id;
-        this.dataEvent(data)
+        const dataToken = decodeJwtToken();
+        let company;
+        if (!(dataToken === null)) {
+            company= dataToken.aud;
+            console.log(company, "company")
+        }
+        this.dataEvent(company)
     }
 
     dataEvent = async (event) => {

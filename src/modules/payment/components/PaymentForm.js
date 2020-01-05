@@ -1,250 +1,82 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
+import {Link} from "react-router-dom";
+import {saveDataPayment} from "../service/PaymentService";
+import {fetchDataBookingById} from "../../booking/service/BookingService";
+import {fetchbookingsuccess} from "../../../reducerCustomer/ActionReducerCustomer";
 
 class PaymentForm extends Component {
     render() {
+        let total=0;
+        this.props.booking.bookingDetailList.map((element)=>{
+            return total=total+element.subtotal;
+        })
         return (
             <div>
-                <div className="modal fade" id="checkout" tabIndex="-1" role="dialog"
-                     aria-labelledby="exampleModalLabel"
-                     aria-hidden="true">
-                    <div className="modal-dialog modal-lg" role="document">
-                        <div className="modal-content">
-                            <div className="modal-header">
+                <section className="hero-banner hero-banner-sm">
+                </section>
 
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
+                <section className="section-padding--small sponsor-bg">
+                    <div className="container">
+                        <div className="section-intro text-center pb-98px">
+                            <p className="section-intro__title">Join the event</p>
+                            <h2 className="primary-text">Payment</h2>
+                            <img src="img/home/section-style.png" alt=""></img>
+                        </div>
 
-                            <form>
-                                <div className="col-lg-12">
-                                    <div className="text-center">
-                                        <h5 className="modal-title" id="exampleModalLabel">Payment
-                                            <br/>
-                                            <img src="img/home/section-style.png" alt=""></img></h5>
+                        <div className="col-md-8 offset-2">
+                            <div className="cart_total_container">
+                                <ul>
+                                    <div className="cart_total">
+                                        <div className="section_title">Cart total</div>
+                                        <li className="d-flex flex-row align-items-center justify-content-start">
+                                            <div className="cart_total_title">Total</div>
+                                            <div className="cart_total_value ml-auto">{new Intl.NumberFormat('id-ID', {
+                                                style: 'currency',
+                                                currency: 'IDR'
+                                            }).format(total)}</div>
+                                        </li>
                                     </div>
+                                </ul>
+                                <div className="section_title">Payment Method</div>
+                                <div className="section_subtitle">Select the one you want</div>
+                                <div className="delivery_options">
 
-                                    <div className="cart_total_container">
-                                        <ul>
-                                            <div className="cart_total">
-                                                <div className="section_title">Cart total</div>
-                                                <li className="d-flex flex-row align-items-center justify-content-start">
-                                                    <div className="cart_total_title">Total</div>
-                                                    <div className="cart_total_value ml-auto"
-                                                         style={{fontWeight: "bold", fontSize: 20}}>Rp. 790.000
-                                                    </div>
-                                                </li>
-                                            </div>
-                                        </ul>
+                                    <input type="radio" name="radio" style={{margin: 15}}></input>
+                                    <img src="img/clients-logo/mandiri.png" alt="" className="btn-dark"></img>
 
-                                        <div className="section_title">Payment Method</div>
-                                        <div className="section_subtitle">Select the one you want</div>
-                                        <br/>
-                                        <div className="card">
-                                            <div className="card-body p-5">
-                                                <ul className="nav nav-pills nav-justified">
-                                                    <li className="nav-item">
-                                                        <a className="nav-link active" data-toggle="pill"
-                                                           href="#nav-tab-bank-bni">
-                                                            <img src="img/clients-logo/BNI.png" alt=""
-                                                                 className="btn-dark"></img>
-                                                        </a></li>
-                                                    <li className="nav-item">
-                                                        <a className="nav-link" data-toggle="pill"
-                                                           href="#nav-tab-bank-bri">
-                                                            <img src="img/clients-logo/BRI.png" alt=""
-                                                                 className="btn-dark"></img>
-                                                        </a></li>
-                                                    <li className="nav-item">
-                                                        <a className="nav-link" data-toggle="pill"
-                                                           href="#nav-tab-bank-mandiri">
-                                                            <img src="img/clients-logo/mandiri.png" alt=""
-                                                                 className="btn-dark"></img>
-                                                        </a></li>
-                                                </ul>
+                                    <input type="radio" name="radio" style={{margin: 15}}></input>
+                                    <img src="img/clients-logo/BRI.png" alt="" className="btn-dark"></img>
 
-                                                <div className="tab-content" style={{marginTop:50}}>
-                                                    <div className="tab-pane fade show active" id="nav-tab-bank-bni">
-                                                        <form role="form">
-                                                            <div className="form-group">
-                                                                <label htmlFor="username">Full name (on the
-                                                                    card)</label>
-                                                                <input type="text" className="form-control"
-                                                                       name="username"
-                                                                       placeholder="" required=""></input>
-                                                            </div>
 
-                                                            <div className="form-group">
-                                                                <label htmlFor="cardNumber">Card number</label>
-                                                                <div className="input-group">
-                                                                    <input type="text" className="form-control"
-                                                                           name="cardNumber" placeholder=""></input>
-                                                                    <div className="input-group-append">
-				                                    <span className="input-group-text text-muted">
-				                                	<i className="fa fa-credit-card"></i>
-			                                    	</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div className="row">
-                                                                <div className="col-sm-8">
-                                                                    <div className="form-group">
-                                                                        <label><span
-                                                                            className="hidden-xs">Expiration</span>
-                                                                        </label>
-                                                                        <div className="input-group">
-                                                                            <input type="number"
-                                                                                   className="form-control"
-                                                                                   placeholder="MM" name=""></input>
-                                                                            <input type="number"
-                                                                                   className="form-control"
-                                                                                   placeholder="YY" name=""></input>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="col-sm-4">
-                                                                    <div className="form-group">
-                                                                        <label data-toggle="tooltip" title=""
-                                                                               data-original-title="3 digits code on back side of the card">CVV <i
-                                                                            className="fa fa-question-circle"></i></label>
-                                                                        <input type="number" className="form-control"
-                                                                               required=""></input>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <button className="subscribe btn btn-primary btn-block"
-                                                                    type="button"> Confirm
-                                                            </button>
-                                                        </form>
-                                                    </div>
-
-                                                    <div className="tab-pane fade" id="nav-tab-bank-bri">
-                                                        <form role="form">
-                                                            <div className="form-group">
-                                                                <label htmlFor="username">Full name (on the
-                                                                    card)</label>
-                                                                <input type="text" className="form-control"
-                                                                       name="username"
-                                                                       placeholder="" required=""></input>
-                                                            </div>
-
-                                                            <div className="form-group">
-                                                                <label htmlFor="cardNumber">Card number</label>
-                                                                <div className="input-group">
-                                                                    <input type="text" className="form-control"
-                                                                           name="cardNumber" placeholder=""></input>
-                                                                    <div className="input-group-append">
-				                                    <span className="input-group-text text-muted">
-				                                	<i className="fa fa-credit-card"></i>
-			                                    	</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div className="row">
-                                                                <div className="col-sm-8">
-                                                                    <div className="form-group">
-                                                                        <label><span
-                                                                            className="hidden-xs">Expiration</span>
-                                                                        </label>
-                                                                        <div className="input-group">
-                                                                            <input type="number"
-                                                                                   className="form-control"
-                                                                                   placeholder="MM" name=""></input>
-                                                                            <input type="number"
-                                                                                   className="form-control"
-                                                                                   placeholder="YY" name=""></input>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="col-sm-4">
-                                                                    <div className="form-group">
-                                                                        <label data-toggle="tooltip" title=""
-                                                                               data-original-title="3 digits code on back side of the card">CVV <i
-                                                                            className="fa fa-question-circle"></i></label>
-                                                                        <input type="number" className="form-control"
-                                                                               required=""></input>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <button className="subscribe btn btn-primary btn-block"
-                                                                    type="button"> Confirm
-                                                            </button>
-                                                        </form>
-                                                    </div>
-
-                                                    <div className="tab-pane fade" id="nav-tab-bank-mandiri">
-                                                        <form role="form">
-                                                            <div className="form-group">
-                                                                <label htmlFor="username">Full name (on the
-                                                                    card)</label>
-                                                                <input type="text" className="form-control"
-                                                                       name="username"
-                                                                       placeholder="" required=""></input>
-                                                            </div>
-
-                                                            <div className="form-group">
-                                                                <label htmlFor="cardNumber">Card number</label>
-                                                                <div className="input-group">
-                                                                    <input type="text" className="form-control"
-                                                                           name="cardNumber" placeholder=""></input>
-                                                                    <div className="input-group-append">
-				                                    <span className="input-group-text text-muted">
-				                                	<i className="fa fa-credit-card"></i>
-			                                    	</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div className="row">
-                                                                <div className="col-sm-8">
-                                                                    <div className="form-group">
-                                                                        <label><span
-                                                                            className="hidden-xs">Expiration</span>
-                                                                        </label>
-                                                                        <div className="input-group">
-                                                                            <input type="number"
-                                                                                   className="form-control"
-                                                                                   placeholder="MM" name=""></input>
-                                                                            <input type="number"
-                                                                                   className="form-control"
-                                                                                   placeholder="YY" name=""></input>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="col-sm-4">
-                                                                    <div className="form-group">
-                                                                        <label data-toggle="tooltip" title=""
-                                                                               data-original-title="3 digits code on back side of the card">CVV <i
-                                                                            className="fa fa-question-circle"></i></label>
-                                                                        <input type="number" className="form-control"
-                                                                               required=""></input>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <button className="subscribe btn btn-primary btn-block"
-                                                                    type="button"> Confirm
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br/>
-                                        <div className="modal-footer">
-                                            <div className="button checkout_button"><a href="#">Buy Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <input type="radio" name="radio" style={{margin: 15}}></input>
+                                    <img src="img/clients-logo/BNI.png" alt="" className="btn-dark"></img>
                                 </div>
-                            </form>
+                                <br/>
+                                <div className="button checkout_button"><button onClick={this.payment}>Buy Now</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
-        )
+        );
+    }
+    payment=async ()=>{
+        await saveDataPayment(this.props.paymentForm)
+    }
+
+    bookingById=async (id)=>{
+        let data = await fetchDataBookingById(id)
+        let action = {...fetchbookingsuccess, booking:data}
+        this.props.dispatch(action)
+    }
+    componentDidMount() {
+        this.bookingById(this.props.paymentForm.bookingIdTransient)
     }
 }
-
-export default PaymentForm;
+const mapStateToProps = (state) => {
+    console.log(state, "ini mapStateToProps");
+    return {...state};
+}
+export default connect(mapStateToProps)(PaymentForm);

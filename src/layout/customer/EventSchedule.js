@@ -68,25 +68,36 @@ class EventSchedule extends Component {
                                                     if (ticketCode.available === true) {
                                                         if (element1.category.categoryName === "VVIP") {
                                                             stockVvip = stockVvip + 1;
-                                                            console.log(stockVvip,"stockVvip")
+                                                            console.log(stockVvip, "stockVvip")
                                                             return stock = stockVvip
-                                                        }
-                                                        else if (element1.category.categoryName === "VIP") {
-                                                             stockVip = stockVip + 1;
-                                                            console.log(stockVip,"stockVip")
+                                                        } else if (element1.category.categoryName === "VIP") {
+                                                            stockVip = stockVip + 1;
+                                                            console.log(stockVip, "stockVip")
                                                             return stock = stockVip
-                                                        }
-                                                        else if (element1.category.categoryName === "PRESALE") {
+                                                        } else if (element1.category.categoryName === "PRESALE") {
                                                             stockPresale = stockPresale + 1;
                                                             console.log(stockPresale, "stockPresale")
                                                             return stock = stockPresale
-                                                        }
-                                                        else if (element1.category.categoryName === "PRESALE1") {
-                                                             stockPresale1 = stockPresale1 + 1;
-                                                            console.log(stockPresale1,"stockPresale1")
+                                                        } else if (element1.category.categoryName === "PRESALE1") {
+                                                            stockPresale1 = stockPresale1 + 1;
+                                                            console.log(stockPresale1, "stockPresale1")
                                                             return stock = stockPresale1
                                                         }
 
+                                                    } else if (ticketCode.available === false) {
+                                                        if (element1.category.categoryName === "VVIP") {
+                                                            console.log(stockVvip, "stockVvip")
+                                                            return stock = stockVvip
+                                                        } else if (element1.category.categoryName === "VIP") {
+                                                            console.log(stockVip, "stockVip")
+                                                            return stock = stockVip
+                                                        } else if (element1.category.categoryName === "PRESALE") {
+                                                            console.log(stockPresale, "stockPresale")
+                                                            return stock = stockPresale
+                                                        } else if (element1.category.categoryName === "PRESALE1") {
+                                                            console.log(stockPresale1, "stockPresale1")
+                                                            return stock = stockPresale1
+                                                        }
                                                     }
 
 
@@ -96,18 +107,24 @@ class EventSchedule extends Component {
                                                         <div className="schedule-card">
                                                             <div className="row no-gutters">
                                                                 <div className="col-lg-3">
-                                                                    <img src="img/clients-logo/VVIP.png"
-                                                                         alt=""></img>
+                                                                    {element1.category.categoryName==="VVIP"?<img src="img/clients-logo/VVIP.png" alt=""></img>:
+                                                                        element1.category.categoryName==="VIP"?<img src="img/clients-logo/VIP.png" alt=""></img>:
+                                                                            element1.category.categoryName==="PRESALE1"?<img src="img/clients-logo/presale1.jpg" alt=""></img>:
+                                                                                element1.category.categoryName==="PRESALE2"?<img src="img/clients-logo/presale2.jpg" alt=""></img>:<img src="img/clients-logo/presale2.jpg" alt=""></img>}
                                                                 </div>
 
-                                                                {stock > 0  ?
+                                                                {stock > 0 ?
                                                                     <div className="col-md-9 align-self-center">
                                                                         <div className="schedule-content">
                                                                             <p className="schedule-date">{element1.eventDetail.eventDate}</p>
                                                                             <a className="schedule-title"
                                                                                href="#"></a>
                                                                             <h3>{element1.category.categoryName}</h3>
-                                                                            <h4>Stock = {stock}</h4>
+                                                                            <h4>{new Intl.NumberFormat('id-ID', {
+                                                                                style: 'currency',
+                                                                                currency: 'IDR'
+                                                                            }).format(element1.price)}</h4>
+                                                                            <h5>Stock = {stock}</h5>
                                                                             <div className="row mt-5">
                                                                                 <div className="col-12 text-center">
                                                                                     <Link onClick={() => {
@@ -130,7 +147,11 @@ class EventSchedule extends Component {
                                                                             <a className="schedule-title"
                                                                                href="#"></a>
                                                                             <h3>{element1.category.categoryName}</h3>
-                                                                            <h4>Ticket Sold Out</h4>
+                                                                            <h4>{new Intl.NumberFormat('id-ID', {
+                                                                                style: 'currency',
+                                                                                currency: 'IDR'
+                                                                            }).format(element1.price)}</h4>
+                                                                            <h5>Ticket Sold Out</h5>
                                                                             <div className="row mt-5">
                                                                                 <div className="col-12 text-center">
                                                                                     <button disabled={true}
@@ -163,7 +184,8 @@ class EventSchedule extends Component {
     }
 
     addCart = async (ticketId) => {
-        this.props.dispatch({...handletickettransient, ticketIdTransient: ticketId})
+        let action = {...handletickettransient, ticketIdTransient: ticketId}
+        this.props.dispatch(action)
         const dataToken = decodeJwtToken();
         if (!(dataToken === null)) {
             const idUser = dataToken.jti;

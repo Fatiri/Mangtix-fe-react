@@ -1,11 +1,31 @@
 import React, {Component} from 'react';
-import Cart from "../../cart/component/Cart";
+import {connect} from "react-redux";
+import {fetchDataEvent} from "../../events/service/EventService";
+import {
+    clearbookingform, fetchbookingsuccess,
+    fetcheventsuccess,
+    fetchticketsuccess,
+    handlepayment
+} from "../../../reducerCustomer/ActionReducerCustomer";
+import {fetchDataTicket} from "../../tickets/service/TicketService";
 import {Link} from "react-router-dom";
-import PaymentForm from "../../payment/components/PaymentForm";
+import Swal from "sweetalert2";
+import {saveDataBooking} from "../service/BookingService";
+import {deleteCart} from "../../cart/service/CartService";
 
 class BookingForm extends React.Component {
 
     render() {
+        let total = 0;
+        let subTotal=0;
+        this.props.bookingForm.bookingDetailList.map((element)=>{
+            this.props.ticket.map((ticket)=>{
+                if (ticket.id===element.ticketIdTransient){
+                    subTotal= ticket.price * element.quantity
+                    return total = total + subTotal
+                }
+            })
+        })
 
         return (
             <div>
@@ -18,7 +38,6 @@ class BookingForm extends React.Component {
                             <h2 className="primary-text">Booking</h2>
                             <img src="img/home/section-style.png" alt=""></img>
                         </div>
-                        <h3>Please choose a ticket</h3>
                         <div className="cart_info">
                             <div className="container">
                                 <div className="row">
@@ -32,48 +51,68 @@ class BookingForm extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="row cart_items_row">
-                                    <div className="col">
+                                {this.props.bookingForm.bookingDetailList.map((element, index) => {
+                                    return <>
+                                        <div className="row cart_items_row">
+                                            <div className="col">
 
-                                        <div
-                                            className="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+                                                <div
+                                                    className="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+                                                    {this.props.ticket.map((ticket)=>{
+                                                        if (ticket.id===element.ticketIdTransient) {
+                                                            return <>
+                                                    <div>{ticket.category.categoryName==="VVIP"?<img src="img/clients-logo/VVIP.png" alt=""></img>:
+                                                        ticket.category.categoryName==="VIP"?<img src="img/clients-logo/VIP.png" alt=""></img>:
+                                                            ticket.category.categoryName==="PRESALE1"?<img src="img/clients-logo/presale1.jpg" alt=""></img>:
+                                                                ticket.category.categoryName==="PRESALE2"?<img src="img/clients-logo/presale2.jpg" alt=""></img>:<img src="img/clients-logo/presale2.jpg" alt=""></img>}</div>
 
-                                            <div><img src="img/clients-logo/VVIP.png" alt=""></img></div>
-                                            <div
-                                                className="cart_item_product">{}</div>
+                                                            {
+                                                                this.props.events.map((element1, index1) => {
+                                                                    return <>
+                                                                        {element1.eventDetailList.map((eventDetail) => {
+                                                                            console.log(ticket.eventDetail.id, "  ke1")
+                                                                            console.log(eventDetail.id, "  ke2")
+                                                                            if (eventDetail.id === ticket.eventDetail.id) {
+                                                                                console.log(element1.eventName)
+                                                                                return <div
+                                                                                    className="cart_item_product">{element1.eventName}</div>
+                                                                            }
+                                                                        })
+                                                                        }
+                                                                    </>
+                                                                })
+                                                            }
 
 
-                                            <div className="cart_item_price">
-                                                <span>Rp. </span>
-                                            </div>
-
-                                            <div className="product_quantity clearfix">
-                                                <span>Qty</span>
-                                                <input id="quantity_input" type="text" pattern="[0-9]*"
-                                                       value=""></input>
-                                                <div className="quantity_buttons">
-                                                    <div id="quantity_inc_button"
-                                                         className="quantity_inc quantity_control">
-                                                        <i
-                                                            className="fa fa-chevron-up" aria-hidden="true"></i>
-
+                                                    <div className="cart_item_price">
+                                                        <span>{new Intl.NumberFormat('id-ID', {
+                                                            style: 'currency',
+                                                            currency: 'IDR'
+                                                        }).format(ticket.price)}</span>
                                                     </div>
-                                                    <div id="quantity_dec_button"
-                                                         className="quantity_dec quantity_control">
-                                                        <i
-                                                            className="fa fa-chevron-down"
-                                                            aria-hidden="true"></i>
+
+                                                    <div className="product_quantity clearfix">
+                                                        <span>Qty</span>
+                                                        <input disabled={true} id="quantity_input" type="text" pattern="[0-9]*"
+                                                               value={element.quantity}></input>
                                                     </div>
+
+                                                    <div className="cart_item_total">
+                                                        <span>{new Intl.NumberFormat('id-ID', {
+                                                            style: 'currency',
+                                                            currency: 'IDR'
+                                                        }).format(subTotal)}</span>
+                                                    </div>
+                                                           </>
+                                                        }
+                                                    })}
                                                 </div>
-                                            </div>
 
-                                            <div className="cart_item_total">
-                                                <span>Rp. </span>
                                             </div>
                                         </div>
+                                    </>
+                                })}
 
-                                    </div>
-                                </div>
 
                                 <div className="row row_extra">
                                     <div className="col-lg-4">
@@ -99,36 +138,78 @@ class BookingForm extends React.Component {
                                             <div className="cart_total_container">
                                                 <ul>
                                                     <li className="d-flex flex-row align-items-center justify-content-start">
-                                                        <div className="cart_total_title">Subtotal</div>
-                                                        <div className="cart_total_value ml-auto">Rp. 790.000
-                                                        </div>
-                                                    </li>
-                                                    <li className="d-flex flex-row align-items-center justify-content-start">
-                                                        <div className="cart_total_title">Shipping</div>
-                                                        <div className="cart_total_value ml-auto">Free</div>
-                                                    </li>
-                                                    <li className="d-flex flex-row align-items-center justify-content-start">
                                                         <div className="cart_total_title">Total</div>
-                                                        <div className="cart_total_value ml-auto">Rp. 790.000
+                                                        <div className="cart_total_value ml-auto">{new Intl.NumberFormat('id-ID', {
+                                                            style: 'currency',
+                                                            currency: 'IDR'
+                                                        }).format(total)}
                                                         </div>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <button className="button checkout_button" type="button" data-toggle="modal"
-                                                    data-target="#checkout">
-                                                Proceed To Checkout
-                                            </button>
-                                        <PaymentForm/>
+                                            <div className="row"><Link onClick={()=>{this.payment(this.props.bookingForm)}} to="/payment" className="button checkout_button">Proceed to
+                                                Payment</Link>
+                                                <Link onClick={this.cancelBooking} to="/cart" className="button checkout_button" >Cancel Booking</Link>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </section>
             </div>
+
         );
+    }
+    payment=async (booking)=>{
+        console.log(booking)
+        let dataBooking=await saveDataBooking(booking)
+        console.log(dataBooking)
+        let actionBooking={...fetchbookingsuccess, booking:dataBooking}
+        console.log(actionBooking)
+        await this.props.dispatch(actionBooking)
+        let action={...handlepayment, bookingIdTransient:dataBooking.id}
+        console.log(action)
+        await this.props.dispatch(action)
+        this.props.cartById.map((cart)=>{
+            return deleteCart(cart.id)
+        })
+    }
+    dataEvent = async () => {
+        const dataEvent = await fetchDataEvent();
+        let action = {...fetcheventsuccess, payload: dataEvent}
+        console.log(action)
+        this.props.dispatch(action)
+    }
+    dataTicket = async ()=>{
+        const dataTicket=await fetchDataTicket();
+        let action = {...fetchticketsuccess, payload: dataTicket}
+        this.props.dispatch(action)
+    }
+    cancelBooking=async ()=>{
+        await Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Cancel Booking!'
+        })
+        await this.props.dispatch({...clearbookingform})
+    }
+    componentDidMount() {
+        this.dataEvent()
+        this.dataTicket()
     }
 }
 
-export default BookingForm;
+
+const mapStateToProps = (state) => {
+    console.log(state, "ini mapStateToProps");
+    return {...state};
+}
+
+export default connect(mapStateToProps)(BookingForm);

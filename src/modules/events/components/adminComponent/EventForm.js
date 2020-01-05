@@ -10,12 +10,8 @@ import {
 } from "../../EventAction";
 import {connect} from "react-redux";
 import {saveDataEvent} from "../../service/EventService";
-import FormLocation from "../../../location/components/FormLocationRegistration";
-import FormLocationEvent from "../../../location/components/FormLocationEvent";
-import {Link} from "react-router-dom";
-import {fetchDataCategory} from "../../../categories/service/CategoryService";
-import {fetchcategorysucces, handlecategoryid} from "../../../tickets/TicketAction";
 import {fetchDataLocation} from "../../../location/service/LocationServices";
+import decodeJwtToken from "../../../../authentication/AutheticationDecodeJwt";
 
 class EventForm extends React.Component {
     render() {
@@ -129,27 +125,6 @@ class EventForm extends React.Component {
                                                     }
                                                 })}
                                             </select>
-                                            {/*<input type="text" disabled={true} className="form-control" value={this.props.locationEvent2.id}*/}
-                                            {/*        required/>*/}
-                                            {/*<Link to="/event-location" onClick={()=>this.props}>Choose Location</Link>*/}
-                                            {/*<div className="form-group">*/}
-                                            {/*    <button className="btn btn-primary" type="button"*/}
-                                            {/*            data-toggle="collapse"*/}
-                                            {/*            data-target={`#collapseExample${index}`} aria-expanded="false"*/}
-                                            {/*            aria-controls="collapseExample">*/}
-                                            {/*        Choose Location*/}
-                                            {/*    </button>*/}
-                                            {/*</div>*/}
-
-                                            {/*<div className="form-group">*/}
-                                            {/*    <div className="collapse" id={`collapseExample${index}`}>*/}
-                                            {/*        <div className="card card-body">*/}
-                                            {/*            <div className="form-group">*/}
-                                            {/*                <FormLocationEvent/>*/}
-                                            {/*            </div>*/}
-                                            {/*        </div>*/}
-                                            {/*    </div>*/}
-                                            {/*</div>*/}
 
                                         </div>
                                     })}
@@ -169,6 +144,13 @@ class EventForm extends React.Component {
     }
     handleSubmit = async (e) => {
         e.preventDefault();
+        const dataToken = decodeJwtToken();
+        let company;
+        if (!(dataToken === null)) {
+            company= dataToken.aud;
+            console.log(company, "company")
+        }
+        this.props.eventForm.companyIdTransient=company;
         let event = this.props.eventForm
         let multipartFile = this.props.multipartFile;
         console.log(multipartFile)
