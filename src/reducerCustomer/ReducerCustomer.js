@@ -5,10 +5,13 @@ const initialState= {
     eventDetailById:[],
     ticket:[],
     cart:[],
+    cartById:[],
     cartForm:{ticketIdTransient:"",userIdTransient:"",quantity:""},
     cartFormUpdate:{},
     bookingForm:{userIdTransient:"",bookingDetailList:[]},
-    bookingDetail:[]
+    bookingDetail:[],
+    booking:[],
+    paymentForm:{bookingIdTransient:""}
 }
 export default function reducerCustomer(state=initialState, action){
     console.log('event-reducer', state, action)
@@ -25,6 +28,8 @@ export default function reducerCustomer(state=initialState, action){
             return {...state, eventDetailById: action.payload}
         case "FETCH_CART":
             return {...state, cart: action.cart}
+        case "FETCH_CART_ID":
+            return {...state, cartById: action.cartById}
         case "FETCH_CART_BY_ID":
             return {...state, cartFormUpdate: action.cartFormUpdate}
         case "HANDLE_TICKET_TRANSIENT":
@@ -72,6 +77,10 @@ export default function reducerCustomer(state=initialState, action){
             }}
         case "CLEAR_STATE_BOOKING_FORM":
             return {...state, bookingForm: initialState.bookingForm}
+        case "FETCH_BOOKING_SUCCESS":
+            return {...state, booking: action.booking}
+        case "HANDLE_PAYMENT":
+            return {...state, paymentForm: {...state.paymentForm, bookingIdTransient: action.bookingIdTransient}}
         default:
             return {...state}
     }
