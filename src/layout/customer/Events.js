@@ -5,6 +5,7 @@ import {fetchDataEvent, fetchDataEventId} from "../../modules/events/service/Eve
 import {fetcheventsuccess, handleChangeData} from "../../reducerCustomer/ActionReducerCustomer";
 import Authentication from "../../authentication/Authentication";
 import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
+import {imgUrl} from "../../services/serviceCenter";
 
 class Events extends Component {
     render() {

@@ -15,7 +15,7 @@ export async function saveDataPayment(event) {
 }
 
 export async function fetchDataPayments() {
-    const data=await fetch(`${serverAddress}/payments`,
+    const data=await fetch(baseUrl+`/payments`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });
@@ -23,7 +23,7 @@ export async function fetchDataPayments() {
     return data.json()
 }
 export async function fetchDataUserAll() {
-    const data=await fetch(`${serverAddress}/users`,
+    const data=await fetch(baseUrl+`/users`,
         {method:"GET"}).then((response)=>{
         return response.json()
     });

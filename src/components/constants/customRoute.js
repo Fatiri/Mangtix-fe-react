@@ -41,6 +41,7 @@ import ListSchedule from "../../modules/events/components/EventSchedule";
 import ListEvent from "../../modules/events/components/ListEvent";
 import BookingForm from "../../modules/booking/components/BookingForm";
 import PaymentForm from "../../modules/payment/components/PaymentForm";
+import BookingListManagement from "../../modules/booking/components/component-admin/BookingListManagement";
 
 
 // public route
