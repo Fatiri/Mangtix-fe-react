@@ -107,8 +107,10 @@ class EventSchedule extends Component {
                                                         <div className="schedule-card">
                                                             <div className="row no-gutters">
                                                                 <div className="col-lg-3">
-                                                                    <img src="img/clients-logo/VVIP.png"
-                                                                         alt=""></img>
+                                                                    {element1.category.categoryName==="VVIP"?<img src="img/clients-logo/VVIP.png" alt=""></img>:
+                                                                        element1.category.categoryName==="VIP"?<img src="img/clients-logo/VIP.png" alt=""></img>:
+                                                                            element1.category.categoryName==="PRESALE1"?<img src="img/clients-logo/presale1.jpg" alt=""></img>:
+                                                                                element1.category.categoryName==="PRESALE2"?<img src="img/clients-logo/presale2.jpg" alt=""></img>:<img src="img/clients-logo/presale2.jpg" alt=""></img>}
                                                                 </div>
 
                                                                 {stock > 0 ?
@@ -126,12 +128,12 @@ class EventSchedule extends Component {
                                                                             <div className="row mt-5">
                                                                                 <div className="col-12 text-center">
                                                                                     <Link onClick={() => {
-                                                                                        this.addCart(element1.id).then(r => r)
+                                                                                        this.addCart(element1.id)
                                                                                     }} className="button mb-4">Choose
                                                                                         Ticket
                                                                                     </Link>
                                                                                     <Link onClick={() => {
-                                                                                        this.addCart(element1.id).then(r => r)
+                                                                                        this.addCart(element1.id)
                                                                                     }} className="button mb-4"
                                                                                           to="/cart">Buy
                                                                                         Ticket</Link>

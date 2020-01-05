@@ -3,7 +3,7 @@ const initialState= {
     eventForm:{
         eventName:"",
         descriptionEvent:"",
-        companyIdTransient:"293b4491-50aa-4a96-91d2-db691eeb3f78",
+        companyIdTransient:"",
         eventDetailList:[]
     },
     location:{
@@ -19,7 +19,6 @@ const initialState= {
     multipartFile:[],
     eventById:[],
     eventDetail:[],
-    company:{id:"293b4491-50aa-4a96-91d2-db691eeb3f78"},
     companies:[]
 }
 export default function eventReducer(state=initialState, action){

@@ -1,53 +1,49 @@
 import {badRequest400, internalServerError500, succsessFetchData200} from "../../../components/constants";
 import Swal from "sweetalert2";
+import {baseUrl} from "../../../services/serviceCenter";
 
 export async function saveDataCart(event) {
-    const data = await fetch("http://localhost:9090/cart", {method:"POST",
+    const data = await fetch(baseUrl+`/cart`, {method:"POST",
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(event)})
-        .then((response) => {
-            if (response.status===200){
-                succsessFetchData200(response)
-                return response.json();
+            if (data.status===200){
+                await succsessFetchData200(data)
+                return data.json();
             } else {
-                badRequest400()
+                await badRequest400()
             }
-        }).catch(reason => {
-        })
     return data;
 }
 export async function updateDataCart(event) {
-    const data = await fetch("http://localhost:9090/cart", {method:"PUT",
+    const data = await fetch(baseUrl+`/cart`, {method:"PUT",
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(event)})
-        .then((response) => {
-            if (response.status===200){
-                succsessFetchData200(response)
-                return response.json();
-            } else if (response.status===400){
-                badRequest400(response)
+            if (data.status===200){
+                await succsessFetchData200(data)
+                return data.json();
+            } else if (data.status===400){
+                await badRequest400(data)
             }else{
-                internalServerError500(response);
+                await internalServerError500(data);
             }
-        }).catch(reason => {
-        })
     return data;
 }
 export async function fetchDataCartsByUser(userId) {
-    const data=await fetch(`http://localhost:9090/cart-user?userId=${userId}`,
-        {method:"GET"}).then((response)=>{
-        return response.json()
-    });
-    console.log(data);
-    return data;
+    const data=await fetch(baseUrl+`/cart-user?userId=${userId}`,
+        {method:"GET"})
+        return data.json()
 }
 export async function fetchDataCartsById(id) {
-    const data=await fetch(`http://localhost:9090/cart/${id}`,
-        {method:"GET"}).then((response)=>{
-        return response.json()
-    });
+    const data=await fetch(baseUrl+`/cart/${id}`,
+        {method:"GET"})
     console.log(data);
-    return data;
+    return data.json()
+}
+export async function deleteCart(id) {
+    const data=await fetch(baseUrl+`/cart/${id}`,
+        {method:"DELETE"})
+    console.log(data);
+    return data.json()
 }
 export async function deleteDataCartsById(id) {
     await Swal.fire({
@@ -59,7 +55,7 @@ export async function deleteDataCartsById(id) {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
     })
-    return fetch(`http://localhost:9090/cart/${id}`, {
+    return fetch(baseUrl+`/cart/${id}`, {
         method: "DELETE", headers: {'Content-Type': 'application/json'},
     }).then((result) => {
         if (result.status === 200) {

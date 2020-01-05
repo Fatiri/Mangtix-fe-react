@@ -223,7 +223,7 @@ export const BookingRoute = ({component: Component, ...rest}) => {
             <>
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
-                        <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
+                        {/*<MainHeader/> /!* HEADER ALWAYS VISIBLE *!/*/}
                         <BookingForm/>
                     </div>
                     <Footer/>
@@ -239,7 +239,7 @@ export const PaymentRoute = ({component: Component, ...rest}) => {
             <>
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
-                        <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
+                        {/*<MainHeader/> /!* HEADER ALWAYS VISIBLE *!/*/}
                         <PaymentForm/>
                     </div>
                     <Footer/>

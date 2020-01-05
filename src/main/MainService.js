@@ -1,8 +1,8 @@
+import {baseUrl} from "../services/serviceCenter";
+
 export async function fetchListDataEvent() {
-    const data=await fetch(`http://localhost:9090/events`,
-        {method:"GET"}).then((response)=>{
-        return response.json()
-    });
+    const data=await fetch(baseUrl+`/events`,
+        {method:"GET"})
     console.log(data);
-    return data;
+    return data.json();
 }

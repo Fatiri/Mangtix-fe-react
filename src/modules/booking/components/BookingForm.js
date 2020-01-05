@@ -1,11 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {fetchDataEvent} from "../../events/service/EventService";
-import {clearbookingform, fetcheventsuccess, fetchticketsuccess} from "../../../reducerCustomer/ActionReducerCustomer";
+import {
+    clearbookingform, fetchbookingsuccess,
+    fetcheventsuccess,
+    fetchticketsuccess,
+    handlepayment
+} from "../../../reducerCustomer/ActionReducerCustomer";
 import {fetchDataTicket} from "../../tickets/service/TicketService";
 import {Link} from "react-router-dom";
-import PaymentForm from "../../payment/components/PaymentForm";
 import Swal from "sweetalert2";
+import {saveDataBooking} from "../service/BookingService";
+import {deleteCart} from "../../cart/service/CartService";
 
 class BookingForm extends React.Component {
 
@@ -50,13 +56,16 @@ class BookingForm extends React.Component {
                                         <div className="row cart_items_row">
                                             <div className="col">
 
-                                        <div
-                                            className="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
-
-                                                    <div><img src="img/clients-logo/VVIP.png" alt=""></img></div>
+                                                <div
+                                                    className="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
                                                     {this.props.ticket.map((ticket)=>{
                                                         if (ticket.id===element.ticketIdTransient) {
-                                                           return <>
+                                                            return <>
+                                                    <div>{ticket.category.categoryName==="VVIP"?<img src="img/clients-logo/VVIP.png" alt=""></img>:
+                                                        ticket.category.categoryName==="VIP"?<img src="img/clients-logo/VIP.png" alt=""></img>:
+                                                            ticket.category.categoryName==="PRESALE1"?<img src="img/clients-logo/presale1.jpg" alt=""></img>:
+                                                                ticket.category.categoryName==="PRESALE2"?<img src="img/clients-logo/presale2.jpg" alt=""></img>:<img src="img/clients-logo/presale2.jpg" alt=""></img>}</div>
+
                                                             {
                                                                 this.props.events.map((element1, index1) => {
                                                                     return <>
@@ -98,17 +107,12 @@ class BookingForm extends React.Component {
                                                         }
                                                     })}
                                                 </div>
-                                            </div>
 
-                                            <div className="cart_item_total">
-                                                <span>Rp. </span>
                                             </div>
                                         </div>
                                     </>
                                 })}
 
-                                        <div className="row row_extra">
-                                            <div className="col-lg-4">
 
                                 <div className="row row_extra">
                                     <div className="col-lg-4">
@@ -140,34 +144,38 @@ class BookingForm extends React.Component {
                                                             currency: 'IDR'
                                                         }).format(total)}
                                                         </div>
-                                            </div>
-                                                </ul>
                                                     </li>
-                                            <button className="button checkout_button" type="button" data-toggle="modal"
-                                                    data-target="#checkout">
-                                                Proceed To Checkout
-                                            </button>
-                                        <PaymentForm/>
+                                                </ul>
+                                            </div>
+                                            <div className="row"><Link onClick={()=>{this.payment(this.props.bookingForm)}} to="/payment" className="button checkout_button">Proceed to
+                                                Payment</Link>
+                                                <Link onClick={this.cancelBooking} to="/cart" className="button checkout_button" >Cancel Booking</Link>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </section>
             </div>
-        );
-    }
-}
-
-                                    );
-                                    }
-                                    }
 
         );
     }
     payment=async (booking)=>{
         console.log(booking)
+        let dataBooking=await saveDataBooking(booking)
+        console.log(dataBooking)
+        let actionBooking={...fetchbookingsuccess, booking:dataBooking}
+        console.log(actionBooking)
+        await this.props.dispatch(actionBooking)
+        let action={...handlepayment, bookingIdTransient:dataBooking.id}
+        console.log(action)
+        await this.props.dispatch(action)
+        this.props.cartById.map((cart)=>{
+            return deleteCart(cart.id)
+        })
     }
     dataEvent = async () => {
         const dataEvent = await fetchDataEvent();

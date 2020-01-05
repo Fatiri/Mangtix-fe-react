@@ -3,6 +3,8 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {fetchDataEventId, updateDataEvent} from "../../service/EventService";
 import {handleChangeData, handleupdate} from "../../EventAction";
+import {imgUrl} from "../../../../services/serviceCenter";
+import decodeJwtToken from "../../../../authentication/AutheticationDecodeJwt";
 
 
 class EventDetail extends React.Component {
@@ -10,8 +12,13 @@ class EventDetail extends React.Component {
         function goBack() {
             window.history.back()
         }
-
-        const role = "MANAGEMENT";
+        let role;
+        const dataToken = decodeJwtToken();
+        if (!(dataToken === null)) {
+            const sub = dataToken.sub;
+            console.log(sub, "role")
+             role = sub;
+        }
         return (
             <div>
                 <div className="card-header card-header-primary">
@@ -30,7 +37,7 @@ class EventDetail extends React.Component {
                 <form>
                     <div className="row">
                         <div className="card-image">
-                            <img className="card-image-event" src={`http://localhost/data-events/${this.props.eventById.id}`}/>
+                            <img className="card-image-event" src={imgUrl+`/${this.props.eventById.id}`}/>
                         </div>
                         <div className="columns-event"><h3>{this.props.eventById.eventName}</h3><br/>
                             <h4>{this.props.eventById.descriptionEvent}</h4>

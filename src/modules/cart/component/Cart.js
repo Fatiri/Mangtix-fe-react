@@ -7,7 +7,7 @@ import decodeJwtToken from "../../../authentication/AutheticationDecodeJwt";
 import {
     addbookingdetail,
     fetchcart,
-    fetchcartbyid,
+    fetchcartbyid, fetchcartid,
     fetcheventsuccess, handlebooking,
     handlequantitybooking, handlequantityupdate, handletickettransientbooking
 } from "../../../reducerCustomer/ActionReducerCustomer";
@@ -55,8 +55,10 @@ class Cart extends Component {
                                                         <div
                                                             className="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
 
-                                                            <div><img src="img/clients-logo/VVIP.png" alt=""></img>
-                                                            </div>
+                                                            <div>{element.ticket.category.categoryName==="VVIP"?<img src="img/clients-logo/VVIP.png" alt=""></img>:
+                                                                element.ticket.category.categoryName==="VIP"?<img src="img/clients-logo/VIP.png" alt=""></img>:
+                                                                    element.ticket.category.categoryName==="PRESALE1"?<img src="img/clients-logo/presale1.jpg" alt=""></img>:
+                                                                        element.ticket.category.categoryName==="PRESALE2"?<img src="img/clients-logo/presale2.jpg" alt=""></img>:<img src="img/clients-logo/presale2.jpg" alt=""></img>}</div>
                                                             {this.props.events.map((element1, index1) => {
                                                                 return <>
                                                                     {element1.eventDetailList.map((eventDetail) => {
@@ -166,6 +168,7 @@ class Cart extends Component {
     }
     bookingById=async (cartId, index)=>{
         let data = await fetchDataCartsById(cartId);
+        await this.props.dispatch({...fetchcartid, cartById:[data]})
         await this.props.dispatch({...addbookingdetail})
         let action = {...handlebooking, userIdTransient:data.user.id}
         await this.props.dispatch(action)
@@ -176,6 +179,7 @@ class Cart extends Component {
         console.log(this.props.bookingForm,"booking form")
     }
     bookingAll=async (carts)=>{
+        await this.props.dispatch({...fetchcartid, cartById:carts})
         carts.map((element,index)=>{
             this.props.dispatch({...addbookingdetail})
             let ticket = {...handletickettransientbooking, ticketIdTransient:element.ticket.id, index:index}

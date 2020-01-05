@@ -20,21 +20,23 @@ class BookingListAdmin extends React.Component {
                                 <th><center>Action</center></th>
                                 </thead>
                                 {this.props.user.map((element, index) => {
-                                    return <tbody>
-                                    <td>{element.userName}</td>
-                                    <td>{element.fullName}</td>
-                                    <td>
-                                        <div className="card">
-                                            <button onClick={() => {
-                                                this.dataBookingByUser(element.id).then(r => r)
-                                            }} className="btn btn-primary btn-sm" data-toggle="modal"
-                                                    data-target=".bd-example-modal-xl">
-                                                List Booking
-                                            </button>
+                                    if (element.role.roleName==="CUSTOMER") {
+                                        return <tbody>
+                                        <td>{element.userName}</td>
+                                        <td>{element.fullName}</td>
+                                        <td>
+                                            <div className="card">
+                                                <button onClick={() => {
+                                                    this.dataBookingByUser(element.id).then(r => r)
+                                                }} className="btn btn-primary btn-sm" data-toggle="modal"
+                                                        data-target=".bd-example-modal-xl">
+                                                    List Booking
+                                                </button>
 
-                                        </div>
-                                    </td>
-                                    </tbody>
+                                            </div>
+                                        </td>
+                                        </tbody>
+                                    }
                                 })}
                             </table>
                         </div>
@@ -58,10 +60,12 @@ class BookingListAdmin extends React.Component {
                                 <th>Id Booking</th>
                                 <th>Booking Date</th>
                                 <th>Username</th>
+                                <div>
                                 <th>Quantity</th>
                                 <th>Subtotal</th>
                                 <th>Category Ticket</th>
                                 <th>Event Date</th>
+                                </div>
                                 </thead>
                                 {this.props.booking.map((element) => {
                                     return <>
@@ -70,12 +74,12 @@ class BookingListAdmin extends React.Component {
                                         <td>{element.bookDate}</td>
                                         <td>{element.user.userName}</td>
                                         {element.bookingDetailList.map((bookingDetail) => {
-                                            return <>
+                                            return <div className="columns">
                                                 <td>{bookingDetail.quantity}</td>
                                                 <td>{bookingDetail.subtotal}</td>
                                                 <td>{bookingDetail.ticket.category.categoryName}</td>
                                                 <td>{bookingDetail.ticket.eventDetail.eventDate}</td>
-                                            </>
+                                            </div>
                                         })}
                                         </tbody>
                                     </>
