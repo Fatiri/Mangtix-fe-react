@@ -101,8 +101,8 @@ class FormLogin extends Component {
             localStorage.setItem("token", token.jwt);
             const dataToken = decodeJwtToken();
             if (!(dataToken===null)){
-                const idUser = dataToken.jti;
-                const dataUser = await fetchDataUserBYId(idUser);
+                const userId = dataToken.jti;
+                const dataUser = await fetchDataUserBYId(userId);
                 this.props.dispatch({...fetchDataUser, userAccess:dataUser})
                localStorage.setItem('chat_username', dataUser.id);
                }

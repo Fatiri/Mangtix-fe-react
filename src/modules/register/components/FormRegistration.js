@@ -37,9 +37,12 @@ class FormRegistration extends Component {
     }
     roleByRoleName=async(roleName)=>{
         const data=await fetchDataRoleByRoleName(roleName);
-        let action = {...registrationRole, roleIdTransient:data.id}
-        console.log(action,"role")
-        this.props.dispatch(action);
+        this.props.userInfo.roleIdTransient = data.id
+        // let action = {...registrationRole, roleIdTransient:data.id}
+        // console.log(action,"role")
+        // this.props.dispatch(action);
+        console.log(this.props.userInfo.roleIdTransient+"iniiiiiii")
+
     }
 }
 const mapsStateToProps = (state) => {
