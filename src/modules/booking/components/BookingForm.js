@@ -137,7 +137,7 @@ class BookingForm extends React.Component {
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div className="row"><Link to="#" className="button checkout_button">Proceed to
+                                            <div className="row"><Link onClick={()=>{this.payment(this.props.bookingForm)}} to="/payment" className="button checkout_button">Proceed to
                                                 Payment</Link>
                                                 <Link onClick={this.cancelBooking} to="/cart" className="button checkout_button" >Cancel Booking</Link>
                                             </div>
@@ -152,6 +152,9 @@ class BookingForm extends React.Component {
             </div>
 
         );
+    }
+    payment=async (booking)=>{
+        console.log(booking)
     }
     dataEvent = async () => {
         const dataEvent = await fetchDataEvent();
