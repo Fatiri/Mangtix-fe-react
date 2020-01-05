@@ -19,6 +19,7 @@ const initialState= {
     multipartFile:[],
     eventById:[],
     eventDetail:[],
+    company:{id:""},
     companies:[]
 }
 export default function eventReducer(state=initialState, action){
@@ -30,6 +31,8 @@ export default function eventReducer(state=initialState, action){
             return {...state, dataLocation: action.payload}
         case "FETCH_COMPANY_SUCCESS":
             return {...state, companies: action.payload}
+        case "FETCH_COMPANY_ID_SUCCESS":
+            return {...state, company: {...state.company, id:action.company}}
         case "HANDLE_UPDATE":
             return {...state, eventForm: action.payload}
         case "ADD_EVENT_DETAIL":

@@ -1,12 +1,28 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {fetchDataEvent, fetchDataEventId} from "../../modules/events/service/EventService";
 import {fetcheventsuccess, handleChangeData} from "../../reducerCustomer/ActionReducerCustomer";
+import Authentication from "../../authentication/Authentication";
+import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
 import {imgUrl} from "../../services/serviceCenter";
 
 class Events extends Component {
     render() {
+        const Auth = new Authentication();
+        if (Auth.isLogin()) {
+            const dataToken = decodeJwtToken();
+            if (!(dataToken===null)){
+
+            }else {
+                alert("wrong credential")
+                localStorage.clear();
+                return <Redirect to="/login"/>
+            }
+            if (!(dataToken.sub === "CUSTOMER")) {
+                return <Redirect to="/dashboard"/>
+            }
+        }
         return (
             <div>
                 <section className="section-padding--small sponsor-bg">

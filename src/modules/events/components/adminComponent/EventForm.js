@@ -144,13 +144,9 @@ class EventForm extends React.Component {
     }
     handleSubmit = async (e) => {
         e.preventDefault();
-        const dataToken = decodeJwtToken();
-        let company;
-        if (!(dataToken === null)) {
-            company= dataToken.aud;
-            console.log(company, "company")
-        }
-        this.props.eventForm.companyIdTransient=company;
+        const token = decodeJwtToken();
+        const companyId = token.aud;
+        this.props.eventForm.companyIdTransient= companyId;
         let event = this.props.eventForm
         let multipartFile = this.props.multipartFile;
         console.log(multipartFile)

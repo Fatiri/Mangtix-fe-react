@@ -8,7 +8,7 @@ import {
     LoginRoute, PaymentRouteAdmin,
     PublicRoute, TicketRoute,
 } from "./constants/customRoute";
-import {CategoryRoute, ChatRoute} from "./constants";
+import {BookingRouteManagement, CategoryRoute, ChatRoute} from "./constants";
 class Switcer extends Component {
     render() {
         return (
@@ -23,19 +23,18 @@ class Switcer extends Component {
                 {/*public component*/}
                 <PublicRoute exact path="/" ></PublicRoute>
 
-                <LoginRoute exact path="/login"></LoginRoute>
+                <LoginRoute  path="/login"></LoginRoute>
                 {/*<EventScheduleRoute exact path="/event-schedule"></EventScheduleRoute>*/}
                 {/*<EventRoute exact path="/event"></EventRoute>*/}
-                <TicketRoute exact path="/ticket"></TicketRoute>
-                <Route exact path="/event"></Route>
-                <CategoryRoute exact path="/category"></CategoryRoute>
-                <BookingRouteAdmin exact path="/booking-list"></BookingRouteAdmin>
-                <PaymentRouteAdmin exact path="/admin/payment-list"></PaymentRouteAdmin>
-                <ChatRoute exact path="/chat-form"></ChatRoute>
-                <Route exact path="/users">Users</Route>
+                <BookingRouteManagement  path="/management/booking-list"></BookingRouteManagement>
+                <Route  path="/users">Users</Route>
+                <ChatRoute  path="/chat-form"></ChatRoute>
+                <PaymentRouteAdmin  path="/admin/payment-list"></PaymentRouteAdmin>
+                <TicketRoute  path="/ticket"></TicketRoute>
+                <CategoryRoute  path="/category"></CategoryRoute>
+                <BookingRouteAdmin  path="/booking-list"></BookingRouteAdmin>
                 {/*<Route exact path="/dashboard"></Route>*/}
-                <Route exact path="/">Ticket</Route>
-                <Route exact path="/chatting">Chatting</Route>
+                <Route  path="/chatting">Chatting</Route>
 
             </Switch>
             </>

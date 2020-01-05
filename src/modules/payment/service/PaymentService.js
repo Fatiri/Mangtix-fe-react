@@ -19,13 +19,17 @@ export async function saveDataPayment(event) {
 
 export async function fetchDataPayments() {
     const data=await fetch(baseUrl+`/payments`,
-        {method:"GET"})
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
     console.log(data);
     return data.json()
 }
 export async function fetchDataUserAll() {
     const data=await fetch(baseUrl+`/users`,
-        {method:"GET"})
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
     console.log(data);
     return data.json()
 }

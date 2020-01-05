@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import $ from "jquery";
+import decodeJwtToken from "../../../authentication/AutheticationDecodeJwt";
 
 export default class AdminSidebar extends Component {
     handleButtonToggled(e) {
@@ -8,6 +9,7 @@ export default class AdminSidebar extends Component {
         $('.sidebar').toggleClass('toggled');
     };
     render() {
+        const role = decodeJwtToken();
         return (
             <>
                 <ul className="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
@@ -32,31 +34,40 @@ export default class AdminSidebar extends Component {
                             <i className="fas fa-fw fa-credit-card"/>
                             <span>Booking</span>
                         </Link>
+
+                    </li><li className="nav-item">
+                        <Link className="nav-link" to="/management/booking-list">
+                            <i className="fas fa-fw fa-credit-card"/>
+                            <span>Booking</span>
+                        </Link>
                     </li>
-                    <li className="nav-item">
+
+                    {role.sub === "ADMIN" ?<li className="nav-item">
+                            <Link className="nav-link" to="/admin/event">
+                                <i className="fas fa-fw fa-credit-card"/>
+                                <span>Event</span>
+                            </Link>
+                        </li>
+                    :<li className="nav-item">
                         <Link className="nav-link" to="/event-list">
-                            <i className="fas fa-fw fa-credit-card"/>
-                            <span>Event</span>
+                        <i className="fas fa-fw fa-credit-card"/>
+                        <span>Event</span>
                         </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/admin/event">
-                            <i className="fas fa-fw fa-credit-card"/>
-                            <span>Event</span>
-                        </Link>
-                    </li>
-                    <li className="nav-item">
+                        </li>
+                    }
+                    {role.sub ==="ADMIN"?<li className="nav-item">
                         <Link className="nav-link" to="/category">
                             <i className="fas fa-fw fa-location-arrow"/>
                             <span>Category</span>
                         </Link>
-                    </li>
-                    <li className="nav-item">
+                    </li>:""}
+
+                    {role.sub === "MANAGEMNT"? <li className="nav-item">
                         <Link className="nav-link" to="/ticket-list-admin">
                             <i className="fas fa-fw fa-home"/>
                             <span>Ticket</span>
                         </Link>
-                    </li>
+                    </li>:""}
                     <li className="nav-item">
                         <Link className="nav-link" to="/admin/payment-list">
                             <i className="fas fa-fw fa-home"/>

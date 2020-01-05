@@ -3,9 +3,28 @@ import {listEVent} from "./MainAction";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {connect} from "react-redux";
 import {fetchListDataEvent} from "./MainService";
+import Authentication from "../authentication/Authentication";
+import decodeJwtToken from "../authentication/AutheticationDecodeJwt";
+import {Redirect} from "react-router-dom";
 
 class Main extends Component {
     render() {
+		const Auth = new Authentication();
+		if (Auth.isLogin()) {
+			const dataToken = decodeJwtToken();
+			if (!(dataToken===null)){
+
+			}else {
+				alert("wrong credential")
+				localStorage.clear();
+				return <Redirect to="/login"/>
+			}
+			if (!(dataToken.sub === "CUSTOMER")) {
+				return <Redirect to="/dashboard"/>
+			}
+		} else {
+			return <Redirect to="/login"/>
+		}
 
         return (
             <>

@@ -42,7 +42,7 @@ class Header extends Component {
                                             </ul>
                                         </li>
                                         :<li><Link className="nav-link" to="/login">Login</Link></li>
-                                        }
+                                    }
                                 </ul>
                             </nav>
 
@@ -100,6 +100,7 @@ class Header extends Component {
             this.props.dispatch(action)
         }
     }
+
 
     }
 

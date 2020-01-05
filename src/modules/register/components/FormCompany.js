@@ -59,9 +59,10 @@ class FormCompany extends Component {
 
     handleSubmitRegistration=async ()=>{
         const dataUser = {...this.props.userInfo}
+        console.log(dataUser)
         const registrationData = await registrationPost(dataUser);
-        console.log(registrationData)
         this.props.dispatch({...userIdCompany, userIdTransient:registrationData.id})
+        console.log()
     }
 
     handleCreateRegistration=async ()=>{

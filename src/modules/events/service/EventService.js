@@ -52,26 +52,36 @@ export async function updateDataEvent(event) {
 
 export async function fetchDataEvent() {
     const data=await fetch(baseUrl+`/events`,
-        {method:"GET"})
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
     console.log(data);
         return data.json()
 }
 
 export async function fetchDataEventByCompany(event) {
     const data=await fetch(baseUrl+`/event-company/?companyId=${event}`,
-        {method:"GET"})
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
     console.log(data);
     return data.json()
 }
 export async function fetchDataEventId(id) {
     const data = await fetch(baseUrl+`/event/${id}`, {method: "GET"})
+        .then((response) => {
+            return response.json()
+        });
     console.log(data);
-    return data.json()
+    return data;
 }
 export async function fetchDataEventDetailId(id) {
     const data = await fetch(baseUrl+`/event-detail/${id}`, {method: "GET"})
+        .then((response) => {
+            return response.json()
+        });
     console.log(data);
-    return data.json()
+    return data;
 }
 export async function fetchDataEventByEventDetail(eventDetailId) {
     const data = await fetch(baseUrl+`/event-detail?eventDetailId=${eventDetailId}`, {method: "GET"})

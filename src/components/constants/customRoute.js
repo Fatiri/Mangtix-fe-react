@@ -41,6 +41,7 @@ import ListSchedule from "../../modules/events/components/EventSchedule";
 import ListEvent from "../../modules/events/components/ListEvent";
 import BookingForm from "../../modules/booking/components/BookingForm";
 import PaymentForm from "../../modules/payment/components/PaymentForm";
+import BookingListManagement from "../../modules/booking/components/component-admin/BookingListManagement";
 
 
 // public route
@@ -53,7 +54,7 @@ export const PublicRoute = ({component: Component, ...rest}) => {
 
                         <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
                         <Provider store={createStore(mainReducer)}>
-                            <Main/>
+                            <Main {...props}/>
                         </Provider>
 
                     </div>
@@ -73,7 +74,7 @@ export const RegistrationRoute = ({component: Component, ...rest}) => {
                     <div id="content">
 
                         <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
-                        <FormRegistration/>
+                        <FormRegistration {...props}/>
                     </div>
                     <Footer/>
                 </div>
@@ -92,7 +93,7 @@ export const RegistrationManagementRoute = ({component: Component, ...rest}) => 
 
                         <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
                         <Provider store={createStore(registrationReducer)}>
-                            <RegistrationManagementContainer/>
+                            <RegistrationManagementContainer {...props}/>
                         </Provider>
                     </div>
                     <Footer/>
@@ -113,7 +114,7 @@ export const RegistrationCustomerRoute = ({component: Component, ...rest}) => {
                         <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
 
                         <Provider store={createStore(registrationReducer)}>
-                            <FormRegisterCustomer/>
+                            <FormRegisterCustomer {...props}/>
                         </Provider>
 
                     </div>
@@ -135,7 +136,7 @@ export const LoginRoute = ({component: Component, ...rest}) => {
                         <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
                         <div className="container-fluid" id="container-wrapper">
                             <Provider store={createStore(loginReducer)}>
-                                <FormLogin/>
+                                <FormLogin {...props}/>
                             </Provider>
                         </div>
                     </div>
@@ -157,7 +158,7 @@ export const EventScheduleRoute = ({component: Component, ...rest}) => {
                     <div id="content">
 
                         <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
-                            <ListSchedule/>
+                            <ListSchedule {...props}/>
                     </div>
                     <Footer/>
                 </div>
@@ -174,7 +175,7 @@ export const TicketRoute = ({component: Component, ...rest}) => {
                     <div id="content">
 
                         <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
-                        <TicketContainer/>
+                        <TicketContainer {...props}/>
                     </div>
                     <Footer/>
                 </div>
@@ -191,7 +192,7 @@ export const EventRoute = ({component: Component, ...rest}) => {
                     <div id="content">
 
                         <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
-                            <ListEvent/>
+                            <ListEvent {...props}/>
                     </div>
                     <Footer/>
                 </div>
@@ -208,7 +209,7 @@ export const CartRoute = ({component: Component, ...rest}) => {
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
                         <MainHeader/> {/* HEADER ALWAYS VISIBLE */}
-                        <Cart/>
+                        <Cart {...props}/>
                     </div>
                     <Footer/>
                 </div>
@@ -708,6 +709,45 @@ export const BookingRouteAdmin = ({component: Component, ...rest}) => {
                             <div className="container-fluid" id="container-wrapper">
                                 <Provider store={createStore(bookingReducer)}>
                                     <BookingFormAdmin/>
+                                </Provider>
+                            </div>
+                        </div>
+                        <AdminFooter/>
+                    </div>
+                </>
+            )}
+        />
+    )
+}
+export const BookingRouteManagement = ({component: Component, ...rest}) => {
+    const Auth = new Authentication();
+    if (Auth.isLogin()) {
+        const dataToken = decodeJwtToken();
+        if (!(dataToken===null)){
+
+        }else {
+            alert("wrong credential")
+            localStorage.clear();
+            return <Redirect to="/login"/>
+        }
+        if (!(dataToken.sub === "ADMIN" || dataToken.sub === "MANAGEMENT")) {
+            return <Redirect to="/"/>
+        }
+    } else {
+        return <Redirect to="/login"/>
+    }
+    return (
+        <Route
+            {...rest}
+            component={(props) => (
+                <>
+                    <Admin {...props}/>
+                    <div id="content-wrapper" className="d-flex flex-column">
+                        <div id="content">
+                            <AdminNavBar/>
+                            <div className="container-fluid" id="container-wrapper">
+                                <Provider store={createStore(bookingReducer)}>
+                                    <BookingListManagement/>
                                 </Provider>
                             </div>
                         </div>
