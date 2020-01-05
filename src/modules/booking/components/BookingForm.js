@@ -4,6 +4,7 @@ import {fetchDataEvent} from "../../events/service/EventService";
 import {clearbookingform, fetcheventsuccess, fetchticketsuccess} from "../../../reducerCustomer/ActionReducerCustomer";
 import {fetchDataTicket} from "../../tickets/service/TicketService";
 import {Link} from "react-router-dom";
+import PaymentForm from "../../payment/components/PaymentForm";
 import Swal from "sweetalert2";
 
 class BookingForm extends React.Component {
@@ -49,8 +50,8 @@ class BookingForm extends React.Component {
                                         <div className="row cart_items_row">
                                             <div className="col">
 
-                                                <div
-                                                    className="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+                                        <div
+                                            className="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
 
                                                     <div><img src="img/clients-logo/VVIP.png" alt=""></img></div>
                                                     {this.props.ticket.map((ticket)=>{
@@ -97,12 +98,17 @@ class BookingForm extends React.Component {
                                                         }
                                                     })}
                                                 </div>
+                                            </div>
 
+                                            <div className="cart_item_total">
+                                                <span>Rp. </span>
                                             </div>
                                         </div>
                                     </>
                                 })}
 
+                                        <div className="row row_extra">
+                                            <div className="col-lg-4">
 
                                 <div className="row row_extra">
                                     <div className="col-lg-4">
@@ -134,22 +140,29 @@ class BookingForm extends React.Component {
                                                             currency: 'IDR'
                                                         }).format(total)}
                                                         </div>
-                                                    </li>
+                                            </div>
                                                 </ul>
-                                            </div>
-                                            <div className="row"><Link onClick={()=>{this.payment(this.props.bookingForm)}} to="/payment" className="button checkout_button">Proceed to
-                                                Payment</Link>
-                                                <Link onClick={this.cancelBooking} to="/cart" className="button checkout_button" >Cancel Booking</Link>
-                                            </div>
+                                                    </li>
+                                            <button className="button checkout_button" type="button" data-toggle="modal"
+                                                    data-target="#checkout">
+                                                Proceed To Checkout
+                                            </button>
+                                        <PaymentForm/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </section>
             </div>
+        );
+    }
+}
+
+                                    );
+                                    }
+                                    }
 
         );
     }
