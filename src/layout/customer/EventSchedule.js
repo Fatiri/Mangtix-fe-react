@@ -145,7 +145,7 @@ class EventSchedule extends Component {
                                                                         <div className="schedule-content">
                                                                             <p className="schedule-date">{element1.eventDetail.eventDate}</p>
                                                                             <a className="schedule-title"
-                                                                               href="#"></a>
+                                                                               href="#"/>
                                                                             <h3>{element1.category.categoryName}</h3>
                                                                             <h4>{new Intl.NumberFormat('id-ID', {
                                                                                 style: 'currency',

@@ -67,6 +67,7 @@ class FormCompany extends Component {
 
     handleCreateRegistration=async ()=>{
         await this.handleSubmitRegistration();
+        console.log(this.props.companyInfo)
         const dataCompany = await {...this.props.companyInfo}
         console.log(this.props.companyInfo)
         const dataCompanyAfterPost = await saveDataCompany(dataCompany);

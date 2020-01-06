@@ -20,7 +20,7 @@ export async function fetchDataPayments() {
         return response.json()
     });
     console.log(data);
-    return data.json()
+    return data
 }
 export async function fetchDataUserAll() {
     const data=await fetch(baseUrl+`/users`,
@@ -28,6 +28,6 @@ export async function fetchDataUserAll() {
         return response.json()
     });
     console.log(data);
-    return data.json()
+    return data
 }
 

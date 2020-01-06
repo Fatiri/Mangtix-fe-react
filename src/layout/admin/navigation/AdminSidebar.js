@@ -62,7 +62,7 @@ export default class AdminSidebar extends Component {
                         </Link>
                     </li>:""}
 
-                    {role.sub === "MANAGEMNT"? <li className="nav-item">
+                    {role.sub === "MANAGEMENT"? <li className="nav-item">
                         <Link className="nav-link" to="/ticket-list-admin">
                             <i className="fas fa-fw fa-home"/>
                             <span>Ticket</span>
