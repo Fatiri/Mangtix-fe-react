@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {
+    clearState,
     registrationBirthDate,
     registrationBornPlace,
     registrationFUllName, registrationPassword,
@@ -147,6 +148,7 @@ class FormRegisterCustomer extends Component {
     handleSubmitRegistration = async () => {
         const dataUser = {...this.props.userInfo}
         await registrationPost(dataUser);
+        this.props.dispatch({...clearState})
     }
 }
 

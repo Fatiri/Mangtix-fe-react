@@ -15,6 +15,7 @@ import {fetchDataCategory} from "../../../categories/service/CategoryService";
 import {fetchDataEventByCompany, fetchDataEventId} from "../../../events/service/EventService";
 import {fetcheventdetailsuccess} from "../../../events/EventAction";
 import {Link} from "react-router-dom";
+import decodeJwtToken from "../../../../authentication/AutheticationDecodeJwt";
 
 class TicketForm extends React.Component {
     render() {
@@ -251,7 +252,8 @@ class TicketForm extends React.Component {
 
     componentDidMount() {
         this.dataCategory()
-        let event = this.props.company.id;
+        const token = decodeJwtToken();
+        let event = token.aud;
         this.dataEventByCompany(event)
     }
 

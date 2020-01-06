@@ -16,3 +16,4 @@ export const addbookingdetail={type:"ADD_BOOKING_DETAIL"}
 export const clearbookingform={type:"CLEAR_STATE_BOOKING_FORM"}
 export const handlepayment={type:"HANDLE_PAYMENT"}
 export const fetchbookingsuccess={type:"FETCH_BOOKING_SUCCESS"}
+export const Total={type:"TOTAL"}

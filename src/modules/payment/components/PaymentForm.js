@@ -7,10 +7,10 @@ import {fetchbookingsuccess} from "../../../reducerCustomer/ActionReducerCustome
 
 class PaymentForm extends Component {
     render() {
-        let total=0;
-        this.props.booking.bookingDetailList.map((element)=>{
-            return total=total+element.subtotal;
-        })
+        // let total=0;
+        // this.props.booking.bookingDetailList.map((element)=>{
+        //     return total=total+element.subtotal;
+        // })
         return (
             <div>
                 <section className="hero-banner hero-banner-sm">
@@ -34,7 +34,7 @@ class PaymentForm extends Component {
                                             <div className="cart_total_value ml-auto">{new Intl.NumberFormat('id-ID', {
                                                 style: 'currency',
                                                 currency: 'IDR'
-                                            }).format(total)}</div>
+                                            }).format(this.props.total)}</div>
                                         </li>
                                     </div>
                                 </ul>
@@ -53,7 +53,7 @@ class PaymentForm extends Component {
                                     <img src="img/clients-logo/BNI.png" alt="" className="btn-dark"></img>
                                 </div>
                                 <br/>
-                                <div className="button checkout_button"><button onClick={this.payment}>Buy Now</button>
+                                <div className="button checkout_button"><Link onClick={this.payment} to="/event">Buy Now</Link>
                                 </div>
                             </div>
                         </div>

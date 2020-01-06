@@ -68,6 +68,10 @@ class EventByCompany extends React.Component {
         if (!(data === undefined)) {
             let action = {...fetcheventsuccess, payload: data}
             this.props.dispatch(action)
+        }else {
+            let action = {...fetcheventsuccess, payload: ["Add Event"]}
+            console.log(action)
+            this.props.dispatch(action)
         }
     }
 }

@@ -11,7 +11,8 @@ const initialState= {
     bookingForm:{userIdTransient:"",bookingDetailList:[]},
     bookingDetail:[],
     booking:[],
-    paymentForm:{bookingIdTransient:""}
+    paymentForm:{bookingIdTransient:""},
+    total:""
 }
 export default function reducerCustomer(state=initialState, action){
     console.log('event-reducer', state, action)
@@ -81,6 +82,8 @@ export default function reducerCustomer(state=initialState, action){
             return {...state, booking: action.booking}
         case "HANDLE_PAYMENT":
             return {...state, paymentForm: {...state.paymentForm, bookingIdTransient: action.bookingIdTransient}}
+        case "TOTAL":
+            return {...state, total:action.total}
         default:
             return {...state}
     }
