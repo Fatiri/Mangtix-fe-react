@@ -56,7 +56,7 @@ export async function fetchDataEvent() {
         return response.json()
     });
     console.log(data);
-        return data.json()
+        return data
 }
 
 export async function fetchDataEventByCompany(event) {
@@ -65,7 +65,7 @@ export async function fetchDataEventByCompany(event) {
         return response.json()
     });
     console.log(data);
-    return data.json()
+    return data
 }
 export async function fetchDataEventId(id) {
     const data = await fetch(baseUrl+`/event/${id}`, {method: "GET"})

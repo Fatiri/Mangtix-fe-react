@@ -50,7 +50,8 @@ export default function registrationReducer(state = initialState, action) {
             return {...state, location: {...state.location, latitude: action.latitude}}
         case 'SUCCESS_INPUT_LONGITUDE':
             return {...state, location: {...state.location, longitude: action.longitude}}
-
+        case "CLEAR_STATE":
+            return {...state, userInfo: initialState.userInfo, location: initialState.location, companyInfo: initialState.companyInfo}
         default:return state
     }
 

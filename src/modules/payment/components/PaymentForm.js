@@ -31,10 +31,10 @@ class PaymentForm extends Component {
                                         <div className="section_title">Cart total</div>
                                         <li className="d-flex flex-row align-items-center justify-content-start">
                                             <div className="cart_total_title">Total</div>
-                                            {/*<div className="cart_total_value ml-auto">{new Intl.NumberFormat('id-ID', {*/}
-                                            {/*    style: 'currency',*/}
-                                            {/*    currency: 'IDR'*/}
-                                            {/*}).format(total)}</div>*/}
+                                            <div className="cart_total_value ml-auto">{new Intl.NumberFormat('id-ID', {
+                                                style: 'currency',
+                                                currency: 'IDR'
+                                            }).format(this.props.total)}</div>
                                         </li>
                                     </div>
                                 </ul>
@@ -53,7 +53,7 @@ class PaymentForm extends Component {
                                     <img src="img/clients-logo/BNI.png" alt="" className="btn-dark"></img>
                                 </div>
                                 <br/>
-                                <div className="button checkout_button"><button onClick={this.payment}>Buy Now</button>
+                                <div className="button checkout_button"><Link onClick={this.payment} to="/event">Buy Now</Link>
                                 </div>
                             </div>
                         </div>

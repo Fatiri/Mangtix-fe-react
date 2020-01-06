@@ -7,10 +7,11 @@ export async function saveDataPayment(event) {
         body: JSON.stringify(event)})
         .then((response) => {
             if (response.status===200){
-                succsessFetchData200(response)
+                // succsessFetchData200(response)
                 return response.json();
             } else {
-                badRequest400()
+                // badRequest400()
+                return response.json()
             }
         }).catch(reason => {
         })
@@ -23,7 +24,7 @@ export async function fetchDataPayments() {
         return response.json()
     });
     console.log(data);
-    return data.json()
+    return data
 }
 export async function fetchDataUserAll() {
     const data=await fetch(baseUrl+`/users`,
@@ -31,6 +32,6 @@ export async function fetchDataUserAll() {
         return response.json()
     });
     console.log(data);
-    return data.json()
+    return data
 }
 

@@ -36,14 +36,19 @@ export async function updateDataCart(event) {
 }
 export async function fetchDataCartsByUser(userId) {
     const data=await fetch(baseUrl+`/cart-user?userId=${userId}`,
-        {method:"GET"})
-        return data.json()
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
+    console.log(data);
+    return data;
 }
 export async function fetchDataCartsById(id) {
     const data=await fetch(baseUrl+`/cart/${id}`,
-        {method:"GET"})
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
     console.log(data);
-    return data.json()
+    return data;
 }
 export async function deleteCart(id) {
     const data=await fetch(baseUrl+`/cart/${id}`,

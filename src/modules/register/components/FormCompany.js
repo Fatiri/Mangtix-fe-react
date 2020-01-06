@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import Authentication from "../../../authentication/Authentication";
 import {Link, Redirect} from "react-router-dom";
-import {registrationNameCompany, userIdCompany} from "../RegistartionAction";
+import {clearState, registrationNameCompany, userIdCompany} from "../RegistartionAction";
 import {registrationPost} from "../service/RegistrationService";
 import {saveDataCompany} from "../../company/service/CompanyService";
 
@@ -67,7 +67,7 @@ class FormCompany extends Component {
 
     handleCreateRegistration=async ()=>{
         await this.handleSubmitRegistration();
-        const dataCompany = await {...this.props.companyInfo}
+        const dataCompany = {...this.props.companyInfo}
         console.log(this.props.companyInfo)
         const dataCompanyAfterPost = await saveDataCompany(dataCompany);
         console.log(dataCompanyAfterPost)

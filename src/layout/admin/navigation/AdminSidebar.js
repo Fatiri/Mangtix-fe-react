@@ -29,18 +29,19 @@ export default class AdminSidebar extends Component {
                     <div className="sidebar-heading">
                         Features
                     </div>
-                    <li className="nav-item">
+                    {role.sub === "ADMIN" ?<li className="nav-item">
                         <Link className="nav-link" to="/booking-list">
                             <i className="fas fa-fw fa-credit-card"/>
                             <span>Booking</span>
                         </Link>
 
-                    </li><li className="nav-item">
+                    </li>
+                        :<li className="nav-item">
                         <Link className="nav-link" to="/management/booking-list">
                             <i className="fas fa-fw fa-credit-card"/>
                             <span>Booking</span>
                         </Link>
-                    </li>
+                    </li>}
 
                     {role.sub === "ADMIN" ?<li className="nav-item">
                             <Link className="nav-link" to="/admin/event">
@@ -62,18 +63,18 @@ export default class AdminSidebar extends Component {
                         </Link>
                     </li>:""}
 
-                    {role.sub === "MANAGEMNT"? <li className="nav-item">
+                    {role.sub === "MANAGEMENT"? <li className="nav-item">
                         <Link className="nav-link" to="/ticket-list-admin">
                             <i className="fas fa-fw fa-home"/>
                             <span>Ticket</span>
                         </Link>
                     </li>:""}
-                    <li className="nav-item">
+                    {role.sub === "ADMIN"?<li className="nav-item">
                         <Link className="nav-link" to="/admin/payment-list">
                             <i className="fas fa-fw fa-home"/>
                             <span>Payment</span>
                         </Link>
-                    </li>
+                    </li>:""}
                     <hr className="sidebar-divider"/>
                     <div className="version" id="version-mangtix"/>
                 </ul>
