@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {
+    clearState,
     registrationBirthDate,
     registrationBornPlace,
     registrationFUllName, registrationPassword,
@@ -85,9 +86,9 @@ class FormRegisterCustomer extends Component {
                                                 </div>
 
                                                 <div>
-                                                    <button className="btn btn-primary btn-block"
-                                                            onClick={this.handleSubmitRegistration}>Create Account
-                                                    </button>
+                                                    <Link className="btn btn-primary btn-block"
+                                                            onClick={this.handleSubmitRegistration} to="/login">Create Account
+                                                    </Link>
                                                 </div>
                                                 <hr/>
 
@@ -147,6 +148,7 @@ class FormRegisterCustomer extends Component {
     handleSubmitRegistration = async () => {
         const dataUser = {...this.props.userInfo}
         await registrationPost(dataUser);
+        this.props.dispatch({...clearState})
     }
 }
 

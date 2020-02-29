@@ -23,13 +23,13 @@ class CategoryList extends React.Component {
                 <div className="card">
                     <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 className="m-0 font-weight-bold text-primary">TABLES CATEGORY</h6>
-                        <button className="btn btn-primary" type="button" data-toggle="modal"
+                        <button onClick={()=>{this.props.dispatch({...clearstate})}} className="btn btn-primary" type="button" data-toggle="modal"
                                 data-target="#exampleModal">
                             Add
                         </button>
                     </div>
                     <div className="table-responsive">
-                        <table className="table align-items-center table-flush">
+                        <table className="table align-items-center table-flush" id="dataTable">
                         <thead className="thead-light">
                             <th>No</th>
                             <th>Category Name</th>

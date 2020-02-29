@@ -35,23 +35,25 @@ class Events extends Component {
 
                         <div class="row">
                             {this.props.events.map((element, index) => {
-                                return <div className="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                                    <div className="card-speaker">
-                                        <img className="image-event"
-                                             src={imgUrl+`/${element.id}`} alt=""></img>
-                                        <div className="speaker-footer">
-                                            <h4>{element.eventName}</h4>
-                                            <p></p>
-                                        </div>
-                                        <div className="speaker-overlay">
-                                            <ul className="speaker-social">
-                                                <li><Link class="button button-header" to="/event-schedule"
-                                                          onClick={() => this.handleDetail(element.id)}>View
-                                                    Detail</Link></li>
-                                            </ul>
+                                if(element.publishStatus===true) {
+                                    return <div className="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                                        <div className="card-speaker">
+                                            <img className="image-event"
+                                                 src={imgUrl + `/${element.id}`} alt=""></img>
+                                            <div className="speaker-footer">
+                                                <h4>{element.eventName}</h4>
+                                                <p></p>
+                                            </div>
+                                            <div className="speaker-overlay">
+                                                <ul className="speaker-social">
+                                                    <li><Link class="button button-header" to="/event-schedule"
+                                                              onClick={() => this.handleDetail(element.id)}>View
+                                                        Detail</Link></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                }
                             })}
                         </div>
                     </div>

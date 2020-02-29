@@ -6,44 +6,55 @@ export async function saveDataCart(event) {
     const data = await fetch(baseUrl+`/cart`, {method:"POST",
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(event)})
-            if (data.status===200){
-                await succsessFetchData200(data)
-                return data.json();
+        .then((response) => {
+            if (response.status===200){
+                // succsessFetchData200(response)
+                return response.json();
             } else {
-                await badRequest400()
+                badRequest400()
             }
+        }).catch(reason => {
+        })
     return data;
 }
 export async function updateDataCart(event) {
     const data = await fetch(baseUrl+`/cart`, {method:"PUT",
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(event)})
-            if (data.status===200){
-                await succsessFetchData200(data)
-                return data.json();
-            } else if (data.status===400){
-                await badRequest400(data)
+        .then((response) => {
+            if (response.status===200){
+                // succsessFetchData200(response)
+                return response.json();
+            } else if (response.status===400){
+                badRequest400(response)
             }else{
-                await internalServerError500(data);
+                internalServerError500(response);
             }
+        }).catch(reason => {
+        })
     return data;
 }
 export async function fetchDataCartsByUser(userId) {
     const data=await fetch(baseUrl+`/cart-user?userId=${userId}`,
-        {method:"GET"})
-        return data.json()
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
+    console.log(data);
+    return data;
 }
 export async function fetchDataCartsById(id) {
     const data=await fetch(baseUrl+`/cart/${id}`,
-        {method:"GET"})
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
     console.log(data);
-    return data.json()
+    return data;
 }
 export async function deleteCart(id) {
     const data=await fetch(baseUrl+`/cart/${id}`,
         {method:"DELETE"})
     console.log(data);
-    return data.json()
+
 }
 export async function deleteDataCartsById(id) {
     await Swal.fire({

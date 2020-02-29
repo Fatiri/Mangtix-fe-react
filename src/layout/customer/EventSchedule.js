@@ -185,7 +185,7 @@ class EventSchedule extends Component {
 
     addCart = async (ticketId) => {
         let action = {...handletickettransient, ticketIdTransient: ticketId}
-        this.props.dispatch(action)
+        await this.props.dispatch(action)
         const dataToken = decodeJwtToken();
         if (!(dataToken === null)) {
             const idUser = dataToken.jti;

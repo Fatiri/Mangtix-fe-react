@@ -5,7 +5,7 @@ import {
     clearbookingform, fetchbookingsuccess,
     fetcheventsuccess,
     fetchticketsuccess,
-    handlepayment
+    handlepayment, Total
 } from "../../../reducerCustomer/ActionReducerCustomer";
 import {fetchDataTicket} from "../../tickets/service/TicketService";
 import {Link} from "react-router-dom";
@@ -147,7 +147,7 @@ class BookingForm extends React.Component {
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div className="row"><Link onClick={()=>{this.payment(this.props.bookingForm)}} to="/payment" className="button checkout_button">Proceed to
+                                            <div className="row"><Link onClick={()=>{this.payment(this.props.bookingForm, total)}} to="/payment" className="button checkout_button">Proceed to
                                                 Payment</Link>
                                                 <Link onClick={this.cancelBooking} to="/cart" className="button checkout_button" >Cancel Booking</Link>
                                             </div>
@@ -163,7 +163,7 @@ class BookingForm extends React.Component {
 
         );
     }
-    payment=async (booking)=>{
+    payment=async (booking,total)=>{
         console.log(booking)
         let dataBooking=await saveDataBooking(booking)
         console.log(dataBooking)
@@ -173,6 +173,7 @@ class BookingForm extends React.Component {
         let action={...handlepayment, bookingIdTransient:dataBooking.id}
         console.log(action)
         await this.props.dispatch(action)
+        await this.props.dispatch({...Total, total:total})
         this.props.cartById.map((cart)=>{
             return deleteCart(cart.id)
         })

@@ -91,11 +91,7 @@ class EventForm extends React.Component {
                                             <label>Event Date</label>
                                             <input type="date" className="form-control" value={element.eventDate}
                                                    onChange={(event) => {
-                                                       this.props.dispatch({
-                                                           ...handleeventdate,
-                                                           eventDate: event.target.value,
-                                                           index: index
-                                                       })
+                                                       this.handleInputDate(event,index)
                                                    }} required/>
                                             <label>Event Detail Description</label>
                                             <textarea className="form-control" value={element.description}
@@ -142,6 +138,18 @@ class EventForm extends React.Component {
         event.preventDefault()
         this.props.dispatch(addeventdetail)
     }
+
+    handleInputDate=(event, index)=>{
+        let date = event.target.value
+        console.log(event.target.value)
+        const year = date.substring(0, 4)
+        const mounth = date.substring(5, 7)
+        const day = date.substring(8, 10)
+        let dateFormat = day+"-"+mounth+"-"+year;
+        this.props.dispatch({...handleeventdate, eventDate: dateFormat, index: index})
+        console.log(this.props.eventForm)
+    }
+
     handleSubmit = async (e) => {
         e.preventDefault();
         const token = decodeJwtToken();

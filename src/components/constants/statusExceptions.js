@@ -15,7 +15,7 @@ export function badRequest400(message) {
         icon: 'error',
         title: message,
         text: 'Something went wrong!',
-        footer: '<a href>Why do I have this issue?</a>'
+        // footer: '<a href>Why do I have this issue?</a>'
     })
 }
 

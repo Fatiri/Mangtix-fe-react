@@ -15,6 +15,7 @@ import {fetchDataCategory} from "../../../categories/service/CategoryService";
 import {fetchDataEventByCompany, fetchDataEventId} from "../../../events/service/EventService";
 import {fetcheventdetailsuccess} from "../../../events/EventAction";
 import {Link} from "react-router-dom";
+import decodeJwtToken from "../../../../authentication/AutheticationDecodeJwt";
 
 class TicketForm extends React.Component {
     render() {
@@ -45,9 +46,11 @@ class TicketForm extends React.Component {
                                                             className="form-control" required>
                                                         <option required>Choose Event</option>
                                                         {this.props.event.map(element => {
-                                                            return <option value={element.id} required>
-                                                                {element.eventName}
-                                                            </option>
+                                                            if (element.publishStatus===true){
+                                                                return <option value={element.id} required>
+                                                                    {element.eventName}
+                                                                </option>
+                                                            }
                                                         })}
                                                     </select>
                                                 </div>
@@ -251,7 +254,8 @@ class TicketForm extends React.Component {
 
     componentDidMount() {
         this.dataCategory()
-        let event = this.props.company.id;
+        const token = decodeJwtToken();
+        let event = token.aud;
         this.dataEventByCompany(event)
     }
 

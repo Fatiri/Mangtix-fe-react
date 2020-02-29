@@ -5,12 +5,16 @@ export async function saveDataPayment(event) {
     const data = await fetch(baseUrl+`/payment`, {method:"POST",
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(event)})
-            if (data.status===200){
-                await succsessFetchData200(data)
-                return data.json();
+        .then((response) => {
+            if (response.status===200){
+                // succsessFetchData200(response)
+                return response.json();
             } else {
-                await badRequest400()
+                // badRequest400()
+                return response.json()
             }
+        }).catch(reason => {
+        })
     return data;
 }
 

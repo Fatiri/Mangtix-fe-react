@@ -19,7 +19,7 @@ class EventAdmin extends React.Component {
                             <h2 className="card-category">Event List</h2>
                         </div>
                         <div className="card-body">
-                            <table className="table table-hover">
+                            <table className="table table-hover" id="dataTable">
                                 <thead>
                                 <td>Event Name</td>
                                 <td>Description</td>

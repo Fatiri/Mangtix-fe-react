@@ -38,7 +38,7 @@ class Header extends Component {
                                                 <li><Link className="nav-link" to="/cart">Cart</Link></li>
                                                 <li><a href="#pricing-section" className="nav-link">Setting</a></li>
                                                 <li><a href="#faq-section" className="nav-link">FAQ</a></li>
-                                                <li><Link onClick={this.handleLogOut}>Log Out</Link></li>
+                                                <li><Link onClick={this.handleLogOut} to="/login">Log Out</Link></li>
                                             </ul>
                                         </li>
                                         :<li><Link className="nav-link" to="/login">Login</Link></li>

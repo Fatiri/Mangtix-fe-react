@@ -1,4 +1,3 @@
-import {badRequest400, succsessFetchData200} from "../../../components/constants";
 import Swal from "sweetalert2";
 import {baseUrl} from "../../../services/serviceCenter";
 
@@ -31,32 +30,42 @@ export async function saveDataBooking(event) {
 
 export async function fetchDataBookingByUser(userId) {
     const data=await fetch(baseUrl+`/booking-user?userId=${userId}`,
-        {method:"GET"})
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
     console.log(data);
-    return data.json()
+    return data;
 }
 export async function fetchDataBookingById(id) {
     const data=await fetch(baseUrl+`/booking/${id}`,
-        {method:"GET"})
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
     console.log(data);
-    return data.json();
+    return data;
 }
 
 export async function fetchDataBookingAll() {
     const data=await fetch(baseUrl+`/booking-list`,
-        {method:"GET"})
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
     console.log(data);
-    return data.json()
+    return data;
 }
 export async function fetchDataUserAll() {
     const data=await fetch(baseUrl+`/users`,
-        {method:"GET"})
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
     console.log(data);
-    return data.json();
+    return data;
 }
 export async function fetchDataUserId(userId) {
-    const data=await fetch(`http://localhost:9090/user/${userId}`,
-        {method:"GET"})
+    const data=await fetch(baseUrl+`/user/${userId}`,
+        {method:"GET"}).then((response)=>{
+        return response.json()
+    });
     console.log(data);
-    return data.json();
+    return data;
 }

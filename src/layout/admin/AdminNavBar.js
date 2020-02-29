@@ -2,8 +2,11 @@ import React, {Component} from 'react';
 import Authentication from "../../authentication/Authentication";
 import decodeJwtToken from "../../authentication/AutheticationDecodeJwt";
 import {Link, Redirect} from "react-router-dom";
+import {fetchDataUserBYId} from "../../modules/users/service/UserService";
+import {fetchDataUser} from "../../modules/users/UserAction";
+import {connect} from "react-redux";
 
-export default class AdminNavBar extends Component {
+class AdminNavBar extends Component {
 
     render() {
         return (
@@ -72,7 +75,7 @@ export default class AdminNavBar extends Component {
                             <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
-                                <span className="ml-2 d-none d-lg-inline text-white small">Maman Ketoprak</span>
+                                <span className="ml-2 d-none d-lg-inline text-white small">Hi {this.props.userAccess.fullName}</span>
                             </a>
                             <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
@@ -117,4 +120,22 @@ export default class AdminNavBar extends Component {
             return <Redirect to="/login"/>
         }
     }
+    handleFetchDataUser=async ()=>{
+        const dataToken = decodeJwtToken();
+        if (!(dataToken===null)){
+            const idUser = dataToken.jti;
+            const dataUser = await fetchDataUserBYId(idUser);
+            this.props.dispatch({...fetchDataUser, userAccess:dataUser})
+        }else {
+            localStorage.clear();
+            return <Redirect to="/login"/>
+        }
+    }
+    componentDidMount() {
+        this.handleFetchDataUser()
+    }
 }
+function mapStateToProps(state) {
+    return {...state};
+}
+export default connect(mapStateToProps)(AdminNavBar)

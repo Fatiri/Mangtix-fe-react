@@ -29,11 +29,11 @@ class BookingListManagement extends Component {
                                 <th>Full Name</th>
                                 <th>Action</th>
                                 </thead>
-                                {this.props.pureBookingListManagement.booking.map((element, index) => {
+                                {this.props.bookingManagement.map((element, index) => {
 
                                     return <tbody>
-                                    <td>{element.data.user.userName}</td>
-                                    <td>{element.data.user.password}</td>
+                                    <td>{element.user.userName}</td>
+                                    <td>{element.user.password}</td>
                                     <td>
                                         <div className="card">
                                             <button className="btn btn-primary btn-sm" data-toggle="modal"
@@ -66,10 +66,10 @@ class BookingListManagement extends Component {
                                                     </thead>
 
                                                     <tbody>
-                                                    <td>{element.data.id}</td>
-                                                    <td>{element.data.bookDate}</td>
-                                                    <td>{element.data.user.userName}</td>
-                                                    {element.data.bookingDetailList.map((bookingDetail) => {
+                                                    <td>{element.id}</td>
+                                                    <td>{element.bookDate}</td>
+                                                    <td>{element.user.userName}</td>
+                                                    {element.bookingDetailList.map((bookingDetail) => {
                                                         return <>
                                                             <td>{bookingDetail.quantity}</td>
                                                             <td>{bookingDetail.subtotal}</td>
@@ -102,6 +102,7 @@ class BookingListManagement extends Component {
         const token = decodeJwtToken();
         const companyId = token.aud;
         const dataEvent = await fetchDataEventByCompany(companyId);
+        console.log(dataEvent+"iniiiiiiiiiiiii")
         this.props.dispatch({...fetchEventManagement, eventManagement: dataEvent})
         console.log(this.props.eventManagement)
         this.props.eventManagement.map(event => {
@@ -132,11 +133,12 @@ class BookingListManagement extends Component {
 
     compareDataBookingWithTicketId=async ()=>{
         this.props.bookingDetailListManagement.map((bookingDetail, index)=>{
+            console.log(this.props.bookingDetailManagement+"iniiiiiii")
             this.props.ticketManagement.map( async ticket=>{
                 if (bookingDetail.ticket.id===ticket.id){
                     const dataBooking = await fetchDataBookingById(bookingDetail.bookingIdTransient);
                     console.log(dataBooking.id+"iniii")
-                    console.log(index)
+                    console.log(index);
                     this.props.dispatch({...pureBookingManagement, index:index, booking:dataBooking})
                     console.log(this.props.pureBookingListManagement.booking.map(data=>{
                         return console.log(data.data)

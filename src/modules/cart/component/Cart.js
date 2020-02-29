@@ -35,7 +35,6 @@ class Cart extends Component {
                         {this.props.cart.length === 0 ? <h3>Please choose a ticket</h3> :
                             <div className="cart_info">
                                 <div className="container">
-                                    <form>
                                         <div className="row">
                                             <div className="col">
                                                 <div className="cart_info_columns clearfix">
@@ -157,7 +156,6 @@ class Cart extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
                                 </div>
                             </div>
                         }

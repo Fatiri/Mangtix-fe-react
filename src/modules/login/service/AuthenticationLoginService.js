@@ -1,4 +1,3 @@
-import {serverAddress} from "../../../server/ServerConstant";
 import {baseUrl} from "../../../services/serviceCenter";
 
 export async function GenerateTokenAccess(user) {
@@ -8,6 +7,13 @@ export async function GenerateTokenAccess(user) {
             body: JSON.stringify(user)
         }
     )
-            console.log(token)
-            return token.json()
+        .then((response)=>{
+            console.log(response)
+            return response.json()
+        })
+        .catch(reason => {
+            console.log(reason)
+        })
+
+    return token;
 }

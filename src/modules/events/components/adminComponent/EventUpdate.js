@@ -80,12 +80,7 @@ class EventUpdate extends React.Component {
                                             <label>Event Date</label>
                                             <input type="date" data-date-format="dd-mm-yyyy" className="form-control" value={element.eventDate}
                                                    onChange={(event) => {
-                                                       console.log(event)
-                                                       this.props.dispatch({
-                                                           ...handleeventdate,
-                                                           eventDate: event.target.value,
-                                                           index: index
-                                                       })
+                                                       this.handleInputDate(index)
                                                    }} required/>
                                             <label>Event Detail Description</label>
                                             <textarea className="form-control" value={element.description}
@@ -159,6 +154,21 @@ class EventUpdate extends React.Component {
 
         await updateDataEvent(event)
         this.props.dispatch({...clearstate})
+    }
+
+    handleInputDate=(event, index)=>{
+        let date = event.target.value
+        console.log(event.target.value)
+        const year = date.substring(0, 4)
+        const mounth = date.substring(5, 7)
+        const day = date.substring(8, 10)
+        let dateFormat = day+"-"+mounth+"-"+year;
+        this.props.dispatch({
+            ...handleeventdate,
+            eventDate: event.target.value,
+            index: index
+        })
+        console.log(this.props.eventForm)
     }
     dataLocation=async ()=>{
         const data = await fetchDataLocation();
